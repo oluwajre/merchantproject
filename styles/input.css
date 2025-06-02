@@ -2,7 +2,8 @@
 
 @theme {
   --font-display: "Satoshi", "sans-serif";
-  --font-mono: "Mona Sans", "sans-serif";
-  --color-primary: #0d0c22;
-  /* ... */
+  --color-primary-black: #0d0c22;
+  --color-primary-grey: #9C9C9C;
+  --color-primary-red: #dc3545;
+  --color-secondary-link: #3743c2;
 }
