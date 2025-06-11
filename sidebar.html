@@ -1,0 +1,115 @@
+<!-- sidebar.html - Fixed version -->
+<div class="bg-primary-black h-screen text-primary-grey overflow-y-auto scroll-smooth hide-scrollbar pb-2 transition duration-300" 
+     x-data="{ 
+        expandSideMenu: true,
+        menuList: [
+            {name: 'Dashboard', icon: `M21 12a2.25 2.25 0 0 0-2.25-2.25H15a3 3 0 1 1-6 0H5.25A2.25 2.25 0 0 0 3 12m18 0v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 9m18 0V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v3`, dropDown: [], activeMenu: true, showDropDown: false, link: './login.html'},
+            {name: 'View Balance', icon: `M21 12a2.25 2.25 0 0 0-2.25-2.25H15a3 3 0 1 1-6 0H5.25A2.25 2.25 0 0 0 3 12m18 0v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 9m18 0V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v3`, dropDown: [], activeMenu: false, showDropDown: false, link: 'https://www.creditswitch.com/'},
+            {menuHeader: 'Report', name: 'Vend Services', icon: `M21 12a2.25 2.25 0 0 0-2.25-2.25H15a3 3 0 1 1-6 0H5.25A2.25 2.25 0 0 0 3 12m18 0v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 9m18 0V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v3`, 
+            dropDown: [
+                {name: 'Profile', icon: `M21 12a2.25 2.25 0 0 0-2.25-2.25H15a3 3 0 1 1-6 0H5.25A2.25 2.25 0 0 0 3 12m18 0v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 9m18 0V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v3`, link: 'https://www.creditswitch.com/'},
+                {name: 'Security', icon: `M21 12a2.25 2.25 0 0 0-2.25-2.25H15a3 3 0 1 1-6 0H5.25A2.25 2.25 0 0 0 3 12m18 0v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 9m18 0V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v3`, link: 'https://www.netflix.com/ng/'}
+            ], activeMenu: false, showDropDown: false, link: 'https://www.creditswitch.com/'},
+            {name: 'Fund Wallet', icon: `M21 12a2.25 2.25 0 0 0-2.25-2.25H15a3 3 0 1 1-6 0H5.25A2.25 2.25 0 0 0 3 12m18 0v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 9m18 0V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v3`, dropDown: [], activeMenu: false, showDropDown: false, link: 'https://www.creditswitch.com/'},
+            {name: 'Service Reports', icon: `M21 12a2.25 2.25 0 0 0-2.25-2.25H15a3 3 0 1 1-6 0H5.25A2.25 2.25 0 0 0 3 12m18 0v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 9m18 0V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v3`, 
+            dropDown: [
+                {name: 'Profile', icon: 'M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm-6.5-2a6.5 6.5 0 1 1 13 0A6.5 6.5 0 0 1 5.5 12z', link: 'https://www.creditswitch.com/'},
+                {name: 'Security', icon: `M12.75 9V7.25a3.25 3.25 0 1 0-6.5 0V9m6.5-1h-6.5m6.5-1v1m-6.5-1v1m3.25-3a3.25 3.25 0 1 1-6.5 0A3.25 3.25 0 0 1 9.25 4z`, link: 'https://www.netflix.com/ng/'}
+            ], activeMenu: false, showDropDown: false, link: 'https://www.creditswitch.com/'},
+            {menuHeader: 'Settings', name: 'Change Password', icon: `M21 12a2.25 2.25 0 0 0-2.25-2.25H15a3 3 0 1 1-6 0H5.25A2.25 2.25 0 0 0 3 12m18 0v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 9m18 0V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v3`, dropDown: [], activeMenu: false, showDropDown: false, link: 'https://www.creditswitch.com/'},
+            {name: 'Logout', icon: `M21 12a2.25 2.25 0 0 0-2.25-2.25H15a3 3 0 1 1-6 0H5.25A2.25 2.25 0 0 0 3 12m18 0v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 9m18 0V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v3`, dropDown: [], activeMenu: false, showDropDown: false, link: 'https://www.creditswitch.com/'},
+        ],
+        toggleDropdown(index) {
+            if (this.menuList[index].dropDown.length === 0) {
+                window.location.href = this.menuList[index].link;
+                return;
+            };
+            this.expandSideMenu = true;
+            this.menuList[index].showDropDown = !this.menuList[index].showDropDown;
+        }
+    }">
+    <div class="z-30 sticky top-0 flex items-center justify-between mb-5 px-4 h-15 bg-inherit">
+        <img x-show="expandSideMenu" x-transition x-cloak src="./assets/creditswitchlogo.png" alt="Creditswitch Logo" class="h-8 object-contain" />
+        <button class="cursor-pointer text-inherit mt-3" @click="expandSideMenu = !expandSideMenu">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="h-8 w-8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+        </button>
+    </div>
+    
+    <div class="z-20 text-inherit">
+        <ul class="list-none space-y-1">
+            <template x-for="(item, index) in menuList" :key="index">
+                <li>
+                    <p 
+                        x-show="expandSideMenu && item.menuHeader" 
+                        x-text="item.menuHeader"
+                        class="uppercase text-sm text-gray-400 px-4 mt-7 mb-2 font-medium"
+                        x-transition
+                        x-cloak
+                    ></p>
+                    <div class="relative px-4 py-2 flex items-center cursor-pointer gap-2 w-full text-primary-grey hover:text-white"
+                        :class="{ 'bg-secondary-lightBlue text-white': item.activeMenu }"
+                        @click="toggleDropdown(index)"
+                    >   
+                        <span class="text-inherit">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-7 h-7">
+                                <path :d="item.icon" />
+                            </svg>
+                        </span>
+
+                        <span 
+                            x-show="expandSideMenu" 
+                            x-text="item.name" 
+                            x-transition 
+                            x-cloak
+                            class="mr-4"
+                        ></span>
+
+                        <span 
+                            x-show="expandSideMenu && item.dropDown.length > 0" 
+                            class="ml-auto text-inherit transition duration-300" 
+                            :class="{ 'rotate-90': item.showDropDown, 'rotate-0': !item.showDropDown }"
+                            x-cloak
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor" class="size-3">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                            </svg>
+                        </span>
+
+                        <span x-show="item.activeMenu" class="absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0 border-t-20 border-b-20 border-r-10 border-t-transparent border-b-transparent border-r-primary-grey-light" x-transition x-cloak></span>
+                    </div>
+
+                    <!-- Dropdown Menu -->
+                    <div
+                        x-show="expandSideMenu && item.dropDown.length > 0 && item.showDropDown"
+                        class="pl-6 my-2 text-sm"
+                        x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0 transform -translate-y-8"
+                        x-transition:enter-end="opacity-100 transform translate-y-0"
+                        x-transition:leave="transition ease-in duration-0"
+                        x-transition:leave-start="opacity-100 transform translate-y-0"
+                        x-transition:leave-end="opacity-0 transform -translate-y-8"
+                        x-cloak
+                    >
+                        <ul class="list-none space-y-1">
+                            <template x-for="(subItem, subIndex) in item.dropDown" :key="subIndex">
+                                <li>
+                                    <div class="px-4 py-2 flex items-center cursor-pointer gap-2 w-full text-gray-300 hover:text-white">
+                                        <a x-cloak :href="subItem.link" class="absolute inset-x-0 w-full h-full"></a>
+                                        <span class="text-inherit">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor" class="w-5 h-5">
+                                                <path :d="subItem.icon" />
+                                            </svg>
+                                        </span>
+                                        <p x-text="subItem.name"></p>
+                                    </div>
+                                </li>                  
+                            </template>
+                        </ul>
+                    </div>
+                </li>
+            </template>
+        </ul>
+    </div>
+</div>
