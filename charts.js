@@ -1,4 +1,8 @@
-function barChart1() {
+import { Chart, registerables } from 'chart.js';
+
+Chart.register(...registerables);
+
+export const barChart1 = () => {
   return {
     chart: null,
     initChart() {
@@ -51,7 +55,7 @@ function barChart1() {
   }
 };
 
-function lineChart1() {
+export const lineChart1 = () => {
   return {
     chart: null,
     initChart() {
@@ -104,7 +108,7 @@ function lineChart1() {
   };
 };
 
-function barChart2() {
+export const barChart2 = () => {
   return {
     chart: null,
     initChart() {
@@ -165,7 +169,7 @@ function barChart2() {
   }
 };
 
-function lineChart2() {
+export const lineChart2 = () => {
   return {
     chart: null,
     initChart() {
@@ -239,7 +243,7 @@ function lineChart2() {
   };
 };
 
-function barChart3() {
+export const barChart3 = () => {
   return {
     chart: null,
     initChart() {
