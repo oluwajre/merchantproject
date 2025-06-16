@@ -7,6 +7,7 @@
   --color-primary-grey: #9C9C9C;
   --color-primary-grey-light-text: #d2d2d6;
   --color-primary-grey-light: #eeeeee;
+  --color-primary-dullGrey: #959cb6;
   --color-primary-red: #dc3545;
   --color-secondary-linkColour: #3743c2;
   --color-primary-lightBlue: #05b0c4;
@@ -17,4 +18,5 @@
   --color-primary-gold-light: #ffb822;
   --color-primary-wine: #d91e62;
   --color-primary-green: #49a749;
+  --text-tiny: 0.65rem;
 }

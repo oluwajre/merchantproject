@@ -9,33 +9,43 @@
         [x-cloak] {
         display: none !important;
         }
-        .hide-scrollbar::-webkit-scrollbar {
-            display: none;
-         }
 
-        .hide-scrollbar {
-            scrollbar-width: none; /* Firefox */
-            -ms-overflow-style: none;  /* Internet Explorer 10+ */
+        .sidebar-scroll {
+            overflow-y: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .sidebar-scroll::-webkit-scrollbar {
+            display: none;
         }
     </style>
 </head>
 <body class="select-none bg-primary-grey-light">
 
-    <section class="relative flex h-screen" x-data="sidebar('Switching Report')">
+    <section class="relative flex h-screen" x-data="sidebar('Funding Records')">
 
         <!-- Sidebar Section -->
-        <div :class="{'block w-screen': showSideBar, 'w-[0]': !showSideBar}" class="z-10 h-screen fixed md:block md:relative md:w-fit md:min-w-[64px] max-w-[250px] bg-primary-black backdrop-blur-xs md:backdrop-blur-none text-primary-grey-light-text overflow-y-auto scroll-smooth hide-scrollbar pb-2 transition-width duration-500 ease-in-out" x-cloak>
-            <div class="z-30 sticky top-0 flex items-center justify-between mb-3 pl-8 pr-6 h-16 bg-inherit">
-                <img x-show="expandSideMenu" x-transition x-cloak src="./assets/creditswitchlogo.png" alt="Creditswitch Logo" class="h-8 object-contain" />
+        <div 
+            :class="{'block w-screen': showSideBar, 'w-[0]': !showSideBar}" 
+            class="z-20 h-screen overflow-y-hidden fixed right-0 lg:block lg:relative lg:w-fit lg:min-w-[64px] max-w-[250px] bg-primary-black backdrop-blur-xs md:backdrop-blur-none text-primary-grey-light-text pb-2 transition-width duration-500 ease-in-out"
+            x-cloak
+        >
+            <div class="z-30 sticky top-0 flex items-center justify-between mb-3 px-0 lg:pl-8 lg:pr-6 h-16 bg-inherit">
+                <img x-show="expandSideMenu" x-transition x-cloak src="./assets/creditswitchlogo.png" alt="Creditswitch Logo" class="hidden lg:inline-flex h-8 object-contain" />
                 <button class="cursor-pointer text-inherit hover:text-white mt-3" @click="toggleSideBar()">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="hidden lg:inline-block size-8">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                    
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-x-square-fill size-8 lg:hidden" viewBox="0 0 16 16">
+                        <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708"/>
                     </svg>
                 </button>
             </div>
 
             <div class="z-20 text-inherit">
-                <ul class="list-none space-y-1">
+                <ul class="list-none space-y-1 h-[calc(100vh-5rem)] sidebar-scroll scroll-smooth">
                     <template x-for="(item, index) in menuList" :key="index">
                         <li>
                             <p 
@@ -46,16 +56,20 @@
                                 x-cloak
                             ></p>
                             <div 
-                                :class="{ 
-                                    'bg-primary-lightBlue text-white': item.activeMenu, 
-                                    'group text-primary-grey-light-text hover:text-white hover:bg-primary-grey-light/8': !item.activeMenu,
-                                    'text-white bg-primary-grey-light/8': openDropdown === index,
+                                :class="{
+                                    'bg-primary-lightBlue text-white': isActive(item),
+                                    'text-primary-grey-light-text hover:text-white hover:bg-primary-grey-light/8': !isActive(item),
+                                    'group': !isActive(item) && openDropdown !== index,
+                                    'text-white bg-primary-grey-light/8': openDropdown === index
                                 }"
                                 class="relative pl-8 pr-6 py-2.5 flex items-center cursor-pointer gap-2 w-full text-sm"
-                                @click="toggleDropdown(index)"
-                            >   
-
-                                <span class="text-inherit group-hover:text-primary-lightBlue" x-html="item.icon"></span>
+                                @click="toggleDropdown(item, index)"
+                            >
+                                <span 
+                                    class="text-inherit group-hover:text-primary-lightBlue"
+                                    x-html="item.icon"
+                                >
+                                </span>
 
                                 <span 
                                     x-show="expandSideMenu" 
@@ -78,13 +92,13 @@
 
                                 <span
                                     x-show="expandSideMenu && item.alert"
-                                    class="w-8 h-6 bg-primary-gold-light text-primary-black rounded-full flex justify-center items-center text-xs"
+                                    class="ml-auto bg-primary-gold-light text-primary-black rounded-full px-3 py-1 flex justify-center items-center text-xs"
                                     x-text="item.alert"
                                     x-cloak
                                 >
                                 </span>
 
-                                <span x-show="item.activeMenu" class="absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0 border-t-20 border-b-20 border-r-10 border-t-transparent border-b-transparent border-r-primary-grey-light" x-transition x-cloak></span>
+                                <span x-show="isActive(item)" class="hidden lg:inline-flex absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0 border-t-20 border-b-20 border-r-10 border-t-transparent border-b-transparent border-r-primary-grey-light" x-transition x-cloak></span>
                             </div>
 
                             <!-- Dropdown Menu -->
@@ -99,20 +113,86 @@
                                 x-transition:leave-end="opacity-0 transform -translate-y-8"
                                 x-cloak
                             >
-                                <ul class="list-none space-y-1">
-                                    <template x-for="subItem in item.dropDown" :key="subItem.name">
+                                <ul class="list-none">
+                                    <template x-for="(subItem, index) in item.dropDown" :key="subItem.name">
                                         <li>
                                             <div 
-                                                :class="{'bg-primary-grey-light/8 text-white': subItem.activeMenu, 'text-primary-grey-light-text hover:text-white hover:bg-primary-grey-light/8': !subItem.activeMenu}"
-                                                class="group relative pl-6 pr-4 py-2 flex items-center cursor-pointer gap-2 w-full text-sm">
-
-                                                <a x-cloak :href="subItem.link" class="absolute inset-x-0 w-full h-full"></a>
+                                                :class="{
+                                                    'bg-primary-grey-light/8 text-white': isActive(subItem) || subItem.openSubDropdown === index,
+                                                    'text-primary-grey-light-text hover:text-white hover:bg-primary-grey-light/8': !isActive(subItem)
+                                                }"
+                                                class="group pl-9 pr-8 py-2 flex items-center cursor-pointer gap-2 w-full text-sm"
+                                                @click="toggleDropdown(subItem, index)"
+                                            >
 
                                                 <span 
-                                                    :class="{'text-primary-lightBlue': subItem.activeMenu, 'text-inherit group-hover:text-primary-lightBlue': !subItem.activeMenu}"
-                                                    x-html="subItem.icon"></span>
+                                                    :class="{
+                                                        'text-primary-lightBlue': isActive(subItem), 
+                                                        'text-inherit group-hover:text-primary-lightBlue': !isActive(subItem)
+                                                    }"
+                                                    x-html="subItem.icon"
+                                                >
+                                                </span>
 
                                                 <p x-text="subItem.name"></p>
+
+                                                <span
+                                                    x-show="expandSideMenu && subItem.alert"
+                                                    class="ml-auto bg-primary-gold-light text-primary-black rounded-full px-2 py-1 flex justify-center items-center text-xs "
+                                                    x-text="subItem.alert"
+                                                    x-cloak
+                                                >
+                                                </span>
+
+                                                <span 
+                                                    x-show="expandSideMenu && subItem.dropDown?.length > 0"
+                                                    class="ml-auto text-inherit transition duration-300" 
+                                                    :class="{ 'rotate-90': subItem.openSubDropdown === index, 'rotate-0': subItem.openSubDropdown !== index}"
+                                                    x-cloak
+                                                >
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor" class="size-3">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                                    </svg>
+                                                </span>
+                                            </div>
+
+                                            <!-- Sub Dropdown Menu -->
+                                            <div
+                                                x-show="expandSideMenu && subItem.dropDown?.length > 0 && subItem.openSubDropdown === index"
+                                                class="mb-2 text-sm"
+                                                x-transition:enter="transition ease-out duration-300"
+                                                x-transition:enter-start="opacity-0 transform -translate-y-8"
+                                                x-transition:enter-end="opacity-100 transform translate-y-0"
+                                                x-transition:leave="transition ease-in duration-300"
+                                                x-transition:leave-start="opacity-100 transform translate-y-0"
+                                                x-transition:leave-end="opacity-0 transform -translate-y-8"
+                                                x-cloak
+                                            >
+                                                <ul class="list-none">
+                                                    <template x-for="(child, index) in subItem.dropDown" :key="child.name">
+                                                        <li>
+                                                            <div 
+                                                                :class="{
+                                                                    'bg-primary-grey-light/8 text-white': isActive(child),
+                                                                    'text-primary-grey-light-text hover:text-white hover:bg-primary-grey-light/8': !isActive(child)
+                                                                }"
+                                                                class="group pl-12 pr-8 py-2 flex items-center cursor-pointer gap-2 w-full text-sm"
+                                                                @click="toggleDropdown(child, index)"
+                                                            >
+                                                                <span 
+                                                                    :class="{
+                                                                        'text-primary-lightBlue': isActive(child), 
+                                                                        'text-inherit group-hover:text-primary-lightBlue': !isActive(child)
+                                                                    }"
+                                                                    x-html="child.icon"
+                                                                >
+                                                                </span>
+
+                                                                <p x-text="child.name"></p>
+                                                            </div>
+                                                        </li>
+                                                    </template>
+                                                </ul>
                                             </div>
                                         </li>                  
                                     </template>
@@ -130,35 +210,38 @@
          <div class="flex-1 overflow-y-auto" id="screenTop">
 
             <!-- Mobile Nav Header  -->
-            <div class="sticky z-10 top-0 flex md:hidden items-center justify-between px-4 h-15 bg-primary-grey-light shadow-md">
-                <img x-show="expandSideMenu" x-transition x-cloak src="./assets/bluecreditswitchlogo.png" alt="Creditswitch Logo" class="h-9 object-contain" />
-                <button class="flex cursor-pointer text-inherit" @click="showSideBar = !showSideBar; expandSideMenu = true">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="h-8 w-8">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            <div class="sticky z-10 top-0 flex lg:hidden items-center justify-between px-4 h-15 bg-primary-black shadow-md">
+                <img x-show="expandSideMenu" x-transition x-cloak src="./assets/creditswitchlogo.png" alt="Creditswitch Logo" class="h-9 object-contain" />
+                <button class="flex cursor-pointer text-primary-grey-light" @click="showSideBar = !showSideBar; expandSideMenu = true">
+                    <svg class="w-9 h-9" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.2">
+                        <line x1="6" y1="18" x2="14" y2="18" stroke-linecap="round"/>
+                        <line x1="4" y1="12" x2="20" y2="12" stroke-linecap="round"/>
+                        <line x1="6" y1="6" x2="18" y2="6" stroke-linecap="round"/>
                     </svg>
                 </button>
             </div>
 
+            <!-- Main Content Section Header  -->
+            <div class="w-full flex flex-col sm:flex-row gap-2 sm:gap-0 justify-between items-start sm:items-center px-4 my-4">
+                <div class="flex items-center capitalize gap-2">
+                    <p class="font-medium">Dashboard</p>
+                    <p class="flex items-center text-sm text-primary-dullGrey">
+                        <span class="text-inherit mr-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                            </svg>
+                        </span>
+                        <span class="font-medium">Home</span>
+                    </p>
+                </div>
+                <div class="flex gap-2 text-tiny font-medium uppercase text-primary-dullGrey">
+                    <div class="px-8 py-2 bg-primary-grey-light">Total Merchants: <span class="text-blue-600">102</span></div>
+                    <div class="px-8 py-2 bg-primary-grey-light shadow-md">Welcome, <span class="text-blue-600">csw</span></div>
+                </div>
+            </div>
+
             <!-- Main Content Section -->
             <div class="w-full flex flex-col px-4 py-6 gap-12 text-primary-black">
-
-                <!-- Main Content Section Header  -->
-                <div class="flex justify-between items-center px-4">
-                    <div class="flex items-center flex-wrap capitalize gap-2">
-                        <p class="font-medium">Dashboard</p>
-                        <p class="flex items-center text-sm text-primary-blue">
-                            <span class="text-inherit mr-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-                                </svg>
-                            </span>
-                            <span>Home</span>
-                        </p>
-                    </div>
-                    <div class="text-sm font-medium uppercase px-8 py-2 bg-primary-grey-light text-primary-grey shadow-md">
-                        Welcome, <span class="text-blue-600">csw</span>
-                    </div>
-                </div>
 
                 <!-- First Row -->
                 <div class="flex flex-col sm:flex-row flex-wrap items-center justify-between gap-10 sm:gap-6" x-data="{
@@ -337,9 +420,9 @@
                             <span class="text-sm mb-1">Quick Links</span>
                         </div>
 
-                        <div class="w-full flex flex-wrap items-stretch justify-center gap-x-3 gap-y-7 text-gray-600 px-7">
+                        <div class="w-full flex flex-wrap items-stretch justify-center gap-x-3 gap-y-7 px-7">
                             <template x-for="(link, index) in quickLinks" :key="index">
-                                <a :href="link.link" class="flex flex-col w-[85px] min-h-[90px] space-y-3 items-center justify-start px-2 py-3 bg-primary-grey/10 border border-primary-grey/50">
+                                <a :href="link.link" class="flex flex-col w-[95px] min-h-[105px] space-y-3 items-center justify-start px-2 py-3 bg-primary-grey/10 hover:bg-primary-wine text-gray-600 border hover:text-white border-primary-grey/50 rounded-sm">
                                     <span class="text-inherit" x-html="link.icon"></span>
 
                                     <span class="uppercase font-medium text-center text-xs" x-text="link.name"></span>
@@ -438,6 +521,11 @@
                          </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Main Content Footer  -->
+            <div class="w-full px-4 py-6 bg-white text-sm text-primary-dullGrey" x-data="{currentYear: new Date().getFullYear()}">
+                <p>Copyright © <span x-text="currentYear"></span> <a href="https://www.creditswitch.com/" class="text-inherit hover:text-blue-600 hover:underline underline-offset-3 transform duration-200">Creditswitch</a></p>
             </div>
 
             <!-- Scroll Up Button  -->
