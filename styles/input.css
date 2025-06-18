@@ -6,8 +6,9 @@
   --color-primary-black: #201f2b;
   --color-primary-grey: #9C9C9C;
   --color-primary-grey-light-text: #d2d2d6;
-  --color-primary-grey-light: #eeeeee;
+  --color-primary-grey-light: #f2f3f8;
   --color-primary-dullGrey: #959cb6;
+  --color-primary-boldGrey: #646c9a;
   --color-primary-red: #dc3545;
   --color-secondary-linkColour: #3743c2;
   --color-primary-lightBlue: #05b0c4;
@@ -19,4 +20,18 @@
   --color-primary-wine: #d91e62;
   --color-primary-green: #49a749;
   --text-tiny: 0.65rem;
+}
+
+[x-cloak] {
+display: none !important;
+}
+
+.sidebar-scroll {
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.sidebar-scroll::-webkit-scrollbar {
+    display: none;
 }

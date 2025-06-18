@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creditswitch Merchant Portal | Dashboard</title>
-    <link rel="stylesheet" href="./styles/output.css" />
+    <link rel="stylesheet" href="../styles/output.css" />
     <style>
         [x-cloak] {
         display: none !important;
@@ -23,7 +23,7 @@
 </head>
 <body class="select-none bg-primary-grey-light">
 
-    <section class="relative flex h-screen" x-data="sidebar('Funding Records')">
+    <section class="relative flex h-screen" x-data="menus('Roles')">
 
         <!-- Sidebar Section -->
         <div 
@@ -32,7 +32,7 @@
             x-cloak
         >
             <div class="z-30 sticky top-0 flex items-center justify-between mb-3 px-0 lg:pl-8 lg:pr-6 h-16 bg-inherit">
-                <img x-show="expandSideMenu" x-transition x-cloak src="./assets/creditswitchlogo.png" alt="Creditswitch Logo" class="hidden lg:inline-flex h-8 object-contain" />
+                <img x-show="expandSideMenu" x-transition x-cloak src="../assets/images/creditswitchlogo.png" alt="Creditswitch Logo" class="hidden lg:inline-flex h-8 object-contain" />
                 <button class="cursor-pointer text-inherit hover:text-white mt-3" @click="toggleSideBar()">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="hidden lg:inline-block size-8">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -125,10 +125,12 @@
                                                 @click="toggleDropdown(subItem, index)"
                                             >
 
+
                                                 <span 
                                                     :class="{
-                                                        'text-primary-lightBlue': isActive(subItem), 
-                                                        'text-inherit group-hover:text-primary-lightBlue': !isActive(subItem)
+                                                        'text-primary-lightBlue': isActive(subItem),
+                                                        'text-inherit group-hover:text-primary-lightBlue': !isActive(subItem) && subItem.openSubDropdown !== index,
+                                                        'text-inherit': subItem.openSubDropdown === index
                                                     }"
                                                     x-html="subItem.icon"
                                                 >
@@ -211,7 +213,7 @@
 
             <!-- Mobile Nav Header  -->
             <div class="sticky z-10 top-0 flex lg:hidden items-center justify-between px-4 h-15 bg-primary-black shadow-md">
-                <img x-show="expandSideMenu" x-transition x-cloak src="./assets/creditswitchlogo.png" alt="Creditswitch Logo" class="h-9 object-contain" />
+                <img x-show="expandSideMenu" x-transition x-cloak src="../assets/images/creditswitchlogo.png" alt="Creditswitch Logo" class="h-9 object-contain" />
                 <button class="flex cursor-pointer text-primary-grey-light" @click="showSideBar = !showSideBar; expandSideMenu = true">
                     <svg class="w-9 h-9" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.2">
                         <line x1="6" y1="18" x2="14" y2="18" stroke-linecap="round"/>
@@ -538,5 +540,5 @@
 
     </section>
 </body>
-<script type="module" src="./main.js"></script>
+<script type="module" src="../scripts/main.js"></script>
 </html>
