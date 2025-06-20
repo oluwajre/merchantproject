@@ -30,16 +30,17 @@
                 <!-- Main Content Section -->
                 <div class="w-full flex flex-col px-6 py-6 gap-12 text-primary-black">
                     
-                    <div class="flex flex-col md:flex-row justify-between flex-wrap gap-10 lg:gap-6 w-full">
-
+                    <div class="flex flex-col gap-15 w-full" x-data="{
+                        showTable: false,
+                    }">
                         
-                        <div class="flex-1 relative px-4 pt-15 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full md:min-w-[450px]">
+                        <div class="flex-1 relative px-4 pt-15 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
                             <div class="absolute flex items-end justify-center gap-1 -top-4 p-4 text-center rounded-xs shadow-xl  bg-gradient-to-r from-primary-lightBlue/80 to-primary-lightBlue text-white min-w-[160px]">
                                 <span class="text-md font-semibold">Switching Report</span>
                             </div>
 
                             <div class="w-full mb-3 flex">
-                                <form class="w-full gap-5 flex flex-wrap justify-between" x-data="{
+                                <form class="w-full gap-5 flex flex-wrap justify-between" @submit.prevent="showTable = true" x-data="{
                                     formInput: [
                                         {
                                             type: 'text',
@@ -70,7 +71,7 @@
                                             type: 'datetime-local',
                                             placeholder: 'start date',
                                             name: 'startDate',
-                                            value: '',
+                                            value: '2025-06-18T00:00',
                                             label: '(Start Date)',
                                         },
                                         {
@@ -102,12 +103,13 @@
                                             type: 'datetime-local',
                                             placeholder: 'end date',
                                             name: 'endDate',
-                                            value: '',
+                                            value: '2025-06-18T00:00',
                                             label: '(End Date)',
                                         },
                                         {
                                             type: 'button',
                                             name: 'search',
+                                            label: '',
                                         }
                                     ],
                                 }">
@@ -141,15 +143,185 @@
                                                 <button type="submit" x-text="input.name" class="w-full uppercase font-semibold text-xs text-white bg-primary-lightBlue/85 hover:bg-primary-lightBlue p-3 rounded-xs cursor-pointer transition duration-300"></button>
                                             </template>
 
-                                            <label x-show="input.label" for="input.name" x-text="input.label" class="text-xs text-primary-boldGrey" x-cloak></label>
+                                            <template x-if="input.label">
+                                                <label :for="input.name" x-text="input.label" class="text-xs text-primary-boldGrey" x-cloak></label>
+                                            </template>
+                                            
                                         </div>
-                                    </template>              
-                                </form>
-                            </div>
-                            
+                                    </template>             
+                                </form>  
+                            </div>  
                         </div>
 
+                        <template x-if="showTable">
+                            
+                            <div class="flex-1 relative bg-white rounded-sm shrink-0 w-full shadow-xl">
+                                <div class="w-full flex items-center justify-between gap-4 py-2 px-6 border-b border-primary-grey-light-text/70">
+                                    <div>
+                                        <h1 class="text-primary-black font-medium">Query Result</h1>
+                                    </div>
+                                    <div class="flex items-stretch">
+                                        <button
+                                            x-data="{showPopUp: false}"
+                                            @click="showPopUp = !showPopUp"
+                                            @click.away="showPopUp = false"
+                                            :class="{'bg-primary-grey-light': showPopUp}"
+                                            class="relative inline-flex items-end cursor-pointer gap-1.5 px-7 py-3 hover:bg-primary-grey-light"
+                                        >
+                                            <span class="uppercase text-tiny font-medium text-black">Generate Report</span>
+                                            <span class="text-primary-boldGrey">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="5" stroke="currentColor" class="size-2.5">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                                </svg>
+                                            </span>
+                                            
+                                            <div 
+                                                x-show="showPopUp"
+                                                x-transition:enter="transition ease-out duration-200"
+                                                x-cloak
+                                                class="absolute text-tiny font-medium bg-white shadow-sm py-2 top-full right-0 w-[120%] transform-none text-left"
+                                            >
+                                                <p class="uppercase text-blue-600 mb-1 px-6">Export</p>
+                                                <div 
+                                                    class="flex items-center gap-2 text-small text-primary-dullGrey py-2 px-6 hover:bg-gray-50 hover:text-blue-600 cursor-pointer"
+                                                >
+                                                    <span class="rounded-full border-1 border-inherit text-inherit">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-audio-lines-icon lucide-audio-lines size-3.5"><path d="M2 10v3"/><path d="M6 6v11"/><path d="M10 3v18"/><path d="M14 8v7"/><path d="M18 5v13"/><path d="M22 10v3"/></svg>
+                                                    </span>
+                                                    <span class="text-inherit text-normal">CSV</span>
+                                                </div>
+                                            </div>
+                                        </button>
 
+                                        <button 
+                                            class="uppercase text-tiny font-medium px-7 bg-primary-green-light/80 hover:bg-primary-green-light rounded-xs text-white cursor-pointer transition duration-200"
+                                            @click="showTable = false;"
+                                        >
+                                            CLOSE (X)
+                                        </button>
+                                    </div>
+
+                                </div>
+
+                                <div class="overflow-x-auto my-4 px-4 w-full">
+                                    <div class="min-w-fit mx-1" x-data="{tableData: [
+                                        {
+                                            '#': '',
+                                            'cswRef': '',
+                                            'orig.Msisdn': '',
+                                            'network': '',
+                                            'tranxDate': '',
+                                            'amtDebit': '',
+                                            'amtCreditOffnet': '',
+                                            'tranxCharge': '',
+                                            'recipient': '',
+                                            'tranxStatus': '',
+                                            'refID': '',
+                                            'finalStatus': '',
+                                            'mreversalDate': '',
+                                        },
+                                        ],
+                                    currentPage: 1,
+                                    perPage: 10,
+                                    paginatedData() {
+                                        const start = (this.currentPage - 1) * this.perPage;
+                                        return this.tableData.slice(start, start + this.perPage);
+                                    },
+                                    totalPages() {
+                                        return Math.ceil(this.tableData.length / this.perPage);
+                                    },
+                                    goToPage(page) {
+                                        if (page >= 1 && page <= this.totalPages()) {
+                                            this.currentPage = page;
+                                        }
+                                    },
+                                    pageWindow() {
+                                        const pages = this.totalPages();
+                                        let start = this.currentPage - 1;
+                                        if (start < 1) start = 1;
+                                        let end = start + 2;
+                                        if (end > pages) {
+                                            end = pages;
+                                            start = Math.max(1, end - 2);
+                                        }
+                                        return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+                                    }
+                                }">
+                                        <table class="w-full table-auto border-collapse border border-primary-grey-light-text/70 text-small">
+                                            <thead class="text-black font-medium align-bottom">
+                                                <tr>
+                                                    <td class="border border-primary-grey-light-text/70 px-2 py-3">#</td>
+                                                    <td class="border border-primary-grey-light-text/70 px-2 py-3">Csw Ref</td>
+                                                    <td class="border border-primary-grey-light-text/70 px-2 py-3">Orig. Msisdn</td>
+                                                    <td class="border border-primary-grey-light-text/70 px-2 py-3">Network</td>
+                                                    <td class="border border-primary-grey-light-text/70 px-2 py-3">Tranx Date</td>
+                                                    <td class="border border-primary-grey-light-text/70 px-2 py-3">Amt Debit</td>
+                                                    <td class="border border-primary-grey-light-text/70 px-2 py-3">Amt Credit Offnet</td>
+                                                    <td class="border border-primary-grey-light-text/70 px-2 py-3">Tranx Charge</td>
+                                                    <td class="border border-primary-grey-light-text/70 px-2 py-3">Recipient</td>
+                                                    <td class="border border-primary-grey-light-text/70 px-2 py-3">Tranx Status</td>
+                                                    <td class="border border-primary-grey-light-text/70 px-2 py-3">Ref ID</td>
+                                                    <td class="border border-primary-grey-light-text/70 px-2 py-3">Final Status</td>
+                                                    <td class="border border-primary-grey-light-text/70 px-2 py-3">Mreversal Date</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="text-primary-grey font-medium align-top">
+                                                <template x-for="(data, index) in paginatedData" :key="index">
+                                                    <tr class="hover:bg-gray-50 hover:text-primary-black">
+                                                        <td x-text="data['#']" class="border border-primary-grey-light-text/70 px-2 py-3"></td>
+                                                        <td x-text="data['cswRef']" class="border border-primary-grey-light-text/70 px-2 py-3"></td>
+                                                        <td x-text="data['orig.Msisdn']" class="border border-primary-grey-light-text/70 px-2 py-3"></td>
+                                                        <td x-text="data['network']" class="border border-primary-grey-light-text/70 px-2 py-3"></td>
+                                                        <td x-text="data['tranxDate']" class="border border-primary-grey-light-text/70 px-2 py-3"></td>
+                                                        <td x-text="data['amtDebit']" class="border border-primary-grey-light-text/70 px-2 py-3"></td>
+                                                        <td x-text="data['amtCreditOffnet']" class="border border-primary-grey-light-text/70 px-2 py-3"></td>
+                                                        <td x-text="data['tranxCharge']" class="border border-primary-grey-light-text/70 px-2 py-3"></td>
+                                                        <td x-text="data['recipient']" class="border border-primary-grey-light-text/70 px-2 py-3"></td>
+                                                        <td x-text="data['tranxStatus']" class="border border-primary-grey-light-text/70 px-2 py-3"></td>
+                                                        <td x-text="data['refID']" class="border border-primary-grey-light-text/70 px-2 py-3"></td>
+                                                        <td x-text="data['finalStatus']" class="border border-primary-grey-light-text/70 px-2 py-3"></td>
+                                                        <td x-text="data['mreversalDate']" class="border border-primary-grey-light-text/70 px-2 py-3"></td>
+                                                    </tr>
+                                                </template>
+                                            </tbody>
+                                        </table>
+                                        <div class="w-full border-b border-r border-l border-primary-grey-light-text/70 px-2 pt-3 pb-6">
+                                            <div class="inline-flex border border-primary-grey-light-text/70">
+                                                <div 
+                                                    :class="{'text-primary-grey-light-text cursor-not-allowed': currentPage === 1, 'text-blue-600 cursor-pointer': currentPage > 1}"
+                                                    class="border-r border-primary-grey-light-text/70 px-2 py-1 text-sm hover:bg-gray-50"
+                                                    @click="goToPage(currentPage - 1)"
+                                                >
+                                                    &lt;
+                                                </div>
+                                                <template x-for="page in pageWindow" :key="page">
+                                                    <div
+                                                    class="px-3 py-1 text-sm border-r border-primary-grey-light-text/70 font-medium transition-all duration-300"
+                                                    :class="{ 'bg-primary-lightBlue text-white': page === currentPage, 'text-blue-600 hover:bg-gray-50 cursor-pointer': page !== currentPage }"
+                                                    @click="goToPage(page)"
+                                                    x-transition:enter="transition ease-out duration-200"
+                                                    x-transition:enter-start="opacity-0 translate-x-2"
+                                                    x-transition:enter-end="opacity-100 translate-x-0"
+                                                    x-transition:leave="transition ease-in duration-200"
+                                                    x-transition:leave-start="opacity-100 translate-x-0"
+                                                    x-transition:leave-end="opacity-0 -translate-x-2"
+                                                    x-text="page"
+                                                    ></div>
+                                                </template>
+                                                <div 
+                                                    class="font-medium px-2 py-1 text-sm hover:bg-gray-50"
+                                                    @click="goToPage(currentPage + 1)"
+                                                    :class="{'text-primary-grey-light-text cursor-not-allowed': currentPage === totalPages(), 'text-blue-600 cursor-pointer': currentPage < totalPages()}"
+                                                >
+                                                    &gt;
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </template>    
                     </div>
 
                 </div>

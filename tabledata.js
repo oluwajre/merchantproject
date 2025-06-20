@@ -1,0 +1,31 @@
+const tableData = {
+    '#': '1',
+    'cswRef': '123250620101969885',
+    'orig.Msisdn': '08033966796',
+    'network': 'MTN',
+    'tranxDate': '2025-06-18T00:00',
+    'amtDebit': '₦0',
+    'amtCreditOffnet': '₦6',
+    'tranxCharge': '₦0',
+    'recipient': '08033966796',
+    'tranxStatus': 'Successful',
+    'refID': '123250620101969885',
+    'finalStatus': 'Successful',
+    'mreversalDate': '2025-06-18T00:00',
+};
+
+const tableDatEmpty = {
+    '#': '',
+    'cswRef': '',
+    'orig.Msisdn': '',
+    'network': '',
+    'tranxDate': '',
+    'amtDebit': '',
+    'amtCreditOffnet': '',
+    'tranxCharge': '',
+    'recipient': '',
+    'tranxStatus': '',
+    'refID': '',
+    'finalStatus': '',
+    'mreversalDate': '',
+};

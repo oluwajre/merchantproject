@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Creditswitch Merchant Portal | Switch Reversal</title>
+        <link rel="stylesheet" href="../styles/output.css" />
+        <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
+        <link rel="manifest" href="../assets/site.webmanifest">
+    </head>
+    <body class="select-none bg-primary-grey-light">
+
+        <section class="relative flex h-screen" x-data="menu('Airtel Switching Reversal')">
+
+            <!-- Sidebar Component -->
+            <div id="sidebarContainer" x-ref="sidebarContainer"></div>
+            
+
+            <!-- Right Hand Section -->
+            <div class="flex-1 overflow-y-auto flex flex-col min-h-screen" id="screenTop">
+
+                <!-- Mobile Nav Component  -->
+                <div id="mobileNavContainer" x-ref="mobileNavContainer"></div>
+
+                <!-- Header Section Component  -->
+                <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
+
+                <!-- Main Content Section -->
+                <div class="w-full flex flex-col px-6 py-6 gap-12 text-primary-black">
+                    
+                    <div class="flex flex-col gap-15 w-full">
+                        
+                        <div class="flex-1 relative px-4 pt-15 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
+                            <div class="absolute flex items-end justify-center gap-1 -top-4 p-4 text-center rounded-xs shadow-xl  bg-gradient-to-r from-primary-lightBlue/80 to-primary-lightBlue text-white min-w-[160px]">
+                                <span class="text-white">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="w-6 h-6" fill="currentColor">
+                                        <path d="M144 0a80 80 0 1 1 0 160A80 80 0 1 1 144 0zM512 0a80 80 0 1 1 0 160A80 80 0 1 1 512 0zM0 298.7C0 239.8 47.8 192 106.7 192l42.7 0c15.9 0 31 3.5 44.6 9.7c-1.3 7.2-1.9 14.7-1.9 22.3c0 38.2 16.8 72.5 43.3 96c-.2 0-.4 0-.7 0L21.3 320C9.6 320 0 310.4 0 298.7zM405.3 320c-.2 0-.4 0-.7 0c26.6-23.5 43.3-57.8 43.3-96c0-7.6-.7-15-1.9-22.3c13.6-6.3 28.7-9.7 44.6-9.7l42.7 0C592.2 192 640 239.8 640 298.7c0 11.8-9.6 21.3-21.3 21.3l-213.3 0zM224 224a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zM128 485.3C128 411.7 187.7 352 261.3 352l117.3 0C452.3 352 512 411.7 512 485.3c0 14.7-11.9 26.7-26.7 26.7l-330.7 0c-14.7 0-26.7-11.9-26.7-26.7z"/>
+                                    </svg>
+                                </span>
+                                <span class="text-md font-semibold">Airtel Switching M-reversal</span>
+                            </div>
+
+                            <div class="w-full mb-3 flex flex-col gap-8" x-data="{ 
+                                    fileObject: null, 
+                                    date: '',
+                                    errorMessage: '',
+                                    handleUpload() {
+                                        this.errorMessage = '';
+
+                                        if (!this.fileObject) {
+                                            this.errorMessage = 'Please select a file first.';
+                                            return;
+                                        }
+
+                                        const isCSV = this.fileObject.name.toLowerCase().endsWith('.csv');
+
+                                        if (!isCSV) {
+                                            this.errorMessage = 'Error!! only csv, CSV file format are allowed for upload';
+                                            return;
+                                        }
+
+                                        alert('File is valid. Ready to upload or process.');
+                                    },
+                                }">
+                                <div class="w-full font-semibold text-primary-danger">
+                                    <div 
+                                        x-show="errorMessage" 
+                                        class="text-sm inline-flex items-center gap-1 py-3 pl-6 mb-5 bg-primary-danger text-white rounded-sm" 
+                                        x-transition 
+                                        x-cloak
+                                    >
+                                        <p class="inline-block font-normal" x-text="errorMessage"></p>
+                                        <span class="pr-4 font-black text-white hover:text-black cursor-pointer" @click="errorMessage = ''">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="3" stroke="currentColor" class="size-3">
+                                                <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <p class="text-xs">Sample .CSV Upload File</p>
+                                    <p class="text-small">Please ensure the TRANSFER DATE format is in (dd/mm/yy)</p>
+                                </div>
+                                <form class="w-full gap-5 sm:gap-10 lg:gap-15 flex flex-wrap justify-between items-end" @submit.prevent="handleUpload">
+                                    <div class="min-w-[270px] flex-1" x-data="{ fileName: ''}">
+                                        <label class="block text-small font-bold text-primary-boldGrey mb-2">Upload Excel CSV file</label>
+
+                                        <label for="upload" class="inline-block cursor-pointer bg-gray-100 hover:bg-gray-200 border border-black rounded-xs text-black text-small font-normal px-2 py-1">
+                                            Choose File
+                                        </label>
+
+                                        <input
+                                            type="file"
+                                            name="upload"
+                                            id="upload"
+                                            class="hidden"
+                                            @change="
+                                            fileName = $event.target.files[0]?.name;
+                                            fileObject = $event.target.files[0];"
+                                        />
+
+
+                                        <span x-text="fileName || 'No file chosen'" class="text-small text-primary-boldGrey"></span>
+                                    </div>
+
+                                    <div class="min-w-[270px] flex-1">
+                                        <label class="block text-small font-bold text-primary-boldGrey mb-2">Select Transaction Date</label>
+                                        <input
+                                            x-model="date"
+                                            type="date" 
+                                            name="date"
+                                            id="date"
+                                            required
+                                            class="w-full border border-primary-grey-light-text text-primary-black outline-none px-3 py-2 text-sm transition duration-300"
+                                        >
+                                    </div>
+
+                                    <div class="min-w-[270px] flex-1">
+                                        <button type="submit" class="w-full uppercase font-semibold text-xs text-white bg-primary-lightBlue/85 hover:bg-primary-lightBlue p-3 rounded-xs cursor-pointer transition duration-300">Perform M-Reversal Update</button>
+                                    </div>
+                                </form>  
+                            </div>  
+                        </div>
+    
+                    </div>
+
+                </div>
+
+                <!-- Footer Section Component  -->
+                <div id="contentFooterContainer" x-ref="contentFooterContainer" class="mt-auto"></div>
+
+                <!-- Scroll Up Button  -->
+                <div class="fixed bottom-7 right-7 p-2 bg-primary-greyishBlue rounded-sm cursor-pointer" @click="document.getElementById('screenTop').scrollTo({ top: 0, behavior: 'smooth' })">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="4" stroke="#f5f5f5" class="size-4">
+                        <path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 1 1-1.06 1.06l-6.22-6.22V21a.75.75 0 0 1-1.5 0V4.81l-6.22 6.22a.75.75 0 1 1-1.06-1.06l7.5-7.5Z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+            </div>
+
+        </section>
+    </body>
+    <script type="module" src="../scripts/main.js"></script>
+</html>

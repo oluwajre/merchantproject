@@ -9,7 +9,6 @@
   --color-primary-grey-light: #f2f3f8;
   --color-primary-dullGrey: #959cb6;
   --color-primary-boldGrey: #646c9a;
-  --color-primary-red: #dc3545;
   --color-secondary-linkColour: #3743c2;
   --color-primary-lightBlue: #05b0c4;
   --color-primary-greyishBlue: #92bfe9;
@@ -17,9 +16,14 @@
   --color-primary-blue: #196fba;
   --color-primary-gold: #fb8e02;
   --color-primary-gold-light: #ffb822;
-  --color-primary-wine: #d91e62;
   --color-primary-green: #49a749;
-  --text-tiny: 0.65rem;
+  --color-primary-green-light: #1dc9b7;
+  --color-primary-green-dark: #28a745;
+  --color-primary-red: #dc3545;
+  --color-primary-danger: #fd397a;
+  --color-primary-wine: #d91e62;
+  --text-tiny: 0.7rem;
+  --text-small: 0.85rem;
 }
 
 [x-cloak] {

@@ -12,7 +12,7 @@ export const menu = (active) => {
           {menuHeader: 'Report', name: 'Switching Controls', icon: icons.switchingControls,
             dropDown: [
                 {name: 'Switching Report', icon: icons.subMenu, headerName: 'Airtime Switching Report', link: './switchingReport.html'},
-                {name: 'Airtel Switching Reversal', icon: icons.subMenu, link: 'https://www.netflix.com/ng/'}
+                {name: 'Airtel Switching Reversal', icon: icons.subMenu, headerName: 'MReversal Airtel Airtime Switching', link: './switchReversal.html'},
             ]
           },
           {name: 'Service Reports', icon: icons.serviceReports, 
