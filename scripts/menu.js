@@ -17,8 +17,8 @@ export const menu = (active) => {
           },
           {name: 'Service Reports', icon: icons.serviceReports, 
             dropDown: [
-                {name: 'Airtime & Data', icon: icons.subMenu, link: 'https://www.creditswitch.com/'},
-                {name: 'Airtime', icon: icons.subMenu, link: 'https://www.creditswitch.com/'},
+                {name: 'Airtime & Data', icon: icons.subMenu, headerName: 'Airtime/Data Summary', link: './airtime_data.html'},
+                {name: 'Airtime', icon: icons.subMenu, headerName: 'Query Airtime Transactions', link: './airtime.html'},
                 {name: 'Data', icon: icons.subMenu, link: 'https://www.creditswitch.com/'},
                 {name: 'Electricty', icon: icons.subMenu, link: 'https://www.creditswitch.com/'},
                 {name: 'Cable TV', icon: icons.subMenu, link: 'https://www.netflix.com/ng/'},

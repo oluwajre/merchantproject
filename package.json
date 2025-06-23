@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "main": "main.js",
   "scripts": {
-    "dev": "concurrently \"vite\" \"npx @tailwindcss/cli -i ./styles/input.css -o ./styles/output.css --watch\"",
+    "dev": "concurrently \"vite\" \"npx @tailwindcss/cli -i ./styles/custom.css -o ./styles/output.css --watch\"",
     "build": "vite build",
     "preview": "vite preview",
-    "build:css": "npx @tailwindcss/cli -i ./styles/input.css -o ./styles/output.css"
+    "build:css": "npx @tailwindcss/cli -i ./styles/custom.css -o ./styles/output.css"
   },
   "keywords": [],
   "author": "",
