@@ -10,7 +10,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
         <link rel="manifest" href="../assets/site.webmanifest">
     </head>
-    <body class="select-none bg-primary-grey-light">
+    <body class="select-none bg-primary-sidebar-gray-background">
 
         <section class="relative flex h-screen" x-data="menu('Airtel Switching Reversal')">
 
@@ -33,7 +33,7 @@
                     <div class="flex flex-col gap-15 w-full">
                         
                         <div class="flex-1 relative px-4 pt-15 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
-                            <div class="absolute flex items-end justify-center gap-1 -top-4 p-4 text-center rounded-sm shadow-xl bg-gradient-to-r from-primary-lightBlue/80 to-primary-lightBlue text-white min-w-[160px]">
+                            <div class="absolute flex items-end justify-center gap-1 -top-4 p-4 text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
                                 <span class="text-white">
                                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960' fill='currentColor' class='size-6'>
                                         <path d='M0-240v-63q0-43 44-70t116-27q13 0 25 .5t23 2.5q-14 21-21 44t-7 48v65H0Zm240 0v-65q0-32 17.5-58.5T307-410q32-20 76.5-30t96.5-10q53 0 97.5 10t76.5 30q32 20 49 46.5t17 58.5v65H240Zm540 0v-65q0-26-6.5-49T754-397q11-2 22.5-2.5t23.5-.5q72 0 116 26.5t44 70.5v63H780Zm-455-80h311q-10-20-55.5-35T480-370q-55 0-100.5 15T325-320ZM160-440q-33 0-56.5-23.5T80-520q0-34 23.5-57t56.5-23q34 0 57 23t23 57q0 33-23 56.5T160-440Zm640 0q-33 0-56.5-23.5T720-520q0-34 23.5-57t56.5-23q34 0 57 23t23 57q0 33-23 56.5T800-440Zm-320-40q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T600-600q0 50-34.5 85T480-480Zm0-80q17 0 28.5-11.5T520-600q0-17-11.5-28.5T480-640q-17 0-28.5 11.5T440-600q0 17 11.5 28.5T480-560Zm1 240Zm-1-280Z'/>
@@ -83,7 +83,7 @@
                                 </div>
                                 <form class="w-full gap-5 sm:gap-10 lg:gap-15 flex flex-wrap justify-between items-end" @submit.prevent="handleUpload">
                                     <div class="min-w-[270px] flex-1" x-data="{ fileName: ''}">
-                                        <label class="block text-small font-bold text-primary-boldGrey mb-2">Upload Excel Csv file</label>
+                                        <label class="block text-small font-bold text-primary-header-gray-bold mb-2">Upload Excel Csv file</label>
 
                                         <label for="upload" class="inline-block cursor-pointer bg-gray-100 hover:bg-gray-200 border border-black rounded-xs text-black text-small font-normal px-2 py-1">
                                             Choose File
@@ -100,23 +100,23 @@
                                         />
 
 
-                                        <span x-text="fileName || 'No file chosen'" class="text-small text-primary-boldGrey"></span>
+                                        <span x-text="fileName || 'No file chosen'" class="text-small text-primary-header-gray-bold"></span>
                                     </div>
 
                                     <div class="min-w-[270px] flex-1">
-                                        <label class="block text-small font-bold text-primary-boldGrey mb-2">Select Transaction Date</label>
+                                        <label class="block text-small font-bold text-primary-header-gray-bold mb-2">Select Transaction Date</label>
                                         <input
                                             x-model="date"
                                             type="date" 
                                             name="date"
                                             id="date"
                                             required
-                                            class="w-full border border-primary-grey-light-text text-primary-black outline-none px-3 py-2 text-sm transition duration-300"
+                                            class="w-full border border-primary-sidebar-gray-text text-primary-black outline-none px-3 py-2 text-sm transition duration-300"
                                         >
                                     </div>
 
                                     <div class="min-w-[270px] flex-1">
-                                        <button type="submit" class="w-full uppercase font-semibold text-xs text-white bg-primary-lightBlue/85 hover:bg-primary-lightBlue p-3 rounded-xs cursor-pointer transition duration-300">Perform M-Reversal Update</button>
+                                        <button type="submit" class="w-full uppercase font-semibold text-xs text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark p-3 rounded-xs cursor-pointer transition duration-300">Perform M-Reversal Update</button>
                                     </div>
                                 </form>  
                             </div>  
@@ -128,13 +128,6 @@
 
                 <!-- Footer Section Component  -->
                 <div id="contentFooterContainer" x-ref="contentFooterContainer" class="mt-auto"></div>
-
-                <!-- Scroll Up Button  -->
-                <div class="fixed bottom-7 right-7 p-2 bg-primary-greyishBlue rounded-sm cursor-pointer" @click="document.getElementById('screenTop').scrollTo({ top: 0, behavior: 'smooth' })">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="4" stroke="#f5f5f5" class="size-4">
-                        <path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 1 1-1.06 1.06l-6.22-6.22V21a.75.75 0 0 1-1.5 0V4.81l-6.22 6.22a.75.75 0 1 1-1.06-1.06l7.5-7.5Z" clip-rule="evenodd" />
-                    </svg>
-                </div>
             </div>
 
         </section>

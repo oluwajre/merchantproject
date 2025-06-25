@@ -2,7 +2,7 @@
 
 <div 
     :class="{'block w-screen': showSideBar, 'w-[0]': !showSideBar}" 
-    class="z-20 h-screen overflow-y-hidden fixed right-0 lg:block lg:relative lg:w-fit lg:min-w-[64px] max-w-[250px] bg-primary-black backdrop-blur-xs md:backdrop-blur-none text-primary-grey-light-text pb-2 transition-width duration-500 ease-in-out"
+    class="z-20 h-screen overflow-y-hidden fixed right-0 lg:block lg:relative lg:w-fit lg:min-w-[64px] max-w-[250px] bg-primary-black backdrop-blur-xs md:backdrop-blur-none text-primary-sidebar-gray-text pb-2 transition-all duration-500 ease-in-out"
     x-cloak
 >
     <div class="z-30 sticky top-0 flex items-center justify-between mb-3 px-0 lg:pl-8 lg:pr-6 h-16 bg-inherit">
@@ -25,22 +25,22 @@
                     <p 
                         x-show="expandSideMenu && item.menuHeader" 
                         x-text="item.menuHeader"
-                        class="uppercase text-primary-grey-light-text px-8 mt-7 mb-2 font-medium text-xs"
+                        class="uppercase text-primary-sidebar-gray-text px-8 mt-7 mb-2 font-medium text-tiny"
                         x-transition
                         x-cloak
                     ></p>
                     <div 
                         :class="{
-                            'bg-primary-lightBlue text-white': isActive(item),
-                            'text-primary-grey-light-text hover:text-white hover:bg-primary-grey-light/8': !isActive(item),
+                            'bg-primary-cyanBlue-sidebar-background text-white': isActive(item),
+                            'text-primary-sidebar-gray-text hover:text-white hover:bg-primary-sidebar-gray-background/8': !isActive(item),
                             'group': !isActive(item) && openDropdown !== index,
-                            'text-white bg-primary-grey-light/8': openDropdown === index
+                            'text-white bg-primary-sidebar-gray-background/8': openDropdown === index
                         }"
                         class="relative pl-8 pr-6 py-2.5 flex items-center cursor-pointer gap-2 w-full text-sm"
                         @click="toggleDropdown(item, index)"
                     >
                         <span 
-                            class="text-inherit group-hover:text-primary-lightBlue"
+                            class="text-inherit group-hover:text-primary-cyanBlue-background-dark"
                             x-html="item.icon"
                         >
                         </span>
@@ -72,7 +72,7 @@
                         >
                         </span>
 
-                        <span x-show="isActive(item)" class="hidden lg:inline-flex absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0 border-t-20 border-b-20 border-r-10 border-t-transparent border-b-transparent border-r-white" x-transition x-cloak></span>
+                        <span x-show="isActive(item)" class="hidden lg:inline-flex absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0 border-t-20 border-b-20 border-r-10 border-t-transparent border-b-transparent border-r-primary-sidebar-gray-background" x-transition x-cloak></span>
                     </div>
 
                     <!-- Dropdown Menu -->
@@ -92,16 +92,16 @@
                                 <li>
                                     <div 
                                         :class="{
-                                            'bg-primary-grey-light/8 text-white': isActive(subItem) || subItem.openSubDropdown === index,
-                                            'text-primary-grey-light-text hover:text-white hover:bg-primary-grey-light/8': !isActive(subItem)
+                                            'bg-primary-sidebar-gray-background/8 text-white': isActive(subItem) || subItem.openSubDropdown === index,
+                                            'text-primary-sidebar-gray-text hover:text-white hover:bg-primary-sidebar-gray-background/8': !isActive(subItem)
                                         }"
                                         class="group pl-9 pr-8 py-2 flex items-center cursor-pointer gap-2 w-full text-sm"
                                         @click="toggleDropdown(subItem, index)"
                                     >
                                         <span 
                                             :class="{
-                                                'text-primary-lightBlue': isActive(subItem),
-                                                'text-inherit group-hover:text-primary-lightBlue': !isActive(subItem) && subItem.openSubDropdown !== index,
+                                                'text-primary-cyanBlue-background-dark': isActive(subItem),
+                                                'text-inherit group-hover:text-primary-cyanBlue-background-dark': !isActive(subItem) && subItem.openSubDropdown !== index,
                                                 'text-inherit': subItem.openSubDropdown === index
                                             }"
                                             x-html="subItem.icon"
@@ -147,16 +147,16 @@
                                                 <li>
                                                     <div 
                                                         :class="{
-                                                            'bg-primary-grey-light/8 text-white': isActive(child),
-                                                            'text-primary-grey-light-text hover:text-white hover:bg-primary-grey-light/8': !isActive(child)
+                                                            'bg-primary-sidebar-gray-background/8 text-white': isActive(child),
+                                                            'text-primary-sidebar-gray-text hover:text-white hover:bg-primary-sidebar-gray-background/8': !isActive(child)
                                                         }"
                                                         class="group pl-12 pr-8 py-2 flex items-center cursor-pointer gap-2 w-full text-sm"
                                                         @click="toggleDropdown(child, index)"
                                                     >
                                                         <span 
                                                             :class="{
-                                                                'text-primary-lightBlue': isActive(child), 
-                                                                'text-inherit group-hover:text-primary-lightBlue': !isActive(child)
+                                                                'text-primary-cyanBlue-background-dark': isActive(child), 
+                                                                'text-inherit group-hover:text-primary-cyanBlue-background-dark': !isActive(child)
                                                             }"
                                                             x-html="child.icon"
                                                         >

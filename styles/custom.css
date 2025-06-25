@@ -2,32 +2,91 @@
 
 @theme {
   --font-display: "Satoshi", "sans-serif";
-  /* --color-primary-black: #0d0c22; */
+  --font-roboto: "Roboto", "sans-serif";
+  /* Black  Colors  */
   --color-primary-black: #201f2b;
+  --color-primary-header-black-text: #434349;
+  --color-primary-input-black-text: #495057;
+  --color-primary-black-text-muted: #333;
+
+  /* Gray Colors */
+  --color-primary-header-gray-text: #959cb6;
+  --color-primary-header-gray-background: #eaecf2;
+  --color-primary-header-gray-bold: #646c9a; /*Also the same as boldGrey */
+  --color-primary-footer-gray-text: #a7abc3; /*Also the same as dullGrey */
+  --color-primary-sidebar-gray-text: #d2d2d6;
+  --color-primary-sidebar-gray-background: #f2f3f8;
+  --color-primary-input-gray-text: #a7abd1;
+  --color-primary-gray-text-muted: #73818f;
+  --color-primary-gray: #999;
+  --color-primary-table-gray-dark: #3c4858;
+
+  /* Blue Colors */
+  --color-primary-blue-text: #2c77f4;
+   --color-primary-inputBorder-blue: #669cf7;
+  --color-primary-cyanBlue-sidebar-background: #05b0c5;
+  --color-primary-cyanBlue-button-background: #0fb7cb;
+  --color-primary-cyanBlue-background-light: #26C6DA;
+  --color-primary-cyanBlue-background-dark: #00ACC1;
+  
+
+
+
   --color-primary-grey: #9C9C9C;
   --color-primary-grey-light-text: #d2d2d6;
   --color-primary-grey-light: #f2f3f8;
-  --color-primary-dullGrey: #959cb6;
+  --color-primary-dullGrey: #A7ABC3;
   --color-primary-boldGrey: #646c9a;
-  --color-secondary-linkColour: #3743c2;
   --color-primary-lightBlue: #05b0c4;
   --color-primary-greyishBlue: #92bfe9;
-  --color-primary-red: #e23d34;
   --color-primary-blue: #196fba;
-  --color-primary-gold: #fb8e02;
+
+
+
+  --color-secondary-linkColour: #3743c2;
+  --color-primary-gold-background-light: #ffa726;
+  --color-primary-gold-background-dark: #fb8c00;
   --color-primary-gold-light: #ffb822;
+
   --color-primary-green: #49a749;
   --color-primary-green-light: #1dc9b7;
   --color-primary-green-dark: #28a745;
+
+   /* --color-primary-red: #e23d34; */
   --color-primary-red: #dc3545;
   --color-primary-danger: #fd397a;
-  --color-primary-wine: #d91e62;
+  --color-primary-wine-background-light: #ec407a;
+  --color-primary-wine-background-dark: #d81b60;
   --text-tiny: 0.7rem;
   --text-small: 0.85rem;
 }
 
 [x-cloak] {
 display: none !important;
+}
+
+.cyanBlue-custom-background-gradient {
+  background: linear-gradient(60deg, var(--color-primary-cyanBlue-background-light), var(--color-primary-cyanBlue-background-dark));
+}
+
+.wine-custom-background-gradient {
+  background: linear-gradient(60deg, var(--color-primary-wine-background-light), var(--color-primary-wine-background-dark));
+}
+
+.gold-custom-background-gradient {
+  background: linear-gradient(60deg, var(--color-primary-gold-background-light), var(--color-primary-gold-background-dark));
+}
+
+.cyanBlue-custom-box-shadow {
+  box-shadow: rgba(0, 0, 0, 0.14) 0px 4px 20px 0px, rgba(0, 188, 212, 0.4) 0px 7px 10px -5px;
+}
+
+.wine-custom-box-shadow {
+  box-shadow: rgba(0, 0, 0, .14) 0 4px 20px 0, rgba(233, 30, 99, .4) 0 7px 10px -5px;
+}
+
+.gold-custom-box-shadow {
+  box-shadow: rgba(0, 0, 0, .14) 0 4px 20px 0, rgba(255, 152, 0, .4) 0 7px 10px -5px;
 }
 
 .sidebar-scroll {

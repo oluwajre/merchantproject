@@ -10,7 +10,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
         <link rel="manifest" href="../assets/site.webmanifest">
     </head>
-    <body class="select-none bg-primary-grey-light">
+    <body class="select-none bg-primary-sidebar-gray-background">
 
         <section class="relative flex h-screen" x-data="menu('Airtime')">
 
@@ -32,7 +32,7 @@
 
                     <!-- First Row -->
                     <div class="flex-1 relative px-4 pt-15 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
-                            <div class="absolute flex items-end justify-center gap-1 -top-4 p-4 text-center rounded-sm shadow-xl bg-gradient-to-r from-primary-lightBlue/80 to-primary-lightBlue text-white min-w-[160px]">
+                            <div class="absolute flex items-end justify-center gap-1 -top-4 p-4 text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
                                 <span class="text-md font-semibold">Airtel Summary</span>
                             </div>
 
@@ -42,16 +42,16 @@
                                 salesMonthValue: '',
                             }">
                                 <div class="w-full sm:w-fit flex-1 text-left">
-                                    <h1 class="text-xl font-bold text-primary-boldGrey" x-text="salesTodayValue || '₦'"></h1>
-                                    <p class="text-sm text-primary-dullGrey font-medium">Sales Today</p>
+                                    <h1 class="text-xl font-bold text-primary-header-gray-bold" x-text="salesTodayValue || '₦'"></h1>
+                                    <p class="text-sm text-primary-footer-gray-text font-medium">Sales Today</p>
                                 </div>
                                 <div class="w-full sm:w-fit flex-1 text-left">
-                                    <h1 class="text-xl font-bold text-primary-boldGrey" x-text="salesWeekValue || '₦'"></h1>
-                                    <p class="text-sm text-primary-dullGrey font-medium">Sales This Week</p>
+                                    <h1 class="text-xl font-bold text-primary-header-gray-bold" x-text="salesWeekValue || '₦'"></h1>
+                                    <p class="text-sm text-primary-footer-gray-text font-medium">Sales This Week</p>
                                 </div>
                                 <div class="w-full sm:w-fit flex-1 text-left">
-                                    <h1 class="text-xl font-bold text-primary-boldGrey" x-text="salesMonthValue || '₦'"></h1>
-                                    <p class="text-sm text-primary-dullGrey font-medium">Sales This Month</p>
+                                    <h1 class="text-xl font-bold text-primary-header-gray-bold" x-text="salesMonthValue || '₦'"></h1>
+                                    <p class="text-sm text-primary-footer-gray-text font-medium">Sales This Month</p>
                                 </div>
                             </div>  
                     </div>
@@ -73,7 +73,7 @@
                             </div>
 
                             <div class="w-full mb-3 flex">
-                                <form class="w-full gap-5 flex flex-wrap justify-between" @submit.prevent="showTable = true" x-data="{
+                                <form class="w-full gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between" @submit.prevent="showTable = true" x-data="{
                                     formInput: [
                                         {
                                             type: 'text',
@@ -187,10 +187,9 @@
                                     ],
                                 }">
                                     <template x-for="input in formInput" x-cloak>
-                                        <div class="min-w-[270px] flex-1">
-
+                                        <div>
                                             <template x-if="input.type === 'select'">
-                                                <select :name="input.name" :id="input.name" x-model="input.value" class="w-full text-primary-dullGrey focus-visible:text-primary-black border border-primary-grey-light-text focus:border-blue-500 outline-none px-3 py-2 text-sm transition duration-300">
+                                                <select :name="input.name" :id="input.name" x-model="input.value" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-sm transition duration-300">
                                                     <template x-for="option in input.options">
                                                         <option :value="option.value" x-text="option.name"></option>
                                                     </template>
@@ -205,19 +204,19 @@
                                                     :name="input.name"
                                                     :id="input.name"
                                                     :class="{
-                                                        'text-primary-black': input.type !== 'datetime-local', 
-                                                        'text-primary-boldGrey': input.type === 'datetime-local'
+                                                        'text-primary-input-black-text': input.type !== 'datetime-local', 
+                                                        'text-primary-input-gray-text': input.type === 'datetime-local'
                                                     }"
-                                                    class="w-full border border-primary-grey-light-text focus:border-blue-500 placeholder:text-primary-dullGrey outline-none px-3 py-2 text-sm transition duration-300"
+                                                    class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300"
                                                 >
                                             </template>
 
                                             <template x-if="input.type === 'button'">
-                                                <button type="submit" x-text="input.name" class="w-full uppercase font-semibold text-xs text-white bg-primary-lightBlue/85 hover:bg-primary-lightBlue p-3 rounded-xs cursor-pointer transition duration-300"></button>
+                                                <button type="submit" x-text="input.name" class="w-full uppercase font-semibold text-xs text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300"></button>
                                             </template>
 
                                             <template x-if="input.label">
-                                                <label :for="input.name" x-text="input.label" class="text-xs text-primary-boldGrey" x-cloak></label>
+                                                <label :for="input.name" x-text="input.label" class="text-xs text-primary-header-gray-bold" x-cloak></label>
                                             </template>
                                             
                                         </div>
@@ -226,7 +225,7 @@
                             </div>  
                         </div>
 
-                        <template x-if="!showTable">
+                        <template x-if="showTable">
                             
                             <div class="flex-1 relative bg-white rounded-sm shrink-0 w-full shadow-xl" x-init="fetch('../components/tableComponent.html')
                                 .then(res => res.text())
@@ -269,7 +268,7 @@
                             }">
 
                                 <!-- Table Options  -->
-                                <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-4 py-2 px-6 border-b border-primary-grey-light-text/70">
+                                <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-4 py-2 px-6 border-b border-primary-sidebar-gray-text/70">
                                     <div>
                                         <h1 class="text-primary-black font-medium">Airtime Query Result</h1>
                                     </div>
@@ -281,8 +280,8 @@
                                             class="relative"
                                         >   
                                             <div 
-                                                :class="showPopUp ? 'bg-blue-600 text-white' : 'bg-primary-greyishBlue/30 text-blue-600'"
-                                                class="group inline-flex items-end cursor-pointer gap-1.5 px-7 py-3 hover:bg-blue-600 hover:text-white rounded-xs">
+                                                :class="showPopUp ? 'bg-primary-blue-text text-white' : 'bg-primary-blue-text/10 text-primary-blue-text'"
+                                                class="group inline-flex items-end cursor-pointer gap-1.5 px-7 py-3 hover:bg-primary-blue-text hover:text-white rounded-xs">
                                                 <span class="uppercase text-tiny font-medium text-inherit">Generate Report</span>
                                                 <span class="text-inherit">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="5" stroke="currentColor" class="size-2.5">
@@ -297,9 +296,9 @@
                                                 x-cloak
                                                 class="absolute text-tiny font-medium bg-white shadow-sm py-2 top-full right-0 w-[120%] transform-none text-left"
                                             >
-                                                <p class="uppercase text-blue-600 mb-1 px-6">Export</p>
+                                                <p class="uppercase text-primary-blue-text mb-1 px-6">Export</p>
                                                 <div 
-                                                    class="flex items-center gap-2 text-small text-primary-dullGrey py-2 px-6 hover:bg-gray-50 hover:text-blue-600 cursor-pointer"
+                                                    class="flex items-center gap-2 text-small text-primary-header-gray-bold py-2 px-6 hover:bg-gray-50 hover:text-primary-blue-text cursor-pointer"
                                                 >
                                                     <span class="rounded-full border-1 border-inherit text-inherit">
                                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-audio-lines-icon lucide-audio-lines size-3.5"><path d="M2 10v3"/><path d="M6 6v11"/><path d="M10 3v18"/><path d="M14 8v7"/><path d="M18 5v13"/><path d="M22 10v3"/></svg>
@@ -310,7 +309,7 @@
                                         </button>
 
                                         <button 
-                                            class="uppercase text-tiny font-medium px-7 bg-primary-green-light/80 hover:bg-primary-green-light rounded-xs text-white cursor-pointer transition duration-200"
+                                            class="uppercase text-tiny font-medium px-7 bg-primary-green-light hover:brightness-95 rounded-xs text-white cursor-pointer transition duration-200"
                                             @click="showTable = false;"
                                         >
                                             CLOSE (X)
@@ -326,18 +325,18 @@
                                 totalDiscountValue: '',
                             }">
                                 <div class="w-full sm:w-fit flex-1 text-left">
-                                    <h1 class="text-xl font-bold text-primary-boldGrey" x-text="totalFaceValue || '₦'"></h1>
-                                    <p class="text-sm text-primary-dullGrey font-medium">Total Face Value</p>
+                                    <h1 class="text-xl font-bold text-primary-header-gray-bold" x-text="totalFaceValue || '₦'"></h1>
+                                    <p class="text-sm text-primary-footer-gray-text font-medium">Total Face Value</p>
                                 </div>
                                 <div class="w-full sm:w-fit flex-1 text-left">
-                                    <h1 class="text-xl font-bold text-primary-boldGrey" x-text="totalNetValue || '₦'"></h1>
-                                    <p class="text-sm text-primary-dullGrey font-medium">Total Net Value</p>
+                                    <h1 class="text-xl font-bold text-primary-header-gray-bold" x-text="totalNetValue || '₦'"></h1>
+                                    <p class="text-sm text-primary-footer-gray-text font-medium">Total Net Value</p>
                                 </div>
                                 <div class="w-full sm:w-fit flex-1 text-left">
-                                    <h1 class="text-xl font-bold text-primary-boldGrey" x-text="totalDiscountValue || '₦'"></h1>
-                                    <p class="text-sm text-primary-dullGrey font-medium">Total Discount</p>
+                                    <h1 class="text-xl font-bold text-primary-header-gray-bold" x-text="totalDiscountValue || '₦'"></h1>
+                                    <p class="text-sm text-primary-footer-gray-text font-medium">Total Discount</p>
                                 </div>
-                            </div>
+                                </div>
 
                                 <!-- Table Component  -->
                                 <div id="tableComponent" x-ref="tableComponent"></div>
@@ -352,8 +351,8 @@
                 <div id="contentFooterContainer" x-ref="contentFooterContainer" class="mt-auto"></div>
 
                 <!-- Scroll Up Button  -->
-                <div class="fixed bottom-7 right-7 p-2 bg-primary-greyishBlue rounded-sm cursor-pointer" @click="document.getElementById('screenTop').scrollTo({ top: 0, behavior: 'smooth' })">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="4" stroke="#f5f5f5" class="size-4">
+                <div class="fixed bottom-7 right-7 p-2.5 bg-primary-blue-text/30 cursor-pointer" @click="document.getElementById('screenTop').scrollTo({ top: 0, behavior: 'smooth' })">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="#f5f5f5" class="size-5">
                         <path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 1 1-1.06 1.06l-6.22-6.22V21a.75.75 0 0 1-1.5 0V4.81l-6.22 6.22a.75.75 0 1 1-1.06-1.06l7.5-7.5Z" clip-rule="evenodd" />
                     </svg>
                 </div>
