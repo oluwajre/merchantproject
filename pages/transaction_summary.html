@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Creditswitch Merchant Portal | Switching Report</title>
+        <title>Creditswitch Merchant Portal | Query Transaction Summary</title>
         <link rel="stylesheet" href="../styles/output.css" />
         <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
@@ -12,14 +12,14 @@
     </head>
     <body class="select-none bg-primary-sidebar-gray-background">
 
-        <section class="relative flex h-screen" x-data="menu('Switching Report')">
+        <section class="relative flex h-screen" x-data="menu('Transaction Summary')">
 
             <!-- Sidebar Component -->
             <div id="sidebarContainer" x-ref="sidebarContainer"></div>
             
 
             <!-- Right Hand Section -->
-            <div class="flex-1 overflow-y-auto flex flex-col min-h-screen" id="screenTop">
+            <div class="flex-1 overflow-y-auto flex flex-col min-h-screen" id="screenTop"> 
 
                 <!-- Mobile Nav Component  -->
                 <div id="mobileNavContainer" x-ref="mobileNavContainer"></div>
@@ -29,44 +29,20 @@
 
                 <!-- Main Content Section -->
                 <div class="w-full flex flex-col px-6 py-6 gap-12 text-primary-black">
-                    
+
+                    <!-- First Row -->
                     <div class="flex flex-col gap-12 w-full" x-data="{
                         showTable: false,
                     }">
                         
                         <div class="flex-1 relative px-4 pt-15 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
-                            <div class="absolute flex items-center justify-center gap-1 -top-4 px-4 py-3.5 text-center rounded-xs cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
-                                <span class="text-md font-semibold">Switching Report</span>
+                            <div class="absolute flex items-center justify-center gap-2 -top-4 px-4.5 py-3.5 text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
+                                <span class="text-md font-semibold">Query Transaction Summary</span>
                             </div>
 
                             <div class="w-full mb-3 flex">
                                 <form class="w-full gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between" @submit.prevent="showTable = true" x-data="{
                                     formInput: [
-                                        {
-                                            type: 'text',
-                                            placeholder: 'REFERENCE ID',
-                                            name: 'referenceId',
-                                            value: '',
-                                            label: '',
-                                        },
-                                        {
-                                            type: 'text',
-                                            placeholder: 'ORIG. MSISDN NO',
-                                            name: 'originNo',
-                                            value: '',
-                                            label: '',
-                                        },
-                                        {
-                                            type: 'select',
-                                            name: 'referenceselect',
-                                            options: [
-                                                {name: 'Select a Network', value: ''},
-                                                {name: 'Airtel', value: 'airtel'},
-                                                {name: 'Globacom', value: 'globalcom'},
-                                            ],
-                                            value: '',
-                                            label: '',
-                                        },
                                         {
                                             type: 'datetime-local',
                                             placeholder: 'start date',
@@ -75,16 +51,33 @@
                                             label: '(Start Date)',
                                         },
                                         {
+                                            type: 'datetime-local',
+                                            placeholder: 'end date',
+                                            name: 'endDate',
+                                            value: '2025-06-18T00:00',
+                                            label: '(End Date)',
+                                        },
+                                        {
                                             type: 'text',
-                                            placeholder: 'RECIPIENT NO',
-                                            name: 'recipientNo',
+                                            placeholder: 'Search with merchant name or phone number',
+                                            name: 'phoneNo',
                                             value: '',
                                             label: '',
                                         },
                                         {
-                                            type: 'number',
-                                            placeholder: 'AMOUNT',
-                                            name: 'amount',
+                                            type: 'select',
+                                            name: 'productType',
+                                            options: [
+                                                {name: '--Select a Product Type', value: ''},
+                                                {name: 'Cable TV', value: 'successful'},
+                                                {name: 'VTU', value: 'successful'},
+                                                {name: 'PINS', value: 'successful'},
+                                                {name: 'SMS', value: 'unsuccessful'},
+                                                {name: 'Electricity', value: 'unsuccessful'},
+                                                {name: 'Bettings', value: 'unsuccessful'},
+                                                {name: 'ANQ Service', value: 'unsuccessful'},
+                                                {name: 'Voice OTP', value: 'unsuccessful'},
+                                            ],
                                             value: '',
                                             label: '',
                                         },
@@ -93,18 +86,63 @@
                                             name: 'transactionstatus',
                                             options: [
                                                 {name: 'Transaction Status', value: ''},
+                                                {name: 'Successful & Processing', value: 'successful'},
+                                                {name: 'Successful, Processing & Pending', value: 'successful'},
+                                                {name: 'Successful, Processing, Requery Decline & Transaction Decline', value: 'successful'},
+                                                {name: 'Successful, Requery Decline & Transaction Decline', value: 'successful'},
+                                                {name: 'Successful & Reversal', value: 'successful'},
+                                                {name: 'Reversal', value: 'successful'},
+                                                {name: 'SReversal', value: 'successful'},
+                                                {name: 'Pending', value: 'successful'},
+                                                {name: 'Provider Side Platform Error', value: 'successful'},
+                                                {name: 'Limit on Multiple Recharges within 30 seconds', value: 'successful'},
+                                                {name: 'Requery Declined', value: 'successful'},
+                                                {name: 'Reversed', value: 'successful'},
                                                 {name: 'Successful', value: 'successful'},
+                                                {name: 'Processing', value: 'successful'},
                                                 {name: 'Unsuccessful', value: 'unsuccessful'},
                                             ],
                                             value: '',
                                             label: '',
                                         },
                                         {
-                                            type: 'datetime-local',
-                                            placeholder: 'end date',
-                                            name: 'endDate',
-                                            value: '2025-06-18T00:00',
-                                            label: '(End Date)',
+                                            type: 'select',
+                                            name: 'customerType',
+                                            options: [
+                                                {name: 'Customer Type', value: ''},
+                                                {name: 'Postpaid', value: 'successful'},
+                                                {name: 'Prepaid', value: 'successful'},
+                                                {name: '931', value: 'successful'},
+                                                {name: 'Mobile', value: 'unsuccessful'},
+                                            ],
+                                            value: '',
+                                            label: '',
+                                        },
+                                        {
+                                            type: 'select',
+                                            name: 'groupBy',
+                                            options: [
+                                                {name: '--Group By--', value: ''},
+                                                {name: 'Date', value: 'successful'},
+                                                {name: 'Merchant', value: 'successful'},
+                                                {name: 'Product', value: 'successful'},
+                                                {name: 'Providers', value: 'unsuccessful'},
+                                                {name: 'Channel', value: 'unsuccessful'},
+                                                {name: 'transaction Status', value: 'unsuccessful'},
+                                            ],
+                                            value: '',
+                                            label: '',
+                                        },
+                                        {
+                                            type: 'select',
+                                            name: 'transactionChannel',
+                                            options: [
+                                                {name: '--Transaction Channel--', value: ''},
+                                                {name: 'API', value: 'successful'},
+                                                {name: 'WEB', value: 'successful'},
+                                            ],
+                                            value: '',
+                                            label: '',
                                         },
                                         {
                                             type: 'button',
@@ -152,7 +190,7 @@
                             </div>  
                         </div>
 
-                        <template x-if="showTable">
+                        <template x-if="!showTable">
                             
                             <div class="flex-1 relative bg-white rounded-sm shrink-0 w-full shadow-xl" x-init="fetch('../components/tableComponent.html')
                                 .then(res => res.text())
@@ -161,87 +199,36 @@
                                     Alpine.initTree($refs.tableComponent);
                                 })" x-data="{
                                 tableHeader: [
-                                    '#',
-                                    'Csw Ref',
-                                    'Orig. Msisdn',
-                                    'Network',
-                                    'Tranx Date',
-                                    'Amt Debit',
-                                    'Amt Credit Offnet',
-                                    'Tranx Charge',
-                                    'Recipient',
-                                    'Tranx Status',
-                                    'Ref ID',
-                                    'Final Status',
-                                    'Mreversal Date'
+                                    'Day/Month',
+                                    'Type',
+                                    'Date',
+                                    'Group By',
+                                    'Status',
+                                    'Download',
                                 ],
                                 tableData: [
                                     {
-                                    '#': '',
-                                    'cswRef': '',
-                                    'orig.Msisdn': '',
-                                    'network': '',
-                                    'tranxDate': '',
-                                    'amtDebit': '',
-                                    'amtCreditOffnet': '',
-                                    'tranxCharge': '',
-                                    'recipient': '',
-                                    'tranxStatus': '',
-                                    'refID': '',
-                                    'finalStatus': '',
-                                    'mreversalDate': '',
+                                        'Day/Month': '',
+                                        'Type': '',
+                                        'Date': '',
+                                        'Group By': '',
+                                        'Status': '',
+                                        'Download': '',
                                     },
                                 ]
                             }">
 
-                                <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-4 py-2 px-6 border-b border-primary-sidebar-gray-text/70">
-                                    <div>
-                                        <h1 class="text-primary-black font-medium">Query Result</h1>
-                                    </div>
-                                    <div class="flex w-full sm:w-fit justify-between">
-                                        <button
-                                            x-data="{showPopUp: false}"
-                                            @click="showPopUp = !showPopUp"
-                                            @click.away="showPopUp = false"
-                                            class="relative"
-                                        >   
-                                            <div 
-                                                :class="showPopUp ? 'bg-primary-blue-text text-white' : 'bg-primary-blue-text/10 text-primary-blue-text'"
-                                                class="group inline-flex items-end cursor-pointer gap-1.5 px-7 py-3 hover:bg-primary-blue-text hover:text-white rounded-xs">
-                                                <span class="uppercase text-tiny font-medium text-inherit">Generate Report</span>
-                                                <span class="text-inherit">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="5" stroke="currentColor" class="size-2.5">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                                                    </svg>
-                                                </span>
-                                            </div>
-                                            
-                                            <div 
-                                                x-show="showPopUp"
-                                                x-transition:enter="transition ease-out duration-200"
-                                                x-cloak
-                                                class="absolute text-tiny font-medium bg-white shadow-sm py-2 top-full right-0 w-[120%] transform-none text-left"
-                                            >
-                                                <p class="uppercase text-primary-blue-text mb-1 px-6">Export</p>
-                                                <div 
-                                                    class="flex items-center gap-2 text-small text-primary-header-gray-bold py-2 px-6 hover:bg-gray-50 hover:text-primary-blue-text cursor-pointer"
-                                                >
-                                                    <span class="rounded-full border-1 border-inherit text-inherit">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-audio-lines-icon lucide-audio-lines size-3.5"><path d="M2 10v3"/><path d="M6 6v11"/><path d="M10 3v18"/><path d="M14 8v7"/><path d="M18 5v13"/><path d="M22 10v3"/></svg>
-                                                    </span>
-                                                    <span class="text-inherit text-normal">CSV</span>
-                                                </div>
-                                            </div>
-                                        </button>
+                                <div class="absolute flex items-center justify-center gap-2 -top-4 px-4.5 py-4 mx-4 text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
+                                    <span class="text-md font-semibold">Auto Generated Monthly Reports</span>
+                                </div>
+                                
 
-                                        <button 
-                                            class="uppercase text-tiny font-medium px-7 bg-primary-green-light hover:brightness-95 rounded-xs text-white cursor-pointer transition duration-200"
-                                            @click="showTable = false;"
-                                        >
-                                            CLOSE (X)
-                                        </button>
+                                <!-- Table Summary Header  -->
+                                <div class="w-full px-6 mt-12 mb-6 gap-3 sm:gap-0 flex flex-col sm:flex-row items-center justify-between">
+                                    <div class="w-full sm:w-fit flex-1 text-left">
+                                        <h1 class="text-xl font-bold text-primary-header-gray-bold">0</h1>
+                                        <p class="text-sm text-primary-footer-gray-text font-medium">Total Reports</p>
                                     </div>
-
                                 </div>
 
                                 <!-- Table Component  -->
@@ -250,7 +237,7 @@
 
                         </template>    
                     </div>
-
+                    
                 </div>
 
                 <!-- Footer Section Component  -->

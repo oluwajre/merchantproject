@@ -74,12 +74,9 @@
                                 time: '77860. 1s ago',
                             },
                             ]}">
-                            <div class="absolute flex items-end justify-center gap-1 -top-4 p-4 text-center rounded-sm gold-custom-box-shadow gold-custom-background-gradient text-white min-w-[180px]">
+                            <div class="absolute flex items-center justify-center gap-1 -top-4 p-4 text-center rounded-sm gold-custom-box-shadow gold-custom-background-gradient text-white min-w-[180px]">
                                 <span class="text-inherit">
-                                    <svg xmlns='http://www.w3.org/2000/svg' fill='currentColor' class='bi bi-arrow-repeat size-6' viewBox='0 0 16 16'>
-                                        <path d='M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41m-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9'/>
-                                        <path fill-rule='evenodd' d='M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5 5 0 0 0 8 3M3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9z'/>
-                                    </svg>
+                                    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960' fill='currentColor' class='size-8'><path d='m360-160-56-56 70-72q-128-17-211-70T80-480q0-83 115.5-141.5T480-680q169 0 284.5 58.5T880-480q0 62-66.5 111T640-296v-82q77-20 118.5-49.5T800-480q0-32-85.5-76T480-600q-149 0-234.5 44T160-480q0 24 51 57.5T356-372l-52-52 56-56 160 160-160 160Z'/></svg>
                                 </span>
                                 <span class="text-md font-semibold">Last 5 Transactions</span>
                             </div>
@@ -156,9 +153,9 @@
                                 link: './login.html',
                             },
                             ]}">
-                            <div class="absolute flex items-end justify-center gap-1 -top-4 p-4 text-center rounded-sm wine-custom-box-shadow wine-custom-background-gradient text-white min-w-[180px]">
+                            <div class="absolute flex items-center justify-center gap-1 -top-4 p-4 text-center rounded-sm wine-custom-box-shadow wine-custom-background-gradient text-white min-w-[180px]">
                                 <span class="text-inherit">
-                                    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-link2-icon lucide-link-2 size-6'><path d='M9 17H7A5 5 0 0 1 7 7h2'/><path d='M15 7h2a5 5 0 1 1 0 10h-2'/><line x1='8' x2='16' y1='12' y2='12'/></svg>
+                                    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960' fill='currentColor' class='size-8'><path d='M440-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h160v80H280q-50 0-85 35t-35 85q0 50 35 85t85 35h160v80ZM320-440v-80h320v80H320Zm200 160v-80h160q50 0 85-35t35-85q0-50-35-85t-85-35H520v-80h160q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H520Z'/></svg>
                                 </span>
                                 <span class="text-md font-semibold">Quick Links</span>
                             </div>
@@ -178,6 +175,13 @@
 
                 <!-- Footer Section Component  -->
                 <div id="contentFooterContainer" x-ref="contentFooterContainer" class="mt-auto"></div>
+
+                <!-- Scroll Up Button  -->
+                <div class="fixed bottom-7 right-7 p-2.5 bg-primary-blue-text/30 cursor-pointer" @click="document.getElementById('screenTop').scrollTo({ top: 0, behavior: 'smooth' })">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="#f5f5f5" class="size-5">
+                        <path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 1 1-1.06 1.06l-6.22-6.22V21a.75.75 0 0 1-1.5 0V4.81l-6.22 6.22a.75.75 0 1 1-1.06-1.06l7.5-7.5Z" clip-rule="evenodd" />
+                    </svg>
+                </div>
             </div>
 
         </section>

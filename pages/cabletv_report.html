@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Creditswitch Merchant Portal | Airtime Summary</title>
+        <title>Creditswitch Merchant Portal | Cable TV Report</title>
         <link rel="stylesheet" href="../styles/output.css" />
         <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
@@ -12,7 +12,7 @@
     </head>
     <body class="select-none bg-primary-sidebar-gray-background">
 
-        <section class="relative flex h-screen" x-data="menu('Airtime')">
+        <section class="relative flex h-screen" x-data="menu('Cable TV')">
 
             <!-- Sidebar Component -->
             <div id="sidebarContainer" x-ref="sidebarContainer"></div>
@@ -33,29 +33,27 @@
                     <!-- First Row -->
                     <div class="flex-1 relative px-4 pt-15 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
                             <div class="absolute flex items-end justify-center gap-1 -top-4 p-4 text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
-                                <span class="text-md font-semibold">Airtime Summary</span>
+                                <span class="text-md font-semibold">CableTV Summary</span>
                             </div>
 
-                            <div class="w-full px-2 mb-8 sm:mb-17 flex flex-col sm:flex-row gap-3 sm:gap-0 items-center justify-between" x-data="{
-                                salesTodayValue: '',
-                                salesWeekValue: '',
-                                salesMonthValue: '',
+                            <div class="w-full px-2 mt-4 mb-5 md:mb-12 flex flex-col md:flex-row gap-10 md:gap-5 items-center justify-between" x-data="{
+                                summaryData: [
+                                    {name: 'Sales Today', amount: '₦28,500', icon: `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960' fill='currentColor' class='size-7'><path d='M640-160v-280h160v280H640Zm-240 0v-640h160v640H400Zm-240 0v-440h160v440H160Z'/></svg>`},
+                                    {name: 'Sales This Week', amount: '₦95,720', icon: `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960' fill='currentColor' class='size-7'><path d='m140-220-60-60 300-300 160 160 284-320 56 56-340 384-160-160-240 240Z'/></svg>`},
+                                    {name: 'Sales This Month', amount: '₦309,882', icon: `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960' fill='currentColor' class='size-7'><path d='M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z'/></svg>`},
+                                ]
                             }">
-                                <div class="w-full sm:w-fit flex-1 text-left">
-                                    <h1 class="text-xl font-bold text-primary-header-gray-bold" x-text="salesTodayValue || '₦'"></h1>
-                                    <p class="text-sm text-primary-footer-gray-text font-medium">Sales Today</p>
-                                </div>
-                                <div class="w-full sm:w-fit flex-1 text-left">
-                                    <h1 class="text-xl font-bold text-primary-header-gray-bold" x-text="salesWeekValue || '₦'"></h1>
-                                    <p class="text-sm text-primary-footer-gray-text font-medium">Sales This Week</p>
-                                </div>
-                                <div class="w-full sm:w-fit flex-1 text-left">
-                                    <h1 class="text-xl font-bold text-primary-header-gray-bold" x-text="salesMonthValue || '₦'"></h1>
-                                    <p class="text-sm text-primary-footer-gray-text font-medium">Sales This Month</p>
-                                </div>
+                                <template x-for="(data, index) in summaryData" :key="data.name">
+                                    <div class="w-full relative flex-1 text-right shadow-md bg-white p-4 rounded-md border border-primary-sidebar-gray-background">
+                                        <div class="absolute flex items-center justify-center -top-4 px-3 py-3.5 text-center rounded-[3px] cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white">
+                                            <span class="text-inherit" x-html="data.icon"></span>
+                                        </div>
+                                        <p class="text-sm text-primary-gray" x-text="data.name"></p>
+                                        <h1 class="text-xl font-semibold text-primary-table-gray-dark" x-text="data.amount"></h1>
+                                    </div>
+                                </template>
                             </div>  
                     </div>
-    
 
                     <!-- Second Row -->
                     <div class="flex flex-col gap-12 w-full" x-data="{
@@ -63,13 +61,8 @@
                     }">
                         
                         <div class="flex-1 relative px-4 pt-15 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
-                            <div class="absolute flex items-center justify-center gap-2 -top-4 px-4 py-3.5 text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
-                                <span class="text-white">
-                                    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960' fill='currentColor' class='size-8'>
-                                        <path d='M0-240v-63q0-43 44-70t116-27q13 0 25 .5t23 2.5q-14 21-21 44t-7 48v65H0Zm240 0v-65q0-32 17.5-58.5T307-410q32-20 76.5-30t96.5-10q53 0 97.5 10t76.5 30q32 20 49 46.5t17 58.5v65H240Zm540 0v-65q0-26-6.5-49T754-397q11-2 22.5-2.5t23.5-.5q72 0 116 26.5t44 70.5v63H780Zm-455-80h311q-10-20-55.5-35T480-370q-55 0-100.5 15T325-320ZM160-440q-33 0-56.5-23.5T80-520q0-34 23.5-57t56.5-23q34 0 57 23t23 57q0 33-23 56.5T160-440Zm640 0q-33 0-56.5-23.5T720-520q0-34 23.5-57t56.5-23q34 0 57 23t23 57q0 33-23 56.5T800-440Zm-320-40q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T600-600q0 50-34.5 85T480-480Zm0-80q17 0 28.5-11.5T520-600q0-17-11.5-28.5T480-640q-17 0-28.5 11.5T440-600q0 17 11.5 28.5T480-560Zm1 240Zm-1-280Z'/>
-                                    </svg>
-                                </span>
-                                <span class="text-md font-semibold">Query Airtime Transactions</span>
+                            <div class="absolute flex items-center justify-center gap-1 -top-4 px-4 py-3.5 text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
+                                <span class="text-md font-semibold">CableTV Transactions</span>
                             </div>
 
                             <div class="w-full mb-3 flex">
@@ -77,8 +70,33 @@
                                     formInput: [
                                         {
                                             type: 'text',
-                                            placeholder: 'RECIPIENT NO',
-                                            name: 'recipientNo',
+                                            placeholder: 'REFERENCE ID',
+                                            name: 'referenceID',
+                                            value: '',
+                                            label: '',
+                                        },
+                                        {
+                                            type: 'text',
+                                            placeholder: 'MSISDN / PHONE NO',
+                                            name: 'msisdn',
+                                            value: '',
+                                            label: '',
+                                        },
+                                        {
+                                            type: 'number',
+                                            placeholder: 'AMOUNT',
+                                            name: 'amount',
+                                            value: '',
+                                            label: '',
+                                        },
+                                        {
+                                            type: 'select',
+                                            name: 'transactionstatus',
+                                            options: [
+                                                {name: 'Transaction Status', value: ''},
+                                                {name: 'Successful', value: 'successful'},
+                                                {name: 'Failed', value: 'failed'},
+                                            ],
                                             value: '',
                                             label: '',
                                         },
@@ -97,51 +115,16 @@
                                             label: '(End Date)',
                                         },
                                         {
-                                            type: 'number',
-                                            placeholder: 'Amount',
-                                            name: 'amount',
+                                            type: 'text',
+                                            placeholder: 'MERCHANT REF',
+                                            name: 'merchantRef',
                                             value: '',
                                             label: '',
                                         },
                                         {
-                                            type: 'select',
-                                            name: 'networkeselect',
-                                            options: [
-                                                {name: 'Choose Network', value: ''},
-                                                {name: 'MTN', value: 'mtn'},
-                                                {name: 'MTN (Awuf4u)', value: 'mtn_aw'},
-                                                {name: '9MOBILE', value: '9mobile'},
-                                                {name: 'Airtel', value: 'airtel'},
-                                                {name: 'Glo', value: 'glo'},
-                                                {name: 'SMILE', value: 'smile'},
-                                                {name: 'NTEL', value: 'ntel'},
-                                                {name: 'SPECTRANET', value: 'spectranet'},
-                                                {name: 'WAEC', value: 'waec'},
-                                            ],
-                                            value: '',
-                                            label: '',
-                                        },
-                                        {
-                                            type: 'select',
-                                            name: 'transactionstatus',
-                                            options: [
-                                                {name: 'Transaction Status', value: ''},
-                                                {name: 'Successful & Processing', value: 'successful'},
-                                                {name: 'Successful, Processing & Pending', value: 'successful'},
-                                                {name: 'Successful, Processing, Requery Decline & Transaction Decline', value: 'successful'},
-                                                {name: 'Successful, Requery Decline & Transaction Decline', value: 'successful'},
-                                                {name: 'Successful & Reversal', value: 'successful'},
-                                                {name: 'Reversal', value: 'successful'},
-                                                {name: 'SReversal', value: 'successful'},
-                                                {name: 'Pending', value: 'successful'},
-                                                {name: 'Provider Side Platform Error', value: 'successful'},
-                                                {name: 'Limit on Multiple Recharges within 30 seconds', value: 'successful'},
-                                                {name: 'Requery Declined', value: 'successful'},
-                                                {name: 'Reversed', value: 'successful'},
-                                                {name: 'Successful', value: 'successful'},
-                                                {name: 'Processing', value: 'successful'},
-                                                {name: 'Unsuccessful', value: 'unsuccessful'},
-                                            ],
+                                            type: 'text',
+                                            placeholder: 'Search with merchant name or phone no',
+                                            name: 'originNo',
                                             value: '',
                                             label: '',
                                         },
@@ -149,33 +132,14 @@
                                             type: 'select',
                                             name: 'providerselect',
                                             options: [
-                                                {name: 'Select a Merchant', value: ''},
-                                                {name: 'CSW', value: 'linode'},
-                                                {name: 'Everlasting', value: '45'},
-                                                {name: 'ET New', value: '81'},
-                                                {name: 'Golad', value: '98'},
-                                                {name: 'Golad New', value: '100'},
-                                                {name: 'Sonite', value: '100'},
-                                                {name: 'Sonite New', value: '100'},
-                                                {name: 'Golad MTN 100', value: '100'},
-                                                {name: 'Golad MTN 200', value: '100'},
-                                                {name: 'Golad MTN 400', value: '100'},
-                                                {name: 'Golad MTN 500', value: '100'},
-                                                {name: 'Golad MTN 750', value: '100'},
-                                                {name: 'Golad MTN 1000', value: '100'},
-                                                {name: 'Golad MTN 1500', value: '100'},
-                                                {name: 'Primeairtime', value: '100'},
-                                                {name: 'Interswitch', value: '100'},
+                                                {name: '-Select Provider-', value: ''},
                                                 {name: 'Capricorn', value: '100'},
+                                                {name: 'Everlasting', value: '45'},
+                                                {name: 'StartimesDirect', value: '81'},
+                                                {name: 'StarttimesNew', value: '98'},
+                                                {name: 'StartimesON', value: '100'},
                                                 {name: 'PayU', value: '100'},
                                             ],
-                                            value: '',
-                                            label: '',
-                                        },
-                                        {
-                                            type: 'text',
-                                            placeholder: 'MOBIFIN ID',
-                                            name: 'originNo',
                                             value: '',
                                             label: '',
                                         },
@@ -235,34 +199,64 @@
                                 })" x-data="{
                                 tableHeader: [
                                     '#',
-                                    'Merch',
-                                    'Recipient',
-                                    'Network',
-                                    'Face Value',
+                                    'Merchant',
                                     'Date',
+                                    'Smartcard Number',
+                                    'MSISDN',
+                                    'Merchant Ref',
+                                    'Transaction ID',
                                     'Status',
-                                    'Dcount %',
-                                    'Dcount = N',
+                                    'Amount',
+                                    'Discount Given',
+                                    'Discount (%)',
+                                    'P Dcount%',
+                                    'CSW Dcount%',
+                                    'CSW Dcount=N',
                                     'Net Val',
-                                    'M Ref',
-                                    'Confirm Code',
-                                    'Tranx ID',
+                                    'Service Code',
+                                    'Transaction Ref',
+                                    'Provider',
                                 ],
                                 tableData: [
                                     {
                                         '#': '1',
-                                        'Merch': 'Stanbic IBTC Digital',
-                                        'Recipient': '09137819540',
-                                        'Network': 'MTN',
-                                        'Face Value': '100.00',
-                                        'Date': '2025-06-23 12:00:25',
-                                        'Status': 'Insufficient Balance',
-                                        'Dcount %': '0.00',
-                                        'Dcount = N': '0.00',
-                                        'Net Val': '0.00',
-                                        'M Ref': 'Z-5105217-BA8C919D',
-                                        'Confirm Code': '00',
-                                        'Tranx ID': '2506238132586075690',
+                                        'Merchant': 'Wema Bank',
+                                        'Date': '27/06/2025 01:28:35',
+                                        'Smartcard Number': '018316700111234',
+                                        'MSISDN': '2147483647',
+                                        'Merchant Ref': '421272650448-270625',
+                                        'Transaction ID': '276241750987715',
+                                        'Status': 'Successful',
+                                        'Amount': '14250.00',
+                                        'Discount Given': '0.00',
+                                        'Discount (%)': '0',
+                                        'P Dcount%': '2.50',
+                                        'CSW Dcount%': '2.50',
+                                        'CSW Dcount=N': '356.25',
+                                        'Net Val': '14250.00',
+                                        'Service Code': 'Multichoice (dstv)',
+                                        'Transaction Ref': '276241750987715',
+                                        'Provider': 'SHAGO',
+                                    },
+                                    {
+                                        '#': '2',
+                                        'Merchant': 'Wema Bank',
+                                        'Date': '27/06/2025 01:28:35',
+                                        'Smartcard Number': '018316700111234',
+                                        'MSISDN': '2147483647',
+                                        'Merchant Ref': '421272650448-270625',
+                                        'Transaction ID': '276241750987715',
+                                        'Status': 'Successful',
+                                        'Amount': '14250.00',
+                                        'Discount Given': '0.00',
+                                        'Discount (%)': '0',
+                                        'P Dcount%': '2.50',
+                                        'CSW Dcount%': '2.50',
+                                        'CSW Dcount=N': '356.25',
+                                        'Net Val': '14250.00',
+                                        'Service Code': 'Multichoice (dstv)',
+                                        'Transaction Ref': '276241750987715',
+                                        'Provider': 'SHAGO',
                                     },
                                 ]
                             }">
@@ -270,7 +264,7 @@
                                 <!-- Table Options  -->
                                 <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-4 py-2 px-6 border-b border-primary-sidebar-gray-text/70">
                                     <div>
-                                        <h1 class="text-primary-black font-medium">Airtime Query Result</h1>
+                                        <h1 class="text-primary-black font-medium">CableTV Query Result</h1>
                                     </div>
                                     <div class="flex w-full sm:w-fit justify-between">
                                         <button
@@ -320,22 +314,22 @@
 
                                 <!-- Table Summary Header  -->
                                 <div class="w-full px-6 my-6 gap-3 sm:gap-0 flex flex-col sm:flex-row items-center justify-between" x-data="{
-                                totalFaceValue: '',
-                                totalNetValue: '',
-                                totalDiscountValue: '',
-                            }">
-                                <div class="w-full sm:w-fit flex-1 text-left">
-                                    <h1 class="text-xl font-bold text-primary-header-gray-bold" x-text="totalFaceValue || '₦'"></h1>
-                                    <p class="text-sm text-primary-footer-gray-text font-medium">Total Face Value</p>
-                                </div>
-                                <div class="w-full sm:w-fit flex-1 text-left">
-                                    <h1 class="text-xl font-bold text-primary-header-gray-bold" x-text="totalNetValue || '₦'"></h1>
-                                    <p class="text-sm text-primary-footer-gray-text font-medium">Total Net Value</p>
-                                </div>
-                                <div class="w-full sm:w-fit flex-1 text-left">
-                                    <h1 class="text-xl font-bold text-primary-header-gray-bold" x-text="totalDiscountValue || '₦'"></h1>
-                                    <p class="text-sm text-primary-footer-gray-text font-medium">Total Discount</p>
-                                </div>
+                                    totalFaceValue: '₦28,500',
+                                    totalNetValue: '₦28,500',
+                                    totalDiscountValue: '₦0.00',
+                                }">
+                                    <div class="w-full sm:w-fit flex-1 text-left">
+                                        <h1 class="text-xl font-semibold text-primary-header-gray-bold" x-text="totalFaceValue"></h1>
+                                        <p class="text-sm text-primary-footer-gray-text font-medium">Total Face Value</p>
+                                    </div>
+                                    <div class="w-full sm:w-fit flex-1 text-left">
+                                        <h1 class="text-xl font-semibold text-primary-header-gray-bold" x-text="totalNetValue"></h1>
+                                        <p class="text-sm text-primary-footer-gray-text font-medium">Total Net Value</p>
+                                    </div>
+                                    <div class="w-full sm:w-fit flex-1 text-left">
+                                        <h1 class="text-xl font-semibold text-primary-header-gray-bold" x-text="totalDiscountValue"></h1>
+                                        <p class="text-sm text-primary-footer-gray-text font-medium">Total Discount</p>
+                                    </div>
                                 </div>
 
                                 <!-- Table Component  -->
