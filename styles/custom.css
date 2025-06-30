@@ -1,8 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-display: "Satoshi", "sans-serif";
-  --font-roboto: "Roboto", "sans-serif";
+  --font-roboto: "Roboto", Helvetica, Arial, sans-serif;
   
   /* Black  Colors  */
   --color-primary-black: #201f2b;
@@ -16,6 +17,7 @@
    --color-primary-login-gray-text: #9C9C9C;
   --color-primary-header-gray-text: #959cb6;
   --color-primary-header-gray-background: #eaecf2;
+  --color-primary-dashboard-background: #eeeeee;
   --color-primary-header-gray-bold: #646c9a; /*Also the same as boldGrey */
   --color-primary-footer-gray-text: #a7abc3; /*Also the same as dullGrey */
   --color-primary-sidebar-gray-text: #d2d2d6;

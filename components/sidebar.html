@@ -2,7 +2,7 @@
 
 <div 
     :class="{'block w-screen': showSideBar, 'w-[0]': !showSideBar}" 
-    class="z-20 h-screen overflow-y-hidden fixed right-0 lg:block lg:relative lg:w-fit lg:min-w-[64px] max-w-[250px] bg-primary-black backdrop-blur-xs md:backdrop-blur-none text-primary-sidebar-gray-text pb-2 transition-all duration-500 ease-in-out"
+    class="z-20 h-screen overflow-y-hidden fixed right-0 lg:block lg:relative lg:w-fit lg:min-w-[64px] max-w-[250px] bg-primary-black backdrop-blur-xs md:backdrop-blur-none text-primary-sidebar-gray-text pb-2 transition-all duration-500 ease-in-out font-roboto"
     x-cloak
 >
     <div class="z-30 sticky top-0 flex items-center justify-between mb-3 px-0 lg:pl-8 lg:pr-6 h-16 bg-inherit">
@@ -66,7 +66,7 @@
 
                         <span
                             x-show="expandSideMenu && item.alert"
-                            class="ml-auto bg-primary-gold-light text-primary-black rounded-[50%] px-2.5 py-0.5 flex justify-center items-center text-xs"
+                            class="ml-auto bg-primary-gold-light text-primary-black font-light rounded-[50%] px-2.5 py-0.5 flex justify-center items-center text-tiny"
                             x-text="item.alert"
                             x-cloak
                         >
@@ -95,7 +95,7 @@
                                             'bg-primary-sidebar-gray-background/8 text-white': isActive(subItem) || subItem.openSubDropdown === index,
                                             'text-primary-sidebar-gray-text hover:text-white hover:bg-primary-sidebar-gray-background/8': !isActive(subItem)
                                         }"
-                                        class="group pl-9 pr-8 py-2 flex items-center cursor-pointer gap-2 w-full text-sm"
+                                        class="group pl-9 pr-6 py-2 flex items-center cursor-pointer gap-1 w-full text-sm"
                                         @click="toggleDropdown(subItem, index)"
                                     >
                                         <span 
@@ -112,7 +112,7 @@
 
                                         <span
                                             x-show="expandSideMenu && subItem.alert"
-                                            class="ml-auto bg-primary-gold-light text-primary-black rounded-[50%] px-2.5 py-0.5 flex justify-center items-center text-xs "
+                                            class="ml-auto bg-primary-gold-light text-primary-black font-light rounded-[50%] px-2.5 py-0.5 flex justify-center items-center text-tiny"
                                             x-text="subItem.alert"
                                             x-cloak
                                         >

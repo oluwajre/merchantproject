@@ -1,7 +1,8 @@
 <!-- Table Component  -->
 
-<div class="overflow-x-auto my-4 px-4 w-full">
-    <div class="min-w-fit mx-1" x-data="{
+<div class="overflow-x-auto my-4 px-4 w-full font-roboto">
+    <template x-if="tableData.length > 0">
+        <div class="min-w-fit mx-1" x-data="{
         currentPage: 1,
         perPage: 10,
         paginatedData() {
@@ -103,5 +104,9 @@
                 </div>
             </div>
         </template>
-    </div>
+        </div>
+    </template>
+    <template x-if="tableData.length === 0 || !tableData">
+        <p x-text="noDataMessage || 'No data found'" class="text-primary-header-gray-bold font-light mb-10 text-sm"></p>
+    </template>
 </div>

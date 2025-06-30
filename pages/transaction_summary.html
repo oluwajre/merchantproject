@@ -10,7 +10,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
         <link rel="manifest" href="../assets/site.webmanifest">
     </head>
-    <body class="select-none bg-primary-sidebar-gray-background">
+    <body class="select-none bg-primary-sidebar-gray-background font-roboto">
 
         <section class="relative flex h-screen" x-data="menu('Transaction Summary')">
 
@@ -28,16 +28,16 @@
                 <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
 
                 <!-- Main Content Section -->
-                <div class="w-full flex flex-col px-6 py-6 gap-12 text-primary-black">
+                <div class="mt-10 w-full flex flex-col px-6 py-6 gap-12 text-primary-black">
 
                     <!-- First Row -->
                     <div class="flex flex-col gap-12 w-full" x-data="{
-                        showTable: false,
+                        showTable: true,
                     }">
                         
                         <div class="flex-1 relative px-4 pt-15 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
-                            <div class="absolute flex items-center justify-center gap-2 -top-4 px-4.5 py-3.5 text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
-                                <span class="text-md font-semibold">Query Transaction Summary</span>
+                            <div class="absolute flex items-center justify-center gap-2 -top-4 p-4 align-middle text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
+                                <span class="text-md font-medium">Query Transaction Summary</span>
                             </div>
 
                             <div class="w-full mb-3 flex">
@@ -190,49 +190,58 @@
                             </div>  
                         </div>
 
-                        <template x-if="!showTable">
+                        <template x-if="showTable">
                             
-                            <div class="flex-1 relative bg-white rounded-sm shrink-0 w-full shadow-xl" x-init="fetch('../components/tableComponent.html')
-                                .then(res => res.text())
-                                .then(html => {
-                                    $refs.tableComponent.innerHTML = html;
-                                    Alpine.initTree($refs.tableComponent);
-                                })" x-data="{
-                                tableHeader: [
-                                    'Day/Month',
-                                    'Type',
-                                    'Date',
-                                    'Group By',
-                                    'Status',
-                                    'Download',
-                                ],
-                                tableData: [
-                                    {
-                                        'Day/Month': '',
-                                        'Type': '',
-                                        'Date': '',
-                                        'Group By': '',
-                                        'Status': '',
-                                        'Download': '',
-                                    },
-                                ]
-                            }">
+                            <div class="flex-1 relative bg-white rounded-sm shrink-0 w-full shadow-xl">
 
-                                <div class="absolute flex items-center justify-center gap-2 -top-4 px-4.5 py-4 mx-4 text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
-                                    <span class="text-md font-semibold">Auto Generated Monthly Reports</span>
+                                <div class="absolute flex items-center justify-center gap-2 -top-4 p-4 mx-4 align-middle text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
+                                    <span class="text-md font-medium">Auto Generated Monthly Reports</span>
                                 </div>
                                 
 
                                 <!-- Table Summary Header  -->
                                 <div class="w-full px-6 mt-12 mb-6 gap-3 sm:gap-0 flex flex-col sm:flex-row items-center justify-between">
                                     <div class="w-full sm:w-fit flex-1 text-left">
-                                        <h1 class="text-xl font-bold text-primary-header-gray-bold">0</h1>
+                                        <h1 class="text-lg font-semibold text-primary-header-gray-bold">0</h1>
                                         <p class="text-sm text-primary-footer-gray-text font-medium">Total Reports</p>
                                     </div>
                                 </div>
 
                                 <!-- Table Component  -->
-                                <div id="tableComponent" x-ref="tableComponent"></div>
+                                <!-- <div id="tableComponent" x-ref="tableComponent"></div> -->
+
+                                <!-- OTHER STYLE FORMAT  -->
+                                 <div class="mb-8 px-4 overflow-x-auto">
+                                    <div class="inline-block min-w-fit">
+                                    <table class="w-full table-auto border-collapse border border-primary-sidebar-gray-text/70 text-small">
+                                        <thead class="text-black font-medium align-bottom">
+                                            <tr>
+                                                <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Day/Month</td>
+                                                <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Type</td>
+                                                <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Date</td>
+                                                <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Group By</td>
+                                                <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Status</td>
+                                                <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Download</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-primary-black font-medium align-top">
+                                            <tr class="hover:bg-gray-50">
+                                                <td colspan="6" class="border border-primary-sidebar-gray-text/70 px-2 py-2">There are no data.</td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot class="text-black font-medium align-bottom">
+                                            <tr>
+                                                <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Day/Month</td>
+                                                <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Type</td>
+                                                <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Date</td>
+                                                <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Group By</td>
+                                                <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Status</td>
+                                                <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Download</td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                    </div>
+                                 </div>
                             </div>
 
                         </template>    

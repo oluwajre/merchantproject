@@ -10,7 +10,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
         <link rel="manifest" href="../assets/site.webmanifest">
     </head>
-    <body class="select-none bg-primary-sidebar-gray-background">
+    <body class="select-none bg-primary-sidebar-gray-background font-roboto">
 
         <section class="relative flex h-screen" x-data="menu('Cable TV')">
 
@@ -33,7 +33,7 @@
                     <!-- First Row -->
                     <div class="flex-1 relative px-4 pt-15 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
                             <div class="absolute flex items-end justify-center gap-1 -top-4 p-4 text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
-                                <span class="text-md font-semibold">CableTV Summary</span>
+                                <span class="text-md font-medium">CableTV Summary</span>
                             </div>
 
                             <div class="w-full px-2 mt-4 mb-5 md:mb-12 flex flex-col md:flex-row gap-10 md:gap-5 items-center justify-between" x-data="{
@@ -49,7 +49,7 @@
                                             <span class="text-inherit" x-html="data.icon"></span>
                                         </div>
                                         <p class="text-sm text-primary-gray" x-text="data.name"></p>
-                                        <h1 class="text-xl font-semibold text-primary-table-gray-dark" x-text="data.amount"></h1>
+                                        <h1 class="text-xl font-medium text-primary-table-gray-dark" x-text="data.amount"></h1>
                                     </div>
                                 </template>
                             </div>  
@@ -61,8 +61,8 @@
                     }">
                         
                         <div class="flex-1 relative px-4 pt-15 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
-                            <div class="absolute flex items-center justify-center gap-1 -top-4 px-4 py-3.5 text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
-                                <span class="text-md font-semibold">CableTV Transactions</span>
+                            <div class="absolute flex items-center justify-center gap-1 -top-4 p-4 text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
+                                <span class="text-md font-medium">CableTV Transactions</span>
                             </div>
 
                             <div class="w-full mb-3 flex">
@@ -319,16 +319,16 @@
                                     totalDiscountValue: '₦0.00',
                                 }">
                                     <div class="w-full sm:w-fit flex-1 text-left">
-                                        <h1 class="text-xl font-semibold text-primary-header-gray-bold" x-text="totalFaceValue"></h1>
-                                        <p class="text-sm text-primary-footer-gray-text font-medium">Total Face Value</p>
+                                        <h1 class="text-xl font-medium text-primary-header-gray-bold" x-text="totalFaceValue"></h1>
+                                        <p class="text-sm text-primary-footer-gray-text font-normal">Total Face Value</p>
                                     </div>
                                     <div class="w-full sm:w-fit flex-1 text-left">
-                                        <h1 class="text-xl font-semibold text-primary-header-gray-bold" x-text="totalNetValue"></h1>
-                                        <p class="text-sm text-primary-footer-gray-text font-medium">Total Net Value</p>
+                                        <h1 class="text-xl font-medium text-primary-header-gray-bold" x-text="totalNetValue"></h1>
+                                        <p class="text-sm text-primary-footer-gray-text font-normal">Total Net Value</p>
                                     </div>
                                     <div class="w-full sm:w-fit flex-1 text-left">
-                                        <h1 class="text-xl font-semibold text-primary-header-gray-bold" x-text="totalDiscountValue"></h1>
-                                        <p class="text-sm text-primary-footer-gray-text font-medium">Total Discount</p>
+                                        <h1 class="text-xl font-medium text-primary-header-gray-bold" x-text="totalDiscountValue"></h1>
+                                        <p class="text-sm text-primary-footer-gray-text font-normal">Total Discount</p>
                                     </div>
                                 </div>
 

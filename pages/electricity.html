@@ -10,7 +10,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
         <link rel="manifest" href="../assets/site.webmanifest">
     </head>
-    <body class="select-none bg-primary-sidebar-gray-background">
+    <body class="select-none bg-primary-sidebar-gray-background font-roboto">
 
         <section class="relative flex h-screen" x-data="menu('Electricty')">
 
@@ -28,7 +28,7 @@
                 <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
 
                 <!-- Main Content Section -->
-                <div class="w-full flex flex-col px-6 py-6 gap-12 text-primary-black">
+                <div class="mt-10 w-full flex flex-col px-6 py-6 gap-12 text-primary-black">
 
                     <!-- First Row -->
                     <div class="flex flex-col gap-12 w-full" x-data="{
@@ -36,8 +36,8 @@
                     }">
                         
                         <div class="flex-1 relative px-4 pt-15 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
-                            <div class="absolute flex items-center justify-center gap-2 -top-4 px-4 py-3.5 text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
-                                <span class="text-md font-semibold">Electricity Transactions</span>
+                            <div class="absolute flex items-center justify-center gap-2 -top-4 p-4 text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
+                                <span class="text-md font-medium">Electricity Transactions</span>
                             </div>
 
                             <div class="w-full mb-3 flex">
@@ -283,15 +283,15 @@
                                     totalDiscountValue: '',
                                 }">
                                     <div class="w-full sm:w-fit flex-1 text-left">
-                                        <h1 class="text-xl font-bold text-primary-header-gray-bold" x-text="totalFaceValue || '₦'"></h1>
+                                        <h1 class="text-xl font-medium text-primary-header-gray-bold" x-text="totalFaceValue || '₦0.00'"></h1>
                                         <p class="text-sm text-primary-footer-gray-text font-medium">Total Face Value</p>
                                     </div>
                                     <div class="w-full sm:w-fit flex-1 text-left">
-                                        <h1 class="text-xl font-bold text-primary-header-gray-bold" x-text="totalNetValue || '₦'"></h1>
+                                        <h1 class="text-xl font-medium text-primary-header-gray-bold" x-text="totalNetValue || '₦0.00'"></h1>
                                         <p class="text-sm text-primary-footer-gray-text font-medium">Total Net Value</p>
                                     </div>
                                     <div class="w-full sm:w-fit flex-1 text-left">
-                                        <h1 class="text-xl font-bold text-primary-header-gray-bold" x-text="totalDiscountValue || '₦'"></h1>
+                                        <h1 class="text-xl font-medium text-primary-header-gray-bold" x-text="totalDiscountValue || '₦0.00'"></h1>
                                         <p class="text-sm text-primary-footer-gray-text font-medium">Total Discount</p>
                                     </div>
                                 </div>

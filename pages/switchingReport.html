@@ -10,7 +10,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
         <link rel="manifest" href="../assets/site.webmanifest">
     </head>
-    <body class="select-none bg-primary-sidebar-gray-background">
+    <body class="select-none bg-primary-sidebar-gray-background font-roboto">
 
         <section class="relative flex h-screen" x-data="menu('Switching Report')">
 
@@ -28,15 +28,15 @@
                 <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
 
                 <!-- Main Content Section -->
-                <div class="w-full flex flex-col px-6 py-6 gap-12 text-primary-black">
+                <div class="mt-10 w-full flex flex-col px-6 py-6 gap-12 text-primary-black">
                     
                     <div class="flex flex-col gap-12 w-full" x-data="{
                         showTable: false,
                     }">
                         
                         <div class="flex-1 relative px-4 pt-15 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
-                            <div class="absolute flex items-center justify-center gap-1 -top-4 px-4 py-3.5 text-center rounded-xs cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
-                                <span class="text-md font-semibold">Switching Report</span>
+                            <div class="absolute flex items-center align-middle justify-center gap-1 -top-4 p-4 text-center rounded-xs cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
+                                <span class="text-md font-medium">Switching Report</span>
                             </div>
 
                             <div class="w-full mb-3 flex">
@@ -154,7 +154,7 @@
 
                         <template x-if="showTable">
                             
-                            <div class="flex-1 relative bg-white rounded-sm shrink-0 w-full shadow-xl" x-init="fetch('../components/tableComponent.html')
+                            <div class="flex-1 relative bg-white shrink-0 w-full shadow-xl" x-init="fetch('../components/tableComponent.html')
                                 .then(res => res.text())
                                 .then(html => {
                                     $refs.tableComponent.innerHTML = html;
