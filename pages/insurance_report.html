@@ -10,7 +10,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
         <link rel="manifest" href="../assets/site.webmanifest">
     </head>
-    <body class="select-none bg-primary-sidebar-gray-background">
+    <body class="select-none bg-primary-sidebar-gray-background font-roboto">
 
         <section class="relative flex h-screen" x-data="menu('Insurance')">
 
@@ -28,7 +28,7 @@
                 <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
 
                 <!-- Main Content Section -->
-                <div class="w-full flex flex-col px-6 py-6 gap-12 text-primary-black">
+                <div class="mt-10 w-full flex flex-col px-6 py-6 gap-12 text-primary-black">
 
                     <!-- First Row -->
                     <div class="flex flex-col gap-12 w-full" x-data="{
@@ -36,8 +36,8 @@
                     }">
                         
                         <div class="flex-1 relative px-4 pt-15 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
-                            <div class="absolute flex items-center justify-center gap-1 -top-4 px-4 py-3.5 text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
-                                <span class="text-md font-semibold">Insurance Transactions</span>
+                            <div class="absolute flex items-center justify-center gap-1 -top-5 px-6 py-4.5 align-middle text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
+                                <span class="text-md font-medium">Insurance Transactions</span>
                             </div>
 
                             <div class="w-full mb-3 flex">
@@ -163,114 +163,38 @@
                                     Alpine.initTree($refs.tableComponent);
                                 })" x-data="{
                                 tableHeader: [
-                                    '#',
                                     'Merch',
                                     'Recipient',
-                                    'Network',
-                                    'Provider',
-                                    'Channel',
-                                    'Type',
-                                    'Face Value',
+                                    'Amount',
+                                    'Merchant Ref',
+                                    'Service Code',
+                                    'Product',
+                                    'Request ID',
                                     'Status',
+                                    'Channel',
                                     'Date',
-                                    'Dcount %',
-                                    'Dcount = N',
-                                    'Net Val',
-                                    'P Dcount%',
-                                    'CSW Dcount%',
-                                    'CSW Dcount = N',
-                                    'M Ref',
-                                    'Confirm Code',
-                                    'Tranx ID',
-                                    'Audit No',
-                                    'Processing Server',
-                                    'Updated Time',
-                                    'Processing Time (Secs)',
                                 ],
                                 tableData: [
                                     {
-                                        '#': '1',
-                                        'Merch': 'Stanbic IBTC Digital',
-                                        'Recipient': '09137819540',
-                                        'Network': 'MTN',
-                                        'Provider': 'Dummy',
+                                        'Merch': '',
+                                        'Recipient': '',
+                                        'Amount': '',
+                                        'Merchant Ref': '',
+                                        'Service Code': '',
+                                        'Product': '',
+                                        'Request ID': '',
+                                        'Status': '',
                                         'Channel': '',
-                                        'Type': 'Airtime',
-                                        'Face Value': '100.00',
-                                        'Status': 'Insufficient Balance',
-                                        'Date': '2025-06-23 12:00:25',
-                                        'Dcount %': '0.00',
-                                        'Dcount = N': '0.00',
-                                        'Net Val': '0.00',
-                                        'P Dcount%': '0.00',
-                                        'CSW Dcount%': '0.00',
-                                        'CSW Dcount = N': '0.00',
-                                        'M Ref': 'Z-5105217-BA8C919D',
-                                        'Confirm Code': '',
-                                        'Tranx ID': '2506238132586075690',
-                                        'Audit No': '',
-                                        'Processing Server': 'vpn-45',
-                                        'Updated Time': '',
-                                        'Processing Time (Secs)': '',
-                                    },
-                                    {
-                                        '#': '2',
-                                        'Merch': 'Stanbic IBTC Digital',
-                                        'Recipient': '09137819540',
-                                        'Network': 'MTN',
-                                        'Provider': 'Dummy',
-                                        'Channel': '',
-                                        'Type': 'Airtime',
-                                        'Face Value': '100.00',
-                                        'Status': 'Insufficient Balance',
-                                        'Date': '2025-06-23 12:00:25',
-                                        'Dcount %': '0.00',
-                                        'Dcount = N': '0.00',
-                                        'Net Val': '0.00',
-                                        'P Dcount%': '0.00',
-                                        'CSW Dcount%': '0.00',
-                                        'CSW Dcount = N': '0.00',
-                                        'M Ref': 'Z-5105217-BA8C919D',
-                                        'Confirm Code': '',
-                                        'Tranx ID': '2506238132586075690',
-                                        'Audit No': '',
-                                        'Processing Server': '',
-                                        'Updated Time': '',
-                                        'Processing Time (Secs)': '',
-                                    },
-                                    {
-                                        '#': '3',
-                                        'Merch': 'Stanbic IBTC Digital',
-                                        'Recipient': '09137819540',
-                                        'Network': 'MTN',
-                                        'Provider': 'Dummy',
-                                        'Channel': '',
-                                        'Type': 'Airtime',
-                                        'Face Value': '100.00',
-                                        'Status': 'Insufficient Balance',
-                                        'Date': '2025-06-23 12:00:25',
-                                        'Dcount %': '0.00',
-                                        'Dcount = N': '0.00',
-                                        'Net Val': '0.00',
-                                        'P Dcount%': '0.00',
-                                        'CSW Dcount%': '0.00',
-                                        'CSW Dcount = N': '0.00',
-                                        'M Ref': 'Z-5105217-BA8C919D',
-                                        'Confirm Code': '',
-                                        'Tranx ID': '',
-                                        'Audit No': '',
-                                        'Processing Server': '',
-                                        'Updated Time': '',
-                                        'Processing Time (Secs)': '',
+                                        'Date': '',
                                     },
                                 ]
                             }">
 
                                 <!-- Table Options  -->
                                 <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-4 py-2 px-6 border-b border-primary-sidebar-gray-text/70">
-                                    <div>
+                                    <!-- <div>
                                         <h1 class="text-primary-black font-medium">Insurance Query Result</h1>
-                                    </div>
+                                    </div> -->
                                     <div class="flex w-full sm:w-fit justify-between">
                                         <button
                                             x-data="{showPopUp: false}"
@@ -318,9 +242,9 @@
                                 </div>
 
                                 <!-- Table Summary Header  -->
-                                <div class="w-full px-6 my-6 gap-3 sm:gap-0 flex flex-col sm:flex-row items-center justify-between text-right">
-                                    <h1 class="flex-1 text-xl font-semibold text-primary-header-gray-bold">Total Counts: 0</h1>
-                                </div>
+                                <!-- <div class="w-full px-6 my-6 gap-3 sm:gap-0 flex flex-col sm:flex-row items-center justify-between text-right">
+                                    <h1 class="flex-1 text-lg font-medium text-primary-header-gray-bold">Total Counts: 0</h1>
+                                </div> -->
 
                                 <!-- Table Component  -->
                                 <div id="tableComponent" x-ref="tableComponent"></div>

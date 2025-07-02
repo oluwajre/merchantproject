@@ -25,6 +25,8 @@
   --color-primary-input-gray-text: #a7abd1;
   --color-primary-gray-text-muted: #73818f;
   --color-primary-table-gray-dark: #3c4858;
+  --color-primary-disabled-report-button: #808080;
+  --color-primary-filtered-options: #6c7293;
 
   /* Blue Colors */
   --color-primary-blue-text: #2c77f4;

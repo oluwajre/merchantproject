@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Creditswitch Merchant Portal | Epin Page</title>
+        <link rel="stylesheet" href="../styles/output.css" />
+        <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
+        <link rel="manifest" href="../assets/site.webmanifest">
+    </head>
+    <body class="select-none bg-primary-sidebar-gray-background font-roboto">
+
+        <section class="relative flex h-screen" x-data="menu('Service Settings')">
+
+            <!-- Sidebar Component -->
+            <div id="sidebarContainer" x-ref="sidebarContainer"></div>
+            
+
+            <!-- Right Hand Section -->
+            <div class="flex-1 overflow-y-auto flex flex-col min-h-screen" id="screenTop"> 
+
+                <!-- Mobile Nav Component  -->
+                <div id="mobileNavContainer" x-ref="mobileNavContainer"></div>
+
+                <!-- Header Section Component  -->
+                <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
+
+                <!-- Main Content Section -->
+                <div class="mt-10 w-full flex flex-col px-6 py-6 gap-12 text-primary-black">
+
+                    <!-- First Row -->
+                    <div class="flex flex-col gap-12 w-full" x-data="{
+                        activeTab: 'airtime',
+                        tabs: [
+                            {name: 'Airtime', value: 'airtime'},
+                            {name: 'Data', value: 'data'},
+                            {name: 'SMS', value: 'sms'},
+                            {name: 'Cable TV', value: 'cabletv'},
+                            {name: 'Electricity', value: 'electricity'},
+                            {name: 'Pins', value: 'pins'},
+                            {name: 'Toll', value: 'toll'},
+                            {name: 'Betting', value: 'betting'},
+                            {name: 'Insurance', value: 'insurance'},
+                            {name: 'ANQ', value: 'anq'},
+                        ],
+                    }">
+                        
+                        <div class="flex-1 relative px-4 pt-15 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full space-y-6">
+                            <div class="absolute flex items-center justify-center gap-1 -top-5 px-6 py-4.5 text-center align-middle rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
+                                <span class="text-md font-medium align-middle">Change Batch ID / Provider</span>
+                            </div>
+
+                            <div class="w-full flex gap-4 items-stretch justify-start text-small text-primary-header-gray-bold border-b border-primary-sidebar-gray-text/70">
+                                <template x-for="(tab, index) in tabs" :key="tab.name">
+                                    <div 
+                                        @click="activeTab = tab.value" 
+                                        x-text="tab.name" 
+                                        :class="activeTab === tab.value? 'border-primary-blue-text': 'border-transparent hover:border-primary-blue-text'" 
+                                        class="border-b pb-3 cursor-pointer transition duration-200"
+                                    ></div>
+                                </template>
+                                <div @click="window.location.href = 'https://www.creditswitch.com'" class="border-b border-transparent hover:border-primary-blue-text pb-3 cursor-pointer transition duration-200">View Log of Recent Switching</div>
+                            </div>
+
+                            <div class="w-full mb-3 flex">
+                                <template x-if="activeTab === 'airtime' || activeTab === 'data' || activeTab === 'sms' || activeTab === 'toll'">
+                                    <form class="w-full gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between" x-data="{
+                                        search: '',
+                                        network: '',
+                                        provider: ''
+                                    }" @submit.prevent>
+                                        <div x-data="{
+                                            open: false,
+                                            options: ['All 931', 'Wema Bank', 'BetaSMS', 'TM30 Global Limited'],
+                                            selected: [],
+                                            get filteredOptions() {
+                                                return this.options.filter(opt => opt.toLowerCase().includes(this.search.toLowerCase()));
+                                            },
+                                            toggleOption(option) {
+                                                if (this.selected.includes(option)) {
+                                                    this.selected = this.selected.filter(item => item !== option);
+                                                } else {
+                                                    this.selected.push(option);
+                                                }
+                                            },
+                                            selectAll() {
+                                                this.selected = [...this.options];
+                                            },
+                                            deselectAll() {
+                                                this.selected = [];
+                                            }
+                                        }" class="relative">
+                                        
+                                            <!-- Trigger -->
+                                            <div @click="open = !open" :class="{'bg-primary-sidebar-gray-background/60': open}" class="flex items-center gap-1 w-full text-primary-filtered-options border border-primary-sidebar-gray-text px-3 py-2 text-tiny uppercase cursor-pointer">
+                                                <span x-text="selected.length === 0 ? 'Nothing Selected' : selected.join(', ')" class="flex-1 whitespace-nowrap overflow-hidden" aria-required="true"></span>
+                                                <span class="text-primary-gray">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="1" stroke="none" class="size-4">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                                    </svg>
+                                                </span>
+                                            </div>
+
+                                            <!-- Dropdown -->
+                                            <div 
+                                                x-show="open"
+                                                x-transition
+                                                @click.outside="open = false"
+                                                class="absolute -mt-1 w-full bg-white shadow-lg z-40 py-2"
+                                                x-cloak
+                                            >
+                                                <!-- Search -->
+                                                <div class="px-2 py-3">
+                                                    <input
+                                                        type="text"
+                                                        x-model="search"
+                                                        placeholder="Search Merchant"
+                                                        class="w-full border border-primary-sidebar-gray-text placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm"
+                                                    />
+                                                </div>
+
+                                                <!-- Select/Deselect -->
+                                                <div class="flex justify-between gap-2 px-4 py-2 text-xs text-primary-login-gray-header text-center">
+                                                    <button @click="selectAll" class="flex-1 uppercase hover:bg-primary-sidebar-gray-background/60 py-2 cursor-pointer">Select All</button>
+                                                    <button @click="deselectAll" class="flex-1 uppercase hover:bg-primary-sidebar-gray-background/60 py-2 cursor-pointer">Deselect All</button>
+                                                </div>
+
+                                                    <!-- List of Options -->
+                                                <div class="max-h-36 overflow-y-auto">
+                                                    <div 
+                                                        @click="open = !open"
+                                                        class="flex justify-between px-4 py-2 cursor-pointer text-sm text-primary-input-gray-text font-medium hover:bg-gray-100"
+                                                    >
+                                                        Select Merchant(s)
+                                                    </div>
+                                                    <template x-for="option in filteredOptions" :key="option">
+                                                        <div 
+                                                            @click="toggleOption(option)"
+                                                            class="flex justify-between px-4 py-2 cursor-pointer text-sm text-primary-header-gray-bold font-medium"
+                                                            :class="selected.includes(option) ? 'bg-gray-100' : 'hover:bg-gray-100'"
+                                                        >
+                                                            <span x-text="option" class="flex-1"></span>
+                                                            <span x-show="selected.includes(option)" class="text-primary-black font-extralight">✔</span>
+                                                        </div>
+                                                    </template>
+                                                </div>
+                                                    
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <select name="network" id="network" x-model="network" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-sm transition duration-300" required>
+                                                <option value="">SELECT NETWORK</option>
+                                                <option value="airtel">Airtel</option>
+                                                <option value="9mobile">9MOBILE</option>
+                                                <option value="glo">GLO</option>
+                                                <option value="mtn">MTN</option>
+                                                <option value="awu4fu">Mtn (Awu4fu)</option>
+                                            </select>
+                                        </div>
+
+                                        <template x-if="network">
+                                            <div>
+                                                <select name="provider" id="provider" x-model="provider" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-sm transition duration-300" required>
+                                                    <option value="">Select Provider</option>
+                                                    <option value="airtel">Creditswitch - 13</option>
+                                                    <option value="9mobile">Capricon - 20</option>
+                                                    <option value="glo">Everlasting - 56</option>
+                                                </select>
+                                            </div>
+                                        </template>
+
+                                        <template x-if="!network">
+                                            <div>
+                                                <select name="provider" id="provider" x-model="provider" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-sm transition duration-300">
+                                                </select>
+                                            </div>
+                                        </template>
+
+                                        <div>
+                                            <button type="submit" class="w-full uppercase font-semibold text-xs text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">Go</button>
+                                        </div>
+                                    </form>
+                                </template>
+
+                                <template x-if="activeTab === 'cabletv' || activeTab === 'electricity' || activeTab === 'pins' || activeTab === 'anq'">
+                                    <form class="w-full gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between" x-data="{
+                                        search: '',
+                                        network: '',
+                                        provider: ''
+                                    }" @submit.prevent>
+
+                                        <div>
+                                            <select name="network" id="network" x-model="network" class="w-full text-tiny text-primary-filtered-options focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-sm transition duration-300" required>
+                                                <option value="" class="text-sm">SELECT SERVICE(S)</option>
+                                                <option value="gotv" class="text-sm">GOTV</option>
+                                                <option value="dstv" class="text-sm">DSTV</option>
+                                                <option value="startimes" class="text-sm">STARTIMES</option>
+                                                <option value="showmax" class="text-sm">SHOWMAX</option>
+                                            </select>
+                                        </div>
+
+                                        <div x-data="{
+                                            open: false,
+                                            options: ['All 931', 'Wema Bank', 'BetaSMS', 'TM30 Global Limited'],
+                                            selected: [],
+                                            get filteredOptions() {
+                                                return this.options.filter(opt => opt.toLowerCase().includes(this.search.toLowerCase()));
+                                            },
+                                            toggleOption(option) {
+                                                if (this.selected.includes(option)) {
+                                                    this.selected = this.selected.filter(item => item !== option);
+                                                } else {
+                                                    this.selected.push(option);
+                                                }
+                                            },
+                                            selectAll() {
+                                                this.selected = [...this.options];
+                                            },
+                                            deselectAll() {
+                                                this.selected = [];
+                                            }
+                                        }" class="relative">
+                                        
+                                            <!-- Trigger -->
+                                            <div @click="open = !open" :class="{'bg-primary-sidebar-gray-background/60': open}" class="flex items-center gap-1 w-full text-primary-filtered-options border border-primary-sidebar-gray-text px-3 py-2 text-tiny uppercase cursor-pointer">
+                                                <span x-text="selected.length === 0 ? 'Nothing Selected' : selected.join(', ')" class="flex-1 whitespace-nowrap overflow-hidden" aria-required="true"></span>
+                                                <span class="text-primary-gray">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="1" stroke="none" class="size-4">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                                    </svg>
+                                                </span>
+                                            </div>
+
+                                            <!-- Dropdown -->
+                                            <div 
+                                                x-show="open"
+                                                x-transition
+                                                @click.outside="open = false"
+                                                class="absolute -mt-1 w-full bg-white shadow-lg z-40 py-2"
+                                                x-cloak
+                                            >
+                                                <!-- Search -->
+                                                <div class="px-2 py-3">
+                                                    <input
+                                                        type="text"
+                                                        x-model="search"
+                                                        placeholder="Search Merchant"
+                                                        class="w-full border border-primary-sidebar-gray-text placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm"
+                                                    />
+                                                </div>
+
+                                                <!-- Select/Deselect -->
+                                                <div class="flex justify-between gap-2 px-4 py-2 text-xs text-primary-login-gray-header text-center">
+                                                    <button @click="selectAll" class="flex-1 uppercase hover:bg-primary-sidebar-gray-background/60 py-2 cursor-pointer">Select All</button>
+                                                    <button @click="deselectAll" class="flex-1 uppercase hover:bg-primary-sidebar-gray-background/60 py-2 cursor-pointer">Deselect All</button>
+                                                </div>
+
+                                                    <!-- List of Options -->
+                                                <div class="max-h-36 overflow-y-auto">
+                                                    <div 
+                                                        @click="open = !open"
+                                                        class="flex justify-between px-4 py-2 cursor-pointer text-sm text-primary-input-gray-text font-medium hover:bg-gray-100"
+                                                    >
+                                                        Select Merchant(s)
+                                                    </div>
+                                                    <template x-for="option in filteredOptions" :key="option">
+                                                        <div 
+                                                            @click="toggleOption(option)"
+                                                            class="flex justify-between px-4 py-2 cursor-pointer text-sm text-primary-header-gray-bold font-medium"
+                                                            :class="selected.includes(option) ? 'bg-gray-100' : 'hover:bg-gray-100'"
+                                                        >
+                                                            <span x-text="option" class="flex-1"></span>
+                                                            <span x-show="selected.includes(option)" class="text-primary-black font-extralight">✔</span>
+                                                        </div>
+                                                    </template>
+                                                </div>
+                                                    
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <select name="provider" id="provider" x-model="provider" class="w-full text-tiny text-primary-filtered-options focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-sm transition duration-300" required>
+                                                <option value="" class="text-sm">SELECT PROVIDER</option>
+                                                <option value="airtel" class="text-sm">Creditswitch - 13</option>
+                                                <option value="9mobile" class="text-sm">Capricon - 20</option>
+                                                <option value="glo" class="text-sm">Everlasting - 56</option>
+                                            </select>
+                                        </div>
+
+                                        <div>
+                                            <button type="submit" class="w-full uppercase font-semibold text-xs text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">Go</button>
+                                        </div>
+                                    </form>
+                                </template>
+
+                                <template x-if="activeTab === 'betting' || activeTab === 'insurance'">
+                                    <form class="w-full gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between" x-data="{
+                                        search: '',
+                                        network: '',
+                                        provider: ''
+                                    }" @submit.prevent>
+                                        <div x-data="{
+                                            open: false,
+                                            options: ['All 931', 'Wema Bank', 'BetaSMS', 'TM30 Global Limited'],
+                                            selected: [],
+                                            get filteredOptions() {
+                                                return this.options.filter(opt => opt.toLowerCase().includes(this.search.toLowerCase()));
+                                            },
+                                            toggleOption(option) {
+                                                if (this.selected.includes(option)) {
+                                                    this.selected = this.selected.filter(item => item !== option);
+                                                } else {
+                                                    this.selected.push(option);
+                                                }
+                                            },
+                                            selectAll() {
+                                                this.selected = [...this.options];
+                                            },
+                                            deselectAll() {
+                                                this.selected = [];
+                                            }
+                                        }" class="relative">
+
+                                            <label for="search" class="text-primary-header-gray-bold text-small">Merchant</label>
+                                            <!-- Trigger -->
+                                            <div @click="open = !open" :class="{'bg-primary-sidebar-gray-background/60': open}" class="flex items-center gap-1 w-full text-primary-filtered-options border border-primary-sidebar-gray-text px-3 py-2 text-tiny uppercase cursor-pointer">
+                                                <span x-text="selected.length === 0 ? 'Nothing Selected' : selected.join(', ')" class="flex-1 whitespace-nowrap overflow-hidden" aria-required="true"></span>
+                                                <span class="text-primary-gray">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="1" stroke="none" class="size-4">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                                    </svg>
+                                                </span>
+                                            </div>
+
+                                            <!-- Dropdown -->
+                                            <div 
+                                                x-show="open"
+                                                x-transition
+                                                @click.outside="open = false"
+                                                class="absolute -mt-1 w-full bg-white shadow-lg z-40 py-2"
+                                                x-cloak
+                                            >
+                                                <!-- Search -->
+                                                <div class="px-2 py-3">
+                                                    <input
+                                                        type="text"
+                                                        x-model="search"
+                                                        placeholder="Search Merchant"
+                                                        class="w-full border border-primary-sidebar-gray-text placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm"
+                                                    />
+                                                </div>
+
+                                                <!-- Select/Deselect -->
+                                                <div class="flex justify-between gap-2 px-4 py-2 text-xs text-primary-login-gray-header text-center">
+                                                    <button @click="selectAll" class="flex-1 uppercase hover:bg-primary-sidebar-gray-background/60 py-2 cursor-pointer">Select All</button>
+                                                    <button @click="deselectAll" class="flex-1 uppercase hover:bg-primary-sidebar-gray-background/60 py-2 cursor-pointer">Deselect All</button>
+                                                </div>
+
+                                                    <!-- List of Options -->
+                                                <div class="max-h-36 overflow-y-auto">
+                                                    <div 
+                                                        @click="open = !open"
+                                                        class="flex justify-between px-4 py-2 cursor-pointer text-sm text-primary-input-gray-text font-medium hover:bg-gray-100"
+                                                    >
+                                                        Select Merchant(s)
+                                                    </div>
+                                                    <template x-for="option in filteredOptions" :key="option">
+                                                        <div 
+                                                            @click="toggleOption(option)"
+                                                            class="flex justify-between px-4 py-2 cursor-pointer text-sm text-primary-header-gray-bold font-medium"
+                                                            :class="selected.includes(option) ? 'bg-gray-100' : 'hover:bg-gray-100'"
+                                                        >
+                                                            <span x-text="option" class="flex-1"></span>
+                                                            <span x-show="selected.includes(option)" class="text-primary-black font-extralight">✔</span>
+                                                        </div>
+                                                    </template>
+                                                </div>
+                                                    
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <label for="search" class="text-primary-header-gray-bold text-small">Product</label>
+                                            <select name="network" id="network" x-model="network" class="w-full text-tiny text-primary-filtered-options focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-sm transition duration-300" required>
+                                                <option value="" class="text-sm">SELECT PRODUCT</option>
+                                                <option value="all" class="text-sm">All</option>
+                                            </select>
+                                        </div>
+
+                                        <template x-if="network">
+                                            <div>
+                                                <label for="search" class="text-primary-header-gray-bold text-small">Provider</label>
+                                                <select name="provider" id="provider" x-model="provider" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-sm transition duration-300" required>
+                                                    <option value="">Select Provider</option>
+                                                    <option value="airtel">Creditswitch - 13</option>
+                                                    <option value="9mobile">Capricon - 20</option>
+                                                    <option value="glo">Everlasting - 56</option>
+                                                </select>
+                                            </div>
+                                        </template>
+
+                                        <template x-if="!network">
+                                            <div>
+                                                <label for="search" class="text-primary-header-gray-bold text-small">Provider</label>
+                                                <select name="provider" id="provider" x-model="provider" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-sm transition duration-300">
+                                                </select>
+                                            </div>
+                                        </template>
+
+                                        <div>
+                                            <button type="submit" class="w-full uppercase font-semibold text-xs text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">Go</button>
+                                        </div>
+                                    </form>
+                                </template>
+
+                            </div>  
+                        </div>  
+                    </div>
+
+                    <!-- Second Row  -->
+                     <div class="flex flex-col gap-12 w-full" x-data="{
+                        showTable: false,
+                    }">
+                        
+                        <div class="flex-1 relative px-4 pt-15 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
+                            <div class="absolute flex items-center justify-center gap-1 -top-5 px-6 py-4.5 text-center align-middle rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
+                                <span class="text-md font-medium align-middle">Change Transaction Server</span>
+                            </div>
+
+                            <div class="w-full mb-3 flex">
+                                <form class="w-full gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between" x-data="{
+                                        search: '',
+                                        network: '',
+                                        provider: ''
+                                    }" @submit.prevent="showTable = true">
+                                        <div x-data="{
+                                            open: false,
+                                            options: ['All 931', 'Wema Bank', 'BetaSMS', 'TM30 Global Limited'],
+                                            selected: [],
+                                            get filteredOptions() {
+                                                return this.options.filter(opt => opt.toLowerCase().includes(this.search.toLowerCase()));
+                                            },
+                                            toggleOption(option) {
+                                                if (this.selected.includes(option)) {
+                                                    this.selected = this.selected.filter(item => item !== option);
+                                                } else {
+                                                    this.selected.push(option);
+                                                }
+                                            },
+                                            selectAll() {
+                                                this.selected = [...this.options];
+                                            },
+                                            deselectAll() {
+                                                this.selected = [];
+                                            }
+                                        }" class="relative">
+
+                                            <!-- Trigger -->
+                                            <div @click="open = !open" :class="{'bg-primary-sidebar-gray-background/60': open}" class="flex items-center gap-1 w-full text-primary-filtered-options border border-primary-sidebar-gray-text px-3 py-2 text-tiny uppercase cursor-pointer">
+                                                <span x-text="selected.length === 0 ? 'Nothing Selected' : selected.join(', ')" class="flex-1 whitespace-nowrap overflow-hidden" aria-required="true"></span>
+                                                <span class="text-primary-gray">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="1" stroke="none" class="size-4">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                                    </svg>
+                                                </span>
+                                            </div>
+
+                                            <!-- Dropdown -->
+                                            <div 
+                                                x-show="open"
+                                                x-transition
+                                                @click.outside="open = false"
+                                                class="absolute -mt-1 w-full bg-white shadow-lg z-40 py-2"
+                                                x-cloak
+                                            >
+                                                <!-- Search -->
+                                                <div class="px-2 py-3">
+                                                    <input
+                                                        type="text"
+                                                        x-model="search"
+                                                        placeholder="Search Merchant"
+                                                        class="w-full border border-primary-sidebar-gray-text placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm"
+                                                    />
+                                                </div>
+
+                                                <!-- Select/Deselect -->
+                                                <div class="flex justify-between gap-2 px-4 py-2 text-xs text-primary-login-gray-header text-center">
+                                                    <button @click="selectAll" class="flex-1 uppercase hover:bg-primary-sidebar-gray-background/60 py-2 cursor-pointer">Select All</button>
+                                                    <button @click="deselectAll" class="flex-1 uppercase hover:bg-primary-sidebar-gray-background/60 py-2 cursor-pointer">Deselect All</button>
+                                                </div>
+
+                                                    <!-- List of Options -->
+                                                <div class="max-h-36 overflow-y-auto">
+                                                    <div 
+                                                        @click="open = !open"
+                                                        class="flex justify-between px-4 py-2 cursor-pointer text-sm text-primary-input-gray-text font-medium hover:bg-gray-100"
+                                                    >
+                                                        Select Merchant(s)
+                                                    </div>
+                                                    <template x-for="option in filteredOptions" :key="option">
+                                                        <div 
+                                                            @click="toggleOption(option)"
+                                                            class="flex justify-between px-4 py-2 cursor-pointer text-sm text-primary-header-gray-bold font-medium"
+                                                            :class="selected.includes(option) ? 'bg-gray-100' : 'hover:bg-gray-100'"
+                                                        >
+                                                            <span x-text="option" class="flex-1"></span>
+                                                            <span x-show="selected.includes(option)" class="text-primary-black font-extralight">✔</span>
+                                                        </div>
+                                                    </template>
+                                                </div>
+                                                    
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <select name="network" id="network" x-model="network" class="w-full text-tiny text-primary-filtered-options focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-sm transition duration-300" required>
+                                                <option value="" class="text-sm">-SELECT-</option>
+                                                <option value="all" class="text-sm">All</option>
+                                            </select>
+                                            <label for="search" class="text-primary-header-gray-bold text-small font-light">Select a Service</label>
+                                        </div>
+                                        
+                                        <div>
+                                            <select name="provider" id="provider" x-model="provider" class="w-full text-tiny text-primary-filtered-options focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-sm transition duration-300" required>
+                                                <option value="" class="text-sm">-SELECT-</option>
+                                                <option value="all" class="text-sm">All</option>
+                                            </select>
+                                            <label for="search" class="text-primary-header-gray-bold text-small font-light">Select a Server</label>
+                                        </div>
+
+                                        <div>
+                                            <button type="submit" class="w-full uppercase font-semibold text-xs text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">Go</button>
+                                        </div>
+                                </form>  
+                            </div>  
+                        </div>
+
+                        <template x-if="showTable">
+                            
+                            <div class="flex-1 relative bg-white rounded-sm shrink-0 w-full shadow-xl" x-init="fetch('../components/tableComponent.html')
+                                .then(res => res.text())
+                                .then(html => {
+                                    $refs.tableComponent.innerHTML = html;
+                                    Alpine.initTree($refs.tableComponent);
+                                })" x-data="{tableData: [], noDataMessage: 'No Epins found'}">
+
+                                <!-- Table Options  -->
+                                <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-4 py-2 px-6 border-b border-primary-sidebar-gray-text/70">
+                                    <div>
+                                        <h1 class="text-primary-black font-medium">Epin Query Result</h1>
+                                    </div>
+                                    <div class="flex w-full sm:w-fit justify-between">
+                                        <button
+                                            x-data="{showPopUp: false}"
+                                            @click="showPopUp = !showPopUp"
+                                            @click.away="showPopUp = false"
+                                            class="relative"
+                                        >   
+                                            <div 
+                                                :class="showPopUp ? 'bg-primary-blue-text text-white' : 'bg-primary-blue-text/10 text-primary-blue-text'"
+                                                class="group inline-flex items-end cursor-pointer gap-1.5 px-7 py-3 hover:bg-primary-blue-text hover:text-white rounded-xs">
+                                                <span class="uppercase text-tiny font-medium text-inherit">Generate Report</span>
+                                                <span class="text-inherit">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="5" stroke="currentColor" class="size-2.5">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                                    </svg>
+                                                </span>
+                                            </div>
+                                            
+                                            <div 
+                                                x-show="showPopUp"
+                                                x-transition:enter="transition ease-out duration-200"
+                                                x-cloak
+                                                class="absolute text-tiny font-medium bg-white shadow-sm py-2 top-full right-0 w-[120%] transform-none text-left"
+                                            >
+                                                <p class="uppercase text-primary-blue-text mb-1 px-6">Export</p>
+                                                <div 
+                                                    class="flex items-center gap-2 text-small text-primary-header-gray-bold py-2 px-6 hover:bg-gray-50 hover:text-primary-blue-text cursor-pointer"
+                                                >
+                                                    <span class="rounded-full border-1 border-inherit text-inherit">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-audio-lines-icon lucide-audio-lines size-3.5"><path d="M2 10v3"/><path d="M6 6v11"/><path d="M10 3v18"/><path d="M14 8v7"/><path d="M18 5v13"/><path d="M22 10v3"/></svg>
+                                                    </span>
+                                                    <span class="text-inherit text-normal">CSV</span>
+                                                </div>
+                                            </div>
+                                        </button>
+
+                                        <button 
+                                            class="uppercase text-tiny font-medium px-7 bg-primary-green-light hover:brightness-95 rounded-xs text-white cursor-pointer transition duration-200"
+                                            @click="showTable = false;"
+                                        >
+                                            CLOSE (X)
+                                        </button>
+                                    </div>
+
+                                </div>
+
+                                <!-- Table Summary Header  -->
+                                <div class="w-full px-6 my-6 gap-3 sm:gap-0 flex flex-col sm:flex-row items-center justify-between text-right">
+                                    <h1 class="flex-1 text-lg font-medium text-primary-header-gray-bold">Total Counts: 0</h1>
+                                </div>
+
+                                <!-- Table Component  -->
+                                <div id="tableComponent" x-ref="tableComponent"></div>
+                            </div>
+
+                        </template>    
+                    </div>
+                    
+                </div>
+
+                <!-- Footer Section Component  -->
+                <div id="contentFooterContainer" x-ref="contentFooterContainer" class="mt-auto"></div>
+
+                <!-- Scroll Up Button  -->
+                <div class="fixed bottom-7 right-7 p-2.5 bg-primary-blue-text/30 cursor-pointer" @click="document.getElementById('screenTop').scrollTo({ top: 0, behavior: 'smooth' })">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="#f5f5f5" class="size-5">
+                        <path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 1 1-1.06 1.06l-6.22-6.22V21a.75.75 0 0 1-1.5 0V4.81l-6.22 6.22a.75.75 0 1 1-1.06-1.06l7.5-7.5Z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+            </div>
+
+        </section>
+    </body>
+    <script type="module" src="../scripts/main.js"></script>
+</html>

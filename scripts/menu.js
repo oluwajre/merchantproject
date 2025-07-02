@@ -33,10 +33,10 @@ export const menu = (active) => {
                 {name: 'Insurance', icon: icons.subMenu, headerName: 'Insurance Report', link: './insurance_report.html', alert: 'new'},
                 {name: 'Intl Topup Report', icon: icons.subMenu, headerName: 'Query IntlTopup Transactions', link: './pay724_report.html', alert: 'new'},
                 {name: 'Epins', icon: icons.subMenu, headerName: 'Epin Summary', link: './epins.html', alert: 'new'},
-                {name: 'Automated Daily Reports', icon: icons.subMenu, link: 'https://www.creditswitch.com/', alert: 'new'},
+                {name: 'Automated Daily Reports', headerName: 'Daily Transactions Report Control', icon: icons.subMenu, link: './daily_transaction_report.html', alert: 'new'},
             ]
           },
-          {name: 'Service Settings', icon: icons.settings, dropDown: [], link: 'https://www.creditswitch.com/'},
+          {name: 'Service Settings', icon: icons.settings, headerName: 'Change Batch-Ids | Set Commissions', dropDown: [], link: './service_settings.html'},
           {name: 'Accounts', icon: icons.accounts,
             dropDown: [
               {name: 'Funding Records', icon: icons.subMenu, link: 'https://www.creditswitch.com/'},
