@@ -6,7 +6,8 @@ import {
   barChart2,
   barChart3,
   lineChart1,
-  lineChart2
+  lineChart2,
+  totalPinPieChart
 } from './charts';
 
 
@@ -22,5 +23,6 @@ Alpine.data('barChart2', barChart2);
 Alpine.data('barChart3', barChart3);
 Alpine.data('lineChart1', lineChart1);
 Alpine.data('lineChart2', lineChart2);
+Alpine.data('totalPinPieChart', totalPinPieChart);
 
 Alpine.start();

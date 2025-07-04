@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Creditswitch Merchant Portal | Mobile Money Report</title>
+        <link rel="stylesheet" href="../styles/output.css" />
+        <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
+        <link rel="manifest" href="../assets/site.webmanifest">
+    </head>
+    <body class="select-none bg-primary-sidebar-gray-background font-roboto">
+
+        <section class="relative flex h-screen" x-data="menu('Wallet Transfer')">
+
+            <!-- Sidebar Component -->
+            <div id="sidebarContainer" x-ref="sidebarContainer"></div>
+            
+
+            <!-- Right Hand Section -->
+            <div class="flex-1 overflow-y-auto flex flex-col min-h-screen" id="screenTop"> 
+
+                <!-- Mobile Nav Component  -->
+                <div id="mobileNavContainer" x-ref="mobileNavContainer"></div>
+
+                <!-- Header Section Component  -->
+                <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
+
+                <!-- Main Content Section -->
+                <div class="w-full flex flex-col px-6 py-6 gap-12 text-primary-black">
+
+                    <!-- First Row -->
+                    <div class="w-full mb-5 md:mb-12 flex flex-col shrink-0 md:flex-row gap-10 md:gap-5 items-center justify-between">
+                        <div class="w-full relative flex-1 text-right shadow-md bg-white px-4 pt-2 pb-7 rounded-sm border border-primary-sidebar-gray-background">
+                                <div class="absolute flex items-center justify-center -top-5 px-6 py-6 text-center rounded-[3px] cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white">
+                                    <span class="text-inherit">
+                                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960' fill='currentColor' class='size-9'>
+                                            <path d='M640-160v-280h160v280H640Zm-240 0v-640h160v640H400Zm-240 0v-440h160v440H160Z'/>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <p class="text-sm text-primary-gray">Sales Today</p>
+                                <h1 class="text-lg font-medium text-primary-table-gray-dark">₦ 0.00</h1>
+                            </div>
+                            <div class="w-full relative flex-1 text-right shadow-md bg-white px-4 pt-2 pb-7 rounded-sm border border-primary-sidebar-gray-background">
+                                <div class="absolute flex items-center justify-center -top-5 px-6 py-6 text-center rounded-[3px] cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white">
+                                    <span class="text-inherit">
+                                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960' fill='currentColor' class='size-9'>
+                                            <path d='m140-220-60-60 300-300 160 160 284-320 56 56-340 384-160-160-240 240Z'/>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <p class="text-sm text-primary-gray">Sales this week</p>
+                                <h1 class="text-lg font-medium text-primary-table-gray-dark">₦ 0.00</h1>
+                            </div>
+                            <div class="w-full relative flex-1 text-right shadow-md bg-white px-4 pt-2 pb-7 rounded-sm border border-primary-sidebar-gray-background">
+                                <div class="absolute flex items-center justify-center -top-5 px-6 py-6 text-center rounded-[3px] green-custom-box-shadow green-custom-background-gradient text-white">
+                                    <span class="text-inherit">
+                                        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960' fill='currentColor' class='size-9'>
+                                            <path d='M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z'/>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <p class="text-sm text-primary-gray">Sales this month</p>
+                                <h1 class="text-lg font-medium text-primary-table-gray-dark">₦ 0.00</h1>
+                            </div>
+                    </div>  
+
+                    <!-- Second Row -->
+                    <div class="flex flex-col gap-12 w-full" x-data="{
+                        showTable: false,
+                    }">
+                        
+                        <div class="flex-1 relative px-4 pt-15 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
+                            <div class="absolute flex items-center justify-center gap-2 -top-4 px-6 py-4.5 align-middle text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
+                                <span class="text-md font-medium">Query Wallet Transfer Transactions</span>
+                            </div>
+
+                            <div class="w-full mb-3 flex">
+                                <form class="w-full gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between" @submit.prevent="showTable = true" x-data="{
+                                    formInput: [
+                                        {
+                                            type: 'datetime-local',
+                                            placeholder: 'start date',
+                                            name: 'startDate',
+                                            value: '2025-06-18T00:00',
+                                            label: '(Start Date)',
+                                        },
+                                        {
+                                            type: 'datetime-local',
+                                            placeholder: 'end date',
+                                            name: 'endDate',
+                                            value: '2025-06-18T00:00',
+                                            label: '(End Date)',
+                                        },
+                                        {
+                                            type: 'text',
+                                            placeholder: 'REFERENCE ID',
+                                            name: 'referenceID',
+                                            value: '',
+                                            label: '',
+                                        },
+                                        {
+                                            type: 'text',
+                                            placeholder: 'Account Number',
+                                            name: 'accountNo',
+                                            value: '',
+                                            label: '',
+                                        },
+                                        {
+                                            type: 'number',
+                                            placeholder: 'AMOUNT',
+                                            name: 'amount',
+                                            value: '',
+                                            label: '',
+                                        },
+                                        {
+                                            type: 'select',
+                                            name: 'providerselect',
+                                            options: [
+                                                {name: 'Select a Merchant', value: ''},
+                                                {name: 'CSW', value: 'linode'},
+                                                {name: 'Everlasting', value: '45'},
+                                                {name: 'ET New', value: '81'},
+                                                {name: 'Golad', value: '98'},
+                                                {name: 'Golad New', value: '100'},
+                                                {name: 'Sonite', value: '100'},
+                                                {name: 'Sonite New', value: '100'},
+                                                {name: 'Golad MTN 100', value: '100'},
+                                                {name: 'Golad MTN 200', value: '100'},
+                                                {name: 'Golad MTN 400', value: '100'},
+                                                {name: 'Golad MTN 500', value: '100'},
+                                                {name: 'Golad MTN 750', value: '100'},
+                                                {name: 'Golad MTN 1000', value: '100'},
+                                                {name: 'Golad MTN 1500', value: '100'},
+                                                {name: 'Primeairtime', value: '100'},
+                                                {name: 'Interswitch', value: '100'},
+                                                {name: 'Capricorn', value: '100'},
+                                                {name: 'PayU', value: '100'},
+                                            ],
+                                            value: '',
+                                            label: '',
+                                        },
+                                        {
+                                            type: 'select',
+                                            name: 'transactionstatus',
+                                            options: [
+                                                {name: 'Transaction Status', value: ''},
+                                                {name: 'Successful', value: 'successful'},
+                                                {name: 'Failed', value: 'failed'},
+                                            ],
+                                            value: '',
+                                            label: '',
+                                        },
+                                        {
+                                            type: 'select',
+                                            name: 'channel',
+                                            options: [
+                                                {name: 'Channel', value: ''},
+                                                {name: 'Web', value: '100'},
+                                                {name: '931', value: '45'},
+                                                {name: 'API', value: '81'},
+                                            ],
+                                            value: '',
+                                            label: '',
+                                        },
+                                        {
+                                            type: 'button',
+                                            name: 'search',
+                                            label: '',
+                                        }
+                                    ],
+                                }">
+                                    <template x-for="input in formInput" x-cloak>
+                                        <div>
+                                            <template x-if="input.type === 'select'">
+                                                <select :name="input.name" :id="input.name" x-model="input.value" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-sm transition duration-300">
+                                                    <template x-for="option in input.options">
+                                                        <option :value="option.value" x-text="option.name"></option>
+                                                    </template>
+                                                </select>
+                                            </template>
+
+                                            <template x-if="['text', 'number', 'datetime-local'].includes(input.type)">
+                                                <input
+                                                    x-model="input.value"
+                                                    :type="input.type" 
+                                                    :placeholder="input.placeholder"
+                                                    :name="input.name"
+                                                    :id="input.name"
+                                                    :class="{
+                                                        'text-primary-input-black-text': input.type !== 'datetime-local', 
+                                                        'text-primary-input-gray-text': input.type === 'datetime-local'
+                                                    }"
+                                                    class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300"
+                                                >
+                                            </template>
+
+                                            <template x-if="input.type === 'button'">
+                                                <button type="submit" x-text="input.name" class="w-full uppercase font-semibold text-xs text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300"></button>
+                                            </template>
+
+                                            <template x-if="input.label">
+                                                <label :for="input.name" x-text="input.label" class="text-xs text-primary-header-gray-bold" x-cloak></label>
+                                            </template>
+                                            
+                                        </div>
+                                    </template>             
+                                </form>  
+                            </div>  
+                        </div>
+
+                        <template x-if="showTable">
+                            
+                            <div class="flex-1 relative bg-white rounded-sm shrink-0 w-full shadow-xl" x-init="fetch('../components/tableComponent.html')
+                                .then(res => res.text())
+                                .then(html => {
+                                    $refs.tableComponent.innerHTML = html;
+                                    Alpine.initTree($refs.tableComponent);
+                                })" x-data="{
+                                tableHeader: [
+                                    'S/N',
+                                    'Merchant',
+                                    'Merchant RefId',
+                                    'Service',
+                                    'Date',
+                                    'RequestId',
+                                    'ProviderName',
+                                    'Destination',
+                                    'Channel',
+                                    'Bank Account',
+                                    'Bank Name',
+                                    'Beneficiary Name',
+                                    'Ext Ref',
+                                    'Provider Charge',
+                                    'Service Charges',
+                                    'Amount Credited',
+                                    'Amount Debited',
+                                    'Initial Balance',
+                                    'Remaining Balance',
+                                    'Transaction Status',
+                                    'Final Status',
+                                ],
+                                tableData: [
+                                    {
+                                        'S/N': '',
+                                        'Merchant': '',
+                                        'Merchant RefId': '',
+                                        'Service': '',
+                                        'Date': '',
+                                        'RequestId': '',
+                                        'ProviderName': '',
+                                        'Destination': '',
+                                        'Channel': '',
+                                        'Bank Account': '',
+                                        'Bank Name': '',
+                                        'Beneficiary Name': '',
+                                        'Ext Ref': '',
+                                        'Provider Charge': '',
+                                        'Service Charges': '',
+                                        'Amount Credited': '',
+                                        'Amount Debited': '',
+                                        'Initial Balance': '',
+                                        'Remaining Balance': '',
+                                        'Transaction Status': '',
+                                        'Final Status': '',
+                                    },
+                
+                                ]
+                            }">
+
+                                <!-- Table Options  -->
+                                <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-4 py-2 px-6 border-b border-primary-sidebar-gray-text/70">
+                                    <div>
+                                        <h1 class="text-primary-black font-medium">Mobile Money Result</h1>
+                                    </div>
+                                    <div class="flex w-full sm:w-fit justify-between">
+                                        <button
+                                            x-data="{showPopUp: false}"
+                                            @click="showPopUp = !showPopUp"
+                                            @click.away="showPopUp = false"
+                                            class="relative"
+                                        >   
+                                            <div 
+                                                :class="showPopUp ? 'bg-primary-blue-text text-white' : 'bg-primary-blue-text/10 text-primary-blue-text'"
+                                                class="group inline-flex items-end cursor-pointer gap-1.5 px-7 py-3 hover:bg-primary-blue-text hover:text-white rounded-xs">
+                                                <span class="uppercase text-tiny font-medium text-inherit">Generate Report</span>
+                                                <span class="text-inherit">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="5" stroke="currentColor" class="size-2.5">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                                    </svg>
+                                                </span>
+                                            </div>
+                                            
+                                            <div 
+                                                x-show="showPopUp"
+                                                x-transition:enter="transition ease-out duration-200"
+                                                x-cloak
+                                                class="absolute text-tiny font-medium bg-white shadow-sm py-2 top-full right-0 w-[120%] transform-none text-left"
+                                            >
+                                                <p class="uppercase text-primary-blue-text mb-1 px-6">Export</p>
+                                                <div 
+                                                    class="flex items-center gap-2 text-small text-primary-header-gray-bold py-2 px-6 hover:bg-gray-50 hover:text-primary-blue-text cursor-pointer"
+                                                >
+                                                    <span class="rounded-full border-1 border-inherit text-inherit">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-audio-lines-icon lucide-audio-lines size-3.5"><path d="M2 10v3"/><path d="M6 6v11"/><path d="M10 3v18"/><path d="M14 8v7"/><path d="M18 5v13"/><path d="M22 10v3"/></svg>
+                                                    </span>
+                                                    <span class="text-inherit text-normal">CSV</span>
+                                                </div>
+                                            </div>
+                                        </button>
+
+                                        <button 
+                                            class="uppercase text-tiny font-medium px-7 bg-primary-green-light hover:brightness-95 rounded-xs text-white cursor-pointer transition duration-200"
+                                            @click="showTable = false;"
+                                        >
+                                            CLOSE (X)
+                                        </button>
+                                    </div>
+
+                                </div>
+
+                                <!-- Table Summary Header  -->
+                                <div class="py-6 m-6 flex flex-col sm:flex-row items-center justify-between bg-white shadow-md rounded-sm border border-primary-sidebar-gray-background">
+                                    <div class="w-full py-2 sm:py-0 flex-1 text-center border-b sm:border-b-0 sm:border-r border-primary-header-gray-text">
+                                        <h1 class="text-lg font-medium text-primary-black-text-muted">₦0</h1>
+                                        <p class="text-tiny text-primary-gray-text-muted uppercase">Face Value</p>
+                                    </div>
+                                    <div class="w-full py-2 sm:py-0 flex-1 text-center border-b sm:border-b-0 sm:border-r border-primary-header-gray-text">
+                                        <h1 class="text-lg font-medium text-primary-black-text-muted">₦0</h1>
+                                        <p class="text-tiny text-primary-gray-text-muted uppercase">Net Value</p>
+                                    </div>
+                                    <div class="w-full py-2 sm:py-0 flex-1 text-center">
+                                        <h1 class="text-lg font-medium text-primary-black-text-muted">₦0</h1>
+                                        <p class="text-tiny text-primary-gray-text-muted uppercase">Charges</p>
+                                    </div>
+                                </div>
+
+                                <!-- Table Component  -->
+                                <div id="tableComponent" x-ref="tableComponent"></div>
+                            </div>
+
+                        </template>    
+                    </div>
+                    
+                </div>
+
+                <!-- Footer Section Component  -->
+                <div id="contentFooterContainer" x-ref="contentFooterContainer" class="mt-auto"></div>
+
+                <!-- Scroll Up Button  -->
+                <div class="fixed bottom-7 right-7 p-2.5 bg-primary-blue-text/30 cursor-pointer" @click="document.getElementById('screenTop').scrollTo({ top: 0, behavior: 'smooth' })">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="#f5f5f5" class="size-5">
+                        <path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 1 1-1.06 1.06l-6.22-6.22V21a.75.75 0 0 1-1.5 0V4.81l-6.22 6.22a.75.75 0 1 1-1.06-1.06l7.5-7.5Z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+            </div>
+
+        </section>
+    </body>
+    <script type="module" src="../scripts/main.js"></script>
+</html>

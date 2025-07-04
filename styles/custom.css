@@ -35,6 +35,8 @@
   --color-primary-cyanBlue-button-background: #0fb7cb;
   --color-primary-cyanBlue-background-light: #26C6DA;
   --color-primary-cyanBlue-background-dark: #00ACC1;
+  --color-primary-slateBlue: #5867DD;
+  --color-primary-royalBlue: #2E40D4;
   --color-secondary-linkColour: #3429A3FF;
 
   --color-primary-gold-background-light: #ffa726;
@@ -50,6 +52,7 @@
   --color-primary-danger: #fd397a;
   --color-primary-wine-background-light: #ec407a;
   --color-primary-wine-background-dark: #d81b60;
+  --color-primary-darkRed: #CC2222;
 
   --text-tiny: 0.7rem;
   --text-small: 0.85rem;

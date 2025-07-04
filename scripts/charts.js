@@ -1,4 +1,5 @@
 import { Chart, registerables } from 'chart.js';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 Chart.register(...registerables);
 
@@ -334,4 +335,83 @@ export const barChart3 = () => {
     }
   }
 };
+
+export const totalPinPieChart = () => {
+  return {
+    chart: null,
+    initChart() {
+      const ctx = document.getElementById('totalPinPieChart').getContext('2d');
+
+      this.chart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Used'],
+          datasets: [{
+            data: [7805], // total pins used
+            backgroundColor: ['#5BC0DE'],
+            borderWidth: 0,
+          }]
+        },
+        options: {
+          cutout: '40%',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            tooltip: {
+              enabled: true,
+              callbacks: {
+                label: (context) => {
+                  const value = context.raw;
+                  const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                  const percentage = ((value / total) * 100).toFixed(1);
+                  return `${value.toLocaleString()} (${percentage}%)`;
+                }
+              }
+            },
+            legend: {
+              display: true,
+              position: 'right',
+              labels: {
+                usePointStyle: true,
+                pointStyle: 'circle',
+              }
+            },
+            datalabels: {
+              display: true,
+              color: '#fff',
+              font: {
+                weight: 'bold',
+                size: 18
+              },
+              formatter: () => '100%'
+            }
+          }
+        },
+        plugins: [
+          ChartDataLabels,
+          {
+            id: 'shadowPlugin',
+            beforeDraw(chart) {
+              const ctx = chart.ctx;
+              ctx.save();
+              ctx.shadowColor = '#2c7a94';
+              ctx.shadowBlur = 15;
+              ctx.shadowOffsetY = 15;
+              ctx.fill();
+              ctx.restore();
+            }
+          }
+        ]
+      });
+
+      // Title element
+      const titleEl = document.getElementById('totalPinPieChart-title');
+      if (titleEl) {
+        titleEl.innerHTML = `<strong>Total number of pins in the database:</strong> 7,805`;
+      }
+    }
+  };
+};
+
+
 

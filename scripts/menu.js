@@ -39,16 +39,16 @@ export const menu = (active) => {
           {name: 'Service Settings', icon: icons.settings, headerName: 'Change Batch-Ids | Set Commissions', dropDown: [], link: './service_settings.html'},
           {name: 'Accounts', icon: icons.accounts,
             dropDown: [
-              {name: 'Funding Records', icon: icons.subMenu, link: 'https://www.creditswitch.com/'},
-              {name: 'Debit Records', icon: icons.subMenu, link: 'https://www.creditswitch.com/'},
-              {name: 'USSD Payments', icon: icons.subMenu, link: 'https://www.creditswitch.com/'},
-              {name: 'Wallet Transfer', icon: icons.subMenu, link: 'https://www.creditswitch.com/'},
+              {name: 'Funding Records', icon: icons.subMenu, headerName: 'Query Account Funding', link: './funding.html'},
+              {name: 'Debit Records', icon: icons.subMenu, headerName: 'Query Debit Record', link: './debit_record.html'},
+              {name: 'USSD Payments', icon: icons.subMenu, headerName: 'Query USSD Payments', link: './payments-737.html'},
+              {name: 'Wallet Transfer', icon: icons.subMenu, headerName: 'Mobile Money Report', link: './wallettransfer.html'},
               {name: 'Provider Balance', icon: icons.subMenu, link: 'https://www.creditswitch.com/'},
             ]
           },
           {name: 'PIN', icon: icons.pin,
             dropDown: [
-              {name: 'Pin Dashboard', icon: icons.subMenu, link: 'https://www.creditswitch.com/'},
+              {name: 'Pin Dashboard', icon: icons.subMenu, headerName: 'Query Pin Record', link: './pin_dashboard.html'},
               {name: 'Upload Pin / Activity Log', icon: icons.subMenu, link: 'https://www.creditswitch.com/'},
               {name: 'Create Vouchers / PINs', icon: icons.subMenu, link: 'https://www.creditswitch.com/'},
             ]
