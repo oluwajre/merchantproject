@@ -1,6 +1,4 @@
 import { Chart, registerables } from 'chart.js';
-import ChartDataLabels from 'chartjs-plugin-datalabels';
-
 Chart.register(...registerables);
 
 export const barChart1 = () => {
@@ -336,82 +334,32 @@ export const barChart3 = () => {
   }
 };
 
-export const totalPinPieChart = () => {
-  return {
-    chart: null,
-    initChart() {
-      const ctx = document.getElementById('totalPinPieChart').getContext('2d');
+export const drawTotalPinPieChart = () => ({
+  init() {
+    google.charts.load('current', { packages: ['corechart'] });
+    google.charts.setOnLoadCallback(() => {
+      const chartElement = document.getElementById('totalpinpiechart');
+      if (!chartElement) return;
 
-      this.chart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-          labels: ['Used'],
-          datasets: [{
-            data: [7805], // total pins used
-            backgroundColor: ['#5BC0DE'],
-            borderWidth: 0,
-          }]
-        },
-        options: {
-          cutout: '40%',
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            tooltip: {
-              enabled: true,
-              callbacks: {
-                label: (context) => {
-                  const value = context.raw;
-                  const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                  const percentage = ((value / total) * 100).toFixed(1);
-                  return `${value.toLocaleString()} (${percentage}%)`;
-                }
-              }
-            },
-            legend: {
-              display: true,
-              position: 'right',
-              labels: {
-                usePointStyle: true,
-                pointStyle: 'circle',
-              }
-            },
-            datalabels: {
-              display: true,
-              color: '#fff',
-              font: {
-                weight: 'bold',
-                size: 18
-              },
-              formatter: () => '100%'
-            }
-          }
-        },
-        plugins: [
-          ChartDataLabels,
-          {
-            id: 'shadowPlugin',
-            beforeDraw(chart) {
-              const ctx = chart.ctx;
-              ctx.save();
-              ctx.shadowColor = '#2c7a94';
-              ctx.shadowBlur = 15;
-              ctx.shadowOffsetY = 15;
-              ctx.fill();
-              ctx.restore();
-            }
-          }
-        ]
-      });
+      const data = google.visualization.arrayToDataTable([
+        ['Pins', 'Total Pins Used'],
+        ['Used', 7806],
+      ]);
 
-      // Title element
-      const titleEl = document.getElementById('totalPinPieChart-title');
-      if (titleEl) {
-        titleEl.innerHTML = `<strong>Total number of pins in the database:</strong> 7,805`;
-      }
-    }
-  };
-};
+      const options = {
+        title: 'Total number of pins in the database: 7806',
+        is3D: true,
+        colors: ['#5bc0de'],
+      };
+
+      const chart = new google.visualization.PieChart(chartElement);
+      chart.draw(data, options);
+    });
+  }
+});
+
+
+
 
 
 
