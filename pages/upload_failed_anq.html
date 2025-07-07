@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Creditswitch Merchant Portal | Update ANQ Local</title>
+        <link rel="stylesheet" href="../styles/output.css" />
+        <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
+        <link rel="manifest" href="../assets/site.webmanifest">
+        <link rel="stylesheet" href="../styles/general.css">
+    </head>
+    <body class="select-none bg-primary-sidebar-gray-background font-roboto">
+
+        <section class="relative flex h-screen" x-data="menu('Upload Failed ANQ')">
+
+            <!-- Sidebar Component -->
+            <div id="sidebarContainer" x-ref="sidebarContainer"></div>
+            
+
+            <!-- Right Hand Section -->
+            <div class="flex-1 overflow-y-auto flex flex-col min-h-screen" id="screenTop">
+
+                <!-- Mobile Nav Component  -->
+                <div id="mobileNavContainer" x-ref="mobileNavContainer"></div>
+
+                <!-- Header Section Component  -->
+                <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
+
+                <!-- Main Content Section -->
+                <div class="w-full flex flex-col px-6 py-6 gap-12 text-primary-black">
+                    
+                    <div class="flex flex-col gap-15 w-full">
+                        
+                        <div class="mt-10 flex-1 relative px-4 pt-13 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
+                            <div class="absolute flex items-center justify-center gap-2 -top-5 px-6 py-4.5 align-middle text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
+                                <span class="text-md font-semibold">Update ANQ Local</span>
+                            </div>
+
+                            <div class="w-full mb-3 flex flex-col gap-8" x-data="{ fileObject: null }">
+                                <div class="w-full font-normal text-primary-danger text-[11px] space-y-2">
+                                    <p>Ensure your CSV Upload File contain the Colunms in the picture below.</p>
+                                    <img src="" alt="image" class="text-white">
+                                </div>
+                                <form class="w-full gap-5 flex flex-col" @submit>
+                                    <div class="min-w-[270px] flex-1" x-data="{ fileName: ''}">
+                                        <label class="block text-md font-medium text-primary-header-gray-bold mb-4">Upload Excel Csv File</label>
+
+                                        <label for="upload" class="inline-block cursor-pointer bg-gray-100 hover:bg-gray-200 border border-black rounded-xs text-black text-small font-normal px-2 py-1">
+                                            Choose File
+                                        </label>
+
+                                        <input
+                                            type="file"
+                                            name="upload"
+                                            id="upload"
+                                            class="opacity-0 w-1"
+                                            required
+                                            @change="
+                                            fileName = $event.target.files[0]?.name;
+                                            fileObject = $event.target.files[0];"
+                                        />
+
+
+                                        <span x-text="fileName || 'No file chosen'" class="text-small text-primary-header-gray-bold"></span>
+                                    </div>
+
+                                    <div class="flex-1">
+                                        <button type="submit" class="uppercase text-[10px] text-white bg-primary-slateBlue hover:bg-primary-royalBlue py-3 px-9 rounded-xs cursor-pointer transition duration-300">Update ANQ</button>
+                                    </div>
+                                </form>  
+                            </div>  
+                        </div>
+    
+                    </div>
+
+                </div>
+
+                <!-- Footer Section Component  -->
+                <div id="contentFooterContainer" x-ref="contentFooterContainer" class="mt-auto"></div>
+            </div>
+
+        </section>
+    </body>
+    <script type="module" src="../scripts/main.js"></script>
+</html>

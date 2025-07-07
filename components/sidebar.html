@@ -34,7 +34,7 @@
                             'bg-primary-cyanBlue-sidebar-background text-white': isActive(item),
                             'text-primary-sidebar-gray-text hover:text-white hover:bg-primary-sidebar-gray-background/8': !isActive(item),
                             'group': !isActive(item) && openDropdown !== index,
-                            'text-white bg-primary-sidebar-gray-background/8': openDropdown === index
+                            'text-white bg-primary-sidebar-gray-background/8': openDropdown === index && !isActive(item)
                         }"
                         class="relative pl-8 pr-6 py-2.5 flex items-center cursor-pointer gap-2 w-full text-sm"
                         @click="toggleDropdown(item, index)"

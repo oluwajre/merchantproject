@@ -49,27 +49,27 @@ export const menu = (active) => {
           {name: 'PIN', icon: icons.pin,
             dropDown: [
               {name: 'Pin Dashboard', icon: icons.subMenu, headerName: 'Query Pin Record', link: './pin_dashboard.html'},
-              {name: 'Upload Pin / Activity Log', icon: icons.subMenu, link: 'https://www.creditswitch.com/'},
-              {name: 'Create Vouchers / PINs', icon: icons.subMenu, link: 'https://www.creditswitch.com/'},
+              {name: 'Upload Pin / Activity Log', icon: icons.subMenu, headerName: 'Upload Pin(s)', link: './pin_upload.html'},
+              {name: 'Create Vouchers / PINs', icon: icons.subMenu, headerName: 'Upload Pin', link: './voucher.html'},
             ]
           },
           {name: 'Update Transactions', icon: icons.updateTransactions,
             dropDown: [
-              {name: 'Update Confirm Code', icon: icons.subMenu, link: 'https://www.creditswitch.com/'},
-              {name: 'Update Back logs', icon: icons.subMenu, link: 'https://www.creditswitch.com/'},
+              {name: 'Update Confirm Code', icon: icons.subMenu, headerName: 'Manage Confirm Code', link: './update_confirmcode.html'},
+              {name: 'Update Back logs', icon: icons.subMenu, headerName: 'Manage Confirm Code', link: './manage_backlogs.html'},
               {name: 'Revend', icon: icons.subMenu, link: 'https://www.creditswitch.com/'},
-              {name: 'Update Cabletv Status', icon: icons.subMenu, link: 'https://www.creditswitch.com/'},
-              {name: 'Call back Reports', icon: icons.subMenu, link: 'https://www.creditswitch.com/'},
-              {name: 'Upload Failed ANQ', icon: icons.subMenu, link: 'https://www.creditswitch.com/', alert: 'new'},
+              {name: 'Update Cabletv Status', icon: icons.subMenu, headerName: 'Update Cabletv Status', link: './update_cabletv_status.html'},
+              {name: 'Call back Reports', icon: icons.subMenu, headerName: 'Web hook Report', link: './webhook_callback.html'},
+              {name: 'Upload Failed ANQ', icon: icons.subMenu, headerName: 'Update ANQ Local', link: './upload_failed_anq.html', alert: 'new'},
             ]
           },
           {name: 'Admin Controls', icon: icons.adminControls,
             dropDown: [
               {name: 'Roles Permissions Module', icon: icons.rolesPermissionsModule,
                 dropDown: [
-                  {name: 'Roles', icon: icons.subMenu, link: 'https://www.creditswitch.com/'},
-                  {name: 'Permissions', icon: icons.subMenu, link: 'https://www.creditswitch.com/'},
-                  {name: 'User Roles', icon: icons.subMenu, link: 'https://www.creditswitch.com/'},
+                  {name: 'Roles', icon: icons.subMenu, headerName: 'Roles', link: './roles.html'},
+                  {name: 'Permissions', icon: icons.subMenu, headerName: 'Permissions', link: './permissions.html'},
+                  {name: 'User Roles', icon: icons.subMenu, headerName: 'UserRoles', link: './roles_permissions.html'},
                   {name: 'RolesPermissions', icon: icons.subMenu, link: 'https://www.creditswitch.com/'},
                 ], availableSubDropDown: true, openSubDropdown: ''
               },
