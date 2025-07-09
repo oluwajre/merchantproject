@@ -12,7 +12,7 @@
     </head>
     <body class="select-none bg-primary-sidebar-gray-background font-roboto">
 
-        <section class="relative flex h-screen" x-data="menu('User Roles')">
+        <section class="relative flex h-screen" x-data="menu('RolesPermissions')">
 
             <!-- Sidebar Component -->
             <div id="sidebarContainer" x-ref="sidebarContainer"></div>
@@ -42,42 +42,27 @@
                 </div>
 
                 <!-- Main Content Section -->
-                <div class="w-full flex flex-col px-12 py-6 gap-12 text-primary-black">
+                <div class="w-full flex flex-col p-6 sm:px-12 sm:py-10 gap-12 text-primary-black">
                     
                     <!-- First Row -->
                     <div class="flex flex-col gap-8 w-full">
-
-                        <!-- <div class="flex-1">
-                            <button
-                                @click="window.location.href = './create.html'"
-                                class="uppercase text-[10px] text-white bg-primary-green-light hover:brightness-95 px-7 py-3 rounded-xs cursor-pointer"
-                            >
-                                Add New
-                            </button>
-                        </div> -->
                         
                        <div class="flex-1 relative bg-white shrink-0 shadow-xl rounded-lg" x-data="{
                             tableHeader: [
-                                'First Name',
-                                'Last Name',
-                                'Email',
                                 'Role',
+                                'Permission',
 
                             ],
                             tableData: [
                                 {   
                                     '#': '1',
-                                    'First Name': 'Fedani',
-                                    'Last Name': 'Global Services',
-                                    'Email': 'fedaniinc@gmail.com',
-                                    role: 'control',
+                                    'Role': 'account',
+                                    permission: [],
                                 },
-                                {
+                                {   
                                     '#': '2',
-                                    'First Name': 'Samuelss',
-                                    'Last Name': 'Olufemi',
-                                    'Email': 'samuel.olufemi@creditswitch.com',
-                                    role: 'control',
+                                    'Role': 'admin',
+                                    permission: ['No Permission'],
                                 },
                             ]
                         }">
@@ -90,22 +75,9 @@
                                 </span>
                                 <h1 class="font-medium text-2xl">Roles / Permissions</h1>
                             </div>
-
-                            <div class="w-full text-left text-primary-black font-light mx-2">
-                                <h1 class="text-lg">Filter Users</h1>
-                            </div>
-
-                            <div class="flex justify-end items-center gap-2 mx-4 p-2 mb-3 border-b border-primary-sidebar-gray-text">
-                                <button class="uppercase text-[10px] text-white bg-primary-danger hover:brightness-95 px-7 py-3 rounded-xs cursor-pointer">
-                                    Reset
-                                </button>
-                                <button class="uppercase text-[10px] text-white bg-primary-green-light hover:brightness-95 px-7 py-3 rounded-xs cursor-pointer">
-                                    Search
-                                </button>
-                            </div>
                             
                             <!-- Table Component  -->
-                            <div class="overflow-x-auto mb-4 w-full">
+                            <div class="overflow-visible mb-4 w-full">
 
                                 <template x-if="tableData.length > 0">
                                     <div class="min-w-fit" x-data="{
@@ -143,20 +115,86 @@
                                                 </template>
                                             </tr>
                                         </thead>
-                                        <tbody class="text-black font-medium align-top">
+                                        <tbody class="text-black font-medium align-middle">
                                             <template x-for="(data, index) in paginatedData" :key="index">
                                                 <tr class="even:bg-gray-100 hover:bg-gray-50 hover:text-primary-black">
-                                                    <td x-text="data['First Name']" class="px-2 py-3 font-light"></td>
-                                                    <td x-text="data['Last Name']" class="px-2 py-3 font-light"></td>
-                                                    <td class="px-2 py-3 font-light"><a :href="'mailto:' + data['Email']" x-text="data['Email']" class="cursor-pointer text-primary-slateBlue hover:text-primary-royalBlue"></a></td>
-                                                    <td class="px-2 py-3">
-                                                        <select id="role" name="role" class="border border-primary-sidebar-gray-text font-normal p-1 max-h-44" x-model="data.role">
-                                                            <option value="">No Role!</option>
-                                                            <option value="account">account</option>
-                                                            <option value="admin">admin</option>
-                                                            <option value="control">control</option>
-                                                        </select>
-                                                    </td>
+                                                    <td x-text="data['Role']" class="px-2 py-3 font-light align-top"></td>
+                                                    <td class="px-2 py-3 relative overflow-visible max-w-[110px]">
+                                                        <div x-data="{
+                                                                open: false,
+                                                                options: ['No Permission', 'Update Provider Discount', '3pp_reports', 'access 3pp report'],
+                                                                selected: [...data.permission],
+                                                                toggleOption(option) {
+                                                                    if (this.selected.includes(option)) {
+                                                                        this.selected = this.selected.filter(item => item !== option);
+                                                                    } else {
+                                                                        this.selected.push(option);
+                                                                    }
+                                                                },
+                                                                selectAll() {
+                                                                    this.selected = [...this.options];
+                                                                },
+                                                                deselectAll() {
+                                                                    this.selected = [];
+                                                                },
+                                                                applyPermission() {
+                                                                    data.permission = [...this.selected];
+                                                                    this.open = false;
+                                                                }
+                                                            }" class="flex flex-col md:flex-row gap-3 items-center w-full">
+
+                                                            <div class="relative w-full">
+                                                                <!-- Trigger -->
+                                                                <div @click="open = !open" :class="{'bg-primary-sidebar-gray-background/60': open, 'bg-white': !open}" class="flex items-center gap-1 w-full text-[#282A3C] font-normal px-3 py-1 text-tiny uppercase cursor-pointer">
+                                                                    <span x-text="selected.length === 0 ? 'Nothing Selected' : selected.join(', ')" class="flex-1 whitespace-nowrap overflow-hidden text-ellipsis" aria-required="true"></span>
+                                                                    <span class="text-primary-gray">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="1" stroke="none" class="size-4">
+                                                                            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                                                        </svg>
+                                                                    </span>
+                                                                </div>
+
+                                                                <!-- Dropdown -->
+                                                                <div 
+                                                                    x-show="open"
+                                                                    x-transition
+                                                                    @click.outside="open = false"
+                                                                    class="absolute left-0 -mt-1 w-full bg-white shadow-lg z-30 py-2"
+                                                                    x-cloak
+                                                                >
+
+                                                                    <!-- Select/Deselect -->
+                                                                    <div class="flex justify-between gap-2 px-4 py-2 text-xs text-primary-login-gray-header text-center font-normal">
+                                                                        <button @click="selectAll" class="flex-1 uppercase hover:bg-primary-sidebar-gray-background/60 py-2 cursor-pointer">Select All</button>
+                                                                        <button @click="deselectAll" class="flex-1 uppercase hover:bg-primary-sidebar-gray-background/60 py-2 cursor-pointer">Deselect All</button>
+                                                                    </div>
+
+                                                                        <!-- List of Options -->
+                                                                    <div class="max-h-36 overflow-y-auto">
+                                                                        <template x-for="option in options" :key="option">
+                                                                            <div 
+                                                                                @click="toggleOption(option)"
+                                                                                class="flex justify-between px-4 py-2 cursor-pointer text-sm text-primary-filtered-options font-normal"
+                                                                                :class="selected.includes(option) ? 'bg-gray-100' : 'hover:bg-gray-100'"
+                                                                            >
+                                                                                <span x-text="option" class="flex-1"></span>
+                                                                                <span x-show="selected.includes(option)" class="text-primary-black font-extralight">✔</span>
+                                                                            </div>
+                                                                        </template>
+                                                                    </div>     
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="md:mr-10">
+                                                                <button
+                                                                    @click="applyPermission"
+                                                                    class="uppercase text-[10px] text-white bg-primary-green-light hover:brightness-95 px-7 py-3 rounded-xs cursor-pointer"
+                                                                >
+                                                                    Apply
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </td>   
                                                 </tr>
                                             </template>
                                         </tbody>
