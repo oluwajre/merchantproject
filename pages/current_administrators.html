@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Creditswitch Merchant Portal | Current Administrators</title>
+        <link rel="stylesheet" href="../styles/output.css" />
+        <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
+        <link rel="manifest" href="../assets/site.webmanifest">
+    </head>
+    <body class="select-none bg-primary-sidebar-gray-background font-roboto">
+
+        <section class="relative flex h-screen" x-data="menu('Current Administrators')">
+
+            <!-- Sidebar Component -->
+            <div id="sidebarContainer" x-ref="sidebarContainer"></div>
+            
+
+            <!-- Right Hand Section -->
+            <div class="flex-1 overflow-y-auto flex flex-col min-h-screen" id="screenTop"> 
+
+                <!-- Mobile Nav Component  -->
+                <div id="mobileNavContainer" x-ref="mobileNavContainer"></div>
+
+                <!-- Header Section Component  -->
+                <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
+
+                <!-- Main Content Section -->
+                <div class="mt-10 w-full flex flex-col px-6 py-6 gap-12 text-primary-black">
+
+                    <!-- First Row -->
+                    <div class="flex flex-col gap-12 w-full" x-data="{
+                        showTable: false,
+                    }">
+                        
+                        <div class="flex-1 relative px-4 pt-12 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
+                            <div class="absolute flex items-center justify-center gap-2 -top-4 p-4 text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
+                                <span class="text-inherit">
+                                    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960' fill='currentColor' class='size-7'>
+                                        <path d='M0-240v-63q0-43 44-70t116-27q13 0 25 .5t23 2.5q-14 21-21 44t-7 48v65H0Zm240 0v-65q0-32 17.5-58.5T307-410q32-20 76.5-30t96.5-10q53 0 97.5 10t76.5 30q32 20 49 46.5t17 58.5v65H240Zm540 0v-65q0-26-6.5-49T754-397q11-2 22.5-2.5t23.5-.5q72 0 116 26.5t44 70.5v63H780Zm-455-80h311q-10-20-55.5-35T480-370q-55 0-100.5 15T325-320ZM160-440q-33 0-56.5-23.5T80-520q0-34 23.5-57t56.5-23q34 0 57 23t23 57q0 33-23 56.5T160-440Zm640 0q-33 0-56.5-23.5T720-520q0-34 23.5-57t56.5-23q34 0 57 23t23 57q0 33-23 56.5T800-440Zm-320-40q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T600-600q0 50-34.5 85T480-480Zm0-80q17 0 28.5-11.5T520-600q0-17-11.5-28.5T480-640q-17 0-28.5 11.5T440-600q0 17 11.5 28.5T480-560Zm1 240Zm-1-280Z'/>
+                                    </svg>
+                                </span>
+                                <span class="text-md font-medium">Current Administrators</span>
+                            </div>
+
+                            <div class="flex-1 relative shrink-0 w-full" x-data="{
+                                tableData: [
+                                {
+                                    id: '1',
+                                    username: '315449',
+                                    firstName: 'LOTUS',
+                                    lastName: 'BANK',
+                                    emailAddress: 'caleb@valuedrivetechnologies.com',
+                                    status: 'Merchant',
+                                    type: true
+                                },
+                                ]
+                            }">
+                                <div class="overflow-x-auto my-3 max-w-full font-roboto">
+                                    <div class="min-w-fit">
+                                        <table class="w-full table-auto border-collapse border border-primary-sidebar-gray-text/70 text-small">
+                                            <thead class="text-white font-medium border border-white align-bottom bg-[#434345]">
+                                                <tr>
+                                                    <td class="border border-white px-2 py-3">#</td>
+                                                    <td class="border border-white px-2 py-3">Username</td>
+                                                    <td class="border border-white px-2 py-3">First Name</td>
+                                                    <td class="border border-white px-2 py-3">Last Name</td>
+                                                    <td class="border border-white px-2 py-3">Email Address</td>
+                                                    <td class="border border-white px-2 py-3">Current Status</td>
+                                                    <td class="border border-white px-2 py-3">Admin Type</td>
+                                                    <td class="border border-white px-2 py-3">Activate / Suspend</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="text-black font-medium align-top">
+                                                <template x-for="(data, index) in tableData">
+                                                    <tr class="hover:bg-gray-50 hover:text-primary-black">
+                                                        <td x-text="data.id" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
+                                                        <td x-text="data.username" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
+                                                        <td x-text="data.firstName" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
+                                                        <td x-text="data.lastName" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
+                                                        <td x-text="data.emailAddress" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
+                                                        <td x-text="data.status" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
+                                                        <td x-text="data.type ? 'Active': 'Inactive'" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
+                                                        <td x-text="data.type ? 'Active': 'Inactive'" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
+                                                    </tr>
+                                                </template>   
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <!-- Footer Section Component  -->
+                <div id="contentFooterContainer" x-ref="contentFooterContainer" class="mt-auto"></div>
+
+                <!-- Scroll Up Button  -->
+                <div class="fixed bottom-7 right-7 p-2.5 bg-primary-blue-text/30 cursor-pointer" @click="document.getElementById('screenTop').scrollTo({ top: 0, behavior: 'smooth' })">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="#f5f5f5" class="size-5">
+                        <path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 1 1-1.06 1.06l-6.22-6.22V21a.75.75 0 0 1-1.5 0V4.81l-6.22 6.22a.75.75 0 1 1-1.06-1.06l7.5-7.5Z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+            </div>
+
+        </section>
+    </body>
+    <script type="module" src="../scripts/main.js"></script>
+</html>

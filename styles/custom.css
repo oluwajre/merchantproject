@@ -68,6 +68,10 @@ display: none !important;
   background: linear-gradient(60deg, var(--color-primary-cyanBlue-background-light), var(--color-primary-cyanBlue-background-dark));
 }
 
+.blue-custom-background-gradient {
+  background: linear-gradient(60deg, #4084bd, #186fb9);
+}
+
 .wine-custom-background-gradient {
   background: linear-gradient(60deg, var(--color-primary-wine-background-light), var(--color-primary-wine-background-dark));
 }
@@ -94,6 +98,10 @@ display: none !important;
 
 .green-custom-box-shadow {
   box-shadow:rgba(0, 0, 0, .14) 0 4px 20px 0,rgba(76, 175, 80, .4) 0 7px 10px -5px;
+}
+
+.blue-custom-box-shadow {
+  box-shadow:rgba(0, 0, 0, .14) 0 4px 20px 0,rgba(54, 69, 244, 0.4) 0 7px 10px -5px;
 }
 
 .sidebar-scroll {
