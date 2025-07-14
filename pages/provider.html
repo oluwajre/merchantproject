@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Creditswitch Merchant Portal | Provider Create</title>
+        <link rel="stylesheet" href="../styles/output.css" />
+        <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
+        <link rel="manifest" href="../assets/site.webmanifest">
+    </head>
+    <body class="select-none bg-primary-sidebar-gray-background font-roboto">
+
+        <section class="relative flex h-screen" x-data="menu('Create Provider')">
+
+            <!-- Sidebar Component -->
+            <div id="sidebarContainer" x-ref="sidebarContainer"></div>
+            
+
+            <!-- Right Hand Section -->
+            <div class="flex-1 overflow-y-auto flex flex-col min-h-screen" id="screenTop"> 
+
+                <!-- Mobile Nav Component  -->
+                <div id="mobileNavContainer" x-ref="mobileNavContainer"></div>
+
+                <!-- Header Section Component  -->
+                <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
+
+                <!-- Main Content Section -->
+                <div class="mt-10 w-full flex flex-col px-6 py-6 gap-15 text-primary-black">
+
+                    <!-- First Row -->
+                    <div class="flex flex-col gap-12 w-full">
+                        
+                        <div class="flex-1 relative px-4 pt-15 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
+                            <div class="absolute flex items-center justify-center gap-2 -top-4 px-6 py-4.5 text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
+                                <span class="text-md font-medium">Create Provider</span>
+                            </div>
+
+                            <div class="w-full mb-3 flex">
+                                <form class="w-full gap-7 grid grid-cols-1 justify-between" @submit.prevent x-data="{
+                                    formInput: [
+                                        {
+                                            type: 'text',
+                                            placeholder: 'Product',
+                                            name: 'product',
+                                            value: '',
+                                            label: 'Something to Identify the product your provider offers e.g MTN, DSTV, WAEC, JAMB...',
+                                            title: 'Product',
+                                        },
+                                        {
+                                            type: 'text',
+                                            placeholder: 'Provider Name',
+                                            name: 'provider',
+                                            value: '',
+                                            label: 'Name of Provider / VENDOR e.g SHAGO, IRECHARGE, CAPRICORN, HOLLATAGS...',
+                                            title: 'Provider',
+                                        },
+                                        {
+                                            type: 'text',
+                                            placeholder: 'Service Code',
+                                            name: 'serviceCode',
+                                            value: '',
+                                            label: 'Unique Code that identifies product e.g A01E, S04M, E01E, D05D...',
+                                            title: 'Service Code',
+                                        },
+                                        {
+                                            type: 'number',
+                                            placeholder: '0.0',
+                                            name: 'discount',
+                                            value: '',
+                                            label: 'Discount offered for Provider',
+                                            title: 'Discount',
+                                        },
+                                        {
+                                            type: 'button',
+                                            name: 'create',
+                                            label: '',
+                                        }
+                                    ],
+                                }">
+                                    <template x-for="input in formInput" x-cloak>
+                                        <div>
+                                            <template x-if="input.title">
+                                                <p x-text="input.title" class="text-small text-primary-header-gray-bold mb-1.5"></p>
+                                            </template>
+
+                                            <template x-if="input.label">
+                                                <label :for="input.name" x-text="input.label" class="block text-small text-black/80 font-light"></label>
+                                            </template>
+
+                                            <template x-if="['text', 'number'].includes(input.type)">
+                                                <input
+                                                    x-model="input.value"
+                                                    :type="input.type" 
+                                                    :placeholder="input.placeholder"
+                                                    :name="input.name"
+                                                    :id="input.name"
+                                                    required
+                                                    class="text-primary-input-black-text w-full md:max-w-[80%] border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition-all duration-300"
+                                                >
+                                            </template>
+
+                                            <template x-if="input.type === 'button'">
+                                                <button type="submit" x-text="input.name" class="w-full max-w-[300px] uppercase font-semibold text-xs text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300"></button>
+                                            </template>
+                                            
+                                        </div>
+                                    </template>             
+                                </form>  
+                            </div>  
+                        </div>    
+                    </div>
+                    
+                </div>
+
+                <!-- Footer Section Component  -->
+                <div id="contentFooterContainer" x-ref="contentFooterContainer" class="mt-auto"></div>
+            </div>
+
+        </section>
+    </body>
+    <script type="module" src="../scripts/main.js"></script>
+</html>

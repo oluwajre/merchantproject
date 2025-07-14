@@ -2,7 +2,7 @@
 
 <div class="w-full flex flex-col sm:flex-row flex-wrap gap-2 justify-between items-start sm:items-center px-6 my-4 font-roboto">
     <div class="flex items-center capitalize gap-3">
-        <p class="font-medium text-primary-header-black-text" x-text="currentPageDetail.name === 'Change Batch-Ids | Set Commissions'? 'Settings': 'Dashboard'"></p>
+        <p class="font-medium text-primary-header-black-text" x-text="['Change Batch-Ids | Set Commissions', 'Setup Notifications'].includes(currentPageDetail.name) ? 'Settings' : 'Dashboard'"></p>
         <p class="flex items-center text-small">
             <span class="mr-2 text-primary-header-gray-bold">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">

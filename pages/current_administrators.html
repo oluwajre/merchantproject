@@ -45,7 +45,8 @@
                                 <span class="text-md font-medium">Current Administrators</span>
                             </div>
 
-                            <div class="flex-1 relative shrink-0 w-full" x-data="{
+                            <div class="relative w-full" x-data="{
+                                indicatorMessage: '',
                                 tableData: [
                                 {
                                     id: '1',
@@ -54,10 +55,26 @@
                                     lastName: 'BANK',
                                     emailAddress: 'caleb@valuedrivetechnologies.com',
                                     status: 'Merchant',
-                                    type: true
+                                    type: 'active'
                                 },
-                                ]
+                                ],
+                                changeType(data) {
+                                    if (data.type === 'active') {
+                                        data.type = 'inactive';
+                                        this.indicatorMessage = `${data.username} has been deactivated / suspended!`; 
+                                    }
+                                    else {
+                                        data.type = 'active';
+                                        this.indicatorMessage = `${data.username} has been activated!`;
+                                    }
+                                },
                             }">
+                                <p 
+                                    x-show="indicatorMessage" 
+                                    x-text="indicatorMessage" 
+                                    class="w-full mt-3 mb-6 font-medium text-primary-danger"
+                                ></p>
+
                                 <div class="overflow-x-auto my-3 max-w-full font-roboto">
                                     <div class="min-w-fit">
                                         <table class="w-full table-auto border-collapse border border-primary-sidebar-gray-text/70 text-small">
@@ -74,16 +91,18 @@
                                                 </tr>
                                             </thead>
                                             <tbody class="text-black font-medium align-top">
-                                                <template x-for="(data, index) in tableData">
+                                                <template x-for="(data, index) in tableData" :key="index">
                                                     <tr class="hover:bg-gray-50 hover:text-primary-black">
-                                                        <td x-text="data.id" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
-                                                        <td x-text="data.username" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
-                                                        <td x-text="data.firstName" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
-                                                        <td x-text="data.lastName" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
-                                                        <td x-text="data.emailAddress" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
-                                                        <td x-text="data.status" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
-                                                        <td x-text="data.type ? 'Active': 'Inactive'" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
-                                                        <td x-text="data.type ? 'Active': 'Inactive'" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
+                                                        <td x-text="data.id" class="border border-primary-sidebar-gray-text/70 p-1"></td>
+                                                        <td x-text="data.username" class="border border-primary-sidebar-gray-text/70 p-1"></td>
+                                                        <td x-text="data.firstName" class="border border-primary-sidebar-gray-text/70 p-1"></td>
+                                                        <td x-text="data.lastName" class="border border-primary-sidebar-gray-text/70 p-1"></td>
+                                                        <td x-text="data.emailAddress" class="border border-primary-sidebar-gray-text/70 p-1"></td>
+                                                        <td x-text="data.status" class="border border-primary-sidebar-gray-text/70 p-1"></td>
+                                                        <td x-text="data.type === 'active'? 'Active': 'Inactive'" class="border border-primary-sidebar-gray-text/70 p-1"></td>
+                                                        <td class="border border-primary-sidebar-gray-text/70 p-1">
+                                                          <button @click="changeType(data)" x-text="data.type === 'active'? 'Suspend': 'Activate'" class="uppercase text-[10px] text-white bg-primary-danger hover:brightness-95 px-8 py-3 rounded-xs cursor-pointer"></button>
+                                                        </td>
                                                     </tr>
                                                 </template>   
                                             </tbody>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Creditswitch Merchant Portal | Manage Data Plan</title>
+        <link rel="stylesheet" href="../styles/output.css" />
+        <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
+        <link rel="manifest" href="../assets/site.webmanifest">
+    </head>
+    <body class="select-none bg-primary-sidebar-gray-background font-roboto">
+
+        <section class="relative flex h-screen" x-data="menu('Manage Data Plans')">
+
+            <!-- Sidebar Component -->
+            <div id="sidebarContainer" x-ref="sidebarContainer"></div>
+            
+
+            <!-- Right Hand Section -->
+            <div class="flex-1 overflow-y-auto flex flex-col min-h-screen" id="screenTop"> 
+
+                <!-- Mobile Nav Component  -->
+                <div id="mobileNavContainer" x-ref="mobileNavContainer"></div>
+
+                <!-- Header Section Component  -->
+                <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
+
+                <!-- Main Content Section -->
+                <div class="mt-2 w-full flex flex-col px-6 py-6 gap-12 text-primary-black">
+
+                    <!-- First Row -->
+                    <div class="flex flex-col gap-12 w-full" x-data="{
+                        showTable: false,
+                    }">
+                        
+                        <div class="flex-1 relative px-4 pt-20 sm:pt-15 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
+                            <div class="absolute font-medium gap-2 -top-5 px-6 py-4.5 text-left rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white">
+                                Create Data Plan » <span class="text-sm">Click <img src="" alt=" " class="inline-block"> to add new rows</span>
+                            </div>
+
+                            <div class="w-full mb-5 flex justify-end items-end">
+                                <button class="uppercase font-semibold text-tiny text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text py-3 px-8 rounded-xs cursor-pointer transition duration-300">View Activity Log</button>
+                            </div>
+
+                            <div class="w-full mb-3 relative">
+                                  <div class="overflow-x-auto my-4 px-4 max-w-full">
+                                    <div class="min-w-fit">
+                                        <table class="w-full table-auto border-collapse text-small">
+                                            <thead class="text-black font-medium align-bottom">
+                                                <tr>
+                                                    <td class="px-2 py-3">#</td>
+                                                    <td class="px-2 py-3">Service Id</td>
+                                                    <td class="px-2 py-3">Amount</td>
+                                                    <td class="px-2 py-3">Validity</td>
+                                                    <td class="px-2 py-3">Data Bundle</td>
+                                                    <td class="px-2 py-3">Product Id</td>
+                                                    <td class="px-2 py-3">Provider Id</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="align-top">
+                                                <tr class="hover:bg-gray-50 border-t border-primary-sidebar-gray-text/70">
+                                                    <td class="p-2 font-semibold">1.</td>
+                                                    <td class="p-2">
+                                                        <select name="serviceId" id="serviceId" class="w-full bg-white text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-sm transition duration-300 min-w-[100px]">
+                                                            <option value="">SELECT NETWORK</option>
+                                                            <option value="airtel">AIRTEL</option>
+                                                            <option value="9mobile">9MOBILE</option>
+                                                            <option value="glo">GLO</option>
+                                                            <option value="mtn">MTN</option>
+                                                            <option value="smile">SMILE</option>
+                                                        </select>
+                                                    </td>
+                                                    <td class="p-2">
+                                                        <input
+                                                            type="number" 
+                                                            placeholder="ENTER AMOUNT"
+                                                            name="amount"
+                                                            id="amount"
+                                                            class="w-full bg-white text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300 min-w-[100px]"
+                                                        >
+                                                    </td>
+                                                    <td class="p-2">
+                                                        <input
+                                                            type="text" 
+                                                            placeholder="ENTER VALIDITY"
+                                                            name="validity"
+                                                            id="validity"
+                                                            class="w-full bg-white text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300 min-w-[100px]"
+                                                        >
+                                                    </td>
+                                                    <td class="p-2">
+                                                        <input
+                                                            type="text" 
+                                                            placeholder="ENTER DATA BUNDLE"
+                                                            name="dataBundle"
+                                                            id="dataBundle"
+                                                            class="w-full bg-white text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300 min-w-[100px]"
+                                                        >
+                                                    </td>
+                                                    <td class="p-2">
+                                                        <input
+                                                            type="text" 
+                                                            placeholder="ENTER PRODUCT ID"
+                                                            name="productId"
+                                                            id="productId"
+                                                            class="w-full bg-white text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300 min-w-[100px]"
+                                                        >
+                                                    </td>
+                                                    <td class="p-2">
+                                                        <input
+                                                            type="text" 
+                                                            placeholder="ENTER PROVIDER ID"
+                                                            name="providerId"
+                                                            id="providerId"
+                                                            class="w-full bg-white text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300 min-w-[100px]"
+                                                        >
+                                                    </td>
+                                                    <td class="p-2">
+                                                        <img src="" alt=" " class="cursor-pointer">
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                  </div>
+                            </div>  
+                        </div>
+
+                        <template x-if="showTable">
+                            
+                            <div class="flex-1 relative bg-white rounded-sm shrink-0 w-full shadow-xl" x-init="fetch('../components/tableComponent.html')
+                                .then(res => res.text())
+                                .then(html => {
+                                    $refs.tableComponent.innerHTML = html;
+                                    Alpine.initTree($refs.tableComponent);
+                                })" x-data="{
+                                tableHeader: [
+                                    '#',
+                                    'Merchant',
+                                    'Account No',
+                                    'Face Value',
+                                    'Util Name',
+                                    'Msisdn',
+                                    'Tranx Status',
+                                    'Provider',
+                                    'Tranx Date',
+                                    'Tranx ID',
+                                    'M Ref',
+                                    'Token Value',
+                                    'Discount Given',
+                                    'Net Value',
+                                    'Discount Received (%)',
+                                    'Cost of sale',
+                                ],
+                                tableData: [
+                                    {
+                                        '#': '',
+                                        'Merchant': '',
+                                        'Account No': '',
+                                        'Face Value': '',
+                                        'Util Name': '',
+                                        'Msisdn': '',
+                                        'Tranx Status': '',
+                                        'Provider': '',
+                                        'Tranx Date': '',
+                                        'Tranx ID': '',
+                                        'M Ref': '',
+                                        'Token Value': '',
+                                        'Discount Given': '',
+                                        'Net Value': '',
+                                        'Discount Received (%)': '',
+                                        'Cost of sale': '',
+                                    },
+                                ]
+                            }">
+
+                                <!-- Table Options  -->
+                                <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-4 py-2 px-6 border-b border-primary-sidebar-gray-text/70">
+                                    <div>
+                                        <h1 class="text-primary-black font-medium">Electricity Query Result</h1>
+                                    </div>
+                                    <div class="flex w-full sm:w-fit justify-between">
+                                        <button
+                                            x-data="{showPopUp: false}"
+                                            @click="showPopUp = !showPopUp"
+                                            @click.away="showPopUp = false"
+                                            class="relative"
+                                        >   
+                                            <div 
+                                                :class="showPopUp ? 'bg-primary-blue-text text-white' : 'bg-primary-blue-text/10 text-primary-blue-text'"
+                                                class="group inline-flex items-end cursor-pointer gap-1.5 px-7 py-3 hover:bg-primary-blue-text hover:text-white rounded-xs">
+                                                <span class="uppercase text-tiny font-medium text-inherit">Generate Report</span>
+                                                <span class="text-inherit">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="5" stroke="currentColor" class="size-2.5">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                                    </svg>
+                                                </span>
+                                            </div>
+                                            
+                                            <div 
+                                                x-show="showPopUp"
+                                                x-transition:enter="transition ease-out duration-200"
+                                                x-cloak
+                                                class="absolute text-tiny font-medium bg-white shadow-sm py-2 top-full right-0 w-[120%] transform-none text-left"
+                                            >
+                                                <p class="uppercase text-primary-blue-text mb-1 px-6">Export</p>
+                                                <div 
+                                                    class="flex items-center gap-2 text-small text-primary-header-gray-bold py-2 px-6 hover:bg-gray-50 hover:text-primary-blue-text cursor-pointer"
+                                                >
+                                                    <span class="rounded-full border-1 border-inherit text-inherit">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-audio-lines-icon lucide-audio-lines size-3.5"><path d="M2 10v3"/><path d="M6 6v11"/><path d="M10 3v18"/><path d="M14 8v7"/><path d="M18 5v13"/><path d="M22 10v3"/></svg>
+                                                    </span>
+                                                    <span class="text-inherit text-normal">CSV</span>
+                                                </div>
+                                            </div>
+                                        </button>
+
+                                        <button 
+                                            class="uppercase text-tiny font-medium px-7 bg-primary-green-light hover:brightness-95 rounded-xs text-white cursor-pointer transition duration-200"
+                                            @click="showTable = false;"
+                                        >
+                                            CLOSE (X)
+                                        </button>
+                                    </div>
+
+                                </div>
+
+                                <!-- Table Summary Header  -->
+                                <div class="w-full px-6 my-6 gap-3 sm:gap-0 flex flex-col sm:flex-row items-center justify-between" x-data="{
+                                    totalFaceValue: '',
+                                    totalNetValue: '',
+                                    totalDiscountValue: '',
+                                }">
+                                    <div class="w-full sm:w-fit flex-1 text-left">
+                                        <h1 class="text-xl font-medium text-primary-header-gray-bold" x-text="totalFaceValue || '₦0.00'"></h1>
+                                        <p class="text-sm text-primary-footer-gray-text font-medium">Total Face Value</p>
+                                    </div>
+                                    <div class="w-full sm:w-fit flex-1 text-left">
+                                        <h1 class="text-xl font-medium text-primary-header-gray-bold" x-text="totalNetValue || '₦0.00'"></h1>
+                                        <p class="text-sm text-primary-footer-gray-text font-medium">Total Net Value</p>
+                                    </div>
+                                    <div class="w-full sm:w-fit flex-1 text-left">
+                                        <h1 class="text-xl font-medium text-primary-header-gray-bold" x-text="totalDiscountValue || '₦0.00'"></h1>
+                                        <p class="text-sm text-primary-footer-gray-text font-medium">Total Discount</p>
+                                    </div>
+                                </div>
+
+                                <!-- Table Component  -->
+                                <div id="tableComponent" x-ref="tableComponent"></div>
+                            </div>
+
+                        </template>    
+                    </div>
+                    
+                </div>
+
+                <!-- Footer Section Component  -->
+                <div id="contentFooterContainer" x-ref="contentFooterContainer" class="mt-auto"></div>
+
+                <!-- Scroll Up Button  -->
+                <div class="fixed bottom-7 right-7 p-2.5 bg-primary-blue-text/30 cursor-pointer" @click="document.getElementById('screenTop').scrollTo({ top: 0, behavior: 'smooth' })">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="#f5f5f5" class="size-5">
+                        <path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 1 1-1.06 1.06l-6.22-6.22V21a.75.75 0 0 1-1.5 0V4.81l-6.22 6.22a.75.75 0 1 1-1.06-1.06l7.5-7.5Z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+            </div>
+
+        </section>
+    </body>
+    <script type="module" src="../scripts/main.js"></script>
+</html>
