@@ -19,9 +19,9 @@
     </div>
 
     <div class="z-20 text-inherit">
-        <ul class="list-none space-y-1 h-[calc(100vh-5rem)] sidebar-scroll scroll-smooth">
+        <ul class="list-none space-y-1 h-[calc(100vh-4.8rem)] pb-7 sidebar-scroll scroll-smooth">
             <template x-for="(item, index) in menuList" :key="index">
-                <li>
+                <li class="mb-[0px]">
                     <p 
                         x-show="expandSideMenu && item.menuHeader" 
                         x-text="item.menuHeader"
@@ -36,7 +36,7 @@
                             'group': !isActive(item) && openDropdown !== index,
                             'text-white bg-primary-sidebar-gray-background/8': openDropdown === index && !isActive(item)
                         }"
-                        class="relative pl-8 pr-6 py-2.5 flex items-center cursor-pointer gap-2 w-full text-sm"
+                        class="relative pl-8 pr-6 py-2.5 flex items-center cursor-pointer gap-2 w-full text-sm max-h-[44px]"
                         @click="toggleDropdown(item, index)"
                     >
                         <span 

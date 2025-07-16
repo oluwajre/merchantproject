@@ -95,10 +95,10 @@ export const menu = (active) => {
               {name: 'Manage Data Plans', icon: icons.subMenu, headerName: 'Manage Data Plan', link: './manage_data_plans.html', alert: 'new'},
             ]
           },
-          {menuHeader: 'Settings', name: 'Profile/Password Change', icon: icons.settings, dropDown: [], link: 'https://www.creditswitch.com/'},
-          {name: 'Logout', icon: icons.logout, dropDown: [], link: 'https://www.creditswitch.com/'},
-          {menuHeader: 'Logs', name: 'Merchant Request Log', icon: icons.dataWarehouse, dropDown: [], link: 'https://www.creditswitch.com/'},
-          {name: 'Http Requests Log', icon: icons.dataWarehouse, dropDown: [], link: 'https://www.creditswitch.com/'},
+          {menuHeader: 'Settings', name: 'Profile/Password Change', icon: icons.settings, headerName: 'Manage Profile', dropDown: [], link: './manage_profile.html'},
+          {name: 'Logout', icon: icons.logout, dropDown: [], link: './login.html'},
+          {menuHeader: 'Logs', name: 'Merchant Request Log', icon: icons.dataWarehouse, headerName: 'Transaction Summary', dropDown: [], link: './merchant-request-log.html'},
+          {name: 'Http Requests Log', icon: icons.dataWarehouse, headerName: 'Http Request Logs', dropDown: [], link: './http-request-log.html'},
     ],
 
     toggleDropdown(item, index) {

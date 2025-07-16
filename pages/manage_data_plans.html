@@ -31,25 +31,243 @@
                 <div class="mt-2 w-full flex flex-col px-6 py-6 gap-12 text-primary-black">
 
                     <!-- First Row -->
-                    <div class="flex flex-col gap-12 w-full" x-data="{
-                        showTable: false,
-                    }">
+                    <div class="flex flex-col gap-12 w-full">
                         
                         <div class="flex-1 relative px-4 pt-20 sm:pt-15 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
                             <div class="absolute font-medium gap-2 -top-5 px-6 py-4.5 text-left rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white">
                                 Create Data Plan » <span class="text-sm">Click <img src="" alt=" " class="inline-block"> to add new rows</span>
                             </div>
 
-                            <div class="w-full mb-5 flex justify-end items-end">
+                            <div class="w-full mb-0.5 flex justify-end items-end">
                                 <button class="uppercase font-semibold text-tiny text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text py-3 px-8 rounded-xs cursor-pointer transition duration-300">View Activity Log</button>
                             </div>
 
-                            <div class="w-full mb-3 relative">
-                                  <div class="overflow-x-auto my-4 px-4 max-w-full">
+                            <div class="w-full mb-16 relative">
+                                    <form class="w-full px-4" x-data="{
+                                        dataRows: [
+                                            {
+                                                serviceId: '',
+                                                amount: '',
+                                                validity: '',
+                                                dataBundle: '',
+                                                productId: '',
+                                                providerId: ''
+                                            },
+                                        ],
+                                        addRow() {
+                                            this.dataRows = [...this.dataRows, {
+                                                serviceId: '',
+                                                amount: '',
+                                                validity: '',
+                                                dataBundle: '',
+                                                productId: '',
+                                                providerId: ''
+                                            }];
+                                        }
+                                    }" @submit.prevent>
+                                        <div class="overflow-x-auto mb-7 max-w-full">
+                                            <div class="min-w-fit">
+                                                <table class="w-full table-auto border-collapse text-small">
+                                                    <thead class="text-black font-medium align-bottom">
+                                                        <tr>
+                                                            <td class="px-2 py-3">#</td>
+                                                            <td class="px-2 py-3">Service Id</td>
+                                                            <td class="px-2 py-3">Amount</td>
+                                                            <td class="px-2 py-3">Validity</td>
+                                                            <td class="px-2 py-3">Data Bundle</td>
+                                                            <td class="px-2 py-3">Product Id</td>
+                                                            <td class="px-2 py-3">Provider Id</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="align-top">
+                                                        <template x-for="(row, index) in dataRows" :key="index">
+                                                            <tr class="hover:bg-gray-50 border-t border-primary-sidebar-gray-text/70">
+                                                                <td class="p-2 font-bold" x-text="(index + 1) + '.'"></td>
+                                                                <td class="p-2">
+                                                                    <select 
+                                                                        x-model="dataRows[index].serviceId" 
+                                                                        :name="`serviceId-${index}`" 
+                                                                        :id="`serviceId-${index}`" 
+                                                                        class="w-full bg-white text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-sm transition duration-300 min-w-[100px]" 
+                                                                        required
+                                                                    >
+                                                                        <option value="">SELECT NETWORK</option>
+                                                                        <option value="airtel">AIRTEL</option>
+                                                                        <option value="9mobile">9MOBILE</option>
+                                                                        <option value="glo">GLO</option>
+                                                                        <option value="mtn">MTN</option>
+                                                                        <option value="smile">SMILE</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td class="p-2">
+                                                                    <input
+                                                                        type="number"
+                                                                        x-model="dataRows[index].amount" 
+                                                                        placeholder="ENTER AMOUNT"
+                                                                        :name="`amount-${index}`"
+                                                                        :id="`amount-${index}`"
+                                                                        required
+                                                                        class="w-full bg-white text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300 min-w-[100px]"
+                                                                    >
+                                                                </td>
+                                                                <td class="p-2">
+                                                                    <input
+                                                                        type="text"
+                                                                        x-model="dataRows[index].validity" 
+                                                                        placeholder="ENTER VALIDITY"
+                                                                        :name="`validity-${index}`"
+                                                                        :id="`validity-${index}`"
+                                                                        required
+                                                                        class="w-full bg-white text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300 min-w-[100px]"
+                                                                    >
+                                                                </td>
+                                                                <td class="p-2">
+                                                                    <input
+                                                                        type="text"
+                                                                        x-model="dataRows[index].dataBundle" 
+                                                                        placeholder="ENTER DATA BUNDLE"
+                                                                        :name="`dataBundle-${index}`"
+                                                                        :id="`dataBundle-${index}`"
+                                                                        required
+                                                                        class="w-full bg-white text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300 min-w-[100px]"
+                                                                    >
+                                                                </td>
+                                                                <td class="p-2">
+                                                                    <input
+                                                                        type="text"
+                                                                        x-model="dataRows[index].productId"
+                                                                        placeholder="ENTER PRODUCT ID"
+                                                                        :name="`productId-${index}`"
+                                                                        :id="`productId-${index}`"
+                                                                        required
+                                                                        class="w-full bg-white text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300 min-w-[100px]"
+                                                                    >
+                                                                </td>
+                                                                <td class="p-2">
+                                                                    <input
+                                                                        type="text"
+                                                                        x-model="dataRows[index].providerId" 
+                                                                        placeholder="ENTER PROVIDER ID"
+                                                                        :name="`providerId-${index}`"
+                                                                        :id="`providerId-${index}`"
+                                                                        required
+                                                                        class="w-full bg-white text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300 min-w-[100px]"
+                                                                    >
+                                                                </td>
+                                                                <td class="p-2">
+                                                                    <img 
+                                                                        src="" 
+                                                                        alt=" " 
+                                                                        class="cursor-pointer"
+                                                                        @click="addRow"
+                                                                    >
+                                                                </td>
+                                                            </tr>
+                                                        </template>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="w-full grid grid-cols-3">
+                                            <div class="col-span-full md:col-span-1 col-start-1 md:col-start-2">
+                                                <button
+                                                    type="submit"
+                                                    class="w-full uppercase font-semibold text-tiny text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300"
+                                                >
+                                                    Create
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                  
+                            </div>  
+                        </div>    
+                    </div>
+
+                    <!-- Second Row -->
+                    <div class="flex flex-col gap-12 w-full">
+                        
+                        <div class="flex-1 relative px-4 pt-20 sm:pt-15 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
+                            <div class="absolute font-medium gap-2 -top-5 px-6 py-4.5 text-left rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white">
+                                Update Data Plan
+                            </div>
+
+                            <div class="w-full mb-16 px-4 relative" x-data="{
+                                currentServiceId: '',
+                                dataRows: [
+                                    {   
+                                        uid: '1',
+                                        serviceId: 'D01D',
+                                        amount: '50',
+                                        validity: '1day',
+                                        dataBundle: '40MB',
+                                        productId: 'AIR-40MB-1',
+                                        providerId: '49.99',
+                                        status: 'inactive'
+                                    },
+                                    {   
+                                        uid: '2',
+                                        serviceId: 'D03D',
+                                        amount: '75',
+                                        validity: '1day',
+                                        dataBundle: '40MB',
+                                        productId: 'AIR-40MB-1',
+                                        providerId: '49.99',
+                                        status: 'inactive'
+                                    },
+                                    {   
+                                        uid: '3',
+                                        serviceId: 'D02D',
+                                        amount: '50',
+                                        validity: '1day',
+                                        dataBundle: '40MB',
+                                        productId: 'AIR-40MB-1',
+                                        providerId: '49.99',
+                                        status: 'inactive'
+                                    },
+                                    {   
+                                        uid: '4',
+                                        serviceId: 'D01D',
+                                        amount: '100',
+                                        validity: '5day',
+                                        dataBundle: '40MB',
+                                        productId: 'AIR-40MB-1',
+                                        providerId: '49.99',
+                                        status: 'active'
+                                    },
+                                ],
+                                get filteredRows() {
+                                    return this.dataRows.filter(row => row.serviceId === this.currentServiceId);
+                                },
+                                updateRow(row) {
+                                    const index = this.dataRows.findIndex(r => r.uid === row.uid);
+                                    if (index !== -1) {
+                                        this.dataRows[index] = {...row};
+                                    } else {
+                                        console.error('Row not found');
+                                    }
+                                },
+                                toggleStatus(row) {
+                                    const index = this.dataRows.findIndex(r => r.uid === row.uid);
+                                    if (index !== -1) {
+                                        const currentStatus = this.dataRows[index].status;
+                                        this.dataRows[index].status = currentStatus === 'active' ? 'inactive' : 'active';
+                                    }
+                                }
+                            }">             
+                                <div class="w-full overflow-x-auto mb-0.5 flex justify-start items-center">
+                                    <div @click="currentServiceId = 'D01D'" :class="currentServiceId === 'D01D'? 'bg-[#F4F5F8]': 'hover:bg-[#F4F5F8]'" class="text-primary-filtered-options px-8 py-3 rounded-xs active:text-black font-bold text-xs uppercase cursor-pointer transition duration-200">Airtel</div>
+                                    <div @click="currentServiceId = 'D02D'" :class="currentServiceId === 'D02D'? 'bg-[#F4F5F8]': 'hover:bg-[#F4F5F8]'" class="text-primary-filtered-options px-8 py-3 rounded-xs active:text-black font-bold text-xs uppercase cursor-pointer transition duration-200">9Mobile</div>
+                                    <div @click="currentServiceId = 'D03D'" :class="currentServiceId === 'D03D'? 'bg-[#F4F5F8]': 'hover:bg-[#F4F5F8]'" class="text-primary-filtered-options px-8 py-3 rounded-xs active:text-black font-bold text-xs uppercase cursor-pointer transition duration-200">Glo</div>
+                                    <div @click="currentServiceId = 'D04D'" :class="currentServiceId === 'D04D'? 'bg-[#F4F5F8]': 'hover:bg-[#F4F5F8]'" class="text-primary-filtered-options px-8 py-3 rounded-xs active:text-black font-bold text-xs uppercase cursor-pointer transition duration-200">Mtn</div>
+                                    <div @click="currentServiceId = 'D05D'" :class="currentServiceId === 'D05D'? 'bg-[#F4F5F8]': 'hover:bg-[#F4F5F8]'" class="text-primary-filtered-options px-8 py-3 rounded-xs active:text-black font-bold text-xs uppercase cursor-pointer transition duration-200">Smile</div>
+                                </div>
+
+                                <div class="overflow-x-auto mb-7 max-w-full">
                                     <div class="min-w-fit">
                                         <table class="w-full table-auto border-collapse text-small">
                                             <thead class="text-black font-medium align-bottom">
-                                                <tr>
+                                                <tr class="border-b border-primary-sidebar-gray-text/70">
                                                     <td class="px-2 py-3">#</td>
                                                     <td class="px-2 py-3">Service Id</td>
                                                     <td class="px-2 py-3">Amount</td>
@@ -60,198 +278,101 @@
                                                 </tr>
                                             </thead>
                                             <tbody class="align-top">
-                                                <tr class="hover:bg-gray-50 border-t border-primary-sidebar-gray-text/70">
-                                                    <td class="p-2 font-semibold">1.</td>
-                                                    <td class="p-2">
-                                                        <select name="serviceId" id="serviceId" class="w-full bg-white text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-sm transition duration-300 min-w-[100px]">
-                                                            <option value="">SELECT NETWORK</option>
-                                                            <option value="airtel">AIRTEL</option>
-                                                            <option value="9mobile">9MOBILE</option>
-                                                            <option value="glo">GLO</option>
-                                                            <option value="mtn">MTN</option>
-                                                            <option value="smile">SMILE</option>
-                                                        </select>
-                                                    </td>
-                                                    <td class="p-2">
-                                                        <input
-                                                            type="number" 
-                                                            placeholder="ENTER AMOUNT"
-                                                            name="amount"
-                                                            id="amount"
-                                                            class="w-full bg-white text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300 min-w-[100px]"
-                                                        >
-                                                    </td>
-                                                    <td class="p-2">
-                                                        <input
-                                                            type="text" 
-                                                            placeholder="ENTER VALIDITY"
-                                                            name="validity"
-                                                            id="validity"
-                                                            class="w-full bg-white text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300 min-w-[100px]"
-                                                        >
-                                                    </td>
-                                                    <td class="p-2">
-                                                        <input
-                                                            type="text" 
-                                                            placeholder="ENTER DATA BUNDLE"
-                                                            name="dataBundle"
-                                                            id="dataBundle"
-                                                            class="w-full bg-white text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300 min-w-[100px]"
-                                                        >
-                                                    </td>
-                                                    <td class="p-2">
-                                                        <input
-                                                            type="text" 
-                                                            placeholder="ENTER PRODUCT ID"
-                                                            name="productId"
-                                                            id="productId"
-                                                            class="w-full bg-white text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300 min-w-[100px]"
-                                                        >
-                                                    </td>
-                                                    <td class="p-2">
-                                                        <input
-                                                            type="text" 
-                                                            placeholder="ENTER PROVIDER ID"
-                                                            name="providerId"
-                                                            id="providerId"
-                                                            class="w-full bg-white text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300 min-w-[100px]"
-                                                        >
-                                                    </td>
-                                                    <td class="p-2">
-                                                        <img src="" alt=" " class="cursor-pointer">
-                                                    </td>
-                                                </tr>
+                                                <template x-for="(row, index) in filteredRows" :key="index">
+                                                    <tr class="hover:bg-gray-50 border-b border-primary-sidebar-gray-text/70">
+                                                        <td class="p-2 font-bold" x-text="(index + 1) + '.'"></td>
+                                                        <td class="p-2">
+                                                            <input
+                                                                type="text"
+                                                                x-model="row.serviceId"
+                                                                placeholder="ENTER SERVICE ID"
+                                                                :name="`serviceId-${index}`" 
+                                                                :id="`serviceId-${index}`"
+                                                                required
+                                                                readonly
+                                                                class="w-full bg-white text-primary-input-gray-text rounded-sm border-2 border-transparent focus:border-black font-normal placeholder:capitalize outline-none text-sm transition duration-300 min-w-[100px]"
+                                                            >
+                                                        </td>
+                                                        <td class="p-2">
+                                                            <input
+                                                                type="number"
+                                                                x-model="row.amount" 
+                                                                placeholder="ENTER AMOUNT"
+                                                                :name="`amount-${index}`"
+                                                                :id="`amount-${index}`"
+                                                                required
+                                                                class="w-full bg-white text-primary-input-gray-text rounded-sm border-2 border-transparent focus:border-black font-normal placeholder:capitalize outline-none text-sm transition duration-300 min-w-[100px]"
+                                                            >
+                                                        </td>
+                                                        <td class="p-2">
+                                                            <input
+                                                                type="text"
+                                                                x-model="row.validity" 
+                                                                placeholder="ENTER VALIDITY"
+                                                                :name="`validity-${index}`"
+                                                                :id="`validity-${index}`"
+                                                                required
+                                                                class="w-full bg-white text-primary-input-gray-text rounded-sm border-2 border-transparent focus:border-black font-normal placeholder:capitalize outline-none text-sm transition duration-300 min-w-[100px]"
+                                                            >
+                                                        </td>
+                                                        <td class="p-2">
+                                                            <input
+                                                                type="text"
+                                                                x-model="row.dataBundle" 
+                                                                placeholder="ENTER DATA BUNDLE"
+                                                                :name="`dataBundle-${index}`"
+                                                                :id="`dataBundle-${index}`"
+                                                                required
+                                                                class="w-full bg-white text-primary-input-gray-text rounded-sm border-2 border-transparent focus:border-black font-normal placeholder:capitalize outline-none text-sm transition duration-300 min-w-[100px]"
+                                                            >
+                                                        </td>
+                                                        <td class="p-2">
+                                                            <input
+                                                                type="text"
+                                                                x-model="row.productId"
+                                                                placeholder="ENTER PRODUCT ID"
+                                                                :name="`productId-${index}`"
+                                                                :id="`productId-${index}`"
+                                                                required
+                                                                class="w-full bg-white text-primary-input-gray-text rounded-sm border-2 border-transparent focus:border-black font-normal placeholder:capitalize outline-none text-sm transition duration-300 min-w-[100px]"
+                                                            >
+                                                        </td>
+                                                        <td class="p-2">
+                                                            <input
+                                                                type="text"
+                                                                x-model="row.providerId" 
+                                                                placeholder="ENTER PROVIDER ID"
+                                                                :name="`providerId-${index}`"
+                                                                :id="`providerId-${index}`"
+                                                                required
+                                                                class="w-full bg-white text-primary-input-gray-text rounded-sm border-2 border-transparent focus:border-black font-normal placeholder:capitalize outline-none text-sm transition duration-300 min-w-[100px]"
+                                                            >
+                                                        </td>
+                                                        <td class="p-2">
+                                                                <button
+                                                                @click="updateRow(row)"
+                                                                class="w-full uppercase text-[10px] text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text py-3 px-7 rounded-xs cursor-pointer transition duration-300"
+                                                            >
+                                                                Update
+                                                            </button>
+                                                        </td>
+                                                        <td class="p-2">
+                                                                <button
+                                                                @click="toggleStatus(row)"
+                                                                x-text="row.status === 'active'? 'Deactivate': 'Activate'"
+                                                                :class="row.status === 'active'? 'bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text': 'bg-primary-danger hover:brightness-95'"
+                                                                class="w-full uppercase text-[10px] text-white px-7 py-3 rounded-xs cursor-pointer transition duration-300"
+                                                            >
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </template>
                                             </tbody>
                                         </table>
                                     </div>
-                                  </div>
+                                </div>     
                             </div>  
                         </div>
-
-                        <template x-if="showTable">
-                            
-                            <div class="flex-1 relative bg-white rounded-sm shrink-0 w-full shadow-xl" x-init="fetch('../components/tableComponent.html')
-                                .then(res => res.text())
-                                .then(html => {
-                                    $refs.tableComponent.innerHTML = html;
-                                    Alpine.initTree($refs.tableComponent);
-                                })" x-data="{
-                                tableHeader: [
-                                    '#',
-                                    'Merchant',
-                                    'Account No',
-                                    'Face Value',
-                                    'Util Name',
-                                    'Msisdn',
-                                    'Tranx Status',
-                                    'Provider',
-                                    'Tranx Date',
-                                    'Tranx ID',
-                                    'M Ref',
-                                    'Token Value',
-                                    'Discount Given',
-                                    'Net Value',
-                                    'Discount Received (%)',
-                                    'Cost of sale',
-                                ],
-                                tableData: [
-                                    {
-                                        '#': '',
-                                        'Merchant': '',
-                                        'Account No': '',
-                                        'Face Value': '',
-                                        'Util Name': '',
-                                        'Msisdn': '',
-                                        'Tranx Status': '',
-                                        'Provider': '',
-                                        'Tranx Date': '',
-                                        'Tranx ID': '',
-                                        'M Ref': '',
-                                        'Token Value': '',
-                                        'Discount Given': '',
-                                        'Net Value': '',
-                                        'Discount Received (%)': '',
-                                        'Cost of sale': '',
-                                    },
-                                ]
-                            }">
-
-                                <!-- Table Options  -->
-                                <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-4 py-2 px-6 border-b border-primary-sidebar-gray-text/70">
-                                    <div>
-                                        <h1 class="text-primary-black font-medium">Electricity Query Result</h1>
-                                    </div>
-                                    <div class="flex w-full sm:w-fit justify-between">
-                                        <button
-                                            x-data="{showPopUp: false}"
-                                            @click="showPopUp = !showPopUp"
-                                            @click.away="showPopUp = false"
-                                            class="relative"
-                                        >   
-                                            <div 
-                                                :class="showPopUp ? 'bg-primary-blue-text text-white' : 'bg-primary-blue-text/10 text-primary-blue-text'"
-                                                class="group inline-flex items-end cursor-pointer gap-1.5 px-7 py-3 hover:bg-primary-blue-text hover:text-white rounded-xs">
-                                                <span class="uppercase text-tiny font-medium text-inherit">Generate Report</span>
-                                                <span class="text-inherit">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="5" stroke="currentColor" class="size-2.5">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                                                    </svg>
-                                                </span>
-                                            </div>
-                                            
-                                            <div 
-                                                x-show="showPopUp"
-                                                x-transition:enter="transition ease-out duration-200"
-                                                x-cloak
-                                                class="absolute text-tiny font-medium bg-white shadow-sm py-2 top-full right-0 w-[120%] transform-none text-left"
-                                            >
-                                                <p class="uppercase text-primary-blue-text mb-1 px-6">Export</p>
-                                                <div 
-                                                    class="flex items-center gap-2 text-small text-primary-header-gray-bold py-2 px-6 hover:bg-gray-50 hover:text-primary-blue-text cursor-pointer"
-                                                >
-                                                    <span class="rounded-full border-1 border-inherit text-inherit">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-audio-lines-icon lucide-audio-lines size-3.5"><path d="M2 10v3"/><path d="M6 6v11"/><path d="M10 3v18"/><path d="M14 8v7"/><path d="M18 5v13"/><path d="M22 10v3"/></svg>
-                                                    </span>
-                                                    <span class="text-inherit text-normal">CSV</span>
-                                                </div>
-                                            </div>
-                                        </button>
-
-                                        <button 
-                                            class="uppercase text-tiny font-medium px-7 bg-primary-green-light hover:brightness-95 rounded-xs text-white cursor-pointer transition duration-200"
-                                            @click="showTable = false;"
-                                        >
-                                            CLOSE (X)
-                                        </button>
-                                    </div>
-
-                                </div>
-
-                                <!-- Table Summary Header  -->
-                                <div class="w-full px-6 my-6 gap-3 sm:gap-0 flex flex-col sm:flex-row items-center justify-between" x-data="{
-                                    totalFaceValue: '',
-                                    totalNetValue: '',
-                                    totalDiscountValue: '',
-                                }">
-                                    <div class="w-full sm:w-fit flex-1 text-left">
-                                        <h1 class="text-xl font-medium text-primary-header-gray-bold" x-text="totalFaceValue || '₦0.00'"></h1>
-                                        <p class="text-sm text-primary-footer-gray-text font-medium">Total Face Value</p>
-                                    </div>
-                                    <div class="w-full sm:w-fit flex-1 text-left">
-                                        <h1 class="text-xl font-medium text-primary-header-gray-bold" x-text="totalNetValue || '₦0.00'"></h1>
-                                        <p class="text-sm text-primary-footer-gray-text font-medium">Total Net Value</p>
-                                    </div>
-                                    <div class="w-full sm:w-fit flex-1 text-left">
-                                        <h1 class="text-xl font-medium text-primary-header-gray-bold" x-text="totalDiscountValue || '₦0.00'"></h1>
-                                        <p class="text-sm text-primary-footer-gray-text font-medium">Total Discount</p>
-                                    </div>
-                                </div>
-
-                                <!-- Table Component  -->
-                                <div id="tableComponent" x-ref="tableComponent"></div>
-                            </div>
-
-                        </template>    
                     </div>
                     
                 </div>
