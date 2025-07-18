@@ -14,9 +14,9 @@
   --color-primary-black-text-muted: #333;
 
   /* Gray Colors */
-   --color-primary-gray: #999;
-   --color-primary-login-gray-header: #2C3136;
-   --color-primary-login-gray-text: #9C9C9C;
+  --color-primary-gray: #999;
+  --color-primary-login-gray-header: #2C3136;
+  --color-primary-login-gray-text: #9C9C9C;
   --color-primary-header-gray-text: #959cb6;
   --color-primary-header-gray-background: #eaecf2;
   --color-primary-dashboard-background: #eeeeee;
@@ -29,6 +29,7 @@
   --color-primary-table-gray-dark: #3c4858;
   --color-primary-disabled-report-button: #808080;
   --color-primary-filtered-options: #6c7293;
+  --color-primary-table-header: #464457;
 
   /* Blue Colors */
   --color-primary-blue-text: #2c77f4;
@@ -45,6 +46,7 @@
   --color-primary-gold-background-light: #ffa726;
   --color-primary-gold-background-dark: #fb8c00;
   --color-primary-gold-light: #ffb822;
+  --color-primary-warning: #FF9800;
 
   --color-primary-green: #49a749;
   --color-primary-green-light: #1dc9b7;
@@ -58,7 +60,7 @@
   --color-primary-wine-background-dark: #d81b60;
   --color-primary-darkRed: #CC2222;
 
-  --text-tiny: 0.7rem;
+  --text-tiny: 0.69rem;
   --text-small: 0.85rem;
 }
 

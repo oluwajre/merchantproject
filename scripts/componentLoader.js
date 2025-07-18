@@ -72,3 +72,21 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch(error => console.error('Footer loading failed:', error));
   }
 });
+
+//Scroll Up Button Loader
+document.addEventListener('DOMContentLoaded', () => {
+  const scrollUpButton = document.querySelector('#scrollUpButton');
+
+  if (scrollUpButton) {
+    fetch('../components/scrollUpButton.html')
+      .then(response => {
+        if (!response.ok) throw new Error(`Failed to load Scroll Up Button: ${response.status}`);
+        return response.text();
+      })
+      .then(html => {
+        scrollUpButton.innerHTML = html;
+        Alpine.initTree(scrollUpButton);
+      })
+      .catch(error => console.error('Footer loading failed:', error));
+  }
+});
