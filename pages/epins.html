@@ -35,171 +35,186 @@
                         showTable: false,
                     }">
                         
-                        <div class="flex-1 relative px-4 pt-15 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
-                            <div class="absolute flex items-center justify-center gap-1 -top-5 px-6 py-4.5 text-center align-middle rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
+                        <div class="flex-1 relative pt-15 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
+                            <div class="absolute flex items-center justify-center gap-1 -top-5 mx-4 px-6 py-4.5 text-center align-middle rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
                                 <span class="text-md font-medium align-middle">Epin Transactions</span>
                             </div>
 
-                            <div class="w-full mb-3 flex">
-                                <form class="w-full gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between" @submit.prevent="showTable = true" x-data="{
-                                    formInput: [
-                                    {
-                                            type: 'text',
-                                            placeholder: 'MSISDN',
-                                            name: 'msisdn',
-                                            value: '',
-                                            label: '',
-                                        },
-                                        {
-                                            type: 'datetime-local',
-                                            placeholder: 'start date',
-                                            name: 'startDate',
-                                            value: '2025-06-18T00:00',
-                                            label: '(Start Date)',
-                                        },
-                                        {
-                                            type: 'datetime-local',
-                                            placeholder: 'end date',
-                                            name: 'endDate',
-                                            value: '2025-06-18T00:00',
-                                            label: '(End Date)',
-                                        },
-                                        {
-                                            type: 'text',
-                                            placeholder: 'Search with merchant name',
-                                            name: 'merchantName',
-                                            value: '',
-                                            label: '',
-                                        },
-                                        {
-                                            type: 'select',
-                                            name: 'amount',
-                                            options: [
-                                                {name: 'Amount', value: ''},
-                                                {name: '100', value: '100'},
-                                                {name: '200', value: '200'},
-                                                {name: '400', value: '400'},
-                                                {name: '500', value: '500'},
-                                                {name: '750', value: '750'},
-                                                {name: '1000', value: '1000'},
-                                                {name: '1500', value: '1500'},
-                                            ],
-                                            value: '',
-                                            label: '',
-                                        },
-                                        {
-                                            type: 'select',
-                                            name: 'type',
-                                            options: [
-                                                {name: 'Type', value: ''},
-                                                {name: 'Usage', value: 'usage'},
-                                                {name: 'Upload', value: 'upload'},
-                                                {name: 'View Balances', value: 'view'},
-                                            ],
-                                            value: '',
-                                            label: '',
-                                        },
-                                        {
-                                            type: 'select',
-                                            name: 'status',
-                                            options: [
-                                                {name: 'Status', value: ''},
-                                                {name: 'Available', value: 'available'},
-                                                {name: 'Used', value: 'used'},
-                                            ],
-                                            value: '',
-                                            label: '',
-                                        },
-                                        {
-                                            type: 'select',
-                                            name: 'network',
-                                            options: [
-                                                {name: 'Network', value: ''},
-                                                {name: 'Airtel', value: 'airtel'},
-                                                {name: '9Mobile', value: '9mobile'},
-                                                {name: 'Glo', value: 'glo'},
-                                                {name: 'MTN', value: 'mtn'},
-                                            ],
-                                            value: '',
-                                            label: '',
-                                        },
-                                        {
-                                            type: 'text',
-                                            placeholder: 'SERIAL NUMBER',
-                                            name: 'serialNumber',
-                                            value: '',
-                                            label: '',
-                                        },
-                                        {
-                                            type: 'text',
-                                            placeholder: 'MRef',
-                                            name: 'merchantRef',
-                                            value: '',
-                                            label: '',
-                                        },
-                                        {
-                                            type: 'select',
-                                            name: 'channel',
-                                            options: [
-                                                {name: 'Channel', value: ''},
-                                                {name: 'API', value: 'api'},
-                                                {name: 'Web', value: 'web'},
-                                                {name: '931 USSD', value: 'ussd'},
-                                                {name: '931 Mobile', value: 'mobile'},
-                                                {name: 'Auto topup', value: 'topup'},
-                                            ],
-                                            value: '',
-                                            label: '',
-                                        },
-                                        {
-                                            type: 'button',
-                                            name: 'search',
-                                            label: '',
-                                        },
+                            <div class="w-full mb-3 px-4 flex">
+                                <form class="w-full pl-4 gap-5 grid grid-cols-1 md:grid-cols-3 justify-between" @submit.prevent="showTable = true" x-data="{
+                                    getDate() {
+                                        const now = new Date();
+                                        const year = now.getFullYear();
+                                        const month = String(now.getMonth() + 1).padStart(2, '0');
+                                        const day = String(now.getDate()).padStart(2, '0');
+                                        return `${year}-${month}-${day}`;
+                                    },
+                                    formData: {
+                                        msisdn: '',
+                                        startDate: '',
+                                        endDate: '',
+                                        merchantName: '',
+                                        amount: '',
+                                        type: '',
+                                        status: '',
+                                        network: '',
+                                        serialNumber: '',
+                                        merchantRef: '',
+                                        channel: '',
+                                    },
+                                    merchantOptions: [
+                                        { name: 'Wema Bank - 09137819540' },
+                                        { name: 'Sterling Bank - 09137819540' }
                                     ],
-                                }">
-                                    <template x-for="input in formInput" x-cloak>
-                                        <div>
-                                            <template x-if="input.type === 'select'">
-                                                <select :name="input.name" :id="input.name" x-model="input.value" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-sm transition duration-300">
-                                                    <template x-for="option in input.options">
-                                                        <option :value="option.value" x-text="option.name"></option>
-                                                    </template>
-                                                </select>
+                                    showMerchantOptions: false,
+                                    get filteredMerchantOptions() {
+                                        if (!this.formData.merchantName) return [];
+                                        return this.merchantOptions.filter(opt =>
+                                            opt.name.toLowerCase().includes(this.formData.merchantName.toLowerCase())
+                                        );
+                                    },
+                                    escapeRegExp(string) {
+                                        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                                    },
+                                    highlightMatch(text) {
+                                        const regex = new RegExp(`(${this.escapeRegExp(this.formData.merchantName)})`, 'gi');
+                                        return text.replace(regex, `<span class='font-bold'>$1</span>`);
+                                    },
+                                }" x-init="
+                                    formData.startDate = `${getDate()}T00:00:00`;
+                                    formData.endDate = `${getDate()}T23:59:00`
+                                ">  
+                                    <div>
+                                        <input
+                                            x-model="formData.msisdn"
+                                            type="text" 
+                                            placeholder="MSISDN"
+                                            name="msisdn" 
+                                            id="msisdn"
+                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-semibold placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                        >
+                                    </div>
+                                    <div>
+                                        <input
+                                            x-model="formData.startDate"
+                                            type="datetime-local" 
+                                            name="startDate" 
+                                            id="startDate"
+                                            step="1" 
+                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-semibold placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-input-gray-text"
+                                        >
+                                        <label for="startDate" class="text-tiny text-primary-header-gray-bold">(Start Date)</label>
+                                    </div>
+                                    <div>
+                                        <input
+                                            x-model="formData.endDate" 
+                                            type="datetime-local" 
+                                            name="endDate" 
+                                            id="endDate"
+                                            step="1" 
+                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-semibold placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-input-gray-text"
+                                        >
+                                        <label for="endDate" class="text-tiny text-primary-header-gray-bold">(End Date)</label>
+                                    </div>
+                                    <div class="relative">
+                                        <input
+                                            x-model="formData.merchantName"
+                                            @input="showMerchantOptions = true"
+                                            @click.away="showMerchantOptions = false"
+                                            type="text"
+                                            placeholder="Search with merchant name"
+                                            name="merchantName"
+                                            id="merchantName"
+                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-semibold placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                        >
+                                        
+                                        <div x-show="showMerchantOptions && filteredMerchantOptions.length > 0"
+                                            class="absolute inset-x-0 w-full max-w-[350px] left-0 bg-white z-30 shadow-md text-small text-primary-header-gray-bold font-light"
+                                            x-transition.origin.top>                                
+                                            <template x-for="option in filteredMerchantOptions" :key="option.name">
+                                                <div class="w-full px-2 py-1 border-b border-primary-sidebar-gray-text/30 hover:bg-[#B5BFE1] hover:text-[#3E60DC] cursor-pointer transition duration-100"
+                                                    @click="formData.merchantName = option.name; showMerchantOptions = false">
+                                                    <p x-html="highlightMatch(option.name)"></p>
+                                                </div>
                                             </template>
-
-                                            <template x-if="['text', 'number', 'datetime-local'].includes(input.type)">
-                                                <input
-                                                    x-model="input.value"
-                                                    :type="input.type" 
-                                                    :placeholder="input.placeholder"
-                                                    :name="input.name"
-                                                    :id="input.name"
-                                                    :class="{
-                                                        'text-primary-input-black-text': input.type !== 'datetime-local', 
-                                                        'text-primary-input-gray-text': input.type === 'datetime-local'
-                                                    }"
-                                                    class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300"
-                                                >
-                                            </template>
-
-                                            <template x-if="input.type === 'button'">
-                                                <button type="submit" x-text="input.name" class="w-full uppercase font-semibold text-xs text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300"></button>
-                                            </template>
-
-                                            <template x-if="input.label">
-                                                <label :for="input.name" x-text="input.label" class="text-xs text-primary-header-gray-bold" x-cloak></label>
-                                            </template>
-                                            
                                         </div>
-                                    </template>             
-                                </form>  
-                            </div>  
+                                    </div>
+                                    <div>
+                                        <select name="amount" id="amount" x-model="formData.amount" class="w-full font-semibold text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue outline-none px-3 py-2 text-small transition duration-300">
+                                            <option value="">Amount</option>
+                                            <option value="100">100</option>
+                                            <option value="200">200</option>
+                                            <option value="400">400</option>
+                                            <option value="500">500</option>
+                                            <option value="750">750</option>
+                                            <option value="1000">1000</option>
+                                            <option value="1500">1500</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <select name="type" id="type" x-model="formData.type" class="w-full font-semibold text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue outline-none px-3 py-2 text-small transition duration-300">
+                                            <option value="">Type</option>
+                                            <option value="usage">Usage</option>
+                                            <option value="upload">Upload</option>
+                                            <option value="view_balances">View Balances</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <select name="status" id="status" x-model="formData.status" class="w-full font-semibold text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue outline-none px-3 py-2 text-small transition duration-300">
+                                            <option value="">Status</option>
+                                            <option value="available">Available</option>
+                                            <option value="used">Used</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <select name="network" id="network" x-model="formData.network" class="w-full font-semibold text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue outline-none px-3 py-2 text-small transition duration-300">
+                                            <option value="">Network</option>
+                                            <option value="airtel">Airtel</option>
+                                            <option value="9mobile">9Mobile</option>
+                                            <option value="glo">Glo</option>
+                                            <option value="MTN">MTN</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <input
+                                            x-model="formData.serialNumber"
+                                            type="text" 
+                                            placeholder="SERIAL NUMBER"
+                                            name="serialNumber" 
+                                            id="serialNumber"
+                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-semibold placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                        >
+                                    </div>
+                                    <div>
+                                        <input
+                                            x-model="formData.merchantRef"
+                                            type="text" 
+                                            placeholder="MRef"
+                                            name="merchantRef" 
+                                            id="merchantRef"
+                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-semibold placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                        >
+                                    </div>
+                                    <div>
+                                        <select name="channel" id="channel" x-model="formData.channel" class="w-full font-medium text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue outline-none px-3 py-2 text-small transition duration-300">
+                                            <option value="">Channel</option>
+                                            <option value="api">API</option>
+                                            <option value="web">Web</option>
+                                            <option value="9331_ussd">9331 USSD</option>
+                                            <option value="9331_mobile">9331 Mobile</option>
+                                            <option value="auto_topup">Auto topup</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">search</button>
+                                    </div>
+                                </form>
+                            </div> 
                         </div>
 
                         <template x-if="showTable">
                             
-                            <div class="flex-1 relative bg-white rounded-sm shrink-0 w-full shadow-xl" x-init="fetch('../components/tableComponent.html')
+                            <div class="flex-1 relative bg-white rounded-sm shrink-0 w-full shadow-xl pb-8" x-init="fetch('../components/tableComponent.html')
                                 .then(res => res.text())
                                 .then(html => {
                                     $refs.tableComponent.innerHTML = html;
@@ -209,7 +224,7 @@
                                 <!-- Table Options  -->
                                 <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-4 py-2 px-6 border-b border-primary-sidebar-gray-text/70">
                                     <div>
-                                        <h1 class="text-primary-black font-medium">Epin Query Result</h1>
+                                        <h1 class="text-primary-table-header font-medium">Epin Query Result</h1>
                                     </div>
                                     <div class="flex w-full sm:w-fit justify-between">
                                         <button
@@ -219,9 +234,9 @@
                                             class="relative"
                                         >   
                                             <div 
-                                                :class="showPopUp ? 'bg-primary-blue-text text-white' : 'bg-primary-blue-text/10 text-primary-blue-text'"
+                                                :class="showPopUp ? 'bg-primary-blue-text text-white' : 'bg-primary-blue-text/10 text-primary-header-gray-bold'"
                                                 class="group inline-flex items-end cursor-pointer gap-1.5 px-7 py-3 hover:bg-primary-blue-text hover:text-white rounded-xs">
-                                                <span class="uppercase text-tiny font-medium text-inherit">Generate Report</span>
+                                                <span class="uppercase text-[10px] font-medium text-inherit">Generate Report</span>
                                                 <span class="text-inherit">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="5" stroke="currentColor" class="size-2.5">
                                                         <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
@@ -233,11 +248,11 @@
                                                 x-show="showPopUp"
                                                 x-transition:enter="transition ease-out duration-200"
                                                 x-cloak
-                                                class="absolute text-tiny font-medium bg-white shadow-sm py-2 top-full right-0 w-[120%] transform-none text-left"
+                                                class="absolute text-[10px] font-medium bg-white shadow-sm py-2 top-full right-0 w-[120%] transform-none text-left"
                                             >
                                                 <p class="uppercase text-primary-blue-text mb-1 px-6">Export</p>
                                                 <div 
-                                                    class="flex items-center gap-2 text-small text-primary-header-gray-bold py-2 px-6 hover:bg-gray-50 hover:text-primary-blue-text cursor-pointer"
+                                                    class="flex items-center gap-2 font-normal text-small text-primary-header-gray-bold py-2 px-6 hover:bg-gray-50 hover:text-primary-blue-text cursor-pointer"
                                                 >
                                                     <span class="rounded-full border-1 border-inherit text-inherit">
                                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-audio-lines-icon lucide-audio-lines size-3.5"><path d="M2 10v3"/><path d="M6 6v11"/><path d="M10 3v18"/><path d="M14 8v7"/><path d="M18 5v13"/><path d="M22 10v3"/></svg>
@@ -248,7 +263,7 @@
                                         </button>
 
                                         <button 
-                                            class="uppercase text-tiny font-medium px-7 bg-primary-green-light hover:brightness-95 rounded-xs text-white cursor-pointer transition duration-200"
+                                            class="uppercase text-[10px] font-medium px-7 bg-primary-green-light hover:brightness-95 rounded-xs text-white cursor-pointer transition duration-200"
                                             @click="showTable = false;"
                                         >
                                             CLOSE (X)
@@ -274,12 +289,8 @@
                 <!-- Footer Section Component  -->
                 <div id="contentFooterContainer" x-ref="contentFooterContainer" class="mt-auto"></div>
 
-                <!-- Scroll Up Button  -->
-                <div class="fixed bottom-7 right-7 p-2.5 bg-primary-blue-text/30 cursor-pointer" @click="document.getElementById('screenTop').scrollTo({ top: 0, behavior: 'smooth' })">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="#f5f5f5" class="size-5">
-                        <path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 1 1-1.06 1.06l-6.22-6.22V21a.75.75 0 0 1-1.5 0V4.81l-6.22 6.22a.75.75 0 1 1-1.06-1.06l7.5-7.5Z" clip-rule="evenodd" />
-                    </svg>
-                </div>
+                <!-- Scroll Up Button Component  -->
+                <div id="scrollUpButton" x-ref="scrollUpButton"></div>
             </div>
 
         </section>

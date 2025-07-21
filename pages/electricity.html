@@ -28,20 +28,20 @@
                 <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
 
                 <!-- Main Content Section -->
-                <div class="mt-10 w-full flex flex-col px-6 py-6 gap-12 text-primary-black">
+                <div class="mt-10 mb-5 w-full flex flex-col p-6 gap-12 text-primary-black">
 
                     <!-- First Row -->
                     <div class="flex flex-col gap-12 w-full" x-data="{
                         showTable: false,
                     }">
                         
-                        <div class="flex-1 relative px-4 pt-15 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
-                            <div class="absolute flex items-center justify-center gap-2 -top-5 px-6 py-4.5 text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
+                        <div class="flex-1 relative pt-15 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
+                            <div class="absolute flex items-center justify-center gap-2 -top-5 mx-4 px-6 py-4.5 text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
                                 <span class="text-md font-medium">Electricity Transactions</span>
                             </div>
 
-                            <div class="w-full mb-3 flex">
-                                <form class="w-full gap-5 grid grid-cols-1 md:grid-cols-3 justify-between" @submit.prevent="showTable = true" x-data="{
+                            <div class="w-full px-4 mb-3 flex">
+                                <form class="w-full pl-4 gap-5 grid grid-cols-1 md:grid-cols-3 justify-between" @submit.prevent="showTable = true" x-data="{
                                     getDate() {
                                         const now = new Date();
                                         const year = now.getFullYear();
@@ -58,10 +58,28 @@
                                         transactionstatus: '',
                                         merchantName: '',
                                         providerselect: '',
-                                    }
+                                    },
+                                    merchantOptions: [
+                                        { name: 'Wema Bank - 09137819540' },
+                                        { name: 'Sterling Bank - 09137819540' }
+                                    ],
+                                    showMerchantOptions: false,
+                                    get filteredMerchantOptions() {
+                                        if (!this.formData.merchantName) return [];
+                                        return this.merchantOptions.filter(opt =>
+                                            opt.name.toLowerCase().includes(this.formData.merchantName.toLowerCase())
+                                        );
+                                    },
+                                    escapeRegExp(string) {
+                                        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                                    },
+                                    highlightMatch(text) {
+                                        const regex = new RegExp(`(${this.escapeRegExp(this.formData.merchantName)})`, 'gi');
+                                        return text.replace(regex, `<span class='font-bold'>$1</span>`);
+                                    },
                                 }" x-init="
-                                    formData.startDate = `${getDate()}T00:00`;
-                                    formData.endDate = `${getDate()}T23:59`
+                                    formData.startDate = `${getDate()}T00:00:00`;
+                                    formData.endDate = `${getDate()}T23:59:00`
                                 ">
                                     <div>
                                         <input
@@ -70,7 +88,7 @@
                                             placeholder="Customer-No / Meter No" 
                                             name="meterNo" 
                                             id="meterNo"
-                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-sm transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
                                         >
                                     </div>
                                     <div>
@@ -78,8 +96,9 @@
                                             x-model="formData.startDate"
                                             type="datetime-local" 
                                             name="startDate" 
-                                            id="startDate" 
-                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300 text-primary-input-gray-text"
+                                            id="startDate"
+                                            step="1" 
+                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-input-gray-text"
                                         >
                                         <label for="startDate" class="text-tiny text-primary-header-gray-bold">(Start Date)</label>
                                     </div>
@@ -88,8 +107,9 @@
                                             x-model="formData.endDate" 
                                             type="datetime-local" 
                                             name="endDate" 
-                                            id="endDate" 
-                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300 text-primary-input-gray-text"
+                                            id="endDate"
+                                            step="1"
+                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-input-gray-text"
                                         >
                                         <label for="endDate" class="text-tiny text-primary-header-gray-bold">(End Date)</label>
                                     </div>
@@ -100,7 +120,7 @@
                                             placeholder="Amount" 
                                             name="amount" 
                                             id="amount"
-                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-sm transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
                                         >
                                     </div>
                                     <div>
@@ -110,11 +130,11 @@
                                             placeholder="Phone No" 
                                             name="phoneNo" 
                                             id="phoneNo"
-                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-sm transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
                                         >
                                     </div>
                                     <div>
-                                        <select name="transactionstatus" id="transactionstatus" x-model="formData.transactionstatus" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-sm transition duration-300">
+                                        <select name="transactionstatus" id="transactionstatus" x-model="formData.transactionstatus" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300">
                                             <option value="">Transaction Status</option>
                                             <option value="successful">Successful</option>
                                             <option value="pending">Pending</option>
@@ -124,24 +144,30 @@
                                     </div>
                                     <div class="relative">
                                         <input
-                                            x-model="formData.merchantName" 
-                                            type="text" 
-                                            placeholder="search with a merchant name" 
-                                            name="merchantName" 
+                                            x-model="formData.merchantName"
+                                            @input="showMerchantOptions = true"
+                                            @click.away="showMerchantOptions = false"
+                                            type="text"
+                                            placeholder="search with a merchant name"
+                                            name="merchantName"
                                             id="merchantName"
-                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-sm transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
                                         >
-                                        <div class="absolute inset-x-0 w-full max-w-[350px] left-0 bg-white z-30 shadow-md text-small text-primary-header-gray-bold font-light">
-                                            <div class="w-full px-2 py-1 border-b border-primary-sidebar-gray-text/30 hover:bg-[#B5BFE1] hover:text-[#3E60DC] cursor-pointer transition duration-100">
-                                                Wema Bank - 09137819540
-                                            </div>
-                                            <div class="w-full px-2 py-1 border-b border-primary-sidebar-gray-text/30 hover:bg-[#B5BFE1] hover:text-[#3E60DC] cursor-pointer transition duration-100">
-                                                Wema Bank - 09137819540
-                                            </div>
+                                        
+                                        <div x-show="showMerchantOptions && filteredMerchantOptions.length > 0"
+                                            class="absolute inset-x-0 w-full max-w-[350px] left-0 bg-white z-30 shadow-md text-small text-primary-header-gray-bold font-light"
+                                            x-transition.origin.top>                                
+                                            <template x-for="option in filteredMerchantOptions" :key="option.name">
+                                                <div class="w-full px-2 py-1 border-b border-primary-sidebar-gray-text/30 hover:bg-[#B5BFE1] hover:text-[#3E60DC] cursor-pointer transition duration-100"
+                                                    @click="formData.merchantName = option.name; showMerchantOptions = false">
+                                                    <p x-html="highlightMatch(option.name)"></p>
+                                                </div>
+                                            </template>
                                         </div>
                                     </div>
+
                                     <div>
-                                        <select name="providerselect" id="providerselect" x-model="formData.providerselect" class="w-full font-medium text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue outline-none px-3 py-2 text-sm transition duration-300">
+                                        <select name="providerselect" id="providerselect" x-model="formData.providerselect" class="w-full font-medium text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue outline-none px-3 py-2 text-small transition duration-300">
                                             <option value="">Choose Disco</option>
                                             <option value="ikeja_prepaid">Ikeja Prepaid</option>
                                             <option value="ikeja_postpaid">Ikeja Postpaid</option>
@@ -278,20 +304,20 @@
 
                                 <!-- Table Summary Header  -->
                                 <div class="w-full px-6 mt-6 gap-3 sm:gap-0 flex flex-col sm:flex-row items-center justify-between" x-data="{
-                                totalFaceValue: '',
-                                totalNetValue: '',
-                                totalDiscountValue: '',
+                                totalFaceValue: '0.00',
+                                totalNetValue: '0.00',
+                                totalDiscountValue: '0.00',
                                 }">
                                     <div class="w-full sm:w-fit flex-1 text-left">
-                                        <h1 class="text-lg font-semibold text-primary-header-gray-bold" x-text="totalFaceValue || '₦0.00'"></h1>
+                                        <h1 class="text-lg font-semibold text-primary-filtered-options">₦<span x-text="totalFaceValue"></span></h1>
                                         <p class="text-small text-primary-footer-gray-text font-medium">Total Face Value</p>
                                     </div>
                                     <div class="w-full sm:w-fit flex-1 text-left">
-                                        <h1 class="text-lg font-semibold text-primary-header-gray-bold" x-text="totalNetValue || '₦0.00'"></h1>
+                                        <h1 class="text-lg font-semibold text-primary-filtered-options">₦<span x-text="totalNetValue"></span></h1>
                                         <p class="text-small text-primary-footer-gray-text font-medium">Total Net Value</p>
                                     </div>
                                     <div class="w-full sm:w-fit flex-1 text-left">
-                                        <h1 class="text-lg font-semibold text-primary-header-gray-bold" x-text="totalDiscountValue || '₦0.00'"></h1>
+                                        <h1 class="text-lg font-semibold text-primary-filtered-options">₦<span x-text="totalDiscountValue"></span></h1>
                                         <p class="text-small text-primary-footer-gray-text font-medium">Total Discount</p>
                                     </div>
                                 </div>

@@ -8,7 +8,7 @@ export const menu = (active) => {
     currentPageDetail: {name: 'Home', link: './dashboard.html'},
     menuList: [
           {name: 'Dashboard', icon: icons.dashboard, dropDown: [], link: './dashboard.html', headerName: 'Home'},
-          {menuHeader: 'Notification', name: 'Data Warehouse', icon: icons.dataWarehouse, dropDown: [], link: './dataWarehouse.html', headerName: 'Date Warehouse', alert: '0'},
+          {menuHeader: 'Notifications', name: 'Data Warehouse', icon: icons.dataWarehouse, dropDown: [], link: './dataWarehouse.html', headerName: 'Date Warehouse', alert: '0'},
           {menuHeader: 'Reports', name: 'Switching Controls', icon: icons.switchingControls,
             dropDown: [
                 {name: 'Switching Report', icon: icons.subMenu, headerName: 'Airtime Switching Report', link: './switchingReport.html'},

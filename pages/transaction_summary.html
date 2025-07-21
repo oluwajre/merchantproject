@@ -31,220 +31,209 @@
                 <div class="mt-10 w-full flex flex-col px-6 py-6 gap-12 text-primary-black">
 
                     <!-- First Row -->
-                    <div class="flex flex-col gap-12 w-full" x-data="{
-                        showTable: true,
-                    }">
+                    <div class="flex flex-col gap-12 w-full">
                         
-                        <div class="flex-1 relative px-4 pt-15 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
-                            <div class="absolute flex items-center justify-center gap-2 -top-4 p-4 align-middle text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
+                        <div class="flex-1 relative pt-15 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
+                            <div class="absolute flex items-center justify-center gap-2 -top-5 mx-4 px-6 py-4.5 align-middle text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
                                 <span class="text-md font-medium">Query Transaction Summary</span>
                             </div>
 
-                            <div class="w-full mb-3 flex">
-                                <form class="w-full gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between" @submit.prevent="showTable = true" x-data="{
-                                    formInput: [
-                                        {
-                                            type: 'datetime-local',
-                                            placeholder: 'start date',
-                                            name: 'startDate',
-                                            value: '2025-06-18T00:00',
-                                            label: '(Start Date)',
-                                        },
-                                        {
-                                            type: 'datetime-local',
-                                            placeholder: 'end date',
-                                            name: 'endDate',
-                                            value: '2025-06-18T00:00',
-                                            label: '(End Date)',
-                                        },
-                                        {
-                                            type: 'text',
-                                            placeholder: 'Search with merchant name or phone number',
-                                            name: 'phoneNo',
-                                            value: '',
-                                            label: '',
-                                        },
-                                        {
-                                            type: 'select',
-                                            name: 'productType',
-                                            options: [
-                                                {name: '--Select a Product Type', value: ''},
-                                                {name: 'Cable TV', value: 'successful'},
-                                                {name: 'VTU', value: 'successful'},
-                                                {name: 'PINS', value: 'successful'},
-                                                {name: 'SMS', value: 'unsuccessful'},
-                                                {name: 'Electricity', value: 'unsuccessful'},
-                                                {name: 'Bettings', value: 'unsuccessful'},
-                                                {name: 'ANQ Service', value: 'unsuccessful'},
-                                                {name: 'Voice OTP', value: 'unsuccessful'},
-                                            ],
-                                            value: '',
-                                            label: '',
-                                        },
-                                        {
-                                            type: 'select',
-                                            name: 'transactionstatus',
-                                            options: [
-                                                {name: 'Transaction Status', value: ''},
-                                                {name: 'Successful & Processing', value: 'successful'},
-                                                {name: 'Successful, Processing & Pending', value: 'successful'},
-                                                {name: 'Successful, Processing, Requery Decline & Transaction Decline', value: 'successful'},
-                                                {name: 'Successful, Requery Decline & Transaction Decline', value: 'successful'},
-                                                {name: 'Successful & Reversal', value: 'successful'},
-                                                {name: 'Reversal', value: 'successful'},
-                                                {name: 'SReversal', value: 'successful'},
-                                                {name: 'Pending', value: 'successful'},
-                                                {name: 'Provider Side Platform Error', value: 'successful'},
-                                                {name: 'Limit on Multiple Recharges within 30 seconds', value: 'successful'},
-                                                {name: 'Requery Declined', value: 'successful'},
-                                                {name: 'Reversed', value: 'successful'},
-                                                {name: 'Successful', value: 'successful'},
-                                                {name: 'Processing', value: 'successful'},
-                                                {name: 'Unsuccessful', value: 'unsuccessful'},
-                                            ],
-                                            value: '',
-                                            label: '',
-                                        },
-                                        {
-                                            type: 'select',
-                                            name: 'customerType',
-                                            options: [
-                                                {name: 'Customer Type', value: ''},
-                                                {name: 'Postpaid', value: 'successful'},
-                                                {name: 'Prepaid', value: 'successful'},
-                                                {name: '931', value: 'successful'},
-                                                {name: 'Mobile', value: 'unsuccessful'},
-                                            ],
-                                            value: '',
-                                            label: '',
-                                        },
-                                        {
-                                            type: 'select',
-                                            name: 'groupBy',
-                                            options: [
-                                                {name: '--Group By--', value: ''},
-                                                {name: 'Date', value: 'successful'},
-                                                {name: 'Merchant', value: 'successful'},
-                                                {name: 'Product', value: 'successful'},
-                                                {name: 'Providers', value: 'unsuccessful'},
-                                                {name: 'Channel', value: 'unsuccessful'},
-                                                {name: 'transaction Status', value: 'unsuccessful'},
-                                            ],
-                                            value: '',
-                                            label: '',
-                                        },
-                                        {
-                                            type: 'select',
-                                            name: 'transactionChannel',
-                                            options: [
-                                                {name: '--Transaction Channel--', value: ''},
-                                                {name: 'API', value: 'successful'},
-                                                {name: 'WEB', value: 'successful'},
-                                            ],
-                                            value: '',
-                                            label: '',
-                                        },
-                                        {
-                                            type: 'button',
-                                            name: 'search',
-                                            label: '',
-                                        }
+                            <div class="w-full mb-3 px-4 flex">
+                                <form class="w-full pl-4 gap-5 grid grid-cols-1 md:grid-cols-3 justify-between" @submit.prevent x-data="{
+                                    getDate() {
+                                        const now = new Date();
+                                        const year = now.getFullYear();
+                                        const month = String(now.getMonth() + 1).padStart(2, '0');
+                                        const day = String(now.getDate()).padStart(2, '0');
+                                        return `${year}-${month}-${day}`;
+                                    },
+                                    formData: {
+                                        startDate: '',
+                                        endDate: '',
+                                        merchantName: '',
+                                        productType: '',
+                                        transactionstatus: '',
+                                        customerType: '',
+                                        groupBy: '',
+                                        channel: '',
+                                    },
+                                    merchantOptions: [
+                                        { name: 'Wema Bank - 09137819540' },
+                                        { name: 'Sterling Bank - 09137819540' }
                                     ],
-                                }">
-                                    <template x-for="input in formInput" x-cloak>
-                                        <div>
-                                            <template x-if="input.type === 'select'">
-                                                <select :name="input.name" :id="input.name" x-model="input.value" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-sm transition duration-300">
-                                                    <template x-for="option in input.options">
-                                                        <option :value="option.value" x-text="option.name"></option>
-                                                    </template>
-                                                </select>
+                                    showMerchantOptions: false,
+                                    get filteredMerchantOptions() {
+                                        if (!this.formData.merchantName) return [];
+                                        return this.merchantOptions.filter(opt =>
+                                            opt.name.toLowerCase().includes(this.formData.merchantName.toLowerCase())
+                                        );
+                                    },
+                                    escapeRegExp(string) {
+                                        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                                    },
+                                    highlightMatch(text) {
+                                        const regex = new RegExp(`(${this.escapeRegExp(this.formData.merchantName)})`, 'gi');
+                                        return text.replace(regex, `<span class='font-bold'>$1</span>`);
+                                    },
+                                }" x-init="
+                                    formData.startDate = `${getDate()}T00:00:00`;
+                                    formData.endDate = `${getDate()}T23:59:00`
+                                ">
+                                    <div>
+                                        <input
+                                            x-model="formData.startDate"
+                                            type="datetime-local" 
+                                            name="startDate" 
+                                            id="startDate"
+                                            step="1" 
+                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-input-gray-text"
+                                        >
+                                        <label for="startDate" class="text-tiny text-primary-header-gray-bold">(Start Date)</label>
+                                    </div>
+                                    <div>
+                                        <input
+                                            x-model="formData.endDate" 
+                                            type="datetime-local" 
+                                            name="endDate" 
+                                            id="endDate"
+                                            step="1"
+                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-input-gray-text"
+                                        >
+                                        <label for="endDate" class="text-tiny text-primary-header-gray-bold">(End Date)</label>
+                                    </div>
+                                    <div class="relative">
+                                        <input
+                                            x-model="formData.merchantName"
+                                            @input="showMerchantOptions = true"
+                                            @click.away="showMerchantOptions = false"
+                                            type="text"
+                                            placeholder="search with merchant name or phone number"
+                                            name="merchantName"
+                                            id="merchantName"
+                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                        >
+                                        
+                                        <div x-show="showMerchantOptions && filteredMerchantOptions.length > 0"
+                                            class="absolute inset-x-0 w-full max-w-[350px] left-0 bg-white z-30 shadow-md text-small text-primary-header-gray-bold font-light"
+                                            x-transition.origin.top>                                
+                                            <template x-for="option in filteredMerchantOptions" :key="option.name">
+                                                <div class="w-full px-2 py-1 border-b border-primary-sidebar-gray-text/30 hover:bg-[#B5BFE1] hover:text-[#3E60DC] cursor-pointer transition duration-100"
+                                                    @click="formData.merchantName = option.name; showMerchantOptions = false">
+                                                    <p x-html="highlightMatch(option.name)"></p>
+                                                </div>
                                             </template>
-
-                                            <template x-if="['text', 'number', 'datetime-local'].includes(input.type)">
-                                                <input
-                                                    x-model="input.value"
-                                                    :type="input.type" 
-                                                    :placeholder="input.placeholder"
-                                                    :name="input.name"
-                                                    :id="input.name"
-                                                    :class="{
-                                                        'text-primary-input-black-text': input.type !== 'datetime-local', 
-                                                        'text-primary-input-gray-text': input.type === 'datetime-local'
-                                                    }"
-                                                    class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300"
-                                                >
-                                            </template>
-
-                                            <template x-if="input.type === 'button'">
-                                                <button type="submit" x-text="input.name" class="w-full uppercase font-semibold text-xs text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300"></button>
-                                            </template>
-
-                                            <template x-if="input.label">
-                                                <label :for="input.name" x-text="input.label" class="text-xs text-primary-header-gray-bold" x-cloak></label>
-                                            </template>
-                                            
                                         </div>
-                                    </template>             
-                                </form>  
-                            </div>  
+                                    </div>
+                                    <div>
+                                        <select name="productType" id="productType" x-model="formData.productType" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300">
+                                            <option value="">--Select A Product Type--</option>
+                                            <option value="cable_tv">Cable TV</option>
+                                            <option value="vtu">VTU</option>
+                                            <option value="pins">PINS</option>
+                                            <option value="sms">SMS</option>
+                                            <option value="electricity">Electricity</option>
+                                            <option value="betting">Betting</option>
+                                            <option value="anq_service">ANQ Service</option>
+                                            <option value="voice_otp">Voice OTP</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <select name="blank1" id="blank1" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300"> 
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <select name="blank2" id="blank2" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300"> 
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <select name="transactionstatus" id="transactionstatus" x-model="formData.transactionstatus" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300">
+                                            <option value="">Transaction Status</option>
+                                            <option value="successful">Successful</option>
+                                            <option value="failed">Failed</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <select name="customerType" id="customerType" x-model="formData.customerType" class="w-full font-medium text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue outline-none px-3 py-2 text-small transition duration-300">
+                                            <option value="">Customer Type</option>
+                                            <option value="postpaid">Postpaid</option>
+                                            <option value="prepaid">Prepaid</option>
+                                            <option value="931">931</option>
+                                            <option value="mobile">Mobile</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <select name="groupBy" id="groupBy" x-model="formData.groupBy" class="w-full font-medium text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue outline-none px-3 py-2 text-small transition duration-300">
+                                            <option value="">--Group By--</option>
+                                            <option value="date">Date</option>
+                                            <option value="merchant">Merchant</option>
+                                            <option value="product">Product</option>
+                                            <option value="providers">Providers</option>
+                                            <option value="channel">Channel</option>
+                                            <option value="transaction_status">transaction status</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <select name="channel" id="channel" x-model="formData.channel" class="w-full font-medium text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue outline-none px-3 py-2 text-small transition duration-300">
+                                            <option value="">--Transaction Channel--</option>
+                                             <option value="api">API</option>
+                                            <option value="web">WEB</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">search</button>
+                                    </div>
+                                </form>
+                            </div>   
                         </div>
 
-                        <template x-if="showTable">
-                            
-                            <div class="flex-1 relative bg-white rounded-sm shrink-0 w-full shadow-xl">
+                        <div class="flex-1 relative bg-white rounded-sm shrink-0 w-full shadow-xl">
 
-                                <div class="absolute flex items-center justify-center gap-2 -top-4 p-4 mx-4 align-middle text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
-                                    <span class="text-md font-medium">Auto Generated Monthly Reports</span>
-                                </div>
+                            <div class="absolute flex items-center justify-center gap-2 -top-5 px-6 py-4.5 mx-4 align-middle text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
+                                <span class="text-md font-medium">Auto Generated Monthly Reports</span>
+                            </div>
                                 
 
-                                <!-- Table Summary Header  -->
-                                <div class="w-full px-6 mt-12 mb-6 gap-3 sm:gap-0 flex flex-col sm:flex-row items-center justify-between">
-                                    <div class="w-full sm:w-fit flex-1 text-left">
-                                        <h1 class="text-lg font-semibold text-primary-header-gray-bold">0</h1>
-                                        <p class="text-sm text-primary-footer-gray-text font-medium">Total Reports</p>
-                                    </div>
+                            <!-- Table Summary Header  -->
+                            <div class="w-full px-6 mt-12 mb-6 gap-3 sm:gap-0 flex flex-col sm:flex-row items-center justify-between">
+                                <div class="w-full sm:w-fit flex-1 text-left">
+                                    <h1 class="text-lg font-semibold text-primary-header-gray-bold">0</h1>
+                                    <p class="text-sm text-primary-footer-gray-text font-medium">Total Reports</p>
                                 </div>
-
-                                <!-- Table Component  -->
-                                <!-- <div id="tableComponent" x-ref="tableComponent"></div> -->
-
-                                <!-- OTHER STYLE FORMAT  -->
-                                 <div class="mb-8 px-4 overflow-x-auto">
-                                    <div class="inline-block min-w-fit">
-                                    <table class="w-full table-auto border-collapse border border-primary-sidebar-gray-text/70 text-small">
-                                        <thead class="text-black font-medium align-bottom">
-                                            <tr>
-                                                <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Day/Month</td>
-                                                <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Type</td>
-                                                <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Date</td>
-                                                <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Group By</td>
-                                                <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Status</td>
-                                                <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Download</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="text-primary-black font-medium align-top">
-                                            <tr class="hover:bg-gray-50">
-                                                <td colspan="6" class="border border-primary-sidebar-gray-text/70 px-2 py-2">There are no data.</td>
-                                            </tr>
-                                        </tbody>
-                                        <tfoot class="text-black font-medium align-bottom">
-                                            <tr>
-                                                <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Day/Month</td>
-                                                <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Type</td>
-                                                <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Date</td>
-                                                <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Group By</td>
-                                                <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Status</td>
-                                                <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Download</td>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                    </div>
-                                 </div>
                             </div>
 
-                        </template>    
+                            <!-- OTHER STYLE FORMAT  -->
+                                <div class="mb-8 px-6 overflow-x-auto">
+                                <div class="inline-block min-w-fit">
+                                <table class="w-full table-auto border-collapse border border-primary-sidebar-gray-text/70 text-small">
+                                    <thead class="text-black font-medium align-bottom">
+                                        <tr>
+                                            <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Day/Month</td>
+                                            <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Type</td>
+                                            <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Date</td>
+                                            <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Group By</td>
+                                            <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Status</td>
+                                            <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Download</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-primary-black font-medium align-top">
+                                        <tr class="hover:bg-gray-50">
+                                            <td colspan="6" class="border border-primary-sidebar-gray-text/70 px-2 py-2">There are no data.</td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot class="text-black font-medium align-bottom">
+                                        <tr>
+                                            <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Day/Month</td>
+                                            <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Type</td>
+                                            <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Date</td>
+                                            <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Group By</td>
+                                            <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Status</td>
+                                            <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Download</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                </div>
+                                </div>
+                        </div>
                     </div>
                     
                 </div>
@@ -252,12 +241,8 @@
                 <!-- Footer Section Component  -->
                 <div id="contentFooterContainer" x-ref="contentFooterContainer" class="mt-auto"></div>
 
-                <!-- Scroll Up Button  -->
-                <div class="fixed bottom-7 right-7 p-2.5 bg-primary-blue-text/30 cursor-pointer" @click="document.getElementById('screenTop').scrollTo({ top: 0, behavior: 'smooth' })">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="#f5f5f5" class="size-5">
-                        <path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 1 1-1.06 1.06l-6.22-6.22V21a.75.75 0 0 1-1.5 0V4.81l-6.22 6.22a.75.75 0 1 1-1.06-1.06l7.5-7.5Z" clip-rule="evenodd" />
-                    </svg>
-                </div>
+                <!-- Scroll Up Button Component  -->
+                <div id="scrollUpButton" x-ref="scrollUpButton"></div>
             </div>
 
         </section>

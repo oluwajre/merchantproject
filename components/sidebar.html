@@ -5,7 +5,7 @@
     class="z-20 h-screen overflow-y-hidden fixed right-0 lg:block lg:relative lg:w-fit lg:min-w-[64px] max-w-[250px] bg-primary-black backdrop-blur-xs md:backdrop-blur-none text-primary-sidebar-gray-text pb-2 transition-all duration-500 ease-in-out font-roboto"
     x-cloak
 >
-    <div class="z-30 sticky top-0 flex items-center justify-between mb-3 px-0 lg:pl-8 lg:pr-6 h-16 bg-inherit">
+    <div class="z-30 sticky top-0 flex items-center justify-between mb-3 px-0 lg:px-6 h-[67px] bg-inherit">
         <img x-show="expandSideMenu" x-transition x-cloak src="../assets/images/creditswitchlogo.png" alt="Creditswitch Logo" class="hidden lg:inline-flex h-8 object-contain" />
         <button class="cursor-pointer text-inherit hover:text-white mt-3" @click="toggleSideBar()">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="hidden lg:inline-block size-8">
@@ -25,7 +25,7 @@
                     <p 
                         x-show="expandSideMenu && item.menuHeader" 
                         x-text="item.menuHeader"
-                        class="uppercase text-primary-sidebar-gray-text px-8 mt-7 mb-2 font-medium text-tiny"
+                        class="uppercase text-primary-sidebar-gray-text px-7 mt-7 mb-3 font-medium text-tiny"
                         x-transition
                         x-cloak
                     ></p>
@@ -36,7 +36,7 @@
                             'group': !isActive(item) && openDropdown !== index,
                             'text-white bg-primary-sidebar-gray-background/8': openDropdown === index && !isActive(item)
                         }"
-                        class="relative pl-8 pr-6 py-2.5 flex items-center cursor-pointer gap-2 w-full text-sm max-h-[44px]"
+                        class="relative pl-7 pr-6 py-2.5 flex items-center cursor-pointer gap-2 w-full text-sm max-h-[44px]"
                         @click="toggleDropdown(item, index)"
                     >
                         <span 

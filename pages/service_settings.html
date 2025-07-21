@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Creditswitch Merchant Portal | Epin Page</title>
+        <title>Creditswitch Merchant Portal | Change Batch-Ids, Set Commissions</title>
         <link rel="stylesheet" href="../styles/output.css" />
         <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
@@ -48,11 +48,11 @@
                     }">
                         
                         <div class="flex-1 relative px-4 pt-15 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full space-y-6">
-                            <div class="absolute flex items-center justify-center gap-1 -top-5 px-6 py-4.5 text-center align-middle rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
+                            <div class="absolute flex items-center justify-center gap-2 -top-5 px-6 py-4.5 text-center align-middle rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
                                 <span class="text-md font-medium align-middle">Change Batch ID / Provider</span>
                             </div>
 
-                            <div class="w-full flex gap-4 items-stretch justify-start text-small text-primary-header-gray-bold border-b border-primary-sidebar-gray-text/70">
+                            <div class="w-full flex gap-4 items-stretch justify-start text-[13px] text-primary-filtered-options border-b border-primary-sidebar-gray-text/70">
                                 <template x-for="(tab, index) in tabs" :key="tab.name">
                                     <div 
                                         @click="activeTab = tab.value" 
@@ -64,7 +64,7 @@
                                 <div @click="window.location.href = 'https://www.creditswitch.com'" class="border-b border-transparent hover:border-primary-blue-text pb-3 cursor-pointer transition duration-200">View Log of Recent Switching</div>
                             </div>
 
-                            <div class="w-full mb-3 flex">
+                            <div class="w-full mb-7 flex">
                                 <template x-if="activeTab === 'airtime' || activeTab === 'data' || activeTab === 'sms' || activeTab === 'toll'">
                                     <form class="w-full gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between" x-data="{
                                         search: '',
@@ -117,7 +117,7 @@
                                                         type="text"
                                                         x-model="search"
                                                         placeholder="Search Merchant"
-                                                        class="w-full border border-primary-sidebar-gray-text placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm"
+                                                        class="w-full border border-primary-sidebar-gray-text placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small"
                                                     />
                                                 </div>
 
@@ -131,14 +131,14 @@
                                                 <div class="max-h-36 overflow-y-auto">
                                                     <div 
                                                         @click="open = !open"
-                                                        class="flex justify-between px-4 py-2 cursor-pointer text-sm text-primary-input-gray-text font-medium hover:bg-gray-100"
+                                                        class="flex justify-between px-4 py-2 cursor-pointer text-[12.5px] text-primary-footer-gray-text font-medium hover:bg-gray-100"
                                                     >
                                                         Select Merchant(s)
                                                     </div>
                                                     <template x-for="option in filteredOptions" :key="option">
                                                         <div 
                                                             @click="toggleOption(option)"
-                                                            class="flex justify-between px-4 py-2 cursor-pointer text-sm text-primary-header-gray-bold font-medium"
+                                                            class="flex justify-between px-4 py-2 cursor-pointer text-[12.5px] text-[#212529]/70 font-medium"
                                                             :class="selected.includes(option) ? 'bg-gray-100' : 'hover:bg-gray-100'"
                                                         >
                                                             <span x-text="option" class="flex-1"></span>
@@ -151,7 +151,7 @@
                                         </div>
 
                                         <div>
-                                            <select name="network" id="network" x-model="network" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-sm transition duration-300" required>
+                                            <select name="network" id="network" x-model="network" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300" required>
                                                 <option value="">SELECT NETWORK</option>
                                                 <option value="airtel">Airtel</option>
                                                 <option value="9mobile">9MOBILE</option>
@@ -180,7 +180,7 @@
                                         </template>
 
                                         <div>
-                                            <button type="submit" class="w-full uppercase font-semibold text-xs text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">Go</button>
+                                            <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">Go</button>
                                         </div>
                                     </form>
                                 </template>
