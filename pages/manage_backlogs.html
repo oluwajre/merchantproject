@@ -29,26 +29,37 @@
                 <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
 
                 <!-- Main Content Section -->
-                <div class="w-full flex flex-col px-6 py-6 gap-12 text-primary-black">
+                <div class="w-full flex flex-col pt-6 pb-10 gap-12 text-primary-black">
                     
                     <div class="flex flex-col gap-15 w-full">
                         
-                        <div class="mt-10 flex-1 relative px-4 pt-15 pb-5 bg-white shadow-md rounded-xs shrink-0 w-full">
-                            <div class="absolute flex items-center justify-center gap-2 -top-5 px-6 py-4.5 align-middle text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
+                        <div class="mt-9 flex-1 relative pt-15 pb-5 bg-white shadow-md rounded-xs shrink-0 w-full">
+                            <div class="absolute flex items-center justify-center gap-2 -top-5 mx-4 px-6 py-4.5 align-middle text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
                                 <span class="text-md font-semibold">Manage Wema Back log</span>
                             </div>
 
-                            <div class="w-full mb-3 flex flex-col gap-1" x-data="{ 
+                            <div class="w-full pl-8.5 pr-4 mb-5 flex flex-col gap-2">
+                                <div class="w-full flex flex-col md:flex-row justify-start items-start font-normal text-primary-danger text-[10.5px] gap-1">
+                                    <p class="align-middle">Ensure your CSV Upload File contain the Colunms in the picture below.</p>
+                                    <img src="" alt=" ">
+                                </div>
+                                <form class="w-full gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-start" @submit.prevent="handleUpload" x-data="{
+                                    getDate() {
+                                        const now = new Date();
+                                        const year = now.getFullYear();
+                                        const month = String(now.getMonth() + 1).padStart(2, '0');
+                                        const day = String(now.getDate()).padStart(2, '0');
+                                        return `${year}-${month}-${day}`;
+                                    }, 
                                     fileObject: null, 
                                     startDate: '',
                                     endDate: '',
-                                }">
-                                <div class="w-full flex justify-start items-center font-normal text-primary-danger text-[11px] space-y-2">
-                                    <p class="align-middle">Ensure your CSV Upload File contain the Colunms in the picture below.</p>
-                                    <img src="" alt="image" class="text-white">
-                                </div>
-                                <form class="w-full gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-start" @submit.prevent="handleUpload">
-                                    <div class="min-w-[270px] flex-1" x-data="{ fileName: ''}">
+
+                                }" x-init="
+                                    startDate = `${getDate()}T00:00:00`;
+                                    endDate = `${getDate()}T23:59:00`
+                                ">
+                                    <div x-data="{ fileName: ''}">
                                         <label for="upload" class="inline-block cursor-pointer bg-gray-100 hover:bg-gray-200 border border-black rounded-xs text-black text-small font-normal px-2 py-1">
                                             Choose File
                                         </label>
@@ -66,32 +77,32 @@
                                         <span x-text="fileName || 'No file chosen'" class="text-small text-primary-header-gray-bold"></span>
                                     </div>
 
-                                    <div class="min-w-[270px] flex-1">
+                                    <div>
                                         <input
                                             x-model="startDate"
                                             type="datetime-local" 
                                             name="startDate"
                                             id="startDate"
                                             required
-                                            class="w-full border border-primary-sidebar-gray-text text-primary-black outline-none px-3 py-2 text-sm transition duration-300"
+                                            class="w-full border border-primary-sidebar-gray-text text-primary-input-black-text outline-none px-3 py-2 text-small transition duration-300"
                                         >
-                                        <label for="startDate" class="block text-tiny text-primary-header-gray-bold mt-1">(Start Date)</label>
+                                        <label for="startDate" class="block text-[10px] text-primary-header-gray-bold mt-1">(Start Date)</label>
                                     </div>
 
-                                    <div class="min-w-[270px] flex-1">
+                                    <div>
                                         <input
                                             x-model="endDate"
                                             type="datetime-local" 
                                             name="endDate"
                                             id="endDate"
                                             required
-                                            class="w-full border border-primary-sidebar-gray-text text-primary-black outline-none px-3 py-2 text-sm transition duration-300"
+                                            class="w-full border border-primary-sidebar-gray-text text-primary-input-black-text outline-none px-3 py-2 text-small transition duration-300"
                                         >
-                                        <label for="endDate" class="block text-tiny text-primary-header-gray-bold mt-1">(Start Date)</label>
+                                        <label for="endDate" class="block text-[10px] text-primary-header-gray-bold mt-1">(Start Date)</label>
                                     </div>
 
-                                    <div class="min-w-[270px] flex-1">
-                                        <button type="submit" class="w-full uppercase font-semibold text-xs text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark p-3 rounded-xs cursor-pointer transition duration-300">Upload Report</button>
+                                    <div>
+                                        <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark p-3 rounded-xs cursor-pointer transition duration-300">Upload Report</button>
                                     </div>
                                 </form>  
                             </div>  
@@ -103,6 +114,9 @@
 
                 <!-- Footer Section Component  -->
                 <div id="contentFooterContainer" x-ref="contentFooterContainer" class="mt-auto"></div>
+
+                <!-- Scroll Up Button Component  -->
+                <div id="scrollUpButton" x-ref="scrollUpButton"></div>
             </div>
 
         </section>

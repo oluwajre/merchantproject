@@ -149,8 +149,8 @@
                                                     <td x-text="data['First Name']" class="px-2 py-3 font-light"></td>
                                                     <td x-text="data['Last Name']" class="px-2 py-3 font-light"></td>
                                                     <td class="px-2 py-3 font-light"><a :href="'mailto:' + data['Email']" x-text="data['Email']" class="cursor-pointer text-primary-slateBlue hover:text-primary-royalBlue"></a></td>
-                                                    <td class="px-2 py-3">
-                                                        <select id="role" name="role" class="border border-primary-sidebar-gray-text font-normal p-1 max-h-44" x-model="data.role">
+                                                    <td class="px-2 py-3 max-w-[50px]">
+                                                        <select id="role" name="role" class="font-normal px-1 pt-2 pb-3 max-h-44 outline-none uppercase text-[10px] text-[#282a3c] cursor-pointer bg-white" x-model="data.role">
                                                             <option value="">No Role!</option>
                                                             <option value="account">account</option>
                                                             <option value="admin">admin</option>
@@ -211,12 +211,8 @@
                 <!-- Footer Section Component  -->
                 <div id="contentFooterContainer" x-ref="contentFooterContainer" class="mt-auto"></div>
 
-                <!-- Scroll Up Button  -->
-                <div class="fixed bottom-7 right-7 p-2.5 bg-primary-blue-text/30 cursor-pointer" @click="document.getElementById('screenTop').scrollTo({ top: 0, behavior: 'smooth' })">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="#f5f5f5" class="size-5">
-                        <path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 1 1-1.06 1.06l-6.22-6.22V21a.75.75 0 0 1-1.5 0V4.81l-6.22 6.22a.75.75 0 1 1-1.06-1.06l7.5-7.5Z" clip-rule="evenodd" />
-                    </svg>
-                </div>
+                <!-- Scroll Up Button Component  -->
+                <div id="scrollUpButton" x-ref="scrollUpButton"></div>
             </div>
 
         </section>

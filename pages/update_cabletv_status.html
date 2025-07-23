@@ -29,22 +29,22 @@
                 <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
 
                 <!-- Main Content Section -->
-                <div class="w-full flex flex-col px-6 py-6 gap-12 text-primary-black">
+                <div class="w-full flex flex-col px-6 pt-6 pb-10 gap-12 text-primary-black">
                     
                     <div class="flex flex-col gap-15 w-full">
                         
-                        <div class="mt-10 flex-1 relative px-4 pt-13 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
-                            <div class="absolute flex items-center justify-center gap-2 -top-5 px-6 py-4.5 align-middle text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
+                        <div class="mt-9 flex-1 relative pt-14 pb-3 bg-white shrink-0 w-full">
+                            <div class="absolute flex items-center justify-center gap-2 -top-5 mx-4 px-6 py-4.5 align-middle text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
                                 <span class="text-md font-semibold">Update Cabletv Status</span>
                             </div>
 
-                            <div class="w-full mb-3 flex flex-col gap-8" x-data="{ fileObject: null }">
-                                <div class="w-full font-normal text-primary-danger text-[11px] space-y-2">
+                            <div class="w-full px-4 mb-6 flex flex-col gap-8">
+                                <div class="w-full font-normal text-primary-danger text-[11px] space-y-1">
                                     <p>Ensure your CSV Upload File contain the Colunms in the picture below.</p>
                                     <img src="" alt="image" class="text-white">
                                 </div>
-                                <form class="w-full gap-5 flex flex-col" @submit>
-                                    <div class="min-w-[270px] flex-1" x-data="{ fileName: ''}">
+                                <form class="w-full gap-5 flex flex-col" @submit.prevent x-data="{ fileObject: null, fileName: '' }">
+                                    <div>
                                         <label class="block text-md font-medium text-primary-header-gray-bold mb-4">Upload Excel Csv File</label>
 
                                         <label for="upload" class="inline-block cursor-pointer bg-gray-100 hover:bg-gray-200 border border-black rounded-xs text-black text-small font-normal px-2 py-1">
@@ -66,7 +66,7 @@
                                         <span x-text="fileName || 'No file chosen'" class="text-small text-primary-header-gray-bold"></span>
                                     </div>
 
-                                    <div class="flex-1">
+                                    <div>
                                         <button type="submit" class="uppercase text-[10px] text-white bg-primary-slateBlue hover:bg-primary-royalBlue py-3 px-9 rounded-xs cursor-pointer transition duration-300">Update Cabletv Status</button>
                                     </div>
                                 </form>  
@@ -79,6 +79,9 @@
 
                 <!-- Footer Section Component  -->
                 <div id="contentFooterContainer" x-ref="contentFooterContainer" class="mt-auto"></div>
+
+                <!-- Scroll Up Button Component  -->
+                <div id="scrollUpButton" x-ref="scrollUpButton"></div>
             </div>
 
         </section>

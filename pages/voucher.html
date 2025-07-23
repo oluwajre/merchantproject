@@ -28,16 +28,16 @@
                 <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
 
                 <!-- Main Content Section -->
-                <div class="w-full flex flex-col px-6 py-6 gap-12 text-primary-black">
+                <div class="w-full flex flex-col px-6 pt-6 pb-10 gap-12 text-primary-black">
 
                     <!-- First Row -->
-                     <div class="mt-10 flex-1 flex flex-col md:flex-row gap-20 md:gap-5 justify-between">
+                     <div class="mt-9 flex-1 flex flex-col md:flex-row gap-20 md:gap-5 justify-between">
                         <div class="flex-1 relative px-4 pt-15 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
                                 <div class="absolute flex items-center justify-center gap-2 -top-5 px-6 py-4.5 align-middle text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
                                     <span class="text-md font-medium">ACTIVATE PIN BY SERIAL NUMBER</span>
                                 </div>
 
-                                <div class="w-full flex">
+                                <div class="w-full flex mb-7">
                                     <form class="w-full gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-end" @submit.prevent x-data="{
                                         formData: {
                                             serialNumFrom: '',
@@ -45,32 +45,30 @@
                                         },
                                     }">
                                         <div>
-                                            <label for="serialNumFrom" class="text-small text-primary-header-gray-bold mb-2">Serial Number From</label>
+                                            <p class="text-[13px] text-primary-header-gray-bold mb-2">Serial Number From</p>
                                             <input
                                                 x-model="formData.serialNumFrom"
                                                 type="text" 
-                                                placeholder="Any 10 digits number or more"
-                                                name="serialNumFrom"
+                                                placeholder="Any 10 digits number or more" 
+                                                name="serialNumFrom" 
                                                 id="serialNumFrom"
-                                                class="text-primary-input-black-text w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300"
+                                                class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
                                             >
                                         </div>
-
                                         <div>
-                                            <label for="serialNumTo" class="text-small text-primary-header-gray-bold mb-2">Serial Number To</label>
+                                            <p class="text-[13px] text-primary-header-gray-bold mb-2">Serial Number To</p>
                                             <input
                                                 x-model="formData.serialNumTo"
                                                 type="text" 
-                                                placeholder="Any 10 digits number or more"
-                                                name="serialNumTo"
+                                                placeholder="Any 10 digits number or more" 
+                                                name="serialNumTo" 
                                                 id="serialNumTo"
-                                                class="text-primary-input-black-text w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300"
+                                                class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
                                             >
                                         </div>
-
                                         <div>
-                                            <button type="submit" class="w-full uppercase font-semibold text-xs text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">Activate Pin(s)</button>
-                                        </div>         
+                                            <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">Activate Pin(s)</button>
+                                        </div>          
                                     </form>  
                                 </div>  
                         </div>
@@ -80,25 +78,24 @@
                                     <span class="text-md font-medium">DOWNLOAD FILE</span>
                                 </div>
 
-                                <div class="w-full flex">
+                                <div class="w-full flex mb-7">
                                     <form class="w-full gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-end" @submit.prevent x-data="{
                                         formData: {
                                             fileName: '',
                                         },
                                     }">
                                         <div class="md:col-span-2">
-                                            <label for="fileName" class="text-small text-primary-header-gray-bold mb-2">Filename</label>
+                                            <p class="text-[13px] text-primary-header-gray-bold mb-2">Filename</p>
                                             <input
                                                 x-model="formData.fileName"
                                                 type="text" 
-                                                name="fileName"
+                                                name="fileName" 
                                                 id="fileName"
-                                                class="text-primary-input-black-text w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300"
+                                                class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
                                             >
                                         </div>
-
                                         <div>
-                                            <button type="submit" class="w-full uppercase font-semibold text-xs text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">Download Pin(s)</button>
+                                            <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">Download Pin(s)</button>
                                         </div>         
                                     </form>  
                                 </div>  
@@ -107,105 +104,84 @@
 
                      <!-- Second Row  -->
                     <div class="flex-1 flex flex-col gap-12">
-                        <div class="mt-10 flex-1 relative px-4 pt-20 sm:pt-15 pb-3 space-y-5 bg-white shadow-md rounded-xs shrink-0 w-full">
+                        <div class="mt-10 flex-1 relative pt-20 sm:pt-15 pb-3 space-y-5 bg-white shadow-md rounded-xs shrink-0 w-full">
                             <div class="absolute flex items-center justify-center mx-4 gap-2 -top-5 left-0 px-6 py-4.5 align-middle rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
                                 <span class="text-md font-medium">Generate PINs» <span class="text-small font-light">We advise you create Maximum of 500k PINs at once</span></span>
                             </div>
 
-                            <div class="w-full flex">
-                                <form class="w-full gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-end" @submit.prevent x-data="{
-                                    formInput: [
-                                        {
-                                            type: 'select',
-                                            name: 'merchant',
-                                            options: [
-                                                {name: 'Select a Merchant', value: ''},
-                                                {name: 'GTCollections', value: 'gtcollections'},
-                                                {name: 'Wema-402', value: 'wema402'},
-                                                {name: 'Zenith-402', value: 'zenith402'},
-                                                {name: 'Rave Payments', value: 'rave'},
-                                                {name: 'GTPay Gateway', value: 'gtpay'},
-                                            ],
-                                            value: '',
-                                            label: 'Generate PIN for',
-                                        },
-                                        {
-                                            type: 'select',
-                                            name: 'amount',
-                                            options: [
-                                                {name: '100 naira', value: '100'},
-                                                {name: '200 naira', value: '200'},
-                                                {name: '400 naira', value: '400'},
-                                                {name: '500 naira', value: '500'},
-                                                {name: '1000 naira', value: '1000'},
-                                                {name: '2000 naira', value: '2000'},
-                                                {name: '4000 naira', value: '4000'},
-                                            ],
-                                            value: '',
-                                            label: 'Value',
-                                        },
-                                        {
-                                            type: 'text',
-                                            placeholder: 'Any 10 digits number or more',
-                                            name: 'serialNum',
-                                            value: '',
-                                            label: 'Serial Number',
-                                        },
-                                        {
-                                            type: 'text',
-                                            placeholder: 'How many PINs do you want to generate?',
-                                            name: 'quantity',
-                                            value: '',
-                                            label: 'Quantity',
-                                        },
-                                        {
-                                            type: 'button',
-                                            name: 'create pin(s)',
-                                            label: '',
-                                        },
-                                        
-                                    ],
+                            <div class="w-full px-4 mb-3 flex">
+                                <form class="w-full gap-x-5 gap-y-6 grid grid-cols-1 md:grid-cols-3 justify-between items-end" @submit.prevent="showTable = true" x-data="{
+                                    formData: {
+                                        merchantName: '',
+                                        value: '',
+                                        serialNumber: '',
+                                        quantity: '',
+                                    },
                                 }">
-                                    <template x-for="input in formInput" x-cloak>
-                                        <div>
-                                            <template x-if="input.label">
-                                                <label :for="input.name" x-text="input.label" class="text-xs text-primary-header-gray-bold"></label>
-                                            </template>
-
-                                            <template x-if="input.type === 'select'">
-                                                <select :name="input.name" :id="input.name" x-model="input.value" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-sm transition duration-300">
-                                                    <template x-for="option in input.options">
-                                                        <option :value="option.value" x-text="option.name"></option>
-                                                    </template>
-                                                </select>
-                                            </template>
-
-                                            <template x-if="['text', 'number', 'datetime-local'].includes(input.type)">
-                                                <input
-                                                    x-model="input.value"
-                                                    :type="input.type" 
-                                                    :placeholder="input.placeholder"
-                                                    :name="input.name"
-                                                    :id="input.name"
-                                                    :class="{
-                                                        'text-primary-input-black-text': input.type !== 'datetime-local', 
-                                                        'text-primary-input-gray-text': input.type === 'datetime-local'
-                                                    }"
-                                                    class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300"
-                                                >
-                                            </template> 
-                                            
-                                            <template x-if="input.type === 'button'">
-                                                <div>
-                                                    <button type="submit" x-text="input.name" class="w-full uppercase font-semibold text-xs text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300"></button>
-                                                </div>
-                                            </template>
-                                        </div>
-                                    </template>         
-                                </form>  
-                            </div>
+                                    <div>
+                                        <p class="text-[13px] text-primary-header-gray-bold mb-2">Generate PIN for</p>
+                                        <select name="merchantName" id="merchantName" x-model="formData.merchantName" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300">
+                                            <option value="">Select a Merchant</option>
+                                            <option value="linode">CSW</option>
+                                            <option value="45">Everlasting</option>
+                                            <option value="81">ET New</option>
+                                            <option value="98">Golad</option>
+                                            <option value="99">Golad New</option>
+                                            <option value="101">Sonite</option>
+                                            <option value="102">Sonite New</option>
+                                            <option value="103">Golad MTN 100</option>
+                                            <option value="104">Golad MTN 200</option>
+                                            <option value="105">Golad MTN 400</option>
+                                            <option value="106">Golad MTN 500</option>
+                                            <option value="107">Golad MTN 750</option>
+                                            <option value="108">Golad MTN 1000</option>
+                                            <option value="109">Golad MTN 1500</option>
+                                            <option value="110">Primeairtime</option>
+                                            <option value="111">Interswitch</option>
+                                            <option value="112">Capricorn</option>
+                                            <option value="113">PayU</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <p class="text-[13px] text-primary-header-gray-bold mb-2">Value</p>
+                                        <select name="value" id="value" x-model="formData.value" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300">
+                                            <option value="100">100 naira</option>
+                                            <option value="200">200 naira</option>
+                                            <option value="500">500 naira</option>
+                                            <option value="1000">1000 naira</option>
+                                            <option value="2000">2000 naira</option>
+                                            <option value="5000">5000 naira</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <p class="text-[13px] text-primary-header-gray-bold mb-2">Serial Number</p>
+                                        <input
+                                            x-model="formData.serialNumber"
+                                            type="text" 
+                                            placeholder="Any 10 digits number or more" 
+                                            name="serialNumber" 
+                                            id="serialNumber"
+                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                        >
+                                    </div>
+                                    <div>
+                                        <p class="text-[13px] text-primary-header-gray-bold mb-2">Quantity</p>
+                                        <input
+                                            x-model="formData.quantity"
+                                            type="number" 
+                                            placeholder="How many PINs do you want to generate? - Enter 1,000,000 per request" 
+                                            name="quantity" 
+                                            id="quantity"
+                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                        >
+                                    </div>
+                                    <div>
+                                        <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">create pin(s)</button>
+                                    </div> 
+                                </form>
+                            </div> 
                             
-                            <div class="flex-1 relative shrink-0 w-full" x-init="fetch('../components/tableComponent.html')
+                            <div class="flex-1 relative shrink-0 w-full px-4" x-init="fetch('../components/tableComponent.html')
                                 .then(res => res.text())
                                 .then(html => {
                                     $refs.tableComponent.innerHTML = html;
@@ -240,12 +216,8 @@
                 <!-- Footer Section Component  -->
                 <div id="contentFooterContainer" x-ref="contentFooterContainer" class="mt-auto"></div>
 
-                <!-- Scroll Up Button  -->
-                <div class="fixed bottom-7 right-7 p-2.5 bg-primary-blue-text/30 cursor-pointer" @click="document.getElementById('screenTop').scrollTo({ top: 0, behavior: 'smooth' })">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="#f5f5f5" class="size-5">
-                        <path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 1 1-1.06 1.06l-6.22-6.22V21a.75.75 0 0 1-1.5 0V4.81l-6.22 6.22a.75.75 0 1 1-1.06-1.06l7.5-7.5Z" clip-rule="evenodd" />
-                    </svg>
-                </div>
+                <!-- Scroll Up Button Component  -->
+                <div id="scrollUpButton" x-ref="scrollUpButton"></div>
             </div>
 
         </section>

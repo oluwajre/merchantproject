@@ -33,13 +33,13 @@
                     
                     <div class="flex flex-col gap-15 w-full">
                         
-                        <div class="mt-10 flex-1 relative px-4 pt-13 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
-                            <div class="absolute flex items-center justify-center gap-2 -top-5 px-6 py-4.5 align-middle text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
+                        <div class="mt-9 flex-1 relative pt-13 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
+                            <div class="absolute flex items-center justify-center gap-2 -top-5 mx-4 px-6 py-4.5 align-middle text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
                                 <span class="text-md font-semibold">Update ANQ Local</span>
                             </div>
 
-                            <div class="w-full mb-3 flex flex-col gap-8" x-data="{ fileObject: null }">
-                                <div class="w-full font-normal text-primary-danger text-[11px] space-y-2">
+                            <div class="w-full mb-3 px-4 flex flex-col gap-8" x-data="{ fileObject: null }">
+                                <div class="w-full font-normal text-primary-danger text-[11px] space-y-1">
                                     <p>Ensure your CSV Upload File contain the Colunms in the picture below.</p>
                                     <img src="" alt="image" class="text-white">
                                 </div>
@@ -79,6 +79,9 @@
 
                 <!-- Footer Section Component  -->
                 <div id="contentFooterContainer" x-ref="contentFooterContainer" class="mt-auto"></div>
+                
+                <!-- Scroll Up Button Component  -->
+                <div id="scrollUpButton" x-ref="scrollUpButton"></div>
             </div>
 
         </section>
