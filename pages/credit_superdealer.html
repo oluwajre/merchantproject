@@ -28,31 +28,71 @@
                 <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
 
                 <!-- Main Content Section -->
-                <div class="mt-10 w-full flex flex-col px-6 py-6 gap-12 text-primary-black">
+                <div class="mt-9 w-full flex flex-col px-6 pt-6 pb-11 gap-12 text-primary-black">
 
                     <!-- First Row -->
                     <div class="flex flex-col gap-12 w-full">
                         
-                        <div class="flex-1 relative px-4 pt-15 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
-                            <div class="absolute flex items-center justify-center gap-2 -top-4 px-6 py-4.5 text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
+                        <div class="flex-1 relative pt-15 pb-3 bg-white shrink-0 w-full">
+                            <div class="absolute flex items-center justify-center gap-2 -top-5 mx-4 px-6 py-4.5 text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
                                 <span class="text-md font-medium">Credit a Merchant's Account</span>
                             </div>
 
-                            <div class="w-full mb-3 flex flex-col sm:flex-row justify-between gap-10">
-                                <form class="flex-1 gap-7 grid grid-cols-1 justify-between sm:max-w-[350px]" @submit.prevent>
-                                    <div>
+                            <div class="w-full px-4 mb-7 flex flex-col md:flex-row justify-between gap-10">
+                                <form class="flex-1 pl-4 gap-6 grid grid-cols-1 justify-between md:max-w-[350px]" @submit.prevent x-data="{
+                                    formData: {
+                                        merchantName: '',
+                                        bank: '',
+                                        amount: '',
+                                        remark: '',
+                                    },
+                                    merchantOptions: [
+                                        { name: 'Wema Bank - 09137819540' },
+                                        { name: 'Sterling Bank - 09137819540' }
+                                    ],
+                                    showMerchantOptions: false,
+                                    get filteredMerchantOptions() {
+                                        if (!this.formData.merchantName) return [];
+                                        return this.merchantOptions.filter(opt =>
+                                            opt.name.toLowerCase().includes(this.formData.merchantName.toLowerCase())
+                                        );
+                                    },
+                                    escapeRegExp(string) {
+                                        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                                    },
+                                    highlightMatch(text) {
+                                        const regex = new RegExp(`(${this.escapeRegExp(this.formData.merchantName)})`, 'gi');
+                                        return text.replace(regex, `<span class='font-bold'>$1</span>`);
+                                    },
+                                }">
+                                    <div class="relative">
                                         <input
-                                            type="text" 
-                                            placeholder="Select with merchant name or phone number"
-                                            name="merchant"
-                                            id="merchant"
-                                            required
-                                            class="text-primary-input-black-text w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300"
+                                            x-model="formData.merchantName"
+                                            @input="showMerchantOptions = true"
+                                            @click.away="showMerchantOptions = false"
+                                            type="text"
+                                            placeholder="Search with merchant name or phone number"
+                                            name="merchantName"
+                                            id="merchantName"
+                                            autocomplete="off"
+                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text font-normal"
                                         >
+                                        
+                                        <div x-show="showMerchantOptions && filteredMerchantOptions.length > 0"
+                                            class="absolute inset-x-0 w-full max-w-[350px] left-0 bg-white z-30 shadow-md text-small text-primary-header-gray-bold font-light"
+                                            x-transition.origin.top>                                
+                                            <template x-for="option in filteredMerchantOptions" :key="option.name">
+                                                <div class="w-full px-2 py-1 border-b border-primary-sidebar-gray-text/30 hover:bg-[#B5BFE1] hover:text-[#3E60DC] cursor-pointer transition duration-100"
+                                                    @click="formData.merchantName = option.name; showMerchantOptions = false">
+                                                    <p x-html="highlightMatch(option.name)"></p>
+                                                </div>
+                                            </template>
+                                        </div>
                                     </div>
+
                                     <div>
-                                        <select name="bank" id="bank" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-sm transition duration-300" required>
-                                            <option value="">-- SELECT BANK --</option>
+                                        <select name="bank" id="bank" x-model="formData.bank" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300" required>
+                                            <option value=''>-- SELECT BANK --</option>
                                             <option value="fidelity">Fidelity Bank</option>
                                             <option value="gt">GT Bank</option>
                                             <option value="wema">Wema Bank</option>
@@ -60,19 +100,27 @@
                                     </div>
                                     <div>
                                         <input
-                                            type="text" 
-                                            placeholder="AMOUNT TO CREDIT e.g 1000.00"
-                                            name="amount"
+                                            x-model="formData.amount"
+                                            type="text"  
+                                            name="amount" 
                                             id="amount"
+                                            placeholder="AMOUNT TO CREDIT e.g 1000.00"
                                             required
-                                            class="text-primary-input-black-text w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300"
+                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
                                         >
                                     </div>
                                     <div>
-                                        <textarea name="remark" id="remark" placeholder="Credit Remark" class="text-primary-input-black-text w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300"></textarea>
+                                        <textarea 
+                                            name="remark" 
+                                            id="remark" 
+                                            x-model="formData.remark" 
+                                            placeholder="Credit Remark" 
+                                            class="text-primary-input-black-text w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-sm transition duration-300"
+                                        >
+                                        </textarea>
                                     </div>
                                     <div>
-                                        <button type="submit" class="w-full max-w-[300px] uppercase font-semibold text-tiny text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">Credit Client</button> 
+                                        <button type="submit" class="w-full md:max-w-[250px] uppercase font-semibold text-tiny text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">Credit Client</button> 
                                     </div>            
                                 </form>
                                 
@@ -89,12 +137,8 @@
                 <!-- Footer Section Component  -->
                 <div id="contentFooterContainer" x-ref="contentFooterContainer" class="mt-auto"></div>
 
-                <!-- Scroll Up Button  -->
-                <div class="fixed bottom-7 right-7 p-2.5 bg-primary-blue-text/30 cursor-pointer" @click="document.getElementById('screenTop').scrollTo({ top: 0, behavior: 'smooth' })">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="#f5f5f5" class="size-5">
-                        <path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 1 1-1.06 1.06l-6.22-6.22V21a.75.75 0 0 1-1.5 0V4.81l-6.22 6.22a.75.75 0 1 1-1.06-1.06l7.5-7.5Z" clip-rule="evenodd" />
-                    </svg>
-                </div>
+                <!-- Scroll Up Button Component  -->
+                <div id="scrollUpButton" x-ref="scrollUpButton"></div>
             </div>
 
         </section>

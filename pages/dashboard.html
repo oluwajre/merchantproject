@@ -35,7 +35,7 @@
 
                         <div class="flex-1 relative px-4 pt-15 pb-3 bg-white shadow-md rounded-sm shrink-0 w-full md:min-w-[450px]" x-data="{tableData: [
                             {
-                                merchant: 'Csw Test',
+                                merchant: '9 Payment Service Bank',
                                 recipient: '08033966796',
                                 amount: '₦6',
                                 network: 'MTN Sms',
@@ -84,26 +84,26 @@
                             
                             <div class="overflow-x-auto w-full">
                                 <div class="min-w-[500px]">
-                                    <table class="w-full table-auto border-collapse text-sm">
-                                        <thead class="text-primary-warning font-light">
+                                    <table class="w-full table-auto border-collapse text-small font-light">
+                                        <thead class="text-primary-warning">
                                             <tr class="border-b border-primary-disabled-report-button/30">
-                                                <td class="py-3">Merchant</td>
-                                                <td>Recipient</td>
-                                                <td>Amount</td>
-                                                <td>Network</td>
-                                                <td>Status</td>
-                                                <td></td>
+                                                <td class="py-3 px-1.5">Merchant</td>
+                                                <td class="py-3 px-1.5">Recipient</td>
+                                                <td class="py-3 px-1.5">Amount</td>
+                                                <td class="py-3 px-1.5">Network</td>
+                                                <td class="py-3 px-1.5">Status</td>
+                                                <td class="py-3 px-1.5"></td>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody class="text-[#212529]">
                                             <template x-for="(data, index) in tableData" :key="index">
                                                 <tr class="border-b border-primary-disabled-report-button/30 hover:bg-gray-50">
-                                                    <td x-text="data.merchant" class="py-3"></td>
-                                                    <td x-text="data.recipient"></td>
-                                                    <td x-text="data.amount"></td>
-                                                    <td x-text="data.network"></td>
-                                                    <td x-text="data.status" class="capitalize"></td>
-                                                    <td x-text="data.time"></td>
+                                                    <td x-text="data.merchant" class="py-3 px-1.5"></td>
+                                                    <td x-text="data.recipient" class="py-3 px-1.5"></td>
+                                                    <td x-text="data.amount" class="py-3 px-1.5"></td>
+                                                    <td x-text="data.network" class="py-3 px-1.5"></td>
+                                                    <td x-text="data.status" class="capitalize py-3 px-1.5"></td>
+                                                    <td x-text="data.time" class="py-3 px-1.5"></td>
                                                 </tr>
                                             </template>
                                         </tbody>

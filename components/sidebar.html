@@ -4,6 +4,10 @@
     :class="{'block w-screen': showSideBar, 'w-[0]': !showSideBar}" 
     class="z-20 h-screen overflow-y-hidden fixed right-0 lg:block lg:relative lg:w-fit lg:min-w-[64px] max-w-[250px] bg-primary-black backdrop-blur-xs md:backdrop-blur-none text-primary-sidebar-gray-text pb-2 transition-all duration-500 ease-in-out font-roboto"
     x-cloak
+    
+    @click.away="if(showSideBar) {
+        showSideBar = false;
+    }"
 >
     <div class="z-30 sticky top-0 flex items-center justify-between mb-3 px-0 lg:px-6 h-[67px] bg-inherit">
         <img x-show="expandSideMenu" x-transition x-cloak src="../assets/images/creditswitchlogo.png" alt="Creditswitch Logo" class="hidden lg:inline-flex h-8 object-contain" />
@@ -18,14 +22,19 @@
         </button>
     </div>
 
-    <div class="z-20 text-inherit">
+    <div 
+        class="z-20 text-inherit" 
+        @mouseenter="if(!expandSideMenu){ previousExpandSideMenu = expandSideMenu; expandSideMenu = true; }"
+        @mouseleave="if(expandSideMenu){ expandSideMenu = previousExpandSideMenu; }"
+    >
         <ul class="list-none space-y-1 h-[calc(100vh-4.8rem)] pb-7 sidebar-scroll scroll-smooth">
             <template x-for="(item, index) in menuList" :key="index">
                 <li class="mb-[0px]">
                     <p 
-                        x-show="expandSideMenu && item.menuHeader" 
-                        x-text="item.menuHeader"
-                        class="uppercase text-primary-sidebar-gray-text px-7 mt-7 mb-3 font-medium text-tiny"
+                        x-show="item.menuHeader"
+                        x-text="expandSideMenu ? item.menuHeader : '...'"
+                        :class="expandSideMenu ? 'text-tiny' : 'text-xl'"
+                        class="uppercase text-primary-sidebar-gray-text px-7 mt-7 mb-3 font-medium"
                         x-transition
                         x-cloak
                     ></p>

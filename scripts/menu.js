@@ -3,6 +3,7 @@ import { icons } from './sideBarIcons'
 export const menu = (active) => {
  return {
     showSideBar: false,
+    previousExpandSideMenu: true,
     expandSideMenu: true,
     openDropdown: '',
     currentPageDetail: {name: 'Home', link: './dashboard.html'},
@@ -88,6 +89,7 @@ export const menu = (active) => {
               {name: 'Create Provider', icon: icons.subMenu, headerName: 'Add Provider', link: './provider.html', alert: 'new'},
               {name: 'Update Merchants Discounts', icon: icons.subMenu, headerName: 'Update Merchants Discounts', link: './update_merchant_discounts.html', alert: 'new'},
               {name: 'Provider Discounts', icon: icons.subMenu, link: 'https://www.creditswitch.com/', alert: 'new'},
+              {name: 'ANQ Service', icon: icons.subMenu, link: 'https://www.creditswitch.com/', alert: 'new'},
               {name: "Sub Admin", icon: icons.subMenu, link: 'https://www.creditswitch.com/'},
               {name: 'Setup SMS', icon: icons.subMenu, headerName: 'Create SenderID', link: './create_senderid.html', alert: 'new'},
               {name: 'Setup Notifications', icon: icons.subMenu, headerName: 'Set Up Notifications', link: './notifications.html', alert: 'new'},
@@ -140,6 +142,7 @@ export const menu = (active) => {
         }
         this.showSideBar = false;
         this.expandSideMenu = !this.expandSideMenu;
+        this.previousExpandSideMenu = !this.previousExpandSideMenu
     }
  }
 };

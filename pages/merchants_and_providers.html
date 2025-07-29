@@ -28,103 +28,119 @@
                 <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
 
                 <!-- Main Content Section -->
-                <div class="w-full flex flex-col px-6 py-6 gap-12 text-primary-black">
+                <div class="w-full flex flex-col px-6 pt-6 pb-10 gap-12 text-primary-black">
 
                     <!-- First Row -->
                     <div class="flex flex-col gap-12 w-full">
                         
                         <div class="flex-1 relative py-3 shrink-0 w-full">
                             <div class="w-full mb-3 flex">
-                                <form class="w-full gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-between items-end" @submit.prevent x-data="{
-                                    formInput: [
-                                        {
-                                            type: 'text',
-                                            placeholder: 'search with a merchant name or phone no',
-                                            name: 'originNo',
-                                            value: '',
-                                            title: 'Merchant Name',
-                                        },
-                                        {
-                                            type: 'select',
-                                            name: 'type',
-                                            options: [
-                                                {name: 'SELECT TYPE', value: ''},
-                                                {name: 'Prepaid', value: 'prepaid'},
-                                                {name: 'Postpaid', value: 'postpaid'},
-                                            ],
-                                            value: '',
-                                            title: 'Merchant Type',
-                                        },
-                                        {
-                                            type: 'select',
-                                            name: 'providerselect',
-                                            options: [
-                                                {name: 'SELECT VIEW', value: ''},
-                                                {name: 'Merchants', value: 'merchants'},
-                                                {name: 'Providers', value: 'providers'},                                   
-                                            ],
-                                            value: '',
-                                            title: 'View Type',
-                                        },
-                                        {
-                                            type: 'button',
-                                            name: 'search',
-                                            label: '',
-                                        },
-                                        {
-                                            type: 'datetime-local',
-                                            placeholder: 'start date',
-                                            name: 'startDate',
-                                            value: '2025-06-18T00:00',
-                                            label: '(Start Date)',
-                                        },
-                                        {
-                                            type: 'datetime-local',
-                                            placeholder: 'end date',
-                                            name: 'endDate',
-                                            value: '2025-06-18T00:00',
-                                            label: '(End Date)',
-                                        },
+                                <form class="w-full pl-4 gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-between items-end" @submit.prevent x-data="{
+                                    getDate() {
+                                        const now = new Date();
+                                        const year = now.getFullYear();
+                                        const month = String(now.getMonth() + 1).padStart(2, '0');
+                                        const day = String(now.getDate()).padStart(2, '0');
+                                        return `${year}-${month}-${day}`;
+                                    },
+                                    formData: {
+                                        merchantName: '',
+                                        startDate: '',
+                                        endDate: '',
+                                        status: '',
+                                        group: '',
+                                        network: '',
+                                        provider: '',
+                                    },
+                                    merchantOptions: [
+                                        { name: 'Wema Bank - 09137819540' },
+                                        { name: 'Sterling Bank - 09137819540' }
                                     ],
-                                }">
-                                    <template x-for="input in formInput" x-cloak>
-                                        <div>
-                                            <template x-if="input.title">
-                                                <p x-text="input.title" class="text-xs text-[#212529] mb-5 font-semibold"></p>
+                                    showMerchantOptions: false,
+                                    get filteredMerchantOptions() {
+                                        if (!this.formData.merchantName) return [];
+                                        return this.merchantOptions.filter(opt =>
+                                            opt.name.toLowerCase().includes(this.formData.merchantName.toLowerCase())
+                                        );
+                                    },
+                                    escapeRegExp(string) {
+                                        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                                    },
+                                    highlightMatch(text) {
+                                        const regex = new RegExp(`(${this.escapeRegExp(this.formData.merchantName)})`, 'gi');
+                                        return text.replace(regex, `<span class='font-bold'>$1</span>`);
+                                    },
+                                }" x-init="
+                                    formData.startDate = `${getDate()}T00:00`;
+                                    formData.endDate = `${getDate()}T23:59`
+                                ">
+                                    <div class="relative">
+                                        <p class="text-[13px] text-[#212529] mb-5 font-semibold">Merchant</p>
+                                        <input
+                                            x-model="formData.merchantName"
+                                            @input="showMerchantOptions = true"
+                                            @click.away="showMerchantOptions = false"
+                                            type="text"
+                                            placeholder="Select with merchant name"
+                                            name="merchantName"
+                                            id="merchantName"
+                                            autocomplete="off"
+                                            class="w-full bg-white border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text font-medium"
+                                        >
+                                        
+                                        <div x-show="showMerchantOptions && filteredMerchantOptions.length > 0"
+                                            class="absolute inset-x-0 w-full max-w-[350px] left-0 bg-white z-30 shadow-md text-small text-primary-header-gray-bold font-light"
+                                            x-transition.origin.top>                                
+                                            <template x-for="option in filteredMerchantOptions" :key="option.name">
+                                                <div class="w-full px-2 py-1 border-b border-primary-sidebar-gray-text/30 hover:bg-[#B5BFE1] hover:text-[#3E60DC] cursor-pointer transition duration-100"
+                                                    @click="formData.merchantName = option.name; showMerchantOptions = false">
+                                                    <p x-html="highlightMatch(option.name)"></p>
+                                                </div>
                                             </template>
-
-                                            <template x-if="input.type === 'select'">
-                                                <select :name="input.name" :id="input.name" x-model="input.value" class="w-full bg-white font-medium text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue outline-none px-3 py-2 text-sm transition duration-300">
-                                                    <template x-for="option in input.options">
-                                                        <option :value="option.value" x-text="option.name"></option>
-                                                    </template>
-                                                </select>
-                                            </template>
-
-                                            <template x-if="['text', 'number', 'datetime-local'].includes(input.type)">
-                                                <input
-                                                    x-model="input.value"
-                                                    :type="input.type" 
-                                                    :placeholder="input.placeholder"
-                                                    :name="input.name"
-                                                    :id="input.name"
-                                                    :class="{
-                                                        'text-primary-input-black-text': input.type !== 'datetime-local', 
-                                                        'text-primary-input-gray-text font-medium': input.type === 'datetime-local'
-                                                    }"
-                                                    class="w-full bg-white border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-medium placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300"
-                                                >
-                                            </template>
-
-                                            <template x-if="input.label">
-                                                <label :for="input.name" x-text="input.label" class="text-tiny text-[#212529]" x-cloak></label>
-                                            </template>
-
-                                            <template x-if="input.type === 'button'">
-                                                <button type="submit" x-text="input.name" class="w-full uppercase font-semibold text-xs text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300"></button>
-                                            </template>  
                                         </div>
-                                    </template>             
+                                    </div>
+                                    <div>
+                                        <p class="text-[13px] text-[#212529] mb-5 font-semibold">Merchant Type</p>
+                                        <select name="merchantType" id="merchantType" x-model="formData.merchantType" class="w-full text-primary-input-gray-text bg-white focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-semibold placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300">
+                                            <option value="">SELECT TYPE</option>
+                                            <option value="prepaid">Prepaid</option>
+                                            <option value="postpaid">Postpaid</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <p class="text-[13px] text-[#212529] mb-5 font-semibold">View Type</p>
+                                        <select name="viewType" id="viewType" x-model="formData.viewType" class="w-full text-primary-input-gray-text bg-white focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-semibold placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300">
+                                            <option value="">SELECT VIEW</option>
+                                            <option value="merchants">Merchants</option>
+                                            <option value="providers">Providers</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <p class="text-[13px] text-[#212529] mb-5 font-semibold"></p>
+                                        <button type="submit" class="w-full uppercase font-semibold text-xs text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">Search</button>
+                                    </div>
+                                    <div>
+                                        <p class="text-[13px] text-[#212529] mb-5 font-semibold"></p>
+                                        <input
+                                            x-model="formData.startDate"
+                                            type="datetime-local" 
+                                            name="startDate" 
+                                            id="startDate"
+                                            class="w-full bg-white border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-input-gray-text"
+                                        >
+                                        <label for="startDate" class="text-tiny text-[#212529]">(Start Date)</label>
+                                    </div>
+                                    <div>
+                                        <p class="text-[13px] text-[#212529] mb-5 font-semibold"></p>
+                                        <input
+                                            x-model="formData.endDate" 
+                                            type="datetime-local" 
+                                            name="endDate" 
+                                            id="endDate"
+                                            class="w-full bg-white border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-input-gray-text"
+                                        >
+                                        <label for="endDate" class="text-tiny text-[#212529]">(End Date)</label>
+                                    </div>          
                                 </form>  
                             </div>  
                         </div>
@@ -339,6 +355,8 @@
                                     'FICO Score Verification': '',
                                     'CRC Credit Verification': '',
                                     'Voice OTP': '',
+                                    '': '',
+                                    '': '',
                                 },
                             ],
                             noDataMessage: 'No Result'
@@ -347,7 +365,7 @@
                             <!-- Table Options  -->
                             <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-4 py-2 px-6 border-b border-primary-sidebar-gray-text/70">
                                 <div>
-                                    <h1 class="text-[#212529] font-medium">Merchant and Provider Discounts</h1>
+                                    <h1 class="text-primary-table-header font-medium">Merchant and Provider Discounts</h1>
                                 </div>
                                 <div class="flex w-full sm:w-fit justify-between">
                                     <button
@@ -357,9 +375,9 @@
                                         class="relative"
                                     >   
                                         <div 
-                                            :class="showPopUp ? 'bg-primary-blue-text text-white' : 'bg-primary-blue-text/10 text-primary-blue-text'"
-                                            class="group inline-flex items-end cursor-pointer gap-1.5 px-7 py-3 hover:bg-primary-blue-text hover:text-white rounded-xs">
-                                            <span class="uppercase text-tiny font-medium text-inherit">Generate Report</span>
+                                            :class="showPopUp ? 'bg-primary-royalBlue' : 'bg-primary-slateBlue hover:bg-primary-royalBlue'"
+                                            class="group inline-flex items-end cursor-pointer gap-1.5 px-7 py-3 text-white rounded-xs">
+                                            <span class="uppercase text-[10px] font-medium text-inherit">Generate Report</span>
                                             <span class="text-inherit">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="5" stroke="currentColor" class="size-2.5">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
@@ -371,21 +389,19 @@
                                             x-show="showPopUp"
                                             x-transition:enter="transition ease-out duration-200"
                                             x-cloak
-                                            class="absolute text-tiny font-medium bg-white shadow-sm py-2 top-full right-0 w-[120%] transform-none text-left"
+                                            class="absolute text-[10px] font-medium bg-white shadow-sm py-2 top-full right-0 w-[120%] transform-none text-left"
                                         >
-                                            <p class="uppercase text-primary-blue-text mb-1 px-6">Export</p>
                                             <div 
                                                 class="flex items-center gap-2 text-small text-primary-header-gray-bold py-2 px-6 hover:bg-gray-50 hover:text-primary-blue-text cursor-pointer"
                                             >
                                                 <span class="rounded-full border-1 border-inherit text-inherit">
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-audio-lines-icon lucide-audio-lines size-3.5"><path d="M2 10v3"/><path d="M6 6v11"/><path d="M10 3v18"/><path d="M14 8v7"/><path d="M18 5v13"/><path d="M22 10v3"/></svg>
                                                 </span>
-                                                <span class="text-inherit text-normal">CSV</span>
+                                                <span class="text-inherit font-normal">CSV</span>
                                             </div>
                                         </div>
                                     </button>
                                 </div>
-
                             </div>
 
                             <!-- Table Summary Header  -->
@@ -403,12 +419,8 @@
                 <!-- Footer Section Component  -->
                 <div id="contentFooterContainer" x-ref="contentFooterContainer" class="mt-auto"></div>
 
-                <!-- Scroll Up Button  -->
-                <div class="fixed bottom-7 right-7 p-2.5 bg-primary-blue-text/30 cursor-pointer" @click="document.getElementById('screenTop').scrollTo({ top: 0, behavior: 'smooth' })">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="#f5f5f5" class="size-5">
-                        <path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 1 1-1.06 1.06l-6.22-6.22V21a.75.75 0 0 1-1.5 0V4.81l-6.22 6.22a.75.75 0 1 1-1.06-1.06l7.5-7.5Z" clip-rule="evenodd" />
-                    </svg>
-                </div>
+                <!-- Scroll Up Button Component  -->
+                <div id="scrollUpButton" x-ref="scrollUpButton"></div>
             </div>
 
         </section>

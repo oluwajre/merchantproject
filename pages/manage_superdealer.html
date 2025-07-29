@@ -28,119 +28,124 @@
                 <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
 
                 <!-- Main Content Section -->
-                <div class="mt-10 w-full flex flex-col px-6 py-6 gap-12 text-primary-black">
+                <div class="mt-9 w-full flex flex-col px-6 pt-6 pb-10 gap-12 text-primary-black">
 
                     <!-- First Row -->
                     <div class="flex flex-col gap-12 w-full" x-data="{
                         showTable: false,
                     }">
                         
-                        <div class="flex-1 relative px-4 pt-15 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
+                        <div class="flex-1 relative px-4 pt-13 pb-3 bg-white shrink-0 w-full">
                             <div class="absolute flex items-center justify-center gap-2 -top-5 px-6 py-4.5 text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
                                 <span class="text-md font-medium">Configure New Merchant</span>
                             </div>
 
                             <div class="w-full mb-3 flex flex-col gap-8">
-                                <form class="w-full gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between items-end" @submit.prevent="showTable = true" x-data="{
-                                    formInput: [
-                                        {
-                                            type: 'text',
-                                            placeholder: 'Enter Merchant or Business Name',
-                                            name: 'merchant',
-                                            value: '',
-                                            label: '',
-                                        },
-                                        {
-                                            type: 'text',
-                                            placeholder: 'IP Address (Fill only for API Accounts)',
-                                            name: 'ip',
-                                            value: '',
-                                            label: `LEAVE THIS FIELD BLANK IF IT ISN'T AN API ACCOUNT`,
-                                        },
-                                        {
-                                            type: 'text',
-                                            placeholder: 'Enter Phone Number',
-                                            name: 'phoneNo',
-                                            value: '',
-                                            label: '',
-                                        },
-                                        {
-                                            type: 'text',
-                                            placeholder: 'Enter Email Address',
-                                            name: 'email',
-                                            value: '',
-                                            label: '',
-                                        },
-                                        {
-                                            type: 'text',
-                                            placeholder: 'For example, 60871419:39185282',
-                                            name: 'mobfin',
-                                            value: '',
-                                            label: 'MOBIFIN DETAIL » FORMAT - LOGIN ID:PUBLIC KEY',
-                                        },
-                                        {
-                                            type: 'select',
-                                            name: 'accountType',
-                                            options: [
-                                                {name: 'Select Account Type', value: ''},
-                                                {name: 'Prepaid', value: 'prepaid'},
-                                                {name: 'Postpaid', value: 'postpaid'},
-                                            ],
-                                            value: 'postpaid',
-                                            label: 'SELECT ACCOUNT TYPE',
-                                        }
-                                    ]
-                                }">
-                                    <template x-for="input in formInput" x-cloak>
+                                <form class="w-full pl-4 gap-x-5 gap-y-6 grid grid-cols-1 md:grid-cols-3 justify-between items-end" @submit.prevent="showTable = true" x-data="{
+                                    formData: {
+                                        merchantName: '',
+                                        ipAddress: [''],
+                                        phoneNumber: '',
+                                        email: '',
+                                        mobifinDetail: '',
+                                        accountType: 'postpaid',
+                                    },
+                                    }">  
                                         <div>
-                                            <template x-if="input.label">
-                                                <small x-text="input.label" class="text-tiny text-primary-header-gray-bold uppercase"></small>
-                                            </template>
-
-                                            <template x-if="input.type === 'select'">
-                                                <select :name="input.name" :id="input.name" x-model="input.value" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-sm transition duration-300">
-                                                    <template x-for="option in input.options">
-                                                        <option :value="option.value" x-text="option.name"></option>
-                                                    </template>
-                                                </select>
-                                            </template>
-
-                                            <template x-if="input.type === 'text'">
-                                                <input
-                                                    x-model="input.value"
-                                                    :type="input.type" 
-                                                    :placeholder="input.placeholder"
-                                                    :name="input.name"
-                                                    :id="input.name"
-                                                    class="text-primary-input-black-text w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300"
-                                                >
-                                            </template>
-
-                                            <template x-if="input.type === 'button'">
-                                                <button type="submit" x-text="input.name" class="w-full uppercase font-semibold text-xs text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300"></button>
-                                            </template>
-                                            
+                                            <input
+                                                x-model="formData.merchantName"
+                                                type="text" 
+                                                placeholder="Enter Merchant or Business Name" 
+                                                name="merchantName" 
+                                                id="merchantName"
+                                                class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                            >
                                         </div>
-                                    </template>
-                                </form>
+                                        <div>
+                                            <small class="text-tiny text-primary-header-gray-bold uppercase">LEAVE THIS FIELD BLANK IF IT ISN'T AN API ACCOUNT</small>
+                                            <div class="flex items-center gap-1">
+                                                <input
+                                                    x-model="formData.ipAddress[0]"
+                                                    type="text" 
+                                                    placeholder="IP Address (Fill Only for API accounts)"
+                                                    name="ipAddress1" 
+                                                    id="ipAddress1"
+                                                    class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                                >
+                                                <img src="" alt=" " class="cursor-pointer" title="Click to add more IP Address" @click="formData.ipAddress.push('')">
+                                            </div>
+                                            <template x-for="(ip, index) in formData.ipAddress.slice(1)" :key="index">
+                                                <div class="flex items-center gap-1 mt-1.5">
+                                                    <input
+                                                        x-model="formData.ipAddress[index]"
+                                                        type="text" 
+                                                        :placeholder="'IP Address ' + (index + 2)"
+                                                        :name="'ipAddress' + (index + 2)"
+                                                        :id="'ipAddress' + (index + 2)"
+                                                        class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                                    >
+                                                    <img src="" alt=" " class="cursor-pointer" title="Remove IP Address" @click="formData.ipAddress.splice(index + 1, 1)">
+                                                </div>
+                                            </template>
+                                        </div>
+                                        <div>
+                                            <input
+                                                x-model="formData.phoneNumber"
+                                                type="text" 
+                                                placeholder="Enter Phone Number"
+                                                name="phoneNumber" 
+                                                id="phoneNumber"
+                                                class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                            >
+                                        </div>
+                                        <div>
+                                            <input
+                                                x-model="formData.email"
+                                                type="email" 
+                                                placeholder="Enter Email Address"
+                                                name="email" 
+                                                id="email"
+                                                class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                            >
+                                        </div>
+                                        <div>
+                                            <small class="text-tiny text-primary-header-gray-bold uppercase">MOBIFIN DETAIL » FORMAT - LOGIN ID:PUBLIC KEY</small>
+                                            <input
+                                                x-model="formData.mobifinDetail"
+                                                type="text" 
+                                                placeholder="For example, 60871419:39185282"
+                                                name="mobifinDetail" 
+                                                id="mobifinDetail"
+                                                class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                            >
+                                        </div>
+                                        <div>
+                                            <small class="text-tiny text-primary-header-gray-bold uppercase">SELECT ACCOUNT TYPE</small>
+                                            <select name="accountType" id="accountType" x-model="formData.accountType" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300">
+                                                <option value="">Select Account Type</option>
+                                                <option value="prepaid">Prepaid</option>
+                                                <option value="postpaid">Postpaid</option>
+                                            </select>
+                                        </div>
+                                    </form>
 
                                 <div class="w-full flex flex-col lg:flex-row lg:flex-wrap items-start justify-between gap-5">
                                     <div class="w-full flex-1 flex flex-col items-start justify-between gap-7">
                                         <div class="w-full overflow-x-auto max-w-full">
                                             <div class="min-w-fit">
                                                 <table class="w-full table-auto border-collapse border border-primary-sidebar-gray-text/70">
-                                                    <thead class="uppercase font-medium text-sm">
-                                                        <tr class="bg-[#434345]">
+                                                    <thead class="uppercase font-medium">
+                                                        <tr class="bg-[#434345] text-small">
                                                             <td class="text-center text-white border border-white px-2 py-3" colspan="4">Set Service Discounts</td>
                                                         </tr>
-                                                        <tr class="bg-[#7C8A8F]">
+                                                        <tr class="bg-[#7C8A8F] text-[13px]">
                                                             <td class="border border-white px-1 py-2">Product</td>
                                                             <td class="border border-white px-1 py-2">Airtime</td>
                                                             <td class="border border-white px-1 py-2">Data</td>
                                                             <td class="border border-white px-1 py-2">Pin</td>
                                                         </tr>
                                                     </thead>
-                                                    <tbody class="text-small font-medium align-top" x-data="{
+                                                    <tbody class="text-[13px] font-medium align-top" x-data="{
                                                         serviceDiscountProp: [
                                                             {
                                                                 product: 'Airtel',
@@ -208,7 +213,7 @@
                                                             <tr x-id="['airtime', 'data', 'pin']">
                                                                 <td x-text="service.product" class="p-1 border border-primary-sidebar-gray-text/70"></td>
                                                                 <td class="p-1 border border-primary-sidebar-gray-text/70" x-id="[service.product + index]">
-                                                                    <template x-if="service.airtime === ''">
+                                                                    <template x-if="service.airtime !== false">
                                                                         <input
                                                                             x-model="service.airtime"
                                                                             type="number"
@@ -216,12 +221,12 @@
                                                                             :name="$id('airtime')"
                                                                             :id="$id('airtime')"
                                                                             step="0.01"
-                                                                            class="text-primary-input-black-text w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300"
+                                                                            class="text-primary-input-black-text w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-1 text-[13px] transition duration-300"
                                                                         >  
                                                                     </template>
                                                                 </td>
                                                                 <td class="p-1 border border-primary-sidebar-gray-text/70">
-                                                                    <template x-if="service.data === ''">
+                                                                    <template x-if="service.data !== false">
                                                                         <input
                                                                             x-model="service.data"
                                                                             type="number"
@@ -229,12 +234,12 @@
                                                                             :name="$id('data')"
                                                                             :id="$id('data')"
                                                                             step="0.01"
-                                                                            class="text-primary-input-black-text w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300"
+                                                                            class="text-primary-input-black-text w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-1 text-[13px] transition duration-300"
                                                                         >
                                                                     </template>
                                                                 </td>
                                                                 <td class="p-1 border border-primary-sidebar-gray-text/70">
-                                                                    <template x-if="service.pin === ''">
+                                                                    <template x-if="service.pin !== false">
                                                                         <input
                                                                             x-model="service.pin"
                                                                             type="number"
@@ -242,30 +247,35 @@
                                                                             :name="$id('pin')"
                                                                             :id="$id('pin')"
                                                                             step="0.01"
-                                                                            class="text-primary-input-black-text w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300"
+                                                                            class="text-primary-input-black-text w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-1 text-[13px] transition duration-300"
                                                                         >
                                                                     </template>
                                                                 </td>
                                                             </tr>
                                                         </template>
                                                     </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <td class="p-1.5 border border-primary-sidebar-gray-text/70" colspan="2"></td>
+                                                        </tr>
+                                                    </tfoot>
                                                 </table>
                                             </div>
                                         </div>
 
                                         <div class="w-full overflow-x-auto max-w-full">
                                             <div class="min-w-fit">
-                                                <table class="w-full table-auto border-collapse border border-primary-sidebar-gray-text/70">
-                                                    <thead class="uppercase font-medium text-sm">
-                                                        <tr class="bg-[#434345]">
+                                                <table class="w-full table-fixed border-collapse border border-primary-sidebar-gray-text/70">
+                                                    <thead class="uppercase font-medium">
+                                                        <tr class="bg-[#434345] text-small">
                                                             <td class="text-center text-white border border-white px-2 py-3" colspan="2">Set Commission for Cable Tv</td>
                                                         </tr>
-                                                        <tr class="bg-[#7C8A8F]">
+                                                        <tr class="bg-[#7C8A8F] text-[13px]">
                                                             <td class="border border-white px-1 py-2">Product</td>
                                                             <td class="border border-white px-1 py-2">Discount</td>
                                                         </tr>
                                                     </thead>
-                                                    <tbody class="text-small font-medium align-top" x-data="{
+                                                    <tbody class="text-[13px] font-medium align-top" x-data="{
                                                         serviceDiscountProp: [
                                                             {
                                                                 product: 'Dstv',
@@ -292,12 +302,17 @@
                                                                         :name="$id('discount')"
                                                                         :id="$id('discount')"
                                                                         step="0.01"
-                                                                        class="text-primary-input-black-text w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300"
+                                                                        class="text-primary-input-black-text w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-1 text-[13px] transition duration-300"
                                                                     >  
                                                                 </td>
                                                             </tr>
                                                         </template>
                                                     </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <td class="p-1.5 border border-primary-sidebar-gray-text/70" colspan="2"></td>
+                                                        </tr>
+                                                    </tfoot>
                                                 </table>
                                             </div>
                                         </div>
@@ -307,17 +322,17 @@
                                         <div class="w-full overflow-x-auto max-w-full">
                                             <div class="min-w-fit">
                                                 <table class="w-full table-auto border-collapse border border-primary-sidebar-gray-text/70">
-                                                    <thead class="uppercase font-medium text-sm">
-                                                        <tr class="bg-[#434345]">
+                                                    <thead class="uppercase font-medium">
+                                                        <tr class="bg-[#434345] text-small">
                                                             <td class="text-center text-white border border-white px-2 py-3" colspan="3">SET COMMISSION FOR ELECTRICITY</td>
                                                         </tr>
-                                                        <tr class="bg-[#7C8A8F]">
+                                                        <tr class="bg-[#7C8A8F] text-[13px]">
                                                             <td class="border border-white px-1 py-2">DISCO</td>
                                                             <td class="border border-white px-1 py-2">Prepaid</td>
                                                             <td class="border border-white px-1 py-2">Postpaid</td>
                                                         </tr>
                                                     </thead>
-                                                    <tbody class="text-small font-medium align-top" x-data="{
+                                                    <tbody class="text-[13px] font-medium align-top" x-data="{
                                                         serviceDiscountProp: [
                                                             {
                                                                 disco: 'Ikeja Disco',
@@ -377,7 +392,7 @@
                                                                         :name="$id('prepaid')"
                                                                         :id="$id('prepaid')"
                                                                         step="0.01"
-                                                                        class="text-black w-full border border-black focus:ring-1 focus:ring-black placeholder:text-primary-input-gray-text outline-none px-1 py-0.5 text-sm rounded-xs transition duration-300 font-normal"
+                                                                        class="text-black w-full border border-black focus:ring-1 focus:ring-black placeholder:text-primary-input-gray-text outline-none px-1 py-0.5 text-[13px] rounded-xs transition duration-300 font-normal"
                                                                     >  
                                                                 </td>
                                                                 <td class="p-1 border border-primary-sidebar-gray-text/70">
@@ -388,21 +403,26 @@
                                                                         :name="$id('postpaid')"
                                                                         :id="$id('postpaid')"
                                                                         step="0.01"
-                                                                        class="text-black w-full border border-black focus:ring-1 focus:ring-black placeholder:text-primary-input-gray-text outline-none px-1 py-0.5 text-sm rounded-xs transition duration-300 font-normal"
+                                                                        class="text-black w-full border border-black focus:ring-1 focus:ring-black placeholder:text-primary-input-gray-text outline-none px-1 py-0.5 text-[13px] rounded-xs transition duration-300 font-normal"
                                                                     >  
                                                                 </td>
                                                             </tr>
                                                         </template>
                                                     </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <td class="p-1.5 border border-primary-sidebar-gray-text/70" colspan="2"></td>
+                                                        </tr>
+                                                    </tfoot>
                                                 </table>
                                             </div>
                                         </div>
 
                                         <div class="w-full overflow-x-auto max-w-full">
                                             <div class="min-w-fit">
-                                                <table class="w-full table-auto border-collapse border border-primary-sidebar-gray-text/70">
-                                                    <thead class="uppercase font-medium text-sm">
-                                                        <tr class="bg-[#434345]">
+                                                <table class="w-full table-fixed text-[13px] border-collapse border border-primary-sidebar-gray-text/70">
+                                                    <thead class="uppercase font-medium">
+                                                        <tr class="bg-[#434345] text-small">
                                                             <td class="text-center text-white border border-white px-2 py-3" colspan="2">SET COMMISSION FOR SMS</td>
                                                         </tr>
                                                         <tr class="bg-[#7C8A8F]">
@@ -410,7 +430,7 @@
                                                             <td class="border border-white px-1 py-2">Discount</td>
                                                         </tr>
                                                     </thead>
-                                                    <tbody class="text-small font-medium align-top" x-data="{
+                                                    <tbody class="font-medium align-top" x-data="{
                                                         serviceDiscountProp: [
                                                             {
                                                                 product: 'SMS',
@@ -429,12 +449,17 @@
                                                                         :name="$id('discount')"
                                                                         :id="$id('discount')"
                                                                         step="0.01"
-                                                                        class="text-primary-input-black-text w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300"
+                                                                        class="text-primary-input-black-text w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-1 text-[13px] transition duration-300"
                                                                     >  
                                                                 </td>
                                                             </tr>
                                                         </template>
                                                     </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <td class="p-1.5 border border-primary-sidebar-gray-text/70" colspan="2"></td>
+                                                        </tr>
+                                                    </tfoot>
                                                 </table>
                                             </div>
                                         </div>
@@ -444,7 +469,7 @@
                                 <div class="space-y-6">
                                     <div>
                                         <input type="checkbox" name="sendEmail" id="sendEmail" checked>
-                                        <span class="font-light text-small text-primary-danger">Auto-send e-mail to merchant with new account details</span>
+                                        <span class="font-light text-[13px] text-primary-danger">Auto-send e-mail to merchant with new account details</span>
                                     </div>
                                     <div>
                                         <button type="submit" class="w-full max-w-[300px] uppercase font-semibold text-tiny text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">save</button>
@@ -455,7 +480,7 @@
 
                         <template x-if="!showTable">
                             
-                            <div class="flex-1 relative bg-white rounded-sm shrink-0 w-full shadow-xl" x-init="fetch('../components/tableComponent.html')
+                            <div class="flex-1 relative bg-white shrink-0 w-full" x-init="fetch('../components/tableComponent.html')
                                 .then(res => res.text())
                                 .then(html => {
                                     $refs.tableComponent.innerHTML = html;
@@ -488,7 +513,7 @@
                                 <!-- Table Options  -->
                                 <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-4 py-2 px-6 border-b border-primary-sidebar-gray-text/70">
                                     <div>
-                                        <h1 class="text-[#464457] font-medium">Available Superdealers / Merchants</h1>
+                                        <h1 class="text-primary-table-header font-medium">Available Superdealers / Merchants</h1>
                                     </div>
                                     <div class="flex w-full sm:w-fit justify-between">
                                         <button
@@ -500,7 +525,7 @@
                                             <div 
                                                 :class="showPopUp ? 'bg-primary-blue-text text-white' : 'bg-primary-blue-text/10 text-primary-blue-text'"
                                                 class="group inline-flex items-end cursor-pointer gap-1.5 px-7 py-3 hover:bg-primary-blue-text hover:text-white rounded-xs">
-                                                <span class="uppercase text-tiny font-medium text-inherit">Generate Report</span>
+                                                <span class="uppercase text-[10px] font-medium text-inherit">Generate Report</span>
                                                 <span class="text-inherit">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="5" stroke="currentColor" class="size-2.5">
                                                         <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
@@ -512,7 +537,7 @@
                                                 x-show="showPopUp"
                                                 x-transition:enter="transition ease-out duration-200"
                                                 x-cloak
-                                                class="absolute text-tiny font-medium bg-white shadow-sm py-2 top-full right-0 w-[120%] transform-none text-left"
+                                                class="absolute text-[10px] font-medium bg-white shadow-sm py-2 top-full right-0 w-[120%] transform-none text-left"
                                             >
                                                 <p class="uppercase text-primary-blue-text mb-1 px-6">Export</p>
                                                 <div 
@@ -521,19 +546,18 @@
                                                     <span class="rounded-full border-1 border-inherit text-inherit">
                                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-audio-lines-icon lucide-audio-lines size-3.5"><path d="M2 10v3"/><path d="M6 6v11"/><path d="M10 3v18"/><path d="M14 8v7"/><path d="M18 5v13"/><path d="M22 10v3"/></svg>
                                                     </span>
-                                                    <span class="text-inherit text-normal">CSV</span>
+                                                    <span class="text-inherit font-normal">CSV</span>
                                                 </div>
                                             </div>
                                         </button>
 
                                         <button 
-                                            class="uppercase text-tiny font-medium px-7 bg-primary-green-light hover:brightness-95 rounded-xs text-white cursor-pointer transition duration-200"
+                                            class="uppercase text-[10px] font-medium px-7 bg-primary-green-light hover:brightness-95 rounded-xs text-white cursor-pointer transition duration-200"
                                             @click="showTable = false;"
                                         >
                                             CLOSE (X)
                                         </button>
                                     </div>
-
                                 </div>
 
                                 <!-- Table Component  -->
@@ -548,12 +572,8 @@
                 <!-- Footer Section Component  -->
                 <div id="contentFooterContainer" x-ref="contentFooterContainer" class="mt-auto"></div>
 
-                <!-- Scroll Up Button  -->
-                <div class="fixed bottom-7 right-7 p-2.5 bg-primary-blue-text/30 cursor-pointer" @click="document.getElementById('screenTop').scrollTo({ top: 0, behavior: 'smooth' })">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="#f5f5f5" class="size-5">
-                        <path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 1 1-1.06 1.06l-6.22-6.22V21a.75.75 0 0 1-1.5 0V4.81l-6.22 6.22a.75.75 0 1 1-1.06-1.06l7.5-7.5Z" clip-rule="evenodd" />
-                    </svg>
-                </div>
+                <!-- Scroll Up Button Component  -->
+                <div id="scrollUpButton" x-ref="scrollUpButton"></div>
             </div>
 
         </section>

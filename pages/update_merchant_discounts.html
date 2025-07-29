@@ -62,9 +62,9 @@
                                 </template>
                             </div>
 
-                            <div class="w-full px-2 py-2.5 text-small font-light text-primary-slateBlue">
+                            <!-- <div class="w-full px-2 py-2.5 text-small font-light text-primary-slateBlue">
                                 <p><span class="font-semibold">Response:</span> Service not configured for merchant Wema Bank</p>
-                            </div>
+                            </div> -->
 
                             <div class="w-full pb-6 flex border-b border-primary-sidebar-gray-text/40">
                                 <template x-if="activeTab === 'airtime' || activeTab === 'data' || activeTab === 'sms' || activeTab === 'toll'">
@@ -423,7 +423,7 @@
                                 <div class="w-full space-y-4">
                                     <p class="font-normal text-primary-danger text-[11px]">Ensure your CSV Upload File contain the Colunms in the picture below.</p>
                                     <div>
-                                        <img src="" alt="image" class="text-white inline-block">
+                                        <img src="" alt=" " class="inline-block border border-primary-sidebar-gray-text pr-70 pb-18" />
                                         <a href="https://developers.creditswitch.com/#services-section" class="font-light text-small text-primary-slateBlue" target="_blank">Click Here to View Service Code List</a>
                                     </div>
                                 </div>
@@ -493,12 +493,8 @@
                 <!-- Footer Section Component  -->
                 <div id="contentFooterContainer" x-ref="contentFooterContainer" class="mt-auto"></div>
 
-                <!-- Scroll Up Button  -->
-                <div class="fixed bottom-7 right-7 p-2.5 bg-primary-blue-text/30 cursor-pointer" @click="document.getElementById('screenTop').scrollTo({ top: 0, behavior: 'smooth' })">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="#f5f5f5" class="size-5">
-                        <path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 1 1-1.06 1.06l-6.22-6.22V21a.75.75 0 0 1-1.5 0V4.81l-6.22 6.22a.75.75 0 1 1-1.06-1.06l7.5-7.5Z" clip-rule="evenodd" />
-                    </svg>
-                </div>
+                <!-- Scroll Up Button Component  -->
+                <div id="scrollUpButton" x-ref="scrollUpButton"></div>
             </div>
 
         </section>

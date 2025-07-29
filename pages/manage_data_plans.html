@@ -28,22 +28,22 @@
                 <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
 
                 <!-- Main Content Section -->
-                <div class="mt-2 w-full flex flex-col px-6 py-6 gap-12 text-primary-black">
+                <div class="mt-2 w-full flex flex-col px-6 pt-6 pb-10 gap-15 text-primary-black">
 
                     <!-- First Row -->
                     <div class="flex flex-col gap-12 w-full">
                         
-                        <div class="flex-1 relative px-4 pt-20 sm:pt-15 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
-                            <div class="absolute font-medium gap-2 -top-5 px-6 py-4.5 text-left rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white">
-                                Create Data Plan » <span class="text-sm">Click <img src="" alt=" " class="inline-block"> to add new rows</span>
+                        <div class="flex-1 relative pt-20 sm:pt-12 pb-3 bg-white shadow-sm rounded-xs shrink-0 w-full">
+                            <div class="absolute font-medium gap-2 -top-5 mx-4 px-6 py-4.5 text-left rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white">
+                                Create Data Plan » <span class="text-sm font-normal">Click <img src="" alt=" " class="inline-block"> to add new rows</span>
                             </div>
 
-                            <div class="w-full mb-0.5 flex justify-end items-end">
+                            <div class="w-full px-7 mb-0.5 flex justify-end items-end">
                                 <button class="uppercase font-semibold text-tiny text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text py-3 px-8 rounded-xs cursor-pointer transition duration-300">View Activity Log</button>
                             </div>
 
-                            <div class="w-full mb-16 relative">
-                                    <form class="w-full px-4" x-data="{
+                            <div class="w-full px-7 mb-16 relative">
+                                    <form class="w-full" x-data="{
                                         dataRows: [
                                             {
                                                 serviceId: '',
@@ -63,32 +63,126 @@
                                                 productId: '',
                                                 providerId: ''
                                             }];
-                                        }
+                                        },
+                                        deleteRow(index) {
+                                            if (this.dataRows.length > 1) {
+                                                this.dataRows.splice(index, 1);
+                                            } else {
+                                                alert('At least one row is required');
+                                            }
+                                        },
                                     }" @submit.prevent>
                                         <div class="overflow-x-auto mb-7 max-w-full">
                                             <div class="min-w-fit">
                                                 <table class="w-full table-auto border-collapse text-small">
                                                     <thead class="text-black font-medium align-bottom">
                                                         <tr>
-                                                            <td class="px-2 py-3">#</td>
-                                                            <td class="px-2 py-3">Service Id</td>
-                                                            <td class="px-2 py-3">Amount</td>
-                                                            <td class="px-2 py-3">Validity</td>
-                                                            <td class="px-2 py-3">Data Bundle</td>
-                                                            <td class="px-2 py-3">Product Id</td>
-                                                            <td class="px-2 py-3">Provider Id</td>
+                                                            <td class="px-1.5 py-3">#</td>
+                                                            <td class="px-1.5 py-3">Service Id</td>
+                                                            <td class="px-1.5 py-3">Amount</td>
+                                                            <td class="px-1.5 py-3">Validity</td>
+                                                            <td class="px-1.5 py-3">Data Bundle</td>
+                                                            <td class="px-1.5 py-3">Product Id</td>
+                                                            <td class="px-1.5 py-3">Provider Id</td>
                                                         </tr>
                                                     </thead>
                                                     <tbody class="align-top">
-                                                        <template x-for="(row, index) in dataRows" :key="index">
+                                                        <tr class="hover:bg-gray-50 border-t border-primary-sidebar-gray-text/70">
+                                                            <td class="py-2 px-1.5 font-bold">1.</td>
+                                                            <td class="py-2 px-1.5">
+                                                                <select 
+                                                                    x-model="dataRows[0].serviceId"
+                                                                    name="serviceId-0" 
+                                                                    id="serviceId-0"
+                                                                    class="w-full text-primary-input-gray-text bg-white focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300"
+                                                                    required
+                                                                >
+                                                                    <option value="">SELECT NETWORK</option>
+                                                                    <option value="airtel">AIRTEL</option>
+                                                                    <option value="9mobile">9MOBILE</option>
+                                                                    <option value="glo">GLO</option>
+                                                                    <option value="mtn">MTN</option>
+                                                                    <option value="smile">SMILE</option>
+                                                                </select>
+                                                            </td>
+                                                            <td class="py-2 px-1.5">
+                                                                <input
+                                                                    type="number"
+                                                                    x-model="dataRows[0].amount" 
+                                                                    placeholder="ENTER AMOUNT"
+                                                                    name="amount-0"
+                                                                    id="amount-0"
+                                                                    required
+                                                                    class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                                                >
+                                                            </td>
+                                                            <td class="py-2 px-1.5">
+                                                                <input
+                                                                    type="text"
+                                                                    x-model="dataRows[0].validity" 
+                                                                    placeholder="ENTER VALIDITY"
+                                                                    name="validity-0"
+                                                                    id="validity-0"
+                                                                    autoComplete="off"
+                                                                    required
+                                                                    class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                                                >
+                                                            </td>
+                                                            <td class="py-2 px-1.5">
+                                                                <input
+                                                                    type="text"
+                                                                    x-model="dataRows[0].dataBundle" 
+                                                                    placeholder="ENTER DATA BUNDLE"
+                                                                    name="dataBundle-0"
+                                                                    id="dataBundle-0"
+                                                                    autoComplete="off"
+                                                                    required
+                                                                    class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                                                >
+                                                            </td>
+                                                            <td class="py-2 px-1.5">
+                                                                <input
+                                                                    type="text"
+                                                                    x-model="dataRows[0].productId"
+                                                                    placeholder="ENTER PRODUCT ID"
+                                                                    name="productId-0"
+                                                                    id="productId-0"
+                                                                    autoComplete="off"
+                                                                    required
+                                                                    class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                                                >
+                                                            </td>
+                                                            <td class="py-2 px-1.5">
+                                                                <input
+                                                                    type="text"
+                                                                    x-model="dataRows[0].providerId" 
+                                                                    placeholder="ENTER PROVIDER ID"
+                                                                    name="providerId-0"
+                                                                    id="providerId-0"
+                                                                    autoComplete="off"
+                                                                    required
+                                                                    class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                                                >
+                                                            </td>
+                                                            <td class="py-2 px-1.5">
+                                                                <img 
+                                                                    src="" 
+                                                                    alt=" " 
+                                                                    class="cursor-pointer"
+                                                                    @click="addRow"
+                                                                    title="Add New Row"
+                                                                >
+                                                            </td>
+                                                        </tr>
+                                                        <template x-for="(row, index) in dataRows.slice(1)" :key="index">
                                                             <tr class="hover:bg-gray-50 border-t border-primary-sidebar-gray-text/70">
-                                                                <td class="p-2 font-bold" x-text="(index + 1) + '.'"></td>
-                                                                <td class="p-2">
+                                                                <td class="py-2 px-1.5 font-bold" x-text="(index + 2) + '.'"></td>
+                                                                <td class="py-2 px-1.5">
                                                                     <select 
-                                                                        x-model="dataRows[index].serviceId" 
-                                                                        :name="`serviceId-${index}`" 
-                                                                        :id="`serviceId-${index}`" 
-                                                                        class="w-full bg-white text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-sm transition duration-300 min-w-[100px]" 
+                                                                        x-model="row.serviceId"
+                                                                        :name="`serviceId-${index + 1}`" 
+                                                                        :id="`serviceId-${index + 1}`" 
+                                                                        class="w-full text-primary-input-gray-text bg-white focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300"
                                                                         required
                                                                     >
                                                                         <option value="">SELECT NETWORK</option>
@@ -99,67 +193,72 @@
                                                                         <option value="smile">SMILE</option>
                                                                     </select>
                                                                 </td>
-                                                                <td class="p-2">
+                                                                <td class="py-2 px-1.5">
                                                                     <input
                                                                         type="number"
-                                                                        x-model="dataRows[index].amount" 
+                                                                        x-model="row.amount" 
                                                                         placeholder="ENTER AMOUNT"
-                                                                        :name="`amount-${index}`"
-                                                                        :id="`amount-${index}`"
+                                                                        :name="`amount-${index + 1}`"
+                                                                        :id="`amount-${index + 1}`"
                                                                         required
-                                                                        class="w-full bg-white text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300 min-w-[100px]"
+                                                                        class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
                                                                     >
                                                                 </td>
-                                                                <td class="p-2">
+                                                                <td class="py-2 px-1.5">
                                                                     <input
                                                                         type="text"
-                                                                        x-model="dataRows[index].validity" 
+                                                                        x-model="row.validity" 
                                                                         placeholder="ENTER VALIDITY"
-                                                                        :name="`validity-${index}`"
-                                                                        :id="`validity-${index}`"
+                                                                        :name="`validity-${index + 1}`"
+                                                                        :id="`validity-${index + 1}`"
+                                                                        autoComplete="off"
                                                                         required
-                                                                        class="w-full bg-white text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300 min-w-[100px]"
+                                                                        class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
                                                                     >
                                                                 </td>
-                                                                <td class="p-2">
+                                                                <td class="py-2 px-1.5">
                                                                     <input
                                                                         type="text"
-                                                                        x-model="dataRows[index].dataBundle" 
+                                                                        x-model="row.dataBundle" 
                                                                         placeholder="ENTER DATA BUNDLE"
-                                                                        :name="`dataBundle-${index}`"
-                                                                        :id="`dataBundle-${index}`"
+                                                                        :name="`dataBundle-${index + 1}`"
+                                                                        :id="`dataBundle-${index + 1}`"
+                                                                        autoComplete="off"
                                                                         required
-                                                                        class="w-full bg-white text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300 min-w-[100px]"
+                                                                        class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
                                                                     >
                                                                 </td>
-                                                                <td class="p-2">
+                                                                <td class="py-2 px-1.5">
                                                                     <input
                                                                         type="text"
-                                                                        x-model="dataRows[index].productId"
+                                                                        x-model="row.productId"
                                                                         placeholder="ENTER PRODUCT ID"
-                                                                        :name="`productId-${index}`"
-                                                                        :id="`productId-${index}`"
+                                                                        :name="`productId-${index + 1}`"
+                                                                        :id="`productId-${index + 1}`"
+                                                                        autoComplete="off"
                                                                         required
-                                                                        class="w-full bg-white text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300 min-w-[100px]"
+                                                                        class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
                                                                     >
                                                                 </td>
-                                                                <td class="p-2">
+                                                                <td class="py-2 px-1.5">
                                                                     <input
                                                                         type="text"
-                                                                        x-model="dataRows[index].providerId" 
+                                                                        x-model="row.providerId" 
                                                                         placeholder="ENTER PROVIDER ID"
-                                                                        :name="`providerId-${index}`"
-                                                                        :id="`providerId-${index}`"
+                                                                        :name="`providerId-${index + 1}`"
+                                                                        :id="`providerId-${index + 1}`"
+                                                                        autoComplete="off"
                                                                         required
-                                                                        class="w-full bg-white text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300 min-w-[100px]"
+                                                                        class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
                                                                     >
                                                                 </td>
-                                                                <td class="p-2">
+                                                                <td class="py-2 px-1.5">
                                                                     <img 
                                                                         src="" 
                                                                         alt=" " 
                                                                         class="cursor-pointer"
-                                                                        @click="addRow"
+                                                                        @click="deleteRow(index + 1)"
+                                                                        title="Remove This Row"
                                                                     >
                                                                 </td>
                                                             </tr>
@@ -178,8 +277,7 @@
                                                 </button>
                                             </div>
                                         </div>
-                                    </form>
-                                  
+                                    </form>  
                             </div>  
                         </div>    
                     </div>
@@ -187,7 +285,7 @@
                     <!-- Second Row -->
                     <div class="flex flex-col gap-12 w-full">
                         
-                        <div class="flex-1 relative px-4 pt-20 sm:pt-15 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
+                        <div class="flex-1 relative px-4 pt-20 sm:pt-15 pb-3 bg-white shadow-sm rounded-xs shrink-0 w-full">
                             <div class="absolute font-medium gap-2 -top-5 px-6 py-4.5 text-left rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white">
                                 Update Data Plan
                             </div>
@@ -267,7 +365,7 @@
                                     <div class="min-w-fit">
                                         <table class="w-full table-auto border-collapse text-small">
                                             <thead class="text-black font-medium align-bottom">
-                                                <tr class="border-b border-primary-sidebar-gray-text/70">
+                                                <tr class="border-b border-primary-sidebar-gray-text/50">
                                                     <td class="px-2 py-3">#</td>
                                                     <td class="px-2 py-3">Service Id</td>
                                                     <td class="px-2 py-3">Amount</td>
@@ -380,12 +478,8 @@
                 <!-- Footer Section Component  -->
                 <div id="contentFooterContainer" x-ref="contentFooterContainer" class="mt-auto"></div>
 
-                <!-- Scroll Up Button  -->
-                <div class="fixed bottom-7 right-7 p-2.5 bg-primary-blue-text/30 cursor-pointer" @click="document.getElementById('screenTop').scrollTo({ top: 0, behavior: 'smooth' })">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="#f5f5f5" class="size-5">
-                        <path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 1 1-1.06 1.06l-6.22-6.22V21a.75.75 0 0 1-1.5 0V4.81l-6.22 6.22a.75.75 0 1 1-1.06-1.06l7.5-7.5Z" clip-rule="evenodd" />
-                    </svg>
-                </div>
+                <!-- Scroll Up Button Component  -->
+                <div id="scrollUpButton" x-ref="scrollUpButton"></div>
             </div>
 
         </section>
