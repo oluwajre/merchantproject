@@ -84,11 +84,11 @@
                 </div>
 
                 <!-- Main Content Section -->
-                <div class="mt-10 w-full flex flex-col px-6 pt-6 pb-11 gap-12 text-primary-black">
+                <div class="mt-10 w-full flex flex-col px-6 pt-6 pb-4 gap-12 text-primary-black">
                     
                     <div class="flex flex-col gap-12 w-full">
                         
-                        <div class="flex-1 relative pt-14 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
+                        <div class="flex-1 relative pt-14 pb-3 bg-white shrink-0 w-full">
                             <div class="absolute flex items-center align-middle justify-center gap-1 -top-5 mx-4 p-4 text-center rounded-sm cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
                                 <span class="text-white">
                                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960' fill='currentColor' class='size-7'>
@@ -124,7 +124,17 @@
                                         return text.replace(regex, `<span class='font-bold'>$1</span>`);
                                     },
                                     search() {
-                                        this.errorMessage = 'Start Date and End Date cannot be empty';
+                                        if (this.formData.startDate && this.formData.endDate) {
+                                            this.errorMessage = '';
+                                            // Perform search logic here
+                                            console.log('Searching for:', this.formData);
+                                        } else if (!this.formData.startDate && !this.formData.endDate) {
+                                            this.errorMessage = 'Start Date and End Date cannot be empty';
+                                        } else if (!this.formData.startDate) {
+                                            this.errorMessage = 'Start Date cannot be empty';
+                                        } else if (!this.formData.endDate) {
+                                            this.errorMessage = 'End Date cannot be empty';
+                                        }   
                                     },
                                 }">
                                 <div 
@@ -158,7 +168,7 @@
                                             class="absolute inset-x-0 w-full max-w-[350px] left-0 bg-white z-30 shadow-md text-small text-primary-header-gray-bold font-light"
                                             x-transition.origin.top>                                
                                             <template x-for="option in filteredMerchantOptions" :key="option.name">
-                                                <div class="w-full px-2 py-1 border-b border-primary-sidebar-gray-text/30 hover:bg-[#B5BFE1] hover:text-[#3E60DC] cursor-pointer transition duration-100"
+                                                <div class="w-full px-2 py-1 border-b border-primary-sidebar-gray-text/30 hover:bg-perinwinkleBlue-light hover:text-primary-royalBlue-vivid cursor-pointer transition duration-100"
                                                     @click="formData.merchantName = option.name; showMerchantOptions = false">
                                                     <p x-html="highlightMatch(option.name)"></p>
                                                 </div>
@@ -192,32 +202,62 @@
                             </div>  
                         </div>
 
-                        <div class="flex-1 relative bg-white shrink-0 w-full shadow-xl" x-init="fetch('../components/tableComponent.html')
-                            .then(res => res.text())
-                            .then(html => {
-                                $refs.tableComponent.innerHTML = html;
-                                Alpine.initTree($refs.tableComponent);
-                            })" x-data="{
-                            tableHeader: [
-                                'Created',
-                                'Updated',
-                                'Merchant',
-                                'Response',
-                                'Log Type',
-                            ],
-                            tableData: [
-                                {
-                                    'Created': '2025-07-16 00:00:00',
-                                    'Updated': '2025-07-16 00:00:31',
-                                    'Merchant': 'MTN YDFS (MOMO)',
-                                    'Response': {
-                                        statusCode: '01',
-                                        statusDescription: 'Request_Failed. Try Again 400'
+                        <div class="flex-1 relative bg-white shrink-0 w-full rounded-sm shadow-lg" x-data="{
+                                    currentPage: 1,
+                                    perPage: 10,
+                                    searchQuery: '',
+                                    tableData: [
+                                        {
+                                            created: '2025-07-16 00:00:00',
+                                            updated: '2025-07-16 00:00:31',
+                                            merchant: 'MTN YDFS (MOMO)',
+                                            response: {
+                                                statusCode: '01',
+                                                statusDescription: 'Request_Failed. Try Again 400'
+                                            },
+                                            logType: 'air_data',
+                                        },
+                                    ],
+                                    get filteredData() {
+                                        if (!this.searchQuery) return this.tableData;
+                                        return this.tableData.filter(row => {
+                                            return Object.values(row).some(value => {
+                                                if (typeof value === 'object') {
+                                                    return Object.values(value).some(v => v.toString().toLowerCase().includes(this.searchQuery.toLowerCase()));
+                                                }
+                                                return value.toString().toLowerCase().includes(this.searchQuery.toLowerCase());
+                                            });
+                                        });
                                     },
-                                    'Log Type': 'air_data',
-                                },
-                            ],
-                        }">
+                                    get startPaginatedIndex() {
+                                        return (this.currentPage - 1) * Number(this.perPage);
+                                    },
+                                    get endPaginatedIndex() {
+                                        return this.startPaginatedIndex + Number(this.perPage);
+                                    },
+                                    get paginatedData() {
+                                        return this.filteredData.slice(this.startPaginatedIndex, this.endPaginatedIndex);
+                                    },
+                                    get totalPages() {
+                                        return Math.ceil(this.filteredData.length / Number(this.perPage));
+                                    },
+                                    goToPage(page) {
+                                        if (page >= 1 && page <= this.totalPages) {
+                                            this.currentPage = page;
+                                        }
+                                    },
+                                    get pageWindow() {
+                                        const pages = this.totalPages;
+                                        let start = this.currentPage - 1;
+                                        if (start < 1) start = 1;
+                                        let end = start + 7;
+                                        if (end > pages) {
+                                            end = pages;
+                                            start = Math.max(1, end - 7);
+                                        }
+                                        return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+                                    }
+                            }">
 
                             <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-4 py-2 px-6 border-b border-primary-sidebar-gray-text/70">
                                 <div>
@@ -239,33 +279,120 @@
                             </div>
 
                             <!-- Table Summary Header  -->
-                                <div class="w-full px-6 mt-6 gap-3 sm:gap-0 flex flex-col sm:flex-row items-center justify-between text-small text-primary-header-gray-bold">
-                                    <div class="w-full sm:w-fit text-center">
-                                        <label for="entries">Show</label>
-                                        <select name="entries" id="entries" class="text-primary-input-gray-text text-xs focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none p-2 transition duration-300">
-                                            <option value="10">10</option>
-                                            <option value="25">25</option>
-                                            <option value="50">50</option>
-                                            <option value="100">100</option>
-                                        </select>
-                                        <label for="entries">entries</label>
-                                    </div>
-
-                                    <!-- Search Button  -->
-                                    <div class="w-full sm:w-fit text-center">
-                                        <label for="search">Search:</label>
-                                        <input
-                                            type="text" 
-                                            name="search"
-                                            id="search"
-                                            class="text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-xs transition duration-300"
-                                        >
-                                    </div>
-                                    
+                            <div class="w-full px-6 mt-6 gap-3 sm:gap-0 flex flex-col sm:flex-row items-center justify-between text-small text-primary-header-gray-bold">
+                                <div class="w-full sm:w-fit text-center">
+                                    <label for="perPage">Show</label>
+                                    <select name="perPage" id="perPage" x-model="perPage" @change="currentPage = 1" class="text-primary-input-gray-text text-xs focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none p-2 transition duration-300">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                    <label for="perPage">entries</label>
                                 </div>
 
+                                <!-- Search Button  -->
+                                <div class="w-full sm:w-fit text-center">
+                                    <label for="search">Search:</label>
+                                    <input
+                                        type="text" 
+                                        name="search"
+                                        id="search"
+                                        x-model="searchQuery"
+                                        class="text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-xs transition duration-300"
+                                    >
+                                </div>  
+                            </div>
+
                             <!-- Table Component  -->
-                            <div id="tableComponent" x-ref="tableComponent" class="flex"></div>
+                            <div class="overflow-x-auto my-4 px-4 max-w-full flex-1 font-roboto">
+                                <template x-if="tableData.length > 0 && paginatedData.length > 0">
+                                    <div class="min-w-fit">
+                                        <table class="w-full table-auto border-collapse border border-primary-sidebar-gray-text/70 text-small">
+                                            <thead class="text-primary-filtered-options/50 align-bottom">
+                                                <tr x-data="{sortBy: 'created', sortDirection: true}">
+                                                    <td class="border border-primary-sidebar-gray-text/70 pl-2 pr-1 sm:pr-5 py-3 relative text-right cursor-pointer" @click="if(sortBy === 'created') sortDirection = !sortDirection; else { sortBy = 'created'; sortDirection = true; }">
+                                                        <p class="text-left mb-[0px] text-primary-filtered-options">Created</p>
+                                                        <span class="text-right mt-[0px]"><span :class="{'text-primary-filtered-options': sortBy === 'created' && sortDirection}">&uarr;</span><span  :class="{'text-primary-filtered-options': sortBy === 'created' && !sortDirection}">&darr;</span></span>
+                                                    </td>
+                                                    <td class="border border-primary-sidebar-gray-text/70 pl-2 pr-1 sm:pr-5 py-3 relative text-right cursor-pointer" @click="if(sortBy === 'updated') sortDirection = !sortDirection; else { sortBy = 'updated'; sortDirection = true; }">
+                                                        <p class="text-left mb-[0px] text-primary-filtered-options">Updated</p>
+                                                        <span class="text-right mt-[0px]"><span :class="{'text-primary-filtered-options': sortBy === 'updated' && sortDirection}">&uarr;</span><span  :class="{'text-primary-filtered-options': sortBy === 'updated' && !sortDirection}">&darr;</span></span>
+                                                    </td>
+                                                    <td class="border border-primary-sidebar-gray-text/70 pl-2 pr-1 sm:pr-5 py-3 relative text-right cursor-pointer" @click="if(sortBy === 'merchant') sortDirection = !sortDirection; else { sortBy = 'merchant'; sortDirection = true; }">
+                                                        <p class="text-left mb-[0px] text-primary-filtered-options">Merchant</p>
+                                                        <span class="text-right mt-[0px]"><span :class="{'text-primary-filtered-options': sortBy === 'merchant' && sortDirection}">&uarr;</span><span  :class="{'text-primary-filtered-options': sortBy === 'merchant' && !sortDirection}">&darr;</span></span>
+                                                    </td>
+                                                    <td class="border border-primary-sidebar-gray-text/70 pl-2 pr-1 sm:pr-5 py-3 relative text-right cursor-pointer" @click="if(sortBy === 'response') sortDirection = !sortDirection; else { sortBy = 'response'; sortDirection = true; }">
+                                                        <p class="text-left mb-[0px] text-primary-filtered-options">Response</p>
+                                                        <span class="text-right mt-[0px]"><span :class="{'text-primary-filtered-options': sortBy === 'response' && sortDirection}">&uarr;</span><span  :class="{'text-primary-filtered-options': sortBy === 'response' && !sortDirection}">&darr;</span></span>
+                                                    </td>
+                                                    <td class="border border-primary-sidebar-gray-text/70 pl-2 pr-1 sm:pr-5 py-3 relative text-right cursor-pointer" @click="if(sortBy === 'logType') sortDirection = !sortDirection; else { sortBy = 'logType'; sortDirection = true; }">
+                                                        <p class="text-left mb-[0px] text-primary-filtered-options">Log Type</p>
+                                                        <span class="text-right mt-[0px]"><span :class="{'text-primary-filtered-options': sortBy === 'logType' && sortDirection}">&uarr;</span><span  :class="{'text-primary-filtered-options': sortBy === 'logType' && !sortDirection}">&darr;</span></span>
+                                                    </td>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="text-primary-filtered-options font-medium align-top">
+                                                <template x-for="(row, rowIndex) in paginatedData" :key="rowIndex">
+                                                    <tr class="hover:bg-gray-50">
+                                                        <td x-text="row.created" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
+                                                        <td x-text="row.updated" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
+                                                        <td x-text="row.merchant" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
+                                                        <td x-text="row.response" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
+                                                        <td x-text="row.logType" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
+                                                    </tr>
+                                                </template>
+                                            </tbody>
+                                        </table>
+
+                                        <template x-if="totalPages > 1">
+                                            <div class="flex justify-between items-center mt-3 mb-6">
+                                                <div 
+                                                    class="text-primary-header-gray-bold font-light text-small"
+                                                    x-text="`Showing ${startPaginatedIndex + 1} to ${Math.min(endPaginatedIndex, filteredData.length)} of ${filteredData.length} entries`"
+                                                >
+                                                </div>
+                                                <div class="inline-flex border border-primary-sidebar-gray-text/70">
+                                                    <div 
+                                                        :class="{'text-primary-sidebar-gray-text cursor-not-allowed': currentPage === 1, 'text-primary-blue-text cursor-pointer': currentPage > 1}"
+                                                        class="border-r border-primary-sidebar-gray-text/70 px-2 py-1 text-sm hover:bg-gray-50"
+                                                        @click="goToPage(currentPage - 1)"
+                                                    >
+                                                        &lt;
+                                                    </div>
+                                                    <template x-for="page in pageWindow" :key="page">
+                                                        <div
+                                                            class="px-3 py-1 text-sm border-r border-primary-sidebar-gray-text/70 font-medium transition-all duration-300"
+                                                            :class="{ 'bg-primary-cyanBlue-sidebar-background text-white': page === currentPage, 'text-primary-blue-text hover:bg-gray-50 cursor-pointer': page !== currentPage }"
+                                                            @click="goToPage(page)"
+                                                            x-transition:enter="transition ease-out duration-200"
+                                                            x-transition:enter-start="opacity-0 translate-x-2"
+                                                            x-transition:enter-end="opacity-100 translate-x-0"
+                                                            x-transition:leave="transition ease-in duration-200"
+                                                            x-transition:leave-start="opacity-100 translate-x-0"
+                                                            x-transition:leave-end="opacity-0 -translate-x-2"
+                                                            x-text="page"
+                                                        ></div>
+                                                    </template>
+                                                    
+                                                    <div 
+                                                        class="font-medium px-2 py-1 text-sm hover:bg-gray-50"
+                                                        @click="goToPage(currentPage + 1)"
+                                                        :class="{'text-primary-sidebar-gray-text cursor-not-allowed': currentPage === totalPages, 'text-primary-blue-text cursor-pointer': currentPage < totalPages}"
+                                                    >
+                                                        &gt;
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </template>
+                                    </div>
+                                </template>
+                                <template x-if="tableData.length === 0 || paginatedData.length === 0">
+                                    <p x-text="noDataMessage || 'No data found'" class="text-primary-header-gray-bold font-light text-sm mt-4 mb-8"></p>
+                                </template>
+                            </div>
                         </div>   
                     </div>
 

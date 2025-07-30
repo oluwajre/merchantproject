@@ -20,8 +20,8 @@
   --color-primary-header-gray-text: #959cb6;
   --color-primary-header-gray-background: #eaecf2;
   --color-primary-dashboard-background: #eeeeee;
-  --color-primary-header-gray-bold: #646c9a; /*Also the same as boldGrey */
-  --color-primary-footer-gray-text: #a7abc3; /*Also the same as dullGrey */
+  --color-primary-header-gray-bold: #646c9a;
+  --color-primary-footer-gray-text: #a7abc3;
   --color-primary-sidebar-gray-text: #d2d2d6;
   --color-primary-sidebar-gray-background: #f2f3f8;
   --color-primary-input-gray-text: #a7abd1;
@@ -30,6 +30,12 @@
   --color-primary-disabled-report-button: #808080;
   --color-primary-filtered-options: #6c7293;
   --color-primary-table-header: #464457;
+  --color-primary-dark-gray: #212529;
+  --color-primary-bluishGray-dark: #282a3c;
+  --color-primary-graphiteGray-dark: #434345;
+  --color-primary-grayishBlue-muted: #7C8A8F;
+  --color-primary-grayishBlue-light: #F4F5F8;
+  --color-primary-coolGray-light: #E0E0E1;
 
   /* Blue Colors */
   --color-primary-blue-text: #2c77f4;
@@ -42,6 +48,10 @@
   --color-primary-slateBlue: #5867DD;
   --color-primary-royalBlue: #2E40D4;
   --color-secondary-linkColour: #3429A3FF;
+  --color-perinwinkleBlue-light: #B5BFE1;
+  --color-perinwinkleBlue-veryLight: #B8C7F6;
+  --color-primary-royalBlue-vivid: #3E60DC;
+  --color-primary-lavenderBlue-light: #CFD9F9;
 
   --color-primary-gold-background-light: #ffa726;
   --color-primary-gold-background-dark: #fb8c00;
@@ -59,6 +69,8 @@
   --color-primary-wine-background-light: #ec407a;
   --color-primary-wine-background-dark: #d81b60;
   --color-primary-darkRed: #c22;
+  --color-primary-reddishOrange: #da6557;
+  --color-primary-crimson: #b00;
 
   --text-tiny: 0.69rem;
   --text-small: 0.85rem;

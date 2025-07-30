@@ -87,7 +87,7 @@
                     <!-- Dropdown Menu -->
                     <div
                         x-show="expandSideMenu && item.dropDown.length > 0 && openDropdown === index"
-                        class="mb-2 text-sm"
+                        class="mb-2 text-small"
                         x-transition:enter="transition ease-out duration-300"
                         x-transition:enter-start="opacity-0 transform -translate-y-8"
                         x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -104,7 +104,7 @@
                                             'bg-primary-sidebar-gray-background/8 text-white': isActive(subItem) || subItem.openSubDropdown === index,
                                             'text-primary-sidebar-gray-text hover:text-white hover:bg-primary-sidebar-gray-background/8': !isActive(subItem)
                                         }"
-                                        class="group pl-9 pr-6 py-2 flex items-center cursor-pointer gap-1 w-full text-sm"
+                                        class="group pl-9 pr-6 py-2 flex items-center cursor-pointer gap-1 w-full text-small"
                                         @click="toggleDropdown(subItem, index)"
                                     >
                                         <span 
@@ -142,7 +142,7 @@
                                     <!-- Sub Dropdown Menu -->
                                     <div
                                         x-show="expandSideMenu && subItem.dropDown?.length > 0 && subItem.openSubDropdown === index"
-                                        class="mb-2 text-sm"
+                                        class="mb-2 text-small"
                                         x-transition:enter="transition ease-out duration-300"
                                         x-transition:enter-start="opacity-0 transform -translate-y-8"
                                         x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -159,7 +159,7 @@
                                                             'bg-primary-sidebar-gray-background/8 text-white': isActive(child),
                                                             'text-primary-sidebar-gray-text hover:text-white hover:bg-primary-sidebar-gray-background/8': !isActive(child)
                                                         }"
-                                                        class="group pl-12 pr-8 py-2 flex items-center cursor-pointer gap-2 w-full text-sm"
+                                                        class="group pl-12 pr-8 py-2 flex items-center cursor-pointer gap-2 w-full text-small"
                                                         @click="toggleDropdown(child, index)"
                                                     >
                                                         <span 

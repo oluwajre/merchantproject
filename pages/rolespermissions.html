@@ -25,7 +25,7 @@
                 <div id="mobileNavContainer" x-ref="mobileNavContainer"></div>
 
                 <!-- Header Section Component  -->
-                <div class="w-full flex flex-col sm:flex-row flex-wrap gap-2 justify-between items-start sm:items-center px-6 my-4 font-roboto">
+                <div class="w-full flex flex-col sm:flex-row flex-wrap gap-2 justify-between items-start sm:items-center px-8 my-5 font-roboto">
                     <div class="flex items-center capitalize gap-3">
                         <p class="flex items-center text-small">
                             <span class="mr-2 text-primary-header-gray-bold">
@@ -35,9 +35,9 @@
                             </span>
                         </p>
                     </div>
-                    <div class="flex gap-2 text-tiny font-medium uppercase text-primary-header-gray-text">
-                        <div class="px-4 py-2 bg-primary-header-gray-background shadow-sm cursor-pointer">Total Merchants: <span class="text-primary-blue-text">103</span></div>
-                        <div class="px-4 py-2 bg-primary-header-gray-background shadow-sm hover:shadow-md cursor-pointer">Welcome, <span class="text-primary-blue-text">SEGU</span></div>
+                    <div class="flex gap-1 text-[10px] font-medium uppercase text-primary-header-gray-text">
+                        <div class="px-3 py-2 bg-primary-header-gray-background cursor-pointer">Total Merchants: <span class="text-primary-blue-text">103</span></div>
+                        <div class="px-9 py-2 bg-primary-header-gray-background shadow-md hover:shadow-lg cursor-pointer">Welcome, <span class="text-primary-blue-text">SEGU</span></div>
                     </div>
                 </div>
 
@@ -108,7 +108,7 @@
                                     }
                             }">
                                     <table class="w-full table-auto border-collapse text-small">
-                                        <thead class="text-black font-medium align-bottom bg-[#CFD9F9] hover:bg-[#B8C7F6]">
+                                        <thead class="text-black font-medium align-bottom bg-primary-lavenderBlue-light hover:bg-perinwinkleBlue-veryLight">
                                             <tr>
                                                 <template x-for="header in tableHeader" :key="header">
                                                     <td class="px-2 py-3" x-text="header"></td>
@@ -145,7 +145,7 @@
 
                                                             <div class="relative w-full">
                                                                 <!-- Trigger -->
-                                                                <div @click="open = !open" :class="{'bg-primary-sidebar-gray-background/60': open, 'bg-white': !open}" class="flex items-center gap-1 w-full text-[#282A3C] font-normal px-3 py-1 text-tiny uppercase cursor-pointer">
+                                                                <div @click="open = !open" :class="{'bg-primary-sidebar-gray-background/60': open, 'bg-white': !open}" class="flex items-center gap-1 w-full text-primary-filtered-options font-normal px-3 py-1 text-tiny uppercase cursor-pointer">
                                                                     <span x-text="selected.length === 0 ? 'Nothing Selected' : selected.join(', ')" class="flex-1 whitespace-nowrap overflow-hidden text-ellipsis" aria-required="true"></span>
                                                                     <span class="text-primary-gray">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="1" stroke="none" class="size-4">
@@ -249,12 +249,8 @@
                 <!-- Footer Section Component  -->
                 <div id="contentFooterContainer" x-ref="contentFooterContainer" class="mt-auto"></div>
 
-                <!-- Scroll Up Button  -->
-                <div class="fixed bottom-7 right-7 p-2.5 bg-primary-blue-text/30 cursor-pointer" @click="document.getElementById('screenTop').scrollTo({ top: 0, behavior: 'smooth' })">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="#f5f5f5" class="size-5">
-                        <path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 1 1-1.06 1.06l-6.22-6.22V21a.75.75 0 0 1-1.5 0V4.81l-6.22 6.22a.75.75 0 1 1-1.06-1.06l7.5-7.5Z" clip-rule="evenodd" />
-                    </svg>
-                </div>
+                <!-- Scroll Up Button Component  -->
+                <div id="scrollUpButton" x-ref="scrollUpButton"></div>
             </div>
 
         </section>

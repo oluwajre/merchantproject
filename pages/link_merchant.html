@@ -78,7 +78,7 @@
                                     </div>
 
                                     <div>
-                                        <h1 class="text-[#464457] font-medium text-[15.5px]">Linked New Account</h1>
+                                        <h1 class="text-primary-table-header font-medium text-[15.5px]">Linked New Account</h1>
                                     </div>
                                 </div>
 
@@ -143,7 +143,7 @@
                                                         class="absolute inset-x-0 w-full max-w-[350px] left-0 bg-white z-30 shadow-md text-small text-primary-header-gray-bold font-light"
                                                         x-transition.origin.top>                                
                                                         <template x-for="option in filteredMerchantOptions(formData.mainAccount)" :key="option.name">
-                                                            <div class="w-full px-2 py-1 border-b border-primary-sidebar-gray-text/30 hover:bg-[#B5BFE1] hover:text-[#3E60DC] cursor-pointer transition duration-100"
+                                                            <div class="w-full px-2 py-1 border-b border-primary-sidebar-gray-text/30 hover:bg-perinwinkleBlue-light hover:text-primary-royalBlue-vivid cursor-pointer transition duration-100"
                                                                 @click="formData.mainAccount = option.name; showMainOptions = false">
                                                                 <p x-html="highlightMatch(option.name, formData.mainAccount)"></p>
                                                             </div>
@@ -167,7 +167,7 @@
                                                         class="absolute inset-x-0 w-full max-w-[350px] left-0 bg-white z-30 shadow-md text-small text-primary-header-gray-bold font-light"
                                                         x-transition.origin.top>                                
                                                         <template x-for="option in filteredMerchantOptions(formData.linkedAccount)" :key="option.name">
-                                                            <div class="w-full px-2 py-1 border-b border-primary-sidebar-gray-text/30 hover:bg-[#B5BFE1] hover:text-[#3E60DC] cursor-pointer transition duration-100"
+                                                            <div class="w-full px-2 py-1 border-b border-primary-sidebar-gray-text/30 hover:bg-perinwinkleBlue-light hover:text-primary-royalBlue-vivid cursor-pointer transition duration-100"
                                                                 @click="formData.linkedAccount = option.name; showLinkedOptions = false">
                                                                 <p x-html="highlightMatch(option.name, formData.linkedAccount)"></p>
                                                             </div>

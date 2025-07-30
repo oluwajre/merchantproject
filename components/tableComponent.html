@@ -32,11 +32,6 @@
         <table class="w-full table-auto border-collapse border border-primary-sidebar-gray-text/70 text-small">
             <thead class="text-black font-medium align-bottom">
                 <tr>
-                    <!-- <template x-if="tableData.length > 0">
-                        <template x-for="(key, i) in Object.keys(tableData[0])" :key="i">
-                            <td class="border border-primary-sidebar-gray-text/70 px-2 py-3" x-text="key"></td>
-                        </template>
-                    </template> -->
                     <template x-for="(header, index) in tableHeader" :key="index">
                         <td class="border border-primary-sidebar-gray-text/70 px-2 py-3" x-text="header"></td>
                     </template>
@@ -50,23 +45,6 @@
                         </template>
                     </tr>
                 </template>
-                <!-- <template x-for="(data, index) in paginatedData" :key="index">
-                    <tr class="hover:bg-gray-50 hover:text-primary-black">
-                        <td x-text="data['#']" class="border border-primary-grey-light-text/70 px-2 py-3"></td>
-                        <td x-text="data['cswRef']" class="border border-primary-grey-light-text/70 px-2 py-3"></td>
-                        <td x-text="data['orig.Msisdn']" class="border border-primary-grey-light-text/70 px-2 py-3"></td>
-                        <td x-text="data['network']" class="border border-primary-grey-light-text/70 px-2 py-3"></td>
-                        <td x-text="data['tranxDate']" class="border border-primary-grey-light-text/70 px-2 py-3"></td>
-                        <td x-text="data['amtDebit']" class="border border-primary-grey-light-text/70 px-2 py-3"></td>
-                        <td x-text="data['amtCreditOffnet']" class="border border-primary-grey-light-text/70 px-2 py-3"></td>
-                        <td x-text="data['tranxCharge']" class="border border-primary-grey-light-text/70 px-2 py-3"></td>
-                        <td x-text="data['recipient']" class="border border-primary-grey-light-text/70 px-2 py-3"></td>
-                        <td x-text="data['tranxStatus']" class="border border-primary-grey-light-text/70 px-2 py-3"></td>
-                        <td x-text="data['refID']" class="border border-primary-grey-light-text/70 px-2 py-3"></td>
-                        <td x-text="data['finalStatus']" class="border border-primary-grey-light-text/70 px-2 py-3"></td>
-                        <td x-text="data['mreversalDate']" class="border border-primary-grey-light-text/70 px-2 py-3"></td>
-                    </tr>
-                </template> -->
             </tbody>
         </table>
 

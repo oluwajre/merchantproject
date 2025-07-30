@@ -75,7 +75,7 @@
                                     formData.endDate = `${getDate()}T23:59`
                                 ">
                                     <div class="relative">
-                                        <p class="text-[13px] text-[#212529] mb-5 font-semibold">Merchant</p>
+                                        <p class="text-[13px] text-primary-dark-gray mb-5 font-semibold">Merchant</p>
                                         <input
                                             x-model="formData.merchantName"
                                             @input="showMerchantOptions = true"
@@ -92,7 +92,7 @@
                                             class="absolute inset-x-0 w-full max-w-[350px] left-0 bg-white z-30 shadow-md text-small text-primary-header-gray-bold font-light"
                                             x-transition.origin.top>                                
                                             <template x-for="option in filteredMerchantOptions" :key="option.name">
-                                                <div class="w-full px-2 py-1 border-b border-primary-sidebar-gray-text/30 hover:bg-[#B5BFE1] hover:text-[#3E60DC] cursor-pointer transition duration-100"
+                                                <div class="w-full px-2 py-1 border-b border-primary-sidebar-gray-text/30 hover:bg-perinwinkleBlue-light hover:text-primary-royalBlue-vivid cursor-pointer transition duration-100"
                                                     @click="formData.merchantName = option.name; showMerchantOptions = false">
                                                     <p x-html="highlightMatch(option.name)"></p>
                                                 </div>
@@ -100,7 +100,7 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <p class="text-[13px] text-[#212529] mb-5 font-semibold">Merchant Type</p>
+                                        <p class="text-[13px] text-primary-dark-gray mb-5 font-semibold">Merchant Type</p>
                                         <select name="merchantType" id="merchantType" x-model="formData.merchantType" class="w-full text-primary-input-gray-text bg-white focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-semibold placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300">
                                             <option value="">SELECT TYPE</option>
                                             <option value="prepaid">Prepaid</option>
@@ -108,7 +108,7 @@
                                         </select>
                                     </div>
                                     <div>
-                                        <p class="text-[13px] text-[#212529] mb-5 font-semibold">View Type</p>
+                                        <p class="text-[13px] text-primary-dark-gray mb-5 font-semibold">View Type</p>
                                         <select name="viewType" id="viewType" x-model="formData.viewType" class="w-full text-primary-input-gray-text bg-white focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-semibold placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300">
                                             <option value="">SELECT VIEW</option>
                                             <option value="merchants">Merchants</option>
@@ -116,11 +116,11 @@
                                         </select>
                                     </div>
                                     <div>
-                                        <p class="text-[13px] text-[#212529] mb-5 font-semibold"></p>
+                                        <p class="text-[13px] text-primary-dark-gray mb-5 font-semibold"></p>
                                         <button type="submit" class="w-full uppercase font-semibold text-xs text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">Search</button>
                                     </div>
                                     <div>
-                                        <p class="text-[13px] text-[#212529] mb-5 font-semibold"></p>
+                                        <p class="text-[13px] text-primary-dark-gray mb-5 font-semibold"></p>
                                         <input
                                             x-model="formData.startDate"
                                             type="datetime-local" 
@@ -128,10 +128,10 @@
                                             id="startDate"
                                             class="w-full bg-white border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-input-gray-text"
                                         >
-                                        <label for="startDate" class="text-tiny text-[#212529]">(Start Date)</label>
+                                        <label for="startDate" class="text-tiny text-primary-dark-gray">(Start Date)</label>
                                     </div>
                                     <div>
-                                        <p class="text-[13px] text-[#212529] mb-5 font-semibold"></p>
+                                        <p class="text-[13px] text-primary-dark-gray mb-5 font-semibold"></p>
                                         <input
                                             x-model="formData.endDate" 
                                             type="datetime-local" 
@@ -139,7 +139,7 @@
                                             id="endDate"
                                             class="w-full bg-white border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-input-gray-text"
                                         >
-                                        <label for="endDate" class="text-tiny text-[#212529]">(End Date)</label>
+                                        <label for="endDate" class="text-tiny text-primary-dark-gray">(End Date)</label>
                                     </div>          
                                 </form>  
                             </div>  
@@ -406,7 +406,7 @@
 
                             <!-- Table Summary Header  -->
                             <div class="w-full px-6 mt-2.5">
-                                <small class="text-[#da6557] text-tiny">(Record of all discounts per merchant)</small>
+                                <small class="text-primary-reddishOrange text-tiny">(Record of all discounts per merchant)</small>
                             </div>
 
                             <!-- Table Component  -->

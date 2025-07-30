@@ -136,7 +136,7 @@
                                     }
                             }">
                                     <table class="w-full table-auto border-collapse text-small">
-                                        <thead class="text-black font-medium align-bottom bg-[#CFD9F9] hover:bg-[#B8C7F6]">
+                                        <thead class="text-black font-medium align-bottom bg-primary-lavenderBlue-light hover:bg-perinwinkleBlue-veryLight">
                                             <tr>
                                                 <template x-for="header in tableHeader" :key="header">
                                                     <td class="px-2 py-3" x-text="header"></td>
@@ -150,7 +150,7 @@
                                                     <td x-text="data['Last Name']" class="px-2 py-3 font-light"></td>
                                                     <td class="px-2 py-3 font-light"><a :href="'mailto:' + data['Email']" x-text="data['Email']" class="cursor-pointer text-primary-slateBlue hover:text-primary-royalBlue"></a></td>
                                                     <td class="px-2 py-3 max-w-[50px]">
-                                                        <select id="role" name="role" class="font-normal px-1 pt-2 pb-3 max-h-44 outline-none uppercase text-[10px] text-[#282a3c] cursor-pointer bg-white" x-model="data.role">
+                                                        <select id="role" name="role" class="font-normal px-1 pt-2 pb-3 max-h-44 outline-none uppercase text-[10px] text-primary-bluishGray-dark cursor-pointer bg-white" x-model="data.role">
                                                             <option value="">No Role!</option>
                                                             <option value="account">account</option>
                                                             <option value="admin">admin</option>

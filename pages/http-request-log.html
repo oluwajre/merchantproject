@@ -25,7 +25,7 @@
                 <div id="mobileNavContainer" x-ref="mobileNavContainer"></div>
 
                 <!-- Header Section Component 1  -->
-                <div class="w-full flex flex-col sm:flex-row flex-wrap gap-2 justify-between items-start sm:items-center pl-9 pr-6 my-4 font-roboto">
+                <div class="w-full flex flex-col sm:flex-row flex-wrap gap-2 justify-between items-start sm:items-center pl-9 pr-6 my-5 font-roboto">
                     <div class="flex items-center capitalize gap-3">
                         <p class="flex items-center text-small">
                             <span class="mr-2 text-primary-header-gray-bold">
@@ -42,7 +42,7 @@
                 </div>
 
                 <!-- Header Section Component 2  -->
-                <div class="w-full flex flex-col sm:flex-row flex-wrap gap-2 justify-between items-start sm:items-center px-6 my-4 font-roboto">
+                <div class="w-full flex flex-col sm:flex-row flex-wrap gap-2 justify-between items-start sm:items-center px-6 mt-5 mb-4 font-roboto">
                     <div class="flex items-center capitalize gap-3">
                         <p class="font-medium text-primary-header-black-text">Dashboard</p>
                         <p class="flex items-center text-small">
@@ -87,12 +87,12 @@
                 </div>
 
                 <!-- Main Content Section -->
-                <div class="mt-10 w-full flex flex-col px-6 py-6 gap-12 text-primary-black">
+                <div class="mt-10 w-full flex flex-col px-6 pt-6 pb-4 gap-12 text-primary-black">
                     
                     <div class="flex flex-col gap-12 w-full">
                         
-                        <div class="flex-1 relative pt-15 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
-                            <div class="absolute flex items-center align-middle justify-center gap-1 -top-4 mx-4 p-4 text-center rounded-xs cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
+                        <div class="flex-1 relative pt-14 pb-3 bg-white shrink-0 w-full">
+                            <div class="absolute flex items-center align-middle justify-center gap-1 -top-5 mx-4 p-4 text-center rounded-xs cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white min-w-[160px]">
                                 <span class="text-white">
                                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960' fill='currentColor' class='size-7'>
                                         <path d='M0-240v-63q0-43 44-70t116-27q13 0 25 .5t23 2.5q-14 21-21 44t-7 48v65H0Zm240 0v-65q0-32 17.5-58.5T307-410q32-20 76.5-30t96.5-10q53 0 97.5 10t76.5 30q32 20 49 46.5t17 58.5v65H240Zm540 0v-65q0-26-6.5-49T754-397q11-2 22.5-2.5t23.5-.5q72 0 116 26.5t44 70.5v63H780Zm-455-80h311q-10-20-55.5-35T480-370q-55 0-100.5 15T325-320ZM160-440q-33 0-56.5-23.5T80-520q0-34 23.5-57t56.5-23q34 0 57 23t23 57q0 33-23 56.5T160-440Zm640 0q-33 0-56.5-23.5T720-520q0-34 23.5-57t56.5-23q34 0 57 23t23 57q0 33-23 56.5T800-440Zm-320-40q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T600-600q0 50-34.5 85T480-480Zm0-80q17 0 28.5-11.5T520-600q0-17-11.5-28.5T480-640q-17 0-28.5 11.5T440-600q0 17 11.5 28.5T480-560Zm1 240Zm-1-280Z'/>
@@ -101,109 +101,132 @@
                                 <span class="text-md font-medium">Query Http Request Logs</span>
                             </div>
 
-                            <div class="w-full mb-3" x-data="{
-                                    formInput: [
-                                        {
-                                            type: 'text',
-                                            placeholder: 'Search with merchant name or phone no',
-                                            name: 'merchant',
-                                            value: '',
-                                            label: '',
-                                        },
-                                        {
-                                            type: 'date',
-                                            placeholder: 'Date',
-                                            name: 'date',
-                                            value: '',
-                                            label: '(Date)',
-                                        },
-                                        {
-                                            type: 'text',
-                                            placeholder: 'Request Id',
-                                            name: 'requestId',
-                                            value: '',
-                                            label: '(Request Id)',
-                                        },
-                                        {
-                                            type: 'button',
-                                            name: 'search',
-                                            label: '',
-                                        }
+                            <div class="w-full px-4 mb-7" x-data="{
+                                    formData: {
+                                        merchantName: '',
+                                        date: '',
+                                        requestId: '',
+                                    },
+                                    merchantOptions: [
+                                        { name: 'Wema Bank - 09137819540' },
+                                        { name: 'Sterling Bank - 09137819540' }
                                     ],
+                                    showMerchantOptions: false,
+                                    get filteredMerchantOptions() {
+                                        if (!this.formData.merchantName) return [];
+                                        return this.merchantOptions.filter(opt =>
+                                            opt.name.toLowerCase().includes(this.formData.merchantName.toLowerCase())
+                                        );
+                                    },
+                                    escapeRegExp(string) {
+                                        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                                    },
+                                    highlightMatch(text) {
+                                        const regex = new RegExp(`(${this.escapeRegExp(this.formData.merchantName)})`, 'gi');
+                                        return text.replace(regex, `<span class='font-bold'>$1</span>`);
+                                    },
                                 }">
-                                <form class="w-full px-4 gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between" @submit.prevent>
-                                    <template x-for="input in formInput" x-cloak>
-                                        <div>
-                                            <template x-if="input.type === 'select'">
-                                                <select :name="input.name" :id="input.name" x-model="input.value" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-sm transition duration-300">
-                                                    <template x-for="option in input.options">
-                                                        <option :value="option.value" x-text="option.name"></option>
-                                                    </template>
-                                                </select>
+                                <form class="w-full pl-4 gap-5 grid grid-cols-1 md:grid-cols-3 justify-between" @submit.prevent>
+                                    <div class="relative">
+                                        <input
+                                            x-model="formData.merchantName"
+                                            @input="showMerchantOptions = true"
+                                            @click.away="showMerchantOptions = false"
+                                            type="text"
+                                            placeholder="Select with merchant name or phone number"
+                                            name="merchantName"
+                                            id="merchantName"
+                                            autocomplete="off"
+                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text font-normal"
+                                        >
+                                        
+                                        <div x-show="showMerchantOptions && filteredMerchantOptions.length > 0"
+                                            class="absolute inset-x-0 w-full max-w-[350px] left-0 bg-white z-30 shadow-md text-small text-primary-header-gray-bold font-light"
+                                            x-transition.origin.top>                                
+                                            <template x-for="option in filteredMerchantOptions" :key="option.name">
+                                                <div class="w-full px-2 py-1 border-b border-primary-sidebar-gray-text/30 hover:bg-perinwinkleBlue-light hover:text-primary-royalBlue-vivid cursor-pointer transition duration-100"
+                                                    @click="formData.merchantName = option.name; showMerchantOptions = false">
+                                                    <p x-html="highlightMatch(option.name)"></p>
+                                                </div>
                                             </template>
-
-                                            <template x-if="['text', 'number', 'date'].includes(input.type)">
-                                                <input
-                                                    x-model="input.value"
-                                                    :type="input.type" 
-                                                    :placeholder="input.placeholder"
-                                                    :name="input.name"
-                                                    :id="input.name"
-                                                    :class="{
-                                                        'text-primary-input-black-text': input.type !== 'date', 
-                                                        'text-primary-input-gray-text': input.type === 'date'
-                                                    }"
-                                                    class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300"
-                                                >
-                                            </template>
-
-                                            <template x-if="input.type === 'button'">
-                                                <button type="submit" x-text="input.name" class="w-full uppercase font-semibold text-xs text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300"></button>
-                                            </template>
-
-                                            <template x-if="input.label">
-                                                <label :for="input.name" x-text="input.label" class="text-tiny text-primary-header-gray-bold font-normal"></label>
-                                            </template>
-                                            
                                         </div>
-                                    </template>             
+                                    </div>
+                                    <div>
+                                        <input
+                                            x-model="formData.date"
+                                            type="date"
+                                            name="date" 
+                                            id="date"
+                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-input-gray-text"
+                                        >
+                                        <label for="date" class="text-tiny text-primary-header-gray-bold">(Date)</label>
+                                    </div>
+                                    <div>
+                                        <input
+                                            x-model="formData.requestId"
+                                            type="text"
+                                            placeholder="Request Id"
+                                            name="requestId"
+                                            id="requestId"
+                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text font-normal"
+                                        >
+                                        <label for="requestId" class="text-tiny text-primary-header-gray-bold">(Request Id)</label>
+                                    </div>
+                                    <div>
+                                        <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">search</button>
+                                    </div>
                                 </form>  
                             </div>  
                         </div>
 
-                        <div class="flex-1 relative bg-white shrink-0 w-full shadow-xl" x-init="fetch('../components/tableComponent.html')
-                            .then(res => res.text())
-                            .then(html => {
-                                $refs.tableComponent.innerHTML = html;
-                                Alpine.initTree($refs.tableComponent);
-                            })" x-data="{
-                            tableHeader: [
-                                'Date/Time',
-                                'Merchant',
-                                'Service Id',
-                                'Request ID',
-                                'Recipient',
-                                'IP',
-                                'Uri',
-                                'Payload',
-                            ],
+                        <div class="flex-1 relative bg-white shrink-0 w-full rounded-sm shadow-lg" x-data="{
+                            currentPage: 1,
+                            perPage: 10,
                             tableData: [
                                 {
-                                    'Date/Time': '2025-07-16 16:54:23',
-                                    'Merchant': '',
-                                    'Service Id': '',
-                                    'Request ID': '',
-                                    'Recipient': '',
-                                    'IP': '41.184.162.110',
-                                    'Uri': '/http-request-log',
-                                    'Payload': '[]',
+                                    date: '2025-07-16 16:54:23',
+                                    merchant: '',
+                                    serviceId: '',
+                                    requestId: '',
+                                    recipient: '',
+                                    ip: '41.184.162.110',
+                                    uri: '/http-request-log',
+                                    payload: '[]',
                                 },
                             ],
+                            get startPaginatedIndex() {
+                                return (this.currentPage - 1) * Number(this.perPage);
+                            },
+                            get endPaginatedIndex() {
+                                return this.startPaginatedIndex + Number(this.perPage);
+                            },
+                            get paginatedData() {
+                                return this.tableData.slice(this.startPaginatedIndex, this.endPaginatedIndex);
+                            },
+                            get totalPages() {
+                                return Math.ceil(this.tableData.length / Number(this.perPage));
+                            },
+                            goToPage(page) {
+                                if (page >= 1 && page <= this.totalPages) {
+                                    this.currentPage = page;
+                                }
+                            },
+                            get pageWindow() {
+                                const pages = this.totalPages;
+                                let start = this.currentPage - 1;
+                                if (start < 1) start = 1;
+                                let end = start + 7;
+                                if (end > pages) {
+                                    end = pages;
+                                    start = Math.max(1, end - 7);
+                                }
+                                return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+                            },
                         }">
 
                             <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-4 py-2 px-6 border-b border-primary-sidebar-gray-text/70">
                                 <div>
-                                    <h1 class="text-primary-black font-medium">Http Request Logs</h1>
+                                    <h1 class="text-primary-table-header font-medium">Http Request Logs</h1>
                                 </div>
                                 <div class="w-full sm:w-fit">
                                     <button 
@@ -230,7 +253,80 @@
                             </div>
 
                             <!-- Table Component  -->
-                            <div id="tableComponent" x-ref="tableComponent" class="flex"></div>
+                            <div class="overflow-x-auto my-4 px-4 max-w-full flex-1 font-roboto">
+                                <template x-if="tableData.length > 0 && paginatedData.length > 0">
+                                    <div class="min-w-fit">
+                                        <table class="w-full table-auto text-primary-black font-medium border-collapse border border-primary-sidebar-gray-text/70 text-small">
+                                            <thead class="align-bottom">
+                                                <tr>
+                                                    <td class="border border-primary-sidebar-gray-text/70 pl-2 pr-1 sm:pr-5 py-3">Date/Time</td>
+                                                    <td class="border border-primary-sidebar-gray-text/70 pl-2 pr-1 sm:pr-5 py-3">Merchant</td>
+                                                    <td class="border border-primary-sidebar-gray-text/70 pl-2 pr-1 sm:pr-5 py-3">Service Id</td>
+                                                    <td class="border border-primary-sidebar-gray-text/70 pl-2 pr-1 sm:pr-5 py-3">Request Id</td>
+                                                    <td class="border border-primary-sidebar-gray-text/70 pl-2 pr-1 sm:pr-5 py-3">Recipient</td>
+                                                    <td class="border border-primary-sidebar-gray-text/70 pl-2 pr-1 sm:pr-5 py-3">IP</td>
+                                                    <td class="border border-primary-sidebar-gray-text/70 pl-2 pr-1 sm:pr-5 py-3">Uri</td>
+                                                    <td class="border border-primary-sidebar-gray-text/70 pl-2 pr-1 sm:pr-5 py-3">Payload</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="align-top">
+                                                <template x-for="(row, rowIndex) in paginatedData" :key="rowIndex">
+                                                    <tr class="hover:bg-gray-50">
+                                                        <td x-text="row.date" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
+                                                        <td x-text="row.merchant" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
+                                                        <td x-text="row.serviceId" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
+                                                        <td x-text="row.requestId" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
+                                                        <td x-text="row.recipient" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
+                                                        <td x-text="row.ip" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
+                                                        <td x-text="row.uri" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
+                                                        <td x-text="row.payload" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
+                                                    </tr>
+                                                </template>
+                                            </tbody>
+                                        </table>
+
+                                        <template x-if="totalPages > 1">
+                                            <div class="flex mt-4 mb-6">
+                                                <div class="inline-flex border border-primary-sidebar-gray-text/70">
+                                                    <div 
+                                                        :class="{'text-primary-sidebar-gray-text cursor-not-allowed': currentPage === 1, 'text-primary-blue-text cursor-pointer': currentPage > 1}"
+                                                        class="border-r border-primary-sidebar-gray-text/70 px-2 py-1 text-sm hover:bg-gray-50"
+                                                        @click="goToPage(currentPage - 1)"
+                                                    >
+                                                        &lt;
+                                                    </div>
+                                                    <template x-for="page in pageWindow" :key="page">
+                                                        <div
+                                                            class="px-3 py-1 text-sm border-r border-primary-sidebar-gray-text/70 font-medium transition-all duration-300"
+                                                            :class="{ 'bg-primary-cyanBlue-sidebar-background text-white': page === currentPage, 'text-primary-blue-text hover:bg-gray-50 cursor-pointer': page !== currentPage }"
+                                                            @click="goToPage(page)"
+                                                            x-transition:enter="transition ease-out duration-200"
+                                                            x-transition:enter-start="opacity-0 translate-x-2"
+                                                            x-transition:enter-end="opacity-100 translate-x-0"
+                                                            x-transition:leave="transition ease-in duration-200"
+                                                            x-transition:leave-start="opacity-100 translate-x-0"
+                                                            x-transition:leave-end="opacity-0 -translate-x-2"
+                                                            x-text="page"
+                                                        ></div>
+                                                    </template>
+                                                    
+                                                    <div 
+                                                        class="font-medium px-2 py-1 text-sm hover:bg-gray-50"
+                                                        @click="goToPage(currentPage + 1)"
+                                                        :class="{'text-primary-sidebar-gray-text cursor-not-allowed': currentPage === totalPages, 'text-primary-blue-text cursor-pointer': currentPage < totalPages}"
+                                                    >
+                                                        &gt;
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </template>
+                                    </div>
+                                </template>
+                                <template x-if="tableData.length === 0">
+                                    <p x-text="noDataMessage || 'No data found'" class="text-primary-header-gray-bold font-light text-sm mt-4 mb-8"></p>
+                                </template>
+                            </div>
                         </div>   
                     </div>
 
@@ -239,12 +335,8 @@
                 <!-- Footer Section Component  -->
                 <div id="contentFooterContainer" x-ref="contentFooterContainer" class="mt-auto"></div>
 
-                <!-- Scroll Up Button  -->
-                <div class="fixed bottom-7 right-7 p-2.5 bg-primary-blue-text/30 cursor-pointer" @click="document.getElementById('screenTop').scrollTo({ top: 0, behavior: 'smooth' })">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke="#f5f5f5" class="size-5">
-                        <path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 1 1-1.06 1.06l-6.22-6.22V21a.75.75 0 0 1-1.5 0V4.81l-6.22 6.22a.75.75 0 1 1-1.06-1.06l7.5-7.5Z" clip-rule="evenodd" />
-                    </svg>
-                </div>
+                <!-- Scroll Up Button Component  -->
+                <div id="scrollUpButton" x-ref="scrollUpButton"></div>
             </div>
 
         </section>
