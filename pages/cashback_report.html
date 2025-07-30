@@ -10,7 +10,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
         <link rel="manifest" href="../assets/site.webmanifest">
     </head>
-    <body class="select-none bg-primary-sidebar-gray-background font-roboto">
+    <body class="select-none bg-gray-sidebar-bg font-roboto">
 
         <section class="relative flex h-screen" x-data="menu('Cash Back')">
 
@@ -28,11 +28,11 @@
                 <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
 
                 <!-- Main Content Section -->
-                <div class="w-full mb-5 flex flex-col px-6 pt-3 pb-6 gap-12 text-primary-black">
+                <div class="w-full mb-5 flex flex-col px-6 pt-3 pb-6 gap-12 text-black-base">
 
                     <!-- First Row -->
                     <div class="w-full mb-5 md:mb-12 flex flex-col shrink-0 md:flex-row gap-10 md:gap-5 items-center justify-between">
-                        <div class="w-full relative flex-1 text-right shadow-md bg-white px-4 pt-2 pb-5 rounded-md border border-primary-sidebar-gray-background">
+                        <div class="w-full relative flex-1 text-right shadow-md bg-white px-4 pt-2 pb-5 rounded-md border border-gray-sidebar-bg">
                                 <div class="absolute flex items-center justify-center -top-4 px-6 py-5.5 text-center rounded-[3px] cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white">
                                     <span class="text-inherit">
                                         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960' fill='currentColor' class='size-9'>
@@ -40,10 +40,10 @@
                                         </svg>
                                     </span>
                                 </div>
-                                <p class="text-sm text-primary-gray">Sales Today</p>
-                                <h1 class="text-lg font-medium text-primary-table-gray-dark">₦0.0</h1>
+                                <p class="text-sm text-gray-soft">Sales Today</p>
+                                <h1 class="text-lg font-medium text-gray-table-dark">₦0.0</h1>
                             </div>
-                            <div class="w-full relative flex-1 text-right shadow-md bg-white px-4 pt-2 pb-5 rounded-md border border-primary-sidebar-gray-background">
+                            <div class="w-full relative flex-1 text-right shadow-md bg-white px-4 pt-2 pb-5 rounded-md border border-gray-sidebar-bg">
                                 <div class="absolute flex items-center justify-center -top-4 px-6 py-5.5 text-center rounded-[3px] cyanBlue-custom-box-shadow cyanBlue-custom-background-gradient text-white">
                                     <span class="text-inherit">
                                         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960' fill='currentColor' class='size-9'>
@@ -51,10 +51,10 @@
                                         </svg>
                                     </span>
                                 </div>
-                                <p class="text-sm text-primary-gray">Sales This Week</p>
-                                <h1 class="text-lg font-medium text-primary-table-gray-dark">₦0.0</h1>
+                                <p class="text-sm text-gray-soft">Sales This Week</p>
+                                <h1 class="text-lg font-medium text-gray-table-dark">₦0.0</h1>
                             </div>
-                            <div class="w-full relative flex-1 text-right shadow-md bg-white px-4 pt-2 pb-5 rounded-md border border-primary-sidebar-gray-background">
+                            <div class="w-full relative flex-1 text-right shadow-md bg-white px-4 pt-2 pb-5 rounded-md border border-gray-sidebar-bg">
                                 <div class="absolute flex items-center justify-center -top-4 px-6 py-5.5 text-center rounded-[3px] green-custom-box-shadow green-custom-background-gradient text-white">
                                     <span class="text-inherit">
                                         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960' fill='currentColor' class='size-9'>
@@ -62,8 +62,8 @@
                                         </svg>
                                     </span>
                                 </div>
-                                <p class="text-sm text-primary-gray">Sales This Month</p>
-                                <h1 class="text-lg font-medium text-primary-table-gray-dark">₦0.0</h1>
+                                <p class="text-sm text-gray-soft">Sales This Month</p>
+                                <h1 class="text-lg font-medium text-gray-table-dark">₦0.0</h1>
                             </div>
                     </div>  
 
@@ -125,9 +125,9 @@
                                             name="startDate" 
                                             id="startDate"
                                             step="1" 
-                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-input-gray-text"
+                                            class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-medium placeholder:text-gray-input-text outline-none px-3 py-2 text-small transition duration-300 text-gray-input-text"
                                         >
-                                        <label for="startDate" class="text-tiny text-primary-header-gray-bold">(Start Date)</label>
+                                        <label for="startDate" class="text-tiny text-gray-header-bold">(Start Date)</label>
                                     </div>
                                     <div>
                                         <input
@@ -136,9 +136,9 @@
                                             name="endDate" 
                                             id="endDate"
                                             step="1" 
-                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-input-gray-text"
+                                            class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-medium placeholder:text-gray-input-text outline-none px-3 py-2 text-small transition duration-300 text-gray-input-text"
                                         >
-                                        <label for="endDate" class="text-tiny text-primary-header-gray-bold">(End Date)</label>
+                                        <label for="endDate" class="text-tiny text-gray-header-bold">(End Date)</label>
                                     </div>
                                     <div>
                                         <input
@@ -147,7 +147,7 @@
                                             placeholder="REFERENCE ID"
                                             name="referenceId" 
                                             id="referenceId"
-                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                            class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-medium placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300 text-gray-footer-text focus:text-black-input-text"
                                         >
                                     </div>
                                     <div>
@@ -157,7 +157,7 @@
                                             placeholder="Account Number" 
                                             name="accountNumber" 
                                             id="accountNumber"
-                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                            class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-medium placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300 text-gray-footer-text focus:text-black-input-text"
                                         >
                                     </div>
                                     <div>
@@ -167,11 +167,11 @@
                                             placeholder="AMOUNT" 
                                             name="amount" 
                                             id="amount"
-                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                            class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-medium placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300 text-gray-footer-text focus:text-black-input-text"
                                         >
                                     </div>
                                     <div>
-                                        <select name="merchantName" id="merchantName" x-model="formData.merchantName" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300">
+                                        <select name="merchantName" id="merchantName" x-model="formData.merchantName" class="w-full text-gray-input-text focus-visible:text-black-input-text border border-gray-sidebar-text focus:border-blue-input-border font-medium placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300">
                                             <option value="">Select a Merchant</option>
                                             <option value="csw">CSW</option>
                                             <option value="everlasting">Everlasting</option>
@@ -194,14 +194,14 @@
                                         </select>
                                     </div>
                                     <div>
-                                        <select name="transactionstatus" id="transactionstatus" x-model="formData.transactionstatus" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300">
+                                        <select name="transactionstatus" id="transactionstatus" x-model="formData.transactionstatus" class="w-full text-gray-input-text focus-visible:text-black-input-text border border-gray-sidebar-text focus:border-blue-input-border font-medium placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300">
                                             <option value="">Transaction Status</option>
                                             <option value="successful">Successful</option>
                                             <option value="failed">Failed</option>
                                         </select>
                                     </div>
                                     <div>
-                                        <select name="channel" id="channel" x-model="formData.channel" class="w-full font-medium text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue outline-none px-3 py-2 text-small transition duration-300">
+                                        <select name="channel" id="channel" x-model="formData.channel" class="w-full font-medium text-gray-input-text focus-visible:text-black-input-text border border-gray-sidebar-text focus:border-blue-input-border outline-none px-3 py-2 text-small transition duration-300">
                                             <option value="">Channel</option>
                                             <option value="web">Web</option>
                                             <option value="931">931</option>
@@ -209,7 +209,7 @@
                                         </select>
                                     </div>
                                     <div>
-                                        <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">search</button>
+                                        <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-cyan-button-bg hover:bg-cyan-bg-dark active:bg-blue-text-accent p-3 rounded-xs cursor-pointer transition duration-300">search</button>
                                     </div>
                                 </form>
                             </div>  
@@ -275,9 +275,9 @@
                             }">
 
                                 <!-- Table Options  -->
-                                <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-4 py-2 px-6 border-b border-primary-sidebar-gray-text/70">
+                                <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-4 py-2 px-6 border-b border-gray-sidebar-text/70">
                                     <div>
-                                        <h1 class="text-primary-table-header font-medium">Cash Back Result</h1>
+                                        <h1 class="text-gray-table-header font-medium">Cash Back Result</h1>
                                     </div>
                                     <div class="flex w-full sm:w-fit justify-between">
                                         <button
@@ -303,9 +303,9 @@
                                                 x-cloak
                                                 class="absolute text-[10px] font-medium bg-white shadow-sm py-2 top-full right-0 w-[120%] transform-none text-left"
                                             >
-                                                <p class="uppercase text-primary-blue-text mb-1 px-6">Export</p>
+                                                <p class="uppercase text-blue-text-accent mb-1 px-6">Export</p>
                                                 <div 
-                                                    class="flex items-center gap-2 font-normal text-small text-primary-header-gray-bold py-2 px-6 hover:bg-gray-50 hover:text-primary-blue-text cursor-pointer"
+                                                    class="flex items-center gap-2 font-normal text-small text-gray-header-bold py-2 px-6 hover:bg-gray-50 hover:text-blue-text-accent cursor-pointer"
                                                 >
                                                     <span class="rounded-full border-1 border-inherit text-inherit">
                                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-audio-lines-icon lucide-audio-lines size-3.5"><path d="M2 10v3"/><path d="M6 6v11"/><path d="M10 3v18"/><path d="M14 8v7"/><path d="M18 5v13"/><path d="M22 10v3"/></svg>
@@ -316,7 +316,7 @@
                                         </button>
 
                                         <button 
-                                            class="uppercase text-[10px] font-medium px-7 bg-primary-green-light hover:brightness-95 rounded-xs text-white cursor-pointer transition duration-200"
+                                            class="uppercase text-[10px] font-medium px-7 bg-green-soft hover:brightness-95 rounded-xs text-white cursor-pointer transition duration-200"
                                             @click="showTable = false;"
                                         >
                                             CLOSE (X)
@@ -326,18 +326,18 @@
                                 </div>
 
                                 <!-- Table Summary Header  -->
-                                <div class="py-6 m-6 flex flex-col sm:flex-row items-center justify-between bg-white shadow-md rounded-sm border border-primary-sidebar-gray-background">
-                                    <div class="w-full py-2 sm:py-0 flex-1 text-center border-b sm:border-b-0 sm:border-r border-primary-header-gray-text">
-                                        <h1 class="text-lg font-semibold text-primary-black-text-muted">₦0</h1>
-                                        <p class="text-tiny text-primary-gray-text-muted uppercase">Face Value</p>
+                                <div class="py-6 m-6 flex flex-col sm:flex-row items-center justify-between bg-white shadow-md rounded-sm border border-gray-sidebar-bg">
+                                    <div class="w-full py-2 sm:py-0 flex-1 text-center border-b sm:border-b-0 sm:border-r border-gray-header">
+                                        <h1 class="text-lg font-semibold text-black-muted">₦0</h1>
+                                        <p class="text-tiny text-gray-muted-text uppercase">Face Value</p>
                                     </div>
-                                    <div class="w-full py-2 sm:py-0 flex-1 text-center border-b sm:border-b-0 sm:border-r border-primary-header-gray-text">
-                                        <h1 class="text-lg font-semibold text-primary-black-text-muted">₦0</h1>
-                                        <p class="text-tiny text-primary-gray-text-muted uppercase">Net Value</p>
+                                    <div class="w-full py-2 sm:py-0 flex-1 text-center border-b sm:border-b-0 sm:border-r border-gray-header">
+                                        <h1 class="text-lg font-semibold text-black-muted">₦0</h1>
+                                        <p class="text-tiny text-gray-muted-text uppercase">Net Value</p>
                                     </div>
                                     <div class="w-full py-2 sm:py-0 flex-1 text-center">
-                                        <h1 class="text-lg font-semibold text-primary-black-text-muted">₦0</h1>
-                                        <p class="text-tiny text-primary-gray-text-muted uppercase">Charges</p>
+                                        <h1 class="text-lg font-semibold text-black-muted">₦0</h1>
+                                        <p class="text-tiny text-gray-muted-text uppercase">Charges</p>
                                     </div>
                                 </div>
 

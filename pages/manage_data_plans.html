@@ -10,7 +10,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
         <link rel="manifest" href="../assets/site.webmanifest">
     </head>
-    <body class="select-none bg-primary-sidebar-gray-background font-roboto">
+    <body class="select-none bg-gray-sidebar-bg font-roboto">
 
         <section class="relative flex h-screen" x-data="menu('Manage Data Plans')">
 
@@ -28,7 +28,7 @@
                 <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
 
                 <!-- Main Content Section -->
-                <div class="mt-2 w-full flex flex-col px-6 pt-6 pb-10 gap-15 text-primary-black">
+                <div class="mt-2 w-full flex flex-col px-6 pt-6 pb-10 gap-15 text-black-base">
 
                     <!-- First Row -->
                     <div class="flex flex-col gap-12 w-full">
@@ -39,7 +39,7 @@
                             </div>
 
                             <div class="w-full px-7 mb-0.5 flex justify-end items-end">
-                                <button class="uppercase font-semibold text-tiny text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text py-3 px-8 rounded-xs cursor-pointer transition duration-300">View Activity Log</button>
+                                <button class="uppercase font-semibold text-tiny text-white bg-cyan-button-bg hover:bg-cyan-bg-dark active:bg-blue-text-accent py-3 px-8 rounded-xs cursor-pointer transition duration-300">View Activity Log</button>
                             </div>
 
                             <div class="w-full px-7 mb-16 relative">
@@ -87,14 +87,14 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody class="align-top">
-                                                        <tr class="hover:bg-gray-50 border-t border-primary-sidebar-gray-text/70">
+                                                        <tr class="hover:bg-gray-50 border-t border-gray-sidebar-text/70">
                                                             <td class="py-2 px-1.5 font-bold">1.</td>
                                                             <td class="py-2 px-1.5">
                                                                 <select 
                                                                     x-model="dataRows[0].serviceId"
                                                                     name="serviceId-0" 
                                                                     id="serviceId-0"
-                                                                    class="w-full text-primary-input-gray-text bg-white focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300"
+                                                                    class="w-full text-gray-input-text bg-white focus-visible:text-black-input-text border border-gray-sidebar-text focus:border-blue-input-border font-normal placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300"
                                                                     required
                                                                 >
                                                                     <option value="">SELECT NETWORK</option>
@@ -113,7 +113,7 @@
                                                                     name="amount-0"
                                                                     id="amount-0"
                                                                     required
-                                                                    class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                                                    class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-normal placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300 text-gray-footer-text focus:text-black-input-text"
                                                                 >
                                                             </td>
                                                             <td class="py-2 px-1.5">
@@ -125,7 +125,7 @@
                                                                     id="validity-0"
                                                                     autoComplete="off"
                                                                     required
-                                                                    class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                                                    class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-normal placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300 text-gray-footer-text focus:text-black-input-text"
                                                                 >
                                                             </td>
                                                             <td class="py-2 px-1.5">
@@ -137,7 +137,7 @@
                                                                     id="dataBundle-0"
                                                                     autoComplete="off"
                                                                     required
-                                                                    class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                                                    class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-normal placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300 text-gray-footer-text focus:text-black-input-text"
                                                                 >
                                                             </td>
                                                             <td class="py-2 px-1.5">
@@ -149,7 +149,7 @@
                                                                     id="productId-0"
                                                                     autoComplete="off"
                                                                     required
-                                                                    class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                                                    class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-normal placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300 text-gray-footer-text focus:text-black-input-text"
                                                                 >
                                                             </td>
                                                             <td class="py-2 px-1.5">
@@ -161,7 +161,7 @@
                                                                     id="providerId-0"
                                                                     autoComplete="off"
                                                                     required
-                                                                    class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                                                    class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-normal placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300 text-gray-footer-text focus:text-black-input-text"
                                                                 >
                                                             </td>
                                                             <td class="py-2 px-1.5">
@@ -175,14 +175,14 @@
                                                             </td>
                                                         </tr>
                                                         <template x-for="(row, index) in dataRows.slice(1)" :key="index">
-                                                            <tr class="hover:bg-gray-50 border-t border-primary-sidebar-gray-text/70">
+                                                            <tr class="hover:bg-gray-50 border-t border-gray-sidebar-text/70">
                                                                 <td class="py-2 px-1.5 font-bold" x-text="(index + 2) + '.'"></td>
                                                                 <td class="py-2 px-1.5">
                                                                     <select 
                                                                         x-model="row.serviceId"
                                                                         :name="`serviceId-${index + 1}`" 
                                                                         :id="`serviceId-${index + 1}`" 
-                                                                        class="w-full text-primary-input-gray-text bg-white focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300"
+                                                                        class="w-full text-gray-input-text bg-white focus-visible:text-black-input-text border border-gray-sidebar-text focus:border-blue-input-border font-normal placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300"
                                                                         required
                                                                     >
                                                                         <option value="">SELECT NETWORK</option>
@@ -201,7 +201,7 @@
                                                                         :name="`amount-${index + 1}`"
                                                                         :id="`amount-${index + 1}`"
                                                                         required
-                                                                        class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                                                        class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-normal placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300 text-gray-footer-text focus:text-black-input-text"
                                                                     >
                                                                 </td>
                                                                 <td class="py-2 px-1.5">
@@ -213,7 +213,7 @@
                                                                         :id="`validity-${index + 1}`"
                                                                         autoComplete="off"
                                                                         required
-                                                                        class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                                                        class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-normal placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300 text-gray-footer-text focus:text-black-input-text"
                                                                     >
                                                                 </td>
                                                                 <td class="py-2 px-1.5">
@@ -225,7 +225,7 @@
                                                                         :id="`dataBundle-${index + 1}`"
                                                                         autoComplete="off"
                                                                         required
-                                                                        class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                                                        class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-normal placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300 text-gray-footer-text focus:text-black-input-text"
                                                                     >
                                                                 </td>
                                                                 <td class="py-2 px-1.5">
@@ -237,7 +237,7 @@
                                                                         :id="`productId-${index + 1}`"
                                                                         autoComplete="off"
                                                                         required
-                                                                        class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                                                        class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-normal placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300 text-gray-footer-text focus:text-black-input-text"
                                                                     >
                                                                 </td>
                                                                 <td class="py-2 px-1.5">
@@ -249,7 +249,7 @@
                                                                         :id="`providerId-${index + 1}`"
                                                                         autoComplete="off"
                                                                         required
-                                                                        class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                                                        class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-normal placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300 text-gray-footer-text focus:text-black-input-text"
                                                                     >
                                                                 </td>
                                                                 <td class="py-2 px-1.5">
@@ -271,7 +271,7 @@
                                             <div class="col-span-full md:col-span-1 col-start-1 md:col-start-2">
                                                 <button
                                                     type="submit"
-                                                    class="w-full uppercase font-semibold text-tiny text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300"
+                                                    class="w-full uppercase font-semibold text-tiny text-white bg-cyan-button-bg hover:bg-cyan-bg-dark active:bg-blue-text-accent p-3 rounded-xs cursor-pointer transition duration-300"
                                                 >
                                                     Create
                                                 </button>
@@ -354,18 +354,18 @@
                                 }
                             }">             
                                 <div class="w-full overflow-x-auto mb-0.5 flex justify-start items-center">
-                                    <div @click="currentServiceId = 'D01D'" :class="currentServiceId === 'D01D'? 'bg-primary-grayishBlue-light': 'hover:bg-primary-grayishBlue-light'" class="text-primary-filtered-options px-8 py-3 rounded-xs active:text-black font-bold text-xs uppercase cursor-pointer transition duration-200">Airtel</div>
-                                    <div @click="currentServiceId = 'D02D'" :class="currentServiceId === 'D02D'? 'bg-primary-grayishBlue-light': 'hover:bg-primary-grayishBlue-light'" class="text-primary-filtered-options px-8 py-3 rounded-xs active:text-black font-bold text-xs uppercase cursor-pointer transition duration-200">9Mobile</div>
-                                    <div @click="currentServiceId = 'D03D'" :class="currentServiceId === 'D03D'? 'bg-primary-grayishBlue-light': 'hover:bg-primary-grayishBlue-light'" class="text-primary-filtered-options px-8 py-3 rounded-xs active:text-black font-bold text-xs uppercase cursor-pointer transition duration-200">Glo</div>
-                                    <div @click="currentServiceId = 'D04D'" :class="currentServiceId === 'D04D'? 'bg-primary-grayishBlue-light': 'hover:bg-primary-grayishBlue-light'" class="text-primary-filtered-options px-8 py-3 rounded-xs active:text-black font-bold text-xs uppercase cursor-pointer transition duration-200">Mtn</div>
-                                    <div @click="currentServiceId = 'D05D'" :class="currentServiceId === 'D05D'? 'bg-primary-grayishBlue-light': 'hover:bg-primary-grayishBlue-light'" class="text-primary-filtered-options px-8 py-3 rounded-xs active:text-black font-bold text-xs uppercase cursor-pointer transition duration-200">Smile</div>
+                                    <div @click="currentServiceId = 'D01D'" :class="currentServiceId === 'D01D'? 'bg-gray-light-blue': 'hover:bg-gray-light-blue'" class="text-gray-filtered px-8 py-3 rounded-xs active:text-black font-bold text-xs uppercase cursor-pointer transition duration-200">Airtel</div>
+                                    <div @click="currentServiceId = 'D02D'" :class="currentServiceId === 'D02D'? 'bg-gray-light-blue': 'hover:bg-gray-light-blue'" class="text-gray-filtered px-8 py-3 rounded-xs active:text-black font-bold text-xs uppercase cursor-pointer transition duration-200">9Mobile</div>
+                                    <div @click="currentServiceId = 'D03D'" :class="currentServiceId === 'D03D'? 'bg-gray-light-blue': 'hover:bg-gray-light-blue'" class="text-gray-filtered px-8 py-3 rounded-xs active:text-black font-bold text-xs uppercase cursor-pointer transition duration-200">Glo</div>
+                                    <div @click="currentServiceId = 'D04D'" :class="currentServiceId === 'D04D'? 'bg-gray-light-blue': 'hover:bg-gray-light-blue'" class="text-gray-filtered px-8 py-3 rounded-xs active:text-black font-bold text-xs uppercase cursor-pointer transition duration-200">Mtn</div>
+                                    <div @click="currentServiceId = 'D05D'" :class="currentServiceId === 'D05D'? 'bg-gray-light-blue': 'hover:bg-gray-light-blue'" class="text-gray-filtered px-8 py-3 rounded-xs active:text-black font-bold text-xs uppercase cursor-pointer transition duration-200">Smile</div>
                                 </div>
 
                                 <div class="overflow-x-auto mb-7 max-w-full">
                                     <div class="min-w-fit">
                                         <table class="w-full table-auto border-collapse text-small">
                                             <thead class="text-black font-medium align-bottom">
-                                                <tr class="border-b border-primary-sidebar-gray-text/50">
+                                                <tr class="border-b border-gray-sidebar-text/50">
                                                     <td class="px-2 py-3">#</td>
                                                     <td class="px-2 py-3">Service Id</td>
                                                     <td class="px-2 py-3">Amount</td>
@@ -377,7 +377,7 @@
                                             </thead>
                                             <tbody class="align-top">
                                                 <template x-for="(row, index) in filteredRows" :key="index">
-                                                    <tr class="hover:bg-gray-50 border-b border-primary-sidebar-gray-text/70">
+                                                    <tr class="hover:bg-gray-50 border-b border-gray-sidebar-text/70">
                                                         <td class="p-2 font-bold" x-text="(index + 1) + '.'"></td>
                                                         <td class="p-2">
                                                             <input
@@ -388,7 +388,7 @@
                                                                 :id="`serviceId-${index}`"
                                                                 required
                                                                 readonly
-                                                                class="w-full bg-white text-primary-input-gray-text rounded-sm border-2 border-transparent focus:border-black font-normal placeholder:capitalize outline-none text-sm transition duration-300 min-w-[100px]"
+                                                                class="w-full bg-white text-gray-input-text rounded-sm border-2 border-transparent focus:border-black font-normal placeholder:capitalize outline-none text-sm transition duration-300 min-w-[100px]"
                                                             >
                                                         </td>
                                                         <td class="p-2">
@@ -399,7 +399,7 @@
                                                                 :name="`amount-${index}`"
                                                                 :id="`amount-${index}`"
                                                                 required
-                                                                class="w-full bg-white text-primary-input-gray-text rounded-sm border-2 border-transparent focus:border-black font-normal placeholder:capitalize outline-none text-sm transition duration-300 min-w-[100px]"
+                                                                class="w-full bg-white text-gray-input-text rounded-sm border-2 border-transparent focus:border-black font-normal placeholder:capitalize outline-none text-sm transition duration-300 min-w-[100px]"
                                                             >
                                                         </td>
                                                         <td class="p-2">
@@ -410,7 +410,7 @@
                                                                 :name="`validity-${index}`"
                                                                 :id="`validity-${index}`"
                                                                 required
-                                                                class="w-full bg-white text-primary-input-gray-text rounded-sm border-2 border-transparent focus:border-black font-normal placeholder:capitalize outline-none text-sm transition duration-300 min-w-[100px]"
+                                                                class="w-full bg-white text-gray-input-text rounded-sm border-2 border-transparent focus:border-black font-normal placeholder:capitalize outline-none text-sm transition duration-300 min-w-[100px]"
                                                             >
                                                         </td>
                                                         <td class="p-2">
@@ -421,7 +421,7 @@
                                                                 :name="`dataBundle-${index}`"
                                                                 :id="`dataBundle-${index}`"
                                                                 required
-                                                                class="w-full bg-white text-primary-input-gray-text rounded-sm border-2 border-transparent focus:border-black font-normal placeholder:capitalize outline-none text-sm transition duration-300 min-w-[100px]"
+                                                                class="w-full bg-white text-gray-input-text rounded-sm border-2 border-transparent focus:border-black font-normal placeholder:capitalize outline-none text-sm transition duration-300 min-w-[100px]"
                                                             >
                                                         </td>
                                                         <td class="p-2">
@@ -432,7 +432,7 @@
                                                                 :name="`productId-${index}`"
                                                                 :id="`productId-${index}`"
                                                                 required
-                                                                class="w-full bg-white text-primary-input-gray-text rounded-sm border-2 border-transparent focus:border-black font-normal placeholder:capitalize outline-none text-sm transition duration-300 min-w-[100px]"
+                                                                class="w-full bg-white text-gray-input-text rounded-sm border-2 border-transparent focus:border-black font-normal placeholder:capitalize outline-none text-sm transition duration-300 min-w-[100px]"
                                                             >
                                                         </td>
                                                         <td class="p-2">
@@ -443,13 +443,13 @@
                                                                 :name="`providerId-${index}`"
                                                                 :id="`providerId-${index}`"
                                                                 required
-                                                                class="w-full bg-white text-primary-input-gray-text rounded-sm border-2 border-transparent focus:border-black font-normal placeholder:capitalize outline-none text-sm transition duration-300 min-w-[100px]"
+                                                                class="w-full bg-white text-gray-input-text rounded-sm border-2 border-transparent focus:border-black font-normal placeholder:capitalize outline-none text-sm transition duration-300 min-w-[100px]"
                                                             >
                                                         </td>
                                                         <td class="p-2">
                                                                 <button
                                                                 @click="updateRow(row)"
-                                                                class="w-full uppercase text-[10px] text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text py-3 px-7 rounded-xs cursor-pointer transition duration-300"
+                                                                class="w-full uppercase text-[10px] text-white bg-cyan-button-bg hover:bg-cyan-bg-dark active:bg-blue-text-accent py-3 px-7 rounded-xs cursor-pointer transition duration-300"
                                                             >
                                                                 Update
                                                             </button>
@@ -458,7 +458,7 @@
                                                                 <button
                                                                 @click="toggleStatus(row)"
                                                                 x-text="row.status === 'active'? 'Deactivate': 'Activate'"
-                                                                :class="row.status === 'active'? 'bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text': 'bg-primary-danger hover:brightness-95'"
+                                                                :class="row.status === 'active'? 'bg-cyan-button-bg hover:bg-cyan-bg-dark active:bg-blue-text-accent': 'bg-red-warning hover:brightness-95'"
                                                                 class="w-full uppercase text-[10px] text-white px-7 py-3 rounded-xs cursor-pointer transition duration-300"
                                                             >
                                                             </button>

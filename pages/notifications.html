@@ -10,7 +10,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
         <link rel="manifest" href="../assets/site.webmanifest">
     </head>
-    <body class="select-none bg-primary-sidebar-gray-background font-roboto">
+    <body class="select-none bg-gray-sidebar-bg font-roboto">
 
         <section class="relative flex h-screen" x-data="menu('Setup Notifications')">
 
@@ -28,7 +28,7 @@
                 <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
 
                 <!-- Main Content Section -->
-                <div class="mt-9 w-full flex flex-col px-6 pt-6 pb-11 gap-15 text-primary-black">
+                <div class="mt-9 w-full flex flex-col px-6 pt-6 pb-11 gap-15 text-black-base">
 
                     <!-- First Row -->
                     <div class="flex flex-col gap-12 w-full">
@@ -70,12 +70,12 @@
                                     }" class="relative">
 
                                         <!-- Label / Title  -->
-                                        <p class="font-bold text-small text-primary-header-gray-bold">Select Recipient(s)</p>
+                                        <p class="font-bold text-small text-gray-header-bold">Select Recipient(s)</p>
 
                                         <!-- Trigger -->
-                                        <div @click="open = !open" :class="{'bg-primary-sidebar-gray-background/60': open}" class="flex items-center gap-1 w-full text-primary-filtered-options border border-primary-sidebar-gray-text px-3 pt-2 pb-3 text-tiny uppercase cursor-pointer">
+                                        <div @click="open = !open" :class="{'bg-gray-sidebar-bg/60': open}" class="flex items-center gap-1 w-full text-gray-filtered border border-gray-sidebar-text px-3 pt-2 pb-3 text-tiny uppercase cursor-pointer">
                                             <span x-text="formData.selected.length === 0 ? 'Nothing Selected' : formData.selected.join(', ')" class="flex-1 whitespace-nowrap overflow-hidden" aria-required="true"></span>
-                                            <span class="text-primary-gray">
+                                            <span class="text-gray-soft">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="1" stroke="none" class="size-4">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                                                 </svg>
@@ -96,32 +96,32 @@
                                                     type="text"
                                                     x-model="search"
                                                     placeholder="Search Merchant"
-                                                    class="w-full border border-primary-sidebar-gray-text placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-small"
+                                                    class="w-full border border-gray-sidebar-text placeholder:font-normal placeholder:text-gray-input-text outline-none px-3 py-2 text-small"
                                                 />
                                             </div>
 
                                             <!-- Select/Deselect -->
-                                            <div class="flex justify-between gap-2 px-4 py-2 text-xs text-primary-login-gray-header text-center">
-                                                <button @click="selectAll" class="flex-1 uppercase hover:bg-primary-sidebar-gray-background/60 py-2 cursor-pointer">Select All</button>
-                                                <button @click="deselectAll" class="flex-1 uppercase hover:bg-primary-sidebar-gray-background/60 py-2 cursor-pointer">Deselect All</button>
+                                            <div class="flex justify-between gap-2 px-4 py-2 text-xs text-gray-login-header text-center">
+                                                <button @click="selectAll" class="flex-1 uppercase hover:bg-gray-sidebar-bg/60 py-2 cursor-pointer">Select All</button>
+                                                <button @click="deselectAll" class="flex-1 uppercase hover:bg-gray-sidebar-bg/60 py-2 cursor-pointer">Deselect All</button>
                                             </div>
 
                                                 <!-- List of Options -->
                                             <div class="max-h-36 overflow-y-auto">
                                                 <div 
                                                     @click="open = !open"
-                                                    class="flex justify-between px-4 py-2 cursor-pointer text-small text-primary-input-gray-text font-medium hover:bg-gray-100"
+                                                    class="flex justify-between px-4 py-2 cursor-pointer text-small text-gray-input-text font-medium hover:bg-gray-100"
                                                 >
                                                     Select Merchant(s)
                                                 </div>
                                                 <template x-for="option in filteredOptions" :key="option">
                                                     <div 
                                                         @click="toggleOption(option)"
-                                                        class="flex justify-between px-4 py-2 cursor-pointer text-small text-primary-header-gray-bold font-medium"
+                                                        class="flex justify-between px-4 py-2 cursor-pointer text-small text-gray-header-bold font-medium"
                                                         :class="formData.selected.includes(option) ? 'bg-gray-100' : 'hover:bg-gray-100'"
                                                     >
                                                         <span x-text="option" class="flex-1"></span>
-                                                        <span x-show="formData.selected.includes(option)" class="text-primary-black font-extralight">✔</span>
+                                                        <span x-show="formData.selected.includes(option)" class="text-black-base font-extralight">✔</span>
                                                     </div>
                                                 </template>
                                             </div>
@@ -131,7 +131,7 @@
 
                                     <div class="space-y-3">
                                         <!-- Label / Title  -->
-                                        <p class="font-medium text-primary-header-gray-bold">Title</p>
+                                        <p class="font-medium text-gray-header-bold">Title</p>
                                         <input
                                             x-model="formData.title"
                                             type="text" 
@@ -139,13 +139,13 @@
                                             name="title"
                                             id="title"
                                             required
-                                            class="text-primary-input-black-text w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-small transition-all duration-300"
+                                            class="text-black-input-text w-full border border-gray-sidebar-text focus:border-blue-input-border placeholder:font-normal placeholder:text-gray-input-text outline-none px-3 py-2 text-small transition-all duration-300"
                                         >
                                     </div>
 
                                     <div class="space-y-3">
                                         <!-- Label / Title  -->
-                                        <p class="font-medium text-primary-header-gray-bold">Notification Body</p>
+                                        <p class="font-medium text-gray-header-bold">Notification Body</p>
                                         <textarea 
                                             name="body" 
                                             id="body" 
@@ -153,14 +153,14 @@
                                             x-model="formData.body" 
                                             required
                                             rows="3"
-                                            class="text-primary-input-black-text w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-small transition-all duration-300"
+                                            class="text-black-input-text w-full border border-gray-sidebar-text focus:border-blue-input-border placeholder:font-normal placeholder:text-gray-input-text outline-none px-3 py-2 text-small transition-all duration-300"
                                             >
                                         </textarea>
                                     </div>
 
                                     <div class="space-y-3" x-data="{ fileName: ''}">
                                         <!-- Label / Title  -->
-                                        <p class="font-medium text-primary-header-gray-bold">Upload Image</p>
+                                        <p class="font-medium text-gray-header-bold">Upload Image</p>
 
                                         <label for="upload" class="inline-block cursor-pointer bg-gray-100 hover:bg-gray-200 border border-black rounded-xs text-black text-small font-normal px-2 py-1">
                                             Choose File
@@ -179,11 +179,11 @@
                                         />
 
 
-                                        <span x-text="fileName || 'No file chosen'" class="text-small text-primary-header-gray-bold"></span>
+                                        <span x-text="fileName || 'No file chosen'" class="text-small text-gray-header-bold"></span>
 
                                         <!-- Form Save Button  -->
                                         <div class="mt-3">
-                                            <button type="submit" class="uppercase font-semibold text-xs text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text py-3 px-8 rounded-xs cursor-pointer transition duration-300">Save</button>
+                                            <button type="submit" class="uppercase font-semibold text-xs text-white bg-cyan-button-bg hover:bg-cyan-bg-dark active:bg-blue-text-accent py-3 px-8 rounded-xs cursor-pointer transition duration-300">Save</button>
                                         </div>
                                         
                                     </div>          

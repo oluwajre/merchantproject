@@ -10,7 +10,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
         <link rel="manifest" href="../assets/site.webmanifest">
     </head>
-    <body class="select-none bg-primary-sidebar-gray-background font-roboto">
+    <body class="select-none bg-gray-sidebar-bg font-roboto">
 
         <section class="relative flex h-screen" x-data="menu('Pin Dashboard')">
 
@@ -28,7 +28,7 @@
                 <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
 
                 <!-- Main Content Section -->
-                <div class="mt-2 w-full flex flex-col px-6 pt-6 pb-10 gap-12 text-primary-black">
+                <div class="mt-2 w-full flex flex-col px-6 pt-6 pb-10 gap-12 text-black-base">
 
                     <!-- First Row -->
                     <div class="flex-1 relative pt-18 pb-3 bg-white shadow-md rounded-xs shrink-0 w-full">
@@ -44,16 +44,16 @@
                                     salesMonthValue: '₦5',
                                 }">
                                     <div class="w-full">
-                                        <h1 class="text-lg font-semibold text-primary-filtered-options" x-text="salesTodayValue"></h1>
-                                        <p class="text-small text-primary-footer-gray-text font-medium">Sales Today</p>
+                                        <h1 class="text-lg font-semibold text-gray-filtered" x-text="salesTodayValue"></h1>
+                                        <p class="text-small text-gray-footer-text font-medium">Sales Today</p>
                                     </div>
                                     <div class="w-full">
-                                        <h1 class="text-lg font-semibold text-primary-filtered-options" x-text="salesWeekValue"></h1>
-                                        <p class="text-small text-primary-footer-gray-text font-medium">Sales This Week</p>
+                                        <h1 class="text-lg font-semibold text-gray-filtered" x-text="salesWeekValue"></h1>
+                                        <p class="text-small text-gray-footer-text font-medium">Sales This Week</p>
                                     </div>
                                     <div class="w-full">
-                                        <h1 class="text-lg font-semibold text-primary-filtered-options" x-text="salesMonthValue"></h1>
-                                        <p class="text-small text-primary-footer-gray-text font-medium">Sales This Month</p>
+                                        <h1 class="text-lg font-semibold text-gray-filtered" x-text="salesMonthValue"></h1>
+                                        <p class="text-small text-gray-footer-text font-medium">Sales This Month</p>
                                     </div>
                                 </div>
 
@@ -93,7 +93,7 @@
                                             placeholder="ENTER A SERIAL NO" 
                                             name="serialNumber" 
                                             id="serialNumber"
-                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                            class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-normal placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300 text-gray-footer-text focus:text-black-input-text"
                                         >
                                     </div>
                                     <div>
@@ -103,7 +103,7 @@
                                             placeholder="ENTER A PIN" 
                                             name="pin" 
                                             id="pin"
-                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                            class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-normal placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300 text-gray-footer-text focus:text-black-input-text"
                                         >
                                     </div>
                                     <div>
@@ -112,19 +112,19 @@
                                             type="date"
                                             name="dateUsed" 
                                             id="dateUsed"
-                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-input-gray-text"
+                                            class="w-full border border-gray-sidebar-text focus:border-blue-input-border placeholder:text-gray-input-text outline-none px-3 py-2 text-small transition duration-300 text-gray-input-text"
                                         >
-                                        <label for="dateUsed" class="text-tiny text-primary-darkRed">(Date Used >)</label>
+                                        <label for="dateUsed" class="text-tiny text-red-dark">(Date Used >)</label>
                                     </div>
                                     <div>
-                                        <select name="serviceUsedFor" id="serviceUsedFor" x-model="formData.serviceUsedFor" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300">
+                                        <select name="serviceUsedFor" id="serviceUsedFor" x-model="formData.serviceUsedFor" class="w-full text-gray-input-text focus-visible:text-black-input-text border border-gray-sidebar-text focus:border-blue-input-border font-normal placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300">
                                             <option value="">Service Used For?</option>
                                             <option value="glo_airtime">Glo Airtime</option>
                                             <option value="electricity">Electricity</option>
                                         </select>
                                     </div>
                                     <div class="md:col-start-3">
-                                        <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">search</button>
+                                        <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-cyan-button-bg hover:bg-cyan-bg-dark active:bg-blue-text-accent p-3 rounded-xs cursor-pointer transition duration-300">search</button>
                                     </div> 
                                 </form>
 
@@ -156,7 +156,7 @@
                                                 placeholder="AGENT NAME?" 
                                                 name="agentName" 
                                                 id="agentName"
-                                                class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                                class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-normal placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300 text-gray-footer-text focus:text-black-input-text"
                                             >
                                         </div>
                                         <div>
@@ -166,24 +166,24 @@
                                                 placeholder="BATCHID?" 
                                                 name="batchId" 
                                                 id="batchId"
-                                                class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                                class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-normal placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300 text-gray-footer-text focus:text-black-input-text"
                                             >
                                         </div>
                                         <div>
-                                            <select name="pinAction" id="pinAction" x-model="formData.pinAction" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300">
+                                            <select name="pinAction" id="pinAction" x-model="formData.pinAction" class="w-full text-gray-input-text focus-visible:text-black-input-text border border-gray-sidebar-text focus:border-blue-input-border font-normal placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300">
                                                 <option value="">Pin Action?</option>
                                                 <option value="1">Activate</option>
                                                 <option value="0">Deactivate</option>
                                             </select>
                                         </div>
                                         <div>
-                                            <label class="text-tiny text-primary-darkRed">Maximum of 3 services/discos for one batch</label>
+                                            <label class="text-tiny text-red-dark">Maximum of 3 services/discos for one batch</label>
                                             <div x-data="{open: false}" class="relative">
 
                                                 <!-- Trigger -->
-                                                <div @click="open = !open" :class="{'bg-primary-sidebar-gray-background/60': open}" class="flex items-center gap-1 w-full text-primary-filtered-options border border-primary-sidebar-gray-text px-3 pt-2 pb-3 text-tiny uppercase cursor-pointer">
+                                                <div @click="open = !open" :class="{'bg-gray-sidebar-bg/60': open}" class="flex items-center gap-1 w-full text-gray-filtered border border-gray-sidebar-text px-3 pt-2 pb-3 text-tiny uppercase cursor-pointer">
                                                     <span x-text="formData.selected.length === 0 ? 'ATTACH SERVICE-ID/DISCO' : formData.selected.join(', ')" class="text-[10px] flex-1 whitespace-nowrap overflow-hidden rounded-xs" aria-required="true"></span>
-                                                    <span class="text-primary-gray">
+                                                    <span class="text-gray-soft">
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="1" stroke="none" class="size-4">
                                                             <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                                                         </svg>
@@ -198,26 +198,26 @@
                                                     class="absolute w-full bg-white shadow-lg z-30 py-4 rounded-xs bottom-[100%]"
                                                     x-cloak
                                                 >
-                                                    <div class="pb-1 border-b border-primary-sidebar-gray-background/70">
-                                                        <label class="uppercase text-sm p-2 flex items-center text-primary-footer-gray-text hover:bg-gray-50 hover:text-primary-filtered-options active:bg-primary-blue-text active:text-white">AIRTIME / DATA</label>
+                                                    <div class="pb-1 border-b border-gray-sidebar-bg/70">
+                                                        <label class="uppercase text-sm p-2 flex items-center text-gray-footer-text hover:bg-gray-50 hover:text-gray-filtered active:bg-blue-text-accent active:text-white">AIRTIME / DATA</label>
                                                     </div>
                                                     <template x-for="(service, index) in services" :key="index">
-                                                        <label class="px-2 pt-2 pb-3 flex items-center space-x-2 text-primary-footer-gray-text hover:bg-gray-50 hover:text-primary-filtered-options active:bg-primary-blue-text active:text-white">
+                                                        <label class="px-2 pt-2 pb-3 flex items-center space-x-2 text-gray-footer-text hover:bg-gray-50 hover:text-gray-filtered active:bg-blue-text-accent active:text-white">
                                                             <input type="checkbox"
                                                                 :value="service"
                                                                 x-model="formData.selected"
-                                                                class="form-checkbox text-primary-blue-text rounded" />
+                                                                class="form-checkbox text-blue-text-accent rounded" />
                                                             <span x-text="service" class="text-inherit text-sm"></span>
                                                         </label>
                                                     </template>
-                                                    <div class="py-1 border-y border-primary-sidebar-gray-background/70">
-                                                        <label class="uppercase text-sm p-2 flex items-center text-primary-footer-gray-text hover:bg-gray-50 hover:text-primary-filtered-options active:bg-primary-blue-text active:text-white">ELECTRICITY</label>
+                                                    <div class="py-1 border-y border-gray-sidebar-bg/70">
+                                                        <label class="uppercase text-sm p-2 flex items-center text-gray-footer-text hover:bg-gray-50 hover:text-gray-filtered active:bg-blue-text-accent active:text-white">ELECTRICITY</label>
                                                     </div>      
                                                 </div>
                                             </div>
                                         </div>
                                         <div>
-                                            <label for="from" class="text-tiny text-primary-darkRed">FROM</label>
+                                            <label for="from" class="text-tiny text-red-dark">FROM</label>
                                             <input
                                                 x-model="formData.from"
                                                 type="text" 
@@ -225,11 +225,11 @@
                                                 name="from" 
                                                 id="from"
                                                 required
-                                                class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                                class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-normal placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300 text-gray-footer-text focus:text-black-input-text"
                                             >
                                         </div>
                                         <div>
-                                            <label for="to" class="text-tiny text-primary-darkRed">TO</label>
+                                            <label for="to" class="text-tiny text-red-dark">TO</label>
                                             <input
                                                 x-model="formData.to"
                                                 type="text" 
@@ -237,11 +237,11 @@
                                                 name="to" 
                                                 id="to"
                                                 required
-                                                class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                                class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-normal placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300 text-gray-footer-text focus:text-black-input-text"
                                             >
                                         </div>
                                         <div>
-                                            <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">GO</button>
+                                            <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-cyan-button-bg hover:bg-cyan-bg-dark active:bg-blue-text-accent p-3 rounded-xs cursor-pointer transition duration-300">GO</button>
                                         </div> 
                                     </form>
                                 </div>
@@ -285,9 +285,9 @@
                             }">
 
                                 <!-- Table Options  -->
-                                <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-4 py-2 px-6 border-b border-primary-sidebar-gray-text/70">
+                                <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-4 py-2 px-6 border-b border-gray-sidebar-text/70">
                                     <div>
-                                        <h1 class="text-primary-table-header font-medium">Pin(s) Query Result</h1>
+                                        <h1 class="text-gray-table-header font-medium">Pin(s) Query Result</h1>
                                     </div>
                                     <div class="flex w-full sm:w-fit justify-between">
                                         <button
@@ -297,8 +297,8 @@
                                             class="relative"
                                         >   
                                             <div 
-                                                :class="showPopUp ? 'bg-primary-blue-text text-white' : 'bg-primary-blue-text/10 text-primary-header-gray-bold'"
-                                                class="group inline-flex items-end cursor-pointer gap-1.5 px-7 py-3 hover:bg-primary-blue-text hover:text-white rounded-xs">
+                                                :class="showPopUp ? 'bg-blue-text-accent text-white' : 'bg-blue-text-accent/10 text-gray-header-bold'"
+                                                class="group inline-flex items-end cursor-pointer gap-1.5 px-7 py-3 hover:bg-blue-text-accent hover:text-white rounded-xs">
                                                 <span class="uppercase text-[10px] font-medium text-inherit">Generate Report</span>
                                                 <span class="text-inherit">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="5" stroke="currentColor" class="size-2.5">
@@ -313,9 +313,9 @@
                                                 x-cloak
                                                 class="absolute text-[10px] font-medium bg-white shadow-sm py-2 top-full right-0 w-[120%] transform-none text-left"
                                             >
-                                                <p class="uppercase text-primary-blue-text mb-1 px-6">Export</p>
+                                                <p class="uppercase text-blue-text-accent mb-1 px-6">Export</p>
                                                 <div 
-                                                    class="flex items-center gap-2 font-normal text-small text-primary-header-gray-bold py-2 px-6 hover:bg-gray-50 hover:text-primary-blue-text cursor-pointer"
+                                                    class="flex items-center gap-2 font-normal text-small text-gray-header-bold py-2 px-6 hover:bg-gray-50 hover:text-blue-text-accent cursor-pointer"
                                                 >
                                                     <span class="rounded-full border-1 border-inherit text-inherit">
                                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-audio-lines-icon lucide-audio-lines size-3.5"><path d="M2 10v3"/><path d="M6 6v11"/><path d="M10 3v18"/><path d="M14 8v7"/><path d="M18 5v13"/><path d="M22 10v3"/></svg>
@@ -326,7 +326,7 @@
                                         </button>
 
                                         <button 
-                                            class="uppercase text-[10px] font-medium px-7 bg-primary-green-light hover:brightness-95 rounded-xs text-white cursor-pointer transition duration-200"
+                                            class="uppercase text-[10px] font-medium px-7 bg-green-soft hover:brightness-95 rounded-xs text-white cursor-pointer transition duration-200"
                                             @click="showTable = false;"
                                         >
                                             CLOSE (X)

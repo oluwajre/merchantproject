@@ -10,7 +10,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
         <link rel="manifest" href="../assets/site.webmanifest">
     </head>
-    <body class="select-none bg-primary-sidebar-gray-background font-roboto">
+    <body class="select-none bg-gray-sidebar-bg font-roboto">
 
         <section class="relative flex h-screen" x-data="menu('Service Settings')">
 
@@ -28,7 +28,7 @@
                 <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
 
                 <!-- Main Content Section -->
-                <div class="mt-10 w-full flex flex-col px-6 pt-6 pb-10 gap-15 text-primary-black">
+                <div class="mt-10 w-full flex flex-col px-6 pt-6 pb-10 gap-15 text-black-base">
 
                     <!-- First Row -->
                     <div class="flex flex-col gap-12 w-full" x-data="{
@@ -52,16 +52,16 @@
                                 <span class="text-md font-medium align-middle">Change Batch ID / Provider</span>
                             </div>
 
-                            <div class="w-full flex gap-4 mx-3.5 items-stretch justify-start text-[13px] text-primary-filtered-options border-b border-primary-sidebar-gray-text/70">
+                            <div class="w-full flex gap-4 mx-3.5 items-stretch justify-start text-[13px] text-gray-filtered border-b border-gray-sidebar-text/70">
                                 <template x-for="(tab, index) in tabs" :key="tab.name">
                                     <div 
                                         @click="activeTab = tab.value" 
                                         x-text="tab.name" 
-                                        :class="activeTab === tab.value? 'border-primary-blue-text': 'border-transparent hover:border-primary-blue-text'" 
+                                        :class="activeTab === tab.value? 'border-blue-text-accent': 'border-transparent hover:border-blue-text-accent'" 
                                         class="border-b pb-3 cursor-pointer transition duration-200"
                                     ></div>
                                 </template>
-                                <div @click="window.location.href = 'https://www.creditswitch.com'" class="border-b border-transparent hover:border-primary-blue-text pb-3 cursor-pointer transition duration-200">View Log of Recent Switching</div>
+                                <div @click="window.location.href = 'https://www.creditswitch.com'" class="border-b border-transparent hover:border-blue-text-accent pb-3 cursor-pointer transition duration-200">View Log of Recent Switching</div>
                             </div>
 
                             <div class="w-full mb-7 px-3.5 flex">
@@ -94,9 +94,9 @@
                                         }" class="relative">
                                         
                                             <!-- Trigger -->
-                                            <div @click="open = !open" :class="{'bg-primary-sidebar-gray-background/60': open}" class="flex items-center gap-1 w-full text-primary-filtered-options border border-primary-sidebar-gray-text px-3 pt-2 pb-3 text-[9px] uppercase cursor-pointer">
+                                            <div @click="open = !open" :class="{'bg-gray-sidebar-bg/60': open}" class="flex items-center gap-1 w-full text-gray-filtered border border-gray-sidebar-text px-3 pt-2 pb-3 text-[9px] uppercase cursor-pointer">
                                                 <span x-text="selected.length === 0 ? 'Nothing Selected' : selected.join(', ')" class="text-tiny flex-1 whitespace-nowrap overflow-hidden" aria-required="true"></span>
-                                                <span class="text-primary-gray">
+                                                <span class="text-gray-soft">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="1" stroke="none" class="size-4">
                                                         <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                                                     </svg>
@@ -117,32 +117,32 @@
                                                         type="text"
                                                         x-model="search"
                                                         placeholder="Search Merchant"
-                                                        class="w-full border border-primary-sidebar-gray-text placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small"
+                                                        class="w-full border border-gray-sidebar-text placeholder:text-gray-footer-text outline-none px-3 py-2 text-small"
                                                     />
                                                 </div>
 
                                                 <!-- Select/Deselect -->
-                                                <div class="flex justify-between gap-2 px-4 py-2 text-xs text-primary-login-gray-header text-center">
-                                                    <button @click="selectAll" class="flex-1 uppercase hover:bg-primary-sidebar-gray-background/60 py-2 cursor-pointer">Select All</button>
-                                                    <button @click="deselectAll" class="flex-1 uppercase hover:bg-primary-sidebar-gray-background/60 py-2 cursor-pointer">Deselect All</button>
+                                                <div class="flex justify-between gap-2 px-4 py-2 text-xs text-gray-login-header text-center">
+                                                    <button @click="selectAll" class="flex-1 uppercase hover:bg-gray-sidebar-bg/60 py-2 cursor-pointer">Select All</button>
+                                                    <button @click="deselectAll" class="flex-1 uppercase hover:bg-gray-sidebar-bg/60 py-2 cursor-pointer">Deselect All</button>
                                                 </div>
 
                                                     <!-- List of Options -->
                                                 <div class="max-h-36 overflow-y-auto">
                                                     <div 
                                                         @click="open = !open"
-                                                        class="flex justify-between px-4 py-2 cursor-pointer text-[12.5px] text-primary-footer-gray-text font-medium hover:bg-gray-100"
+                                                        class="flex justify-between px-4 py-2 cursor-pointer text-[12.5px] text-gray-footer-text font-medium hover:bg-gray-100"
                                                     >
                                                         Select Merchant(s)
                                                     </div>
                                                     <template x-for="option in filteredOptions" :key="option">
                                                         <div 
                                                             @click="toggleOption(option)"
-                                                            class="flex justify-between px-4 py-2 cursor-pointer text-[12.5px] text-primary-dark-gray/70 font-medium"
+                                                            class="flex justify-between px-4 py-2 cursor-pointer text-[12.5px] text-gray-charcoal/70 font-medium"
                                                             :class="selected.includes(option) ? 'bg-gray-100' : 'hover:bg-gray-100'"
                                                         >
                                                             <span x-text="option" class="flex-1"></span>
-                                                            <span x-show="selected.includes(option)" class="text-primary-black font-extralight">✔</span>
+                                                            <span x-show="selected.includes(option)" class="text-black-base font-extralight">✔</span>
                                                         </div>
                                                     </template>
                                                 </div>
@@ -151,7 +151,7 @@
                                         </div>
 
                                         <div>
-                                            <select name="network" id="network" x-model="network" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2.5 text-small transition duration-300 cursor-pointer" required>
+                                            <select name="network" id="network" x-model="network" class="w-full text-gray-input-text focus-visible:text-black-input-text border border-gray-sidebar-text font-normal placeholder:text-gray-footer-text outline-none px-3 py-2.5 text-small transition duration-300 cursor-pointer" required>
                                                 <option value="">SELECT NETWORK</option>
                                                 <option value="airtel">Airtel</option>
                                                 <option value="9mobile">9MOBILE</option>
@@ -163,7 +163,7 @@
 
                                         <div>
                                             <template x-if="network">
-                                                <select name="provider" id="provider" x-model="provider" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2.5 text-small transition duration-300 cursor-pointer" required>
+                                                <select name="provider" id="provider" x-model="provider" class="w-full text-gray-input-text focus-visible:text-black-input-text border border-gray-sidebar-text placeholder:font-normal placeholder:text-gray-footer-text outline-none px-3 py-2.5 text-small transition duration-300 cursor-pointer" required>
                                                     <option value="">Select Provider</option>
                                                     <option value="creditswitch">Creditswitch - 13</option>
                                                     <option value="capricorn">Capricon - 20</option>
@@ -171,13 +171,13 @@
                                                 </select>
                                             </template>
                                             <template x-if="!network">
-                                                <select name="provider" id="provider" x-model="provider" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2.5 text-small transition duration-300 cursor-pointer">
+                                                <select name="provider" id="provider" x-model="provider" class="w-full text-gray-input-text focus-visible:text-black-input-text border border-gray-sidebar-text placeholder:font-normal placeholder:text-gray-footer-text outline-none px-3 py-2.5 text-small transition duration-300 cursor-pointer">
                                                 </select>
                                             </template>
                                         </div>
 
                                         <div>
-                                            <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">Go</button>
+                                            <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-cyan-button-bg hover:bg-cyan-bg-dark active:bg-blue-text-accent p-3 rounded-xs cursor-pointer transition duration-300">Go</button>
                                         </div>
                                     </form>
                                 </template>
@@ -190,7 +190,7 @@
                                     }" @submit.prevent>
 
                                         <div>
-                                            <select name="network" id="network" x-model="network" class="w-full text-[10px] text-primary-filtered-options focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none px-3 pt-2 pb-3 text-sm transition duration-300 cursor-pointer" required>
+                                            <select name="network" id="network" x-model="network" class="w-full text-[10px] text-gray-filtered focus-visible:text-black-input-text border border-gray-sidebar-text placeholder:font-normal placeholder:text-gray-footer-text outline-none px-3 pt-2 pb-3 text-sm transition duration-300 cursor-pointer" required>
                                                 <option value="" class="text-sm">SELECT SERVICE(S)</option>
                                                 <option value="gotv" class="text-sm">GOTV</option>
                                                 <option value="dstv" class="text-sm">DSTV</option>
@@ -222,9 +222,9 @@
                                         }" class="relative">
                                         
                                             <!-- Trigger -->
-                                            <div @click="open = !open" :class="{'bg-primary-sidebar-gray-background/60': open}" class="flex items-center gap-1 w-full text-primary-filtered-options border border-primary-sidebar-gray-text px-3 pt-2 pb-3 text-tiny uppercase cursor-pointer">
+                                            <div @click="open = !open" :class="{'bg-gray-sidebar-bg/60': open}" class="flex items-center gap-1 w-full text-gray-filtered border border-gray-sidebar-text px-3 pt-2 pb-3 text-tiny uppercase cursor-pointer">
                                                 <span x-text="selected.length === 0 ? 'Nothing Selected' : selected.join(', ')" class="text-[10px] flex-1 whitespace-nowrap overflow-hidden" aria-required="true"></span>
-                                                <span class="text-primary-gray">
+                                                <span class="text-gray-soft">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="1" stroke="none" class="size-4">
                                                         <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                                                     </svg>
@@ -245,32 +245,32 @@
                                                         type="text"
                                                         x-model="search"
                                                         placeholder="Search Merchant"
-                                                        class="w-full border border-primary-sidebar-gray-text placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm"
+                                                        class="w-full border border-gray-sidebar-text placeholder:font-normal placeholder:text-gray-input-text outline-none px-3 py-2 text-sm"
                                                     />
                                                 </div>
 
                                                 <!-- Select/Deselect -->
-                                                <div class="flex justify-between gap-2 px-4 py-2 text-xs text-primary-login-gray-header text-center">
-                                                    <button @click="selectAll" class="flex-1 uppercase hover:bg-primary-sidebar-gray-background/60 py-2 cursor-pointer">Select All</button>
-                                                    <button @click="deselectAll" class="flex-1 uppercase hover:bg-primary-sidebar-gray-background/60 py-2 cursor-pointer">Deselect All</button>
+                                                <div class="flex justify-between gap-2 px-4 py-2 text-xs text-gray-login-header text-center">
+                                                    <button @click="selectAll" class="flex-1 uppercase hover:bg-gray-sidebar-bg/60 py-2 cursor-pointer">Select All</button>
+                                                    <button @click="deselectAll" class="flex-1 uppercase hover:bg-gray-sidebar-bg/60 py-2 cursor-pointer">Deselect All</button>
                                                 </div>
 
                                                     <!-- List of Options -->
                                                 <div class="max-h-36 overflow-y-auto">
                                                     <div 
                                                         @click="open = !open"
-                                                        class="flex justify-between px-4 py-2 cursor-pointer text-sm text-primary-input-gray-text font-medium hover:bg-gray-100"
+                                                        class="flex justify-between px-4 py-2 cursor-pointer text-sm text-gray-input-text font-medium hover:bg-gray-100"
                                                     >
                                                         Select Merchant(s)
                                                     </div>
                                                     <template x-for="option in filteredOptions" :key="option">
                                                         <div 
                                                             @click="toggleOption(option)"
-                                                            class="flex justify-between px-4 py-2 cursor-pointer text-sm text-primary-header-gray-bold font-medium"
+                                                            class="flex justify-between px-4 py-2 cursor-pointer text-sm text-gray-header-bold font-medium"
                                                             :class="selected.includes(option) ? 'bg-gray-100' : 'hover:bg-gray-100'"
                                                         >
                                                             <span x-text="option" class="flex-1"></span>
-                                                            <span x-show="selected.includes(option)" class="text-primary-black font-extralight">✔</span>
+                                                            <span x-show="selected.includes(option)" class="text-black-base font-extralight">✔</span>
                                                         </div>
                                                     </template>
                                                 </div>
@@ -279,7 +279,7 @@
                                         </div>
 
                                         <div>
-                                            <select name="provider" id="provider" x-model="provider" class="w-full text-[10px] text-primary-filtered-options focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none px-3 pt-2 pb-3 text-sm transition duration-300 cursor-pointer" required>
+                                            <select name="provider" id="provider" x-model="provider" class="w-full text-[10px] text-gray-filtered focus-visible:text-black-input-text border border-gray-sidebar-text placeholder:font-normal placeholder:text-gray-footer-text outline-none px-3 pt-2 pb-3 text-sm transition duration-300 cursor-pointer" required>
                                                 <option value="" class="text-sm">SELECT PROVIDER</option>
                                                 <option value="airtel" class="text-sm">Creditswitch - 13</option>
                                                 <option value="9mobile" class="text-sm">Capricon - 20</option>
@@ -288,7 +288,7 @@
                                         </div>
 
                                         <div>
-                                            <button type="submit" class="w-full uppercase font-semibold text-xs text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">Go</button>
+                                            <button type="submit" class="w-full uppercase font-semibold text-xs text-white bg-cyan-button-bg hover:bg-cyan-bg-dark active:bg-blue-text-accent p-3 rounded-xs cursor-pointer transition duration-300">Go</button>
                                         </div>
                                     </form>
                                 </template>
@@ -321,11 +321,11 @@
                                             }
                                         }" class="relative">
 
-                                            <label for="search" class="text-primary-header-gray-bold text-small">Merchant</label>
+                                            <label for="search" class="text-gray-header-bold text-small">Merchant</label>
                                             <!-- Trigger -->
-                                            <div @click="open = !open" :class="{'bg-primary-sidebar-gray-background/60': open}" class="flex items-center gap-1 w-full text-primary-filtered-options border border-primary-sidebar-gray-text px-3 pt-2 pb-3 text-tiny uppercase cursor-pointer">
+                                            <div @click="open = !open" :class="{'bg-gray-sidebar-bg/60': open}" class="flex items-center gap-1 w-full text-gray-filtered border border-gray-sidebar-text px-3 pt-2 pb-3 text-tiny uppercase cursor-pointer">
                                                 <span x-text="selected.length === 0 ? 'Nothing Selected' : selected.join(', ')" class="text-[10px] flex-1 whitespace-nowrap overflow-hidden" aria-required="true"></span>
-                                                <span class="text-primary-gray">
+                                                <span class="text-gray-soft">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="1" stroke="none" class="size-4">
                                                         <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                                                     </svg>
@@ -346,32 +346,32 @@
                                                         type="text"
                                                         x-model="search"
                                                         placeholder="Search Merchant"
-                                                        class="w-full border border-primary-sidebar-gray-text placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm"
+                                                        class="w-full border border-gray-sidebar-text placeholder:font-normal placeholder:text-gray-input-text outline-none px-3 py-2 text-sm"
                                                     />
                                                 </div>
 
                                                 <!-- Select/Deselect -->
-                                                <div class="flex justify-between gap-2 px-4 py-2 text-xs text-primary-login-gray-header text-center">
-                                                    <button @click="selectAll" class="flex-1 uppercase hover:bg-primary-sidebar-gray-background/60 py-2 cursor-pointer">Select All</button>
-                                                    <button @click="deselectAll" class="flex-1 uppercase hover:bg-primary-sidebar-gray-background/60 py-2 cursor-pointer">Deselect All</button>
+                                                <div class="flex justify-between gap-2 px-4 py-2 text-xs text-gray-login-header text-center">
+                                                    <button @click="selectAll" class="flex-1 uppercase hover:bg-gray-sidebar-bg/60 py-2 cursor-pointer">Select All</button>
+                                                    <button @click="deselectAll" class="flex-1 uppercase hover:bg-gray-sidebar-bg/60 py-2 cursor-pointer">Deselect All</button>
                                                 </div>
 
                                                     <!-- List of Options -->
                                                 <div class="max-h-36 overflow-y-auto">
                                                     <div 
                                                         @click="open = !open"
-                                                        class="flex justify-between px-4 py-2 cursor-pointer text-sm text-primary-input-gray-text font-medium hover:bg-gray-100"
+                                                        class="flex justify-between px-4 py-2 cursor-pointer text-sm text-gray-input-text font-medium hover:bg-gray-100"
                                                     >
                                                         Select Merchant(s)
                                                     </div>
                                                     <template x-for="option in filteredOptions" :key="option">
                                                         <div 
                                                             @click="toggleOption(option)"
-                                                            class="flex justify-between px-4 py-2 cursor-pointer text-sm text-primary-header-gray-bold font-medium"
+                                                            class="flex justify-between px-4 py-2 cursor-pointer text-sm text-gray-header-bold font-medium"
                                                             :class="selected.includes(option) ? 'bg-gray-100' : 'hover:bg-gray-100'"
                                                         >
                                                             <span x-text="option" class="flex-1"></span>
-                                                            <span x-show="selected.includes(option)" class="text-primary-black font-extralight">✔</span>
+                                                            <span x-show="selected.includes(option)" class="text-black-base font-extralight">✔</span>
                                                         </div>
                                                     </template>
                                                 </div>
@@ -380,17 +380,17 @@
                                         </div>
 
                                         <div>
-                                            <label for="search" class="text-primary-header-gray-bold text-small">Product</label>
-                                            <select name="network" id="network" x-model="network" class="w-full text-[10px] text-primary-filtered-options focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none px-3 pt-2 pb-3 text-sm transition duration-300 cursor-pointer uppercase" required>
+                                            <label for="search" class="text-gray-header-bold text-small">Product</label>
+                                            <select name="network" id="network" x-model="network" class="w-full text-[10px] text-gray-filtered focus-visible:text-black-input-text border border-gray-sidebar-text placeholder:font-normal placeholder:text-gray-footer-text outline-none px-3 pt-2 pb-3 text-sm transition duration-300 cursor-pointer uppercase" required>
                                                 <option value="" class="text-sm">SELECT PRODUCT</option>
                                                 <option value="all" class="text-sm">All</option>
                                             </select>
                                         </div>
 
                                         <div>
-                                            <label for="search" class="text-primary-header-gray-bold text-small">Provider</label>
+                                            <label for="search" class="text-gray-header-bold text-small">Provider</label>
                                             <template x-if="network">
-                                                <select name="provider" id="provider" x-model="provider" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none px-3 pt-2 pb-3 text-small transition duration-300 cursor-pointer" required>
+                                                <select name="provider" id="provider" x-model="provider" class="w-full text-gray-input-text focus-visible:text-black-input-text border border-gray-sidebar-text placeholder:font-normal placeholder:text-gray-footer-text outline-none px-3 pt-2 pb-3 text-small transition duration-300 cursor-pointer" required>
                                                     <option value="">Select Provider</option>
                                                     <option value="airtel">Creditswitch - 13</option>
                                                     <option value="9mobile">Capricon - 20</option>
@@ -398,13 +398,13 @@
                                                 </select> 
                                             </template>
                                             <template x-if="!network">
-                                                <select name="provider" id="provider" x-model="provider" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none px-3 pt-2 pb-3 text-sm transition duration-300 cursor-pointer" required>
+                                                <select name="provider" id="provider" x-model="provider" class="w-full text-gray-input-text focus-visible:text-black-input-text border border-gray-sidebar-text placeholder:font-normal placeholder:text-gray-footer-text outline-none px-3 pt-2 pb-3 text-sm transition duration-300 cursor-pointer" required>
                                                 </select> 
                                             </template>
                                         </div>
 
                                         <div>
-                                            <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">Go</button>
+                                            <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-cyan-button-bg hover:bg-cyan-bg-dark active:bg-blue-text-accent p-3 rounded-xs cursor-pointer transition duration-300">Go</button>
                                         </div>
                                     </form>
                                 </template>
@@ -449,9 +449,9 @@
                                         }" class="relative">
 
                                             <!-- Trigger -->
-                                            <div @click="open = !open" :class="{'bg-primary-sidebar-gray-background/60': open}" class="flex items-center gap-1 w-full text-primary-filtered-options border border-primary-sidebar-gray-text px-3 pt-2 pb-3 text-tiny uppercase cursor-pointer">
+                                            <div @click="open = !open" :class="{'bg-gray-sidebar-bg/60': open}" class="flex items-center gap-1 w-full text-gray-filtered border border-gray-sidebar-text px-3 pt-2 pb-3 text-tiny uppercase cursor-pointer">
                                                 <span x-text="selected.length === 0 ? 'Nothing Selected' : selected.join(', ')" class="text-[10px] flex-1 whitespace-nowrap overflow-hidden" aria-required="true"></span>
-                                                <span class="text-primary-gray">
+                                                <span class="text-gray-soft">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="1" stroke="none" class="size-4">
                                                         <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                                                     </svg>
@@ -472,32 +472,32 @@
                                                         type="text"
                                                         x-model="search"
                                                         placeholder="Search Merchant"
-                                                        class="w-full border border-primary-sidebar-gray-text placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm"
+                                                        class="w-full border border-gray-sidebar-text placeholder:font-normal placeholder:text-gray-input-text outline-none px-3 py-2 text-sm"
                                                     />
                                                 </div>
 
                                                 <!-- Select/Deselect -->
-                                                <div class="flex justify-between gap-2 px-4 py-2 text-xs text-primary-login-gray-header text-center">
-                                                    <button @click="selectAll" class="flex-1 uppercase hover:bg-primary-sidebar-gray-background/60 py-2 cursor-pointer">Select All</button>
-                                                    <button @click="deselectAll" class="flex-1 uppercase hover:bg-primary-sidebar-gray-background/60 py-2 cursor-pointer">Deselect All</button>
+                                                <div class="flex justify-between gap-2 px-4 py-2 text-xs text-gray-login-header text-center">
+                                                    <button @click="selectAll" class="flex-1 uppercase hover:bg-gray-sidebar-bg/60 py-2 cursor-pointer">Select All</button>
+                                                    <button @click="deselectAll" class="flex-1 uppercase hover:bg-gray-sidebar-bg/60 py-2 cursor-pointer">Deselect All</button>
                                                 </div>
 
                                                     <!-- List of Options -->
                                                 <div class="max-h-36 overflow-y-auto">
                                                     <div 
                                                         @click="open = !open"
-                                                        class="flex justify-between px-4 py-2 cursor-pointer text-sm text-primary-input-gray-text font-medium hover:bg-gray-100"
+                                                        class="flex justify-between px-4 py-2 cursor-pointer text-sm text-gray-input-text font-medium hover:bg-gray-100"
                                                     >
                                                         Select Merchant(s)
                                                     </div>
                                                     <template x-for="option in filteredOptions" :key="option">
                                                         <div 
                                                             @click="toggleOption(option)"
-                                                            class="flex justify-between px-4 py-2 cursor-pointer text-sm text-primary-header-gray-bold font-medium"
+                                                            class="flex justify-between px-4 py-2 cursor-pointer text-sm text-gray-header-bold font-medium"
                                                             :class="selected.includes(option) ? 'bg-gray-100' : 'hover:bg-gray-100'"
                                                         >
                                                             <span x-text="option" class="flex-1"></span>
-                                                            <span x-show="selected.includes(option)" class="text-primary-black font-extralight">✔</span>
+                                                            <span x-show="selected.includes(option)" class="text-black-base font-extralight">✔</span>
                                                         </div>
                                                     </template>
                                                 </div>
@@ -506,23 +506,23 @@
                                         </div>
 
                                         <div>
-                                            <select name="network" id="network" x-model="network" class="w-full text-[10px] text-primary-filtered-options focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none px-3 pt-2 pb-3 transition duration-300 cursor-pointer" required>
+                                            <select name="network" id="network" x-model="network" class="w-full text-[10px] text-gray-filtered focus-visible:text-black-input-text border border-gray-sidebar-text placeholder:font-normal placeholder:text-gray-footer-text outline-none px-3 pt-2 pb-3 transition duration-300 cursor-pointer" required>
                                                 <option value="" class="text-sm">-SELECT-</option>
                                                 <option value="all" class="text-sm">All</option>
                                             </select>
-                                            <label for="search" class="text-primary-header-gray-bold text-small font-light">Select a Service</label>
+                                            <label for="search" class="text-gray-header-bold text-small font-light">Select a Service</label>
                                         </div>
                                         
                                         <div>
-                                            <select name="provider" id="provider" x-model="provider" class="w-full text-[10px] text-primary-filtered-options focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none px-3 pt-2 pb-3 transition duration-300 cursor-pointer" required>
+                                            <select name="provider" id="provider" x-model="provider" class="w-full text-[10px] text-gray-filtered focus-visible:text-black-input-text border border-gray-sidebar-text placeholder:font-normal placeholder:text-gray-footer-text outline-none px-3 pt-2 pb-3 transition duration-300 cursor-pointer" required>
                                                 <option value="" class="text-sm">-SELECT-</option>
                                                 <option value="all" class="text-sm">All</option>
                                             </select>
-                                            <label for="search" class="text-primary-header-gray-bold text-small font-light">Select a Server</label>
+                                            <label for="search" class="text-gray-header-bold text-small font-light">Select a Server</label>
                                         </div>
 
                                         <div>
-                                            <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">Go</button>
+                                            <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-cyan-button-bg hover:bg-cyan-bg-dark active:bg-blue-text-accent p-3 rounded-xs cursor-pointer transition duration-300">Go</button>
                                         </div>
                                 </form>  
                             </div>

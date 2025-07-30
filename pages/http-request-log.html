@@ -10,7 +10,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
         <link rel="manifest" href="../assets/site.webmanifest">
     </head>
-    <body class="select-none bg-primary-sidebar-gray-background font-roboto">
+    <body class="select-none bg-gray-sidebar-bg font-roboto">
 
         <section class="relative flex h-screen" x-data="menu('Http Requests Log')">
 
@@ -28,34 +28,34 @@
                 <div class="w-full flex flex-col sm:flex-row flex-wrap gap-2 justify-between items-start sm:items-center pl-9 pr-6 my-5 font-roboto">
                     <div class="flex items-center capitalize gap-3">
                         <p class="flex items-center text-small">
-                            <span class="mr-2 text-primary-header-gray-bold">
+                            <span class="mr-2 text-gray-header-bold">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                                 </svg>
                             </span>
                         </p>
                     </div>
-                    <div class="flex gap-2 text-[10px] font-medium uppercase text-primary-header-gray-text">
-                        <div class="px-3 py-2 bg-primary-header-gray-background cursor-pointer">Total Merchants: <span class="text-primary-blue-text">103</span></div>
-                        <div class="px-6 py-2 bg-primary-header-gray-background shadow-md hover:shadow-lg cursor-pointer">Welcome, <span class="text-primary-blue-text">SEGU</span></div>
+                    <div class="flex gap-2 text-[10px] font-medium uppercase text-gray-header">
+                        <div class="px-3 py-2 bg-gray-header-bg cursor-pointer">Total Merchants: <span class="text-blue-text-accent">103</span></div>
+                        <div class="px-6 py-2 bg-gray-header-bg shadow-md hover:shadow-lg cursor-pointer">Welcome, <span class="text-blue-text-accent">SEGU</span></div>
                     </div>
                 </div>
 
                 <!-- Header Section Component 2  -->
                 <div class="w-full flex flex-col sm:flex-row flex-wrap gap-2 justify-between items-start sm:items-center px-6 mt-5 mb-4 font-roboto">
                     <div class="flex items-center capitalize gap-3">
-                        <p class="font-medium text-primary-header-black-text">Dashboard</p>
+                        <p class="font-medium text-black-header-text">Dashboard</p>
                         <p class="flex items-center text-small">
-                            <span class="mr-2 text-primary-header-gray-bold">
+                            <span class="mr-2 text-gray-header-bold">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                                 </svg>
                             </span>
-                            <a :href="currentPageDetail.link" x-text="currentPageDetail.name" class="font-medium text-primary-header-gray-text"></a>
+                            <a :href="currentPageDetail.link" x-text="currentPageDetail.name" class="font-medium text-gray-header"></a>
                         </p>
                     </div>
-                    <div class="flex items-center gap-2 text-[10px] font-medium uppercase text-primary-header-gray-text">
-                        <div class="px-6 py-2 bg-primary-header-gray-background shadow-md hover:shadow-lg cursor-pointer">Welcome, <span class="text-primary-blue-text">SEGU</span></div>
+                    <div class="flex items-center gap-2 text-[10px] font-medium uppercase text-gray-header">
+                        <div class="px-6 py-2 bg-gray-header-bg shadow-md hover:shadow-lg cursor-pointer">Welcome, <span class="text-blue-text-accent">SEGU</span></div>
                         <!-- <div class="relative">
 
                         </div> -->
@@ -68,7 +68,7 @@
                                 </g>
                             </svg>
 
-                            <div class="absolute left-[80%] -translate-x-[80%] top-9 mb-2 hidden group-hover:block bg-white normal-case font-normal text-primary-filtered-options font-poppins text-xs py-3 px-4 z-30 whitespace-nowrap shadow-md">
+                            <div class="absolute left-[80%] -translate-x-[80%] top-9 mb-2 hidden group-hover:block bg-white normal-case font-normal text-gray-filtered font-poppins text-xs py-3 px-4 z-30 whitespace-nowrap shadow-md">
                                 <div class="absolute -top-[6px] left-[80%] -translate-x-[80%] w-0 h-0 border-l-7 border-b-7 border-r-7 border-l-transparent border-r-transparent border-b-white"></div>
                                 Quick action
                             </div>
@@ -79,7 +79,7 @@
                                 x-cloak
                                 class="absolute text-tiny font-medium bg-white shadow-sm py-2 top-full right-0 w-[160px] z-20 transform text-left"
                             >
-                                <p class="uppercase text-primary-blue-text mb-1 px-6 py-2">ADD NEW:</p>
+                                <p class="uppercase text-blue-text-accent mb-1 px-6 py-2">ADD NEW:</p>
                                 
                             </div>
                         </div>
@@ -87,7 +87,7 @@
                 </div>
 
                 <!-- Main Content Section -->
-                <div class="mt-10 w-full flex flex-col px-6 pt-6 pb-4 gap-12 text-primary-black">
+                <div class="mt-10 w-full flex flex-col px-6 pt-6 pb-4 gap-12 text-black-base">
                     
                     <div class="flex flex-col gap-12 w-full">
                         
@@ -137,14 +137,14 @@
                                             name="merchantName"
                                             id="merchantName"
                                             autocomplete="off"
-                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text font-normal"
+                                            class="w-full border border-gray-sidebar-text focus:border-blue-input-border placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300 text-gray-footer-text focus:text-black-input-text font-normal"
                                         >
                                         
                                         <div x-show="showMerchantOptions && filteredMerchantOptions.length > 0"
-                                            class="absolute inset-x-0 w-full max-w-[350px] left-0 bg-white z-30 shadow-md text-small text-primary-header-gray-bold font-light"
+                                            class="absolute inset-x-0 w-full max-w-[350px] left-0 bg-white z-30 shadow-md text-small text-gray-header-bold font-light"
                                             x-transition.origin.top>                                
                                             <template x-for="option in filteredMerchantOptions" :key="option.name">
-                                                <div class="w-full px-2 py-1 border-b border-primary-sidebar-gray-text/30 hover:bg-perinwinkleBlue-light hover:text-primary-royalBlue-vivid cursor-pointer transition duration-100"
+                                                <div class="w-full px-2 py-1 border-b border-gray-sidebar-text/30 hover:bg-blue-periwinkle hover:text-blue-royal-vivid cursor-pointer transition duration-100"
                                                     @click="formData.merchantName = option.name; showMerchantOptions = false">
                                                     <p x-html="highlightMatch(option.name)"></p>
                                                 </div>
@@ -157,9 +157,9 @@
                                             type="date"
                                             name="date" 
                                             id="date"
-                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-input-gray-text"
+                                            class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-normal placeholder:text-gray-input-text outline-none px-3 py-2 text-small transition duration-300 text-gray-input-text"
                                         >
-                                        <label for="date" class="text-tiny text-primary-header-gray-bold">(Date)</label>
+                                        <label for="date" class="text-tiny text-gray-header-bold">(Date)</label>
                                     </div>
                                     <div>
                                         <input
@@ -168,12 +168,12 @@
                                             placeholder="Request Id"
                                             name="requestId"
                                             id="requestId"
-                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text font-normal"
+                                            class="w-full border border-gray-sidebar-text focus:border-blue-input-border placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300 text-gray-footer-text focus:text-black-input-text font-normal"
                                         >
-                                        <label for="requestId" class="text-tiny text-primary-header-gray-bold">(Request Id)</label>
+                                        <label for="requestId" class="text-tiny text-gray-header-bold">(Request Id)</label>
                                     </div>
                                     <div>
-                                        <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">search</button>
+                                        <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-cyan-button-bg hover:bg-cyan-bg-dark active:bg-blue-text-accent p-3 rounded-xs cursor-pointer transition duration-300">search</button>
                                     </div>
                                 </form>  
                             </div>  
@@ -224,13 +224,13 @@
                             },
                         }">
 
-                            <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-4 py-2 px-6 border-b border-primary-sidebar-gray-text/70">
+                            <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-4 py-2 px-6 border-b border-gray-sidebar-text/70">
                                 <div>
-                                    <h1 class="text-primary-table-header font-medium">Http Request Logs</h1>
+                                    <h1 class="text-gray-table-header font-medium">Http Request Logs</h1>
                                 </div>
                                 <div class="w-full sm:w-fit">
                                     <button 
-                                        class="uppercase text-[10px] font-medium py-3 px-7 bg-primary-green-light hover:brightness-95 rounded-xs text-white cursor-pointer transition duration-200"
+                                        class="uppercase text-[10px] font-medium py-3 px-7 bg-green-soft hover:brightness-95 rounded-xs text-white cursor-pointer transition duration-200"
                                         @click="window.location.href = './http-request-log.html'"
                                     >
                                         REFRESH PAGE (X)
@@ -247,8 +247,8 @@
                                     get formattedDate() { 
                                         return `${String(this.now.getDate()).padStart(2, '0')}-${String(this.now.getMonth() + 1).padStart(2, '0')}-${String(this.now.getFullYear()).slice(-2)}`
                                     }}">
-                                    <h1 x-text="totalRequests" class="text-lg font-semibold text-primary-header-gray-bold">1484</h1>
-                                    <p x-text="`${formattedDate} Total Requests`" class="text-small text-primary-footer-gray-text font-medium"></p>
+                                    <h1 x-text="totalRequests" class="text-lg font-semibold text-gray-header-bold">1484</h1>
+                                    <p x-text="`${formattedDate} Total Requests`" class="text-small text-gray-footer-text font-medium"></p>
                                 </div>
                             </div>
 
@@ -256,30 +256,30 @@
                             <div class="overflow-x-auto my-4 px-4 max-w-full flex-1 font-roboto">
                                 <template x-if="tableData.length > 0 && paginatedData.length > 0">
                                     <div class="min-w-fit">
-                                        <table class="w-full table-auto text-primary-black font-medium border-collapse border border-primary-sidebar-gray-text/70 text-small">
+                                        <table class="w-full table-auto text-black-base font-medium border-collapse border border-gray-sidebar-text/70 text-small">
                                             <thead class="align-bottom">
                                                 <tr>
-                                                    <td class="border border-primary-sidebar-gray-text/70 pl-2 pr-1 sm:pr-5 py-3">Date/Time</td>
-                                                    <td class="border border-primary-sidebar-gray-text/70 pl-2 pr-1 sm:pr-5 py-3">Merchant</td>
-                                                    <td class="border border-primary-sidebar-gray-text/70 pl-2 pr-1 sm:pr-5 py-3">Service Id</td>
-                                                    <td class="border border-primary-sidebar-gray-text/70 pl-2 pr-1 sm:pr-5 py-3">Request Id</td>
-                                                    <td class="border border-primary-sidebar-gray-text/70 pl-2 pr-1 sm:pr-5 py-3">Recipient</td>
-                                                    <td class="border border-primary-sidebar-gray-text/70 pl-2 pr-1 sm:pr-5 py-3">IP</td>
-                                                    <td class="border border-primary-sidebar-gray-text/70 pl-2 pr-1 sm:pr-5 py-3">Uri</td>
-                                                    <td class="border border-primary-sidebar-gray-text/70 pl-2 pr-1 sm:pr-5 py-3">Payload</td>
+                                                    <td class="border border-gray-sidebar-text/70 pl-2 pr-1 sm:pr-5 py-3">Date/Time</td>
+                                                    <td class="border border-gray-sidebar-text/70 pl-2 pr-1 sm:pr-5 py-3">Merchant</td>
+                                                    <td class="border border-gray-sidebar-text/70 pl-2 pr-1 sm:pr-5 py-3">Service Id</td>
+                                                    <td class="border border-gray-sidebar-text/70 pl-2 pr-1 sm:pr-5 py-3">Request Id</td>
+                                                    <td class="border border-gray-sidebar-text/70 pl-2 pr-1 sm:pr-5 py-3">Recipient</td>
+                                                    <td class="border border-gray-sidebar-text/70 pl-2 pr-1 sm:pr-5 py-3">IP</td>
+                                                    <td class="border border-gray-sidebar-text/70 pl-2 pr-1 sm:pr-5 py-3">Uri</td>
+                                                    <td class="border border-gray-sidebar-text/70 pl-2 pr-1 sm:pr-5 py-3">Payload</td>
                                                 </tr>
                                             </thead>
                                             <tbody class="align-top">
                                                 <template x-for="(row, rowIndex) in paginatedData" :key="rowIndex">
                                                     <tr class="hover:bg-gray-50">
-                                                        <td x-text="row.date" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
-                                                        <td x-text="row.merchant" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
-                                                        <td x-text="row.serviceId" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
-                                                        <td x-text="row.requestId" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
-                                                        <td x-text="row.recipient" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
-                                                        <td x-text="row.ip" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
-                                                        <td x-text="row.uri" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
-                                                        <td x-text="row.payload" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
+                                                        <td x-text="row.date" class="border border-gray-sidebar-text/70 px-2 py-3"></td>
+                                                        <td x-text="row.merchant" class="border border-gray-sidebar-text/70 px-2 py-3"></td>
+                                                        <td x-text="row.serviceId" class="border border-gray-sidebar-text/70 px-2 py-3"></td>
+                                                        <td x-text="row.requestId" class="border border-gray-sidebar-text/70 px-2 py-3"></td>
+                                                        <td x-text="row.recipient" class="border border-gray-sidebar-text/70 px-2 py-3"></td>
+                                                        <td x-text="row.ip" class="border border-gray-sidebar-text/70 px-2 py-3"></td>
+                                                        <td x-text="row.uri" class="border border-gray-sidebar-text/70 px-2 py-3"></td>
+                                                        <td x-text="row.payload" class="border border-gray-sidebar-text/70 px-2 py-3"></td>
                                                     </tr>
                                                 </template>
                                             </tbody>
@@ -287,18 +287,18 @@
 
                                         <template x-if="totalPages > 1">
                                             <div class="flex mt-4 mb-6">
-                                                <div class="inline-flex border border-primary-sidebar-gray-text/70">
+                                                <div class="inline-flex border border-gray-sidebar-text/70">
                                                     <div 
-                                                        :class="{'text-primary-sidebar-gray-text cursor-not-allowed': currentPage === 1, 'text-primary-blue-text cursor-pointer': currentPage > 1}"
-                                                        class="border-r border-primary-sidebar-gray-text/70 px-2 py-1 text-sm hover:bg-gray-50"
+                                                        :class="{'text-gray-sidebar-text cursor-not-allowed': currentPage === 1, 'text-blue-text-accent cursor-pointer': currentPage > 1}"
+                                                        class="border-r border-gray-sidebar-text/70 px-2 py-1 text-sm hover:bg-gray-50"
                                                         @click="goToPage(currentPage - 1)"
                                                     >
                                                         &lt;
                                                     </div>
                                                     <template x-for="page in pageWindow" :key="page">
                                                         <div
-                                                            class="px-3 py-1 text-sm border-r border-primary-sidebar-gray-text/70 font-medium transition-all duration-300"
-                                                            :class="{ 'bg-primary-cyanBlue-sidebar-background text-white': page === currentPage, 'text-primary-blue-text hover:bg-gray-50 cursor-pointer': page !== currentPage }"
+                                                            class="px-3 py-1 text-sm border-r border-gray-sidebar-text/70 font-medium transition-all duration-300"
+                                                            :class="{ 'bg-cyan-sidebar-bg text-white': page === currentPage, 'text-blue-text-accent hover:bg-gray-50 cursor-pointer': page !== currentPage }"
                                                             @click="goToPage(page)"
                                                             x-transition:enter="transition ease-out duration-200"
                                                             x-transition:enter-start="opacity-0 translate-x-2"
@@ -313,7 +313,7 @@
                                                     <div 
                                                         class="font-medium px-2 py-1 text-sm hover:bg-gray-50"
                                                         @click="goToPage(currentPage + 1)"
-                                                        :class="{'text-primary-sidebar-gray-text cursor-not-allowed': currentPage === totalPages, 'text-primary-blue-text cursor-pointer': currentPage < totalPages}"
+                                                        :class="{'text-gray-sidebar-text cursor-not-allowed': currentPage === totalPages, 'text-blue-text-accent cursor-pointer': currentPage < totalPages}"
                                                     >
                                                         &gt;
                                                     </div>
@@ -324,7 +324,7 @@
                                     </div>
                                 </template>
                                 <template x-if="tableData.length === 0">
-                                    <p x-text="noDataMessage || 'No data found'" class="text-primary-header-gray-bold font-light text-sm mt-4 mb-8"></p>
+                                    <p x-text="noDataMessage || 'No data found'" class="text-gray-header-bold font-light text-sm mt-4 mb-8"></p>
                                 </template>
                             </div>
                         </div>   

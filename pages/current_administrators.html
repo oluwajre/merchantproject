@@ -10,7 +10,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
         <link rel="manifest" href="../assets/site.webmanifest">
     </head>
-    <body class="select-none bg-primary-sidebar-gray-background font-roboto">
+    <body class="select-none bg-gray-sidebar-bg font-roboto">
 
         <section class="relative flex h-screen" x-data="menu('Current Administrators')">
 
@@ -28,7 +28,7 @@
                 <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
 
                 <!-- Main Content Section -->
-                <div class="mt-9 w-full flex flex-col px-6 pt-6 pb-10 gap-12 text-primary-black">
+                <div class="mt-9 w-full flex flex-col px-6 pt-6 pb-10 gap-12 text-black-base">
 
                     <!-- First Row -->
                     <div class="flex flex-col gap-12 w-full" x-data="{
@@ -72,13 +72,13 @@
                                 <p 
                                     x-show="indicatorMessage" 
                                     x-text="indicatorMessage" 
-                                    class="w-full mt-3 mb-6 font-medium text-primary-danger"
+                                    class="w-full mt-3 mb-6 font-medium text-red-warning"
                                 ></p>
 
                                 <div class="overflow-x-auto my-3 max-w-full font-roboto">
                                     <div class="min-w-fit">
-                                        <table class="w-full table-auto border-collapse border border-primary-sidebar-gray-text/70 text-small">
-                                            <thead class="text-white font-medium border border-white align-bottom bg-primary-graphiteGray-dark">
+                                        <table class="w-full table-auto border-collapse border border-gray-sidebar-text/70 text-small">
+                                            <thead class="text-white font-medium border border-white align-bottom bg-gray-graphite">
                                                 <tr>
                                                     <td class="border border-white px-2 py-3">#</td>
                                                     <td class="border border-white px-2 py-3">Username</td>
@@ -92,23 +92,23 @@
                                             </thead>
                                             <tbody class="text-black font-medium align-top">
                                                 <template x-for="(data, index) in tableData" :key="index">
-                                                    <tr class="hover:bg-gray-50 hover:text-primary-black">
-                                                        <td x-text="data.id" class="border border-primary-sidebar-gray-text/70 p-1"></td>
-                                                        <td x-text="data.username" class="border border-primary-sidebar-gray-text/70 p-1"></td>
-                                                        <td x-text="data.firstName" class="border border-primary-sidebar-gray-text/70 p-1"></td>
-                                                        <td x-text="data.lastName" class="border border-primary-sidebar-gray-text/70 p-1"></td>
-                                                        <td x-text="data.emailAddress" class="border border-primary-sidebar-gray-text/70 p-1"></td>
-                                                        <td x-text="data.status" class="border border-primary-sidebar-gray-text/70 p-1"></td>
-                                                        <td x-text="data.type === 'active'? 'Active': 'Inactive'" class="border border-primary-sidebar-gray-text/70 p-1"></td>
-                                                        <td class="border border-primary-sidebar-gray-text/70 p-1">
-                                                          <button @click="changeType(data)" x-text="data.type === 'active'? 'Suspend': 'Activate'" class="uppercase text-[10px] text-white bg-primary-danger hover:brightness-95 px-8 py-3 rounded-xs cursor-pointer"></button>
+                                                    <tr class="hover:bg-gray-50 hover:text-black-base">
+                                                        <td x-text="data.id" class="border border-gray-sidebar-text/70 p-1"></td>
+                                                        <td x-text="data.username" class="border border-gray-sidebar-text/70 p-1"></td>
+                                                        <td x-text="data.firstName" class="border border-gray-sidebar-text/70 p-1"></td>
+                                                        <td x-text="data.lastName" class="border border-gray-sidebar-text/70 p-1"></td>
+                                                        <td x-text="data.emailAddress" class="border border-gray-sidebar-text/70 p-1"></td>
+                                                        <td x-text="data.status" class="border border-gray-sidebar-text/70 p-1"></td>
+                                                        <td x-text="data.type === 'active'? 'Active': 'Inactive'" class="border border-gray-sidebar-text/70 p-1"></td>
+                                                        <td class="border border-gray-sidebar-text/70 p-1">
+                                                          <button @click="changeType(data)" x-text="data.type === 'active'? 'Suspend': 'Activate'" class="uppercase text-[10px] text-white bg-red-warning hover:brightness-95 px-8 py-3 rounded-xs cursor-pointer"></button>
                                                         </td>
                                                     </tr>
                                                 </template>   
                                             </tbody>
                                             <tfoot>
                                                 <tr>
-                                                    <td class="border border-primary-sidebar-gray-text/70 p-2" colspan="8"></td>
+                                                    <td class="border border-gray-sidebar-text/70 p-2" colspan="8"></td>
                                                 </tr>
                                             </tfoot>
                                         </table>

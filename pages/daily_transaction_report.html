@@ -10,7 +10,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
         <link rel="manifest" href="../assets/site.webmanifest">
     </head>
-    <body class="select-none bg-primary-sidebar-gray-background font-roboto">
+    <body class="select-none bg-gray-sidebar-bg font-roboto">
 
         <section class="relative flex h-screen" x-data="menu('Automated Daily Reports')">
 
@@ -28,7 +28,7 @@
                 <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
 
                 <!-- Main Content Section -->
-                <div class="mt-10 w-full flex flex-col px-9 py-6 gap-12 text-primary-black">
+                <div class="mt-10 w-full flex flex-col px-9 py-6 gap-12 text-black-base">
                     
                     <!-- First Row -->
                     <div class="flex flex-col gap-12 w-full">
@@ -77,8 +77,8 @@
                         }">
 
                                 <!-- Table Options  -->
-                                <div class="w-full py-4 px-6 border-b border-primary-sidebar-gray-text/70">
-                                    <h1 class="text-primary-table-header font-medium">PostPaid Merchants</h1>
+                                <div class="w-full py-4 px-6 border-b border-gray-sidebar-text/70">
+                                    <h1 class="text-gray-table-header font-medium">PostPaid Merchants</h1>
                                 </div>
                                 
                                 <!-- Table Component  -->
@@ -99,13 +99,13 @@
                                             x-transition:leave="transition ease-in duration-200"
                                             x-transition:leave-start="opacity-100 translate-y-0"
                                             x-transition:leave-end="opacity-0 -translate-y-10"
-                                            class="w-full max-w-[500px] bg-white mx-1 mt-5.5 py-4 border border-primary-header-gray-bold/20"
+                                            class="w-full max-w-[500px] bg-white mx-1 mt-5.5 py-4 border border-gray-header-bold/20"
                                         >
-                                            <h1 class="px-4 mb-5 text-primary-header-gray-bold text-xl font-semibold" x-text="modalTitle"></h1>
-                                            <p class="p-4 text-primary-header-gray-bold font-light text-sm border-y border-primary-sidebar-gray-text/30">Are you sure?</p>
+                                            <h1 class="px-4 mb-5 text-gray-header-bold text-xl font-semibold" x-text="modalTitle"></h1>
+                                            <p class="p-4 text-gray-header-bold font-light text-sm border-y border-gray-sidebar-text/30">Are you sure?</p>
                                             <div class="w-full px-4 mt-4 flex gap-2 justify-end items-center">
-                                                <button class="uppercase font-medium text-[10px] text-white bg-primary-cyanBlue-button-background hover:brightness-95 px-7 py-3 rounded-xs cursor-pointer transition duration-300 ease-in-out" @click="showModal = false">No</button>
-                                                <button @click="confirmSwitch" class="uppercase font-medium text-[10px] text-white bg-primary-danger hover:brightness-95 px-7 py-3 rounded-xs cursor-pointer">Yes</button>
+                                                <button class="uppercase font-medium text-[10px] text-white bg-cyan-button-bg hover:brightness-95 px-7 py-3 rounded-xs cursor-pointer transition duration-300 ease-in-out" @click="showModal = false">No</button>
+                                                <button @click="confirmSwitch" class="uppercase font-medium text-[10px] text-white bg-red-warning hover:brightness-95 px-7 py-3 rounded-xs cursor-pointer">Yes</button>
                                             </div>
                                         </div>
                                     </div>
@@ -138,35 +138,35 @@
                                             return Array.from({ length: end - start + 1 }, (_, i) => start + i);
                                         }
                                 }">
-                                        <table class="w-full table-auto border-collapse border border-primary-sidebar-gray-text/70 text-small">
+                                        <table class="w-full table-auto border-collapse border border-gray-sidebar-text/70 text-small">
                                             <thead class="text-black font-medium align-bottom">
                                                 <tr>
                                                     <template x-for="header in tableHeader" :key="header">
-                                                        <td class="border border-primary-sidebar-gray-text/70 px-2 py-3" x-text="header"></td>
+                                                        <td class="border border-gray-sidebar-text/70 px-2 py-3" x-text="header"></td>
                                                     </template>
                                                 </tr>
                                             </thead>
-                                            <tbody class="text-primary-gray font-medium align-top">
+                                            <tbody class="text-gray-soft font-medium align-top">
                                                 <template x-for="(data, index) in paginatedData" :key="index">
-                                                    <tr class="hover:bg-gray-50 hover:text-primary-black">
-                                                        <td x-text="data['#']" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
-                                                        <td x-text="data['Merchant']" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
-                                                        <td x-text="data['Email']" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
-                                                        <td x-text="data['Phone Number']" class="border border-primary-sidebar-gray-text/70 px-2 py-3"></td>
-                                                        <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">
+                                                    <tr class="hover:bg-gray-50 hover:text-black-base">
+                                                        <td x-text="data['#']" class="border border-gray-sidebar-text/70 px-2 py-3"></td>
+                                                        <td x-text="data['Merchant']" class="border border-gray-sidebar-text/70 px-2 py-3"></td>
+                                                        <td x-text="data['Email']" class="border border-gray-sidebar-text/70 px-2 py-3"></td>
+                                                        <td x-text="data['Phone Number']" class="border border-gray-sidebar-text/70 px-2 py-3"></td>
+                                                        <td class="border border-gray-sidebar-text/70 px-2 py-3">
                                                             <template x-if="data.active">
-                                                                <button @click="setShowModal(data)" class="w-full min-w-[107px] uppercase font-medium text-[10px] text-white bg-primary-danger hover:brightness-95 px-5 py-3 rounded-xs cursor-pointer">DEACTIVATE</button>
+                                                                <button @click="setShowModal(data)" class="w-full min-w-[107px] uppercase font-medium text-[10px] text-white bg-red-warning hover:brightness-95 px-5 py-3 rounded-xs cursor-pointer">DEACTIVATE</button>
                                                             </template>
                                                             <template x-if="!data.active">
-                                                                <button @click="setShowModal(data)" class="w-full min-w-[107px] uppercase font-medium text-[10px] text-white bg-primary-green-light hover:brightness-95 px-5 py-3 rounded-xs cursor-pointer">ACTIVATE</button>
+                                                                <button @click="setShowModal(data)" class="w-full min-w-[107px] uppercase font-medium text-[10px] text-white bg-green-soft hover:brightness-95 px-5 py-3 rounded-xs cursor-pointer">ACTIVATE</button>
                                                             </template>
                                                         </td>
-                                                        <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">
+                                                        <td class="border border-gray-sidebar-text/70 px-2 py-3">
                                                             <template x-if="data.active">
-                                                                <button class="w-full min-w-[115px] uppercase font-medium text-[10px] text-white bg-primary-cyanBlue-button-background hover:brightness-95 px-5 py-3 rounded-xs cursor-pointer">Send Report</button>
+                                                                <button class="w-full min-w-[115px] uppercase font-medium text-[10px] text-white bg-cyan-button-bg hover:brightness-95 px-5 py-3 rounded-xs cursor-pointer">Send Report</button>
                                                             </template>
                                                             <template x-if="!data.active">
-                                                                <button class="w-full min-w-[115px] uppercase font-normal text-[10px] text-primary-black bg-primary-disabled-report-button px-4 py-3 rounded-xl" disabled>Send Report</button>
+                                                                <button class="w-full min-w-[115px] uppercase font-normal text-[10px] text-black-base bg-gray-disabled-btn px-4 py-3 rounded-xl" disabled>Send Report</button>
                                                             </template>
                                                         </td>
                                                     </tr>
@@ -175,19 +175,19 @@
                                         </table>
 
                                         <template x-if="totalPages() > 1">
-                                            <div class="w-full border-b border-r border-l border-primary-sidebar-gray-text/70 px-2 pt-3 pb-6">
-                                                <div class="inline-flex border border-primary-sidebar-gray-text/70">
+                                            <div class="w-full border-b border-r border-l border-gray-sidebar-text/70 px-2 pt-3 pb-6">
+                                                <div class="inline-flex border border-gray-sidebar-text/70">
                                                     <div 
-                                                        :class="{'text-primary-sidebar-gray-text cursor-not-allowed': currentPage === 1, 'text-primary-blue-text cursor-pointer': currentPage > 1}"
-                                                        class="border-r border-primary-sidebar-gray-text/70 px-2 py-1 text-sm hover:bg-gray-50"
+                                                        :class="{'text-gray-sidebar-text cursor-not-allowed': currentPage === 1, 'text-blue-text-accent cursor-pointer': currentPage > 1}"
+                                                        class="border-r border-gray-sidebar-text/70 px-2 py-1 text-sm hover:bg-gray-50"
                                                         @click="goToPage(currentPage - 1)"
                                                     >
                                                         &lt;
                                                     </div>
                                                     <template x-for="page in pageWindow" :key="page">
                                                         <div
-                                                        class="px-3 py-1 text-sm border-r border-primary-sidebar-gray-text/70 font-medium transition-all duration-300"
-                                                        :class="{ 'bg-primary-cyanBlue-sidebar-background text-white': page === currentPage, 'text-primary-blue-text hover:bg-gray-50 cursor-pointer': page !== currentPage }"
+                                                        class="px-3 py-1 text-sm border-r border-gray-sidebar-text/70 font-medium transition-all duration-300"
+                                                        :class="{ 'bg-cyan-sidebar-bg text-white': page === currentPage, 'text-blue-text-accent hover:bg-gray-50 cursor-pointer': page !== currentPage }"
                                                         @click="goToPage(page)"
                                                         x-transition:enter="transition ease-out duration-200"
                                                         x-transition:enter-start="opacity-0 translate-x-2"
@@ -201,7 +201,7 @@
                                                     <div 
                                                         class="font-medium px-2 py-1 text-sm hover:bg-gray-50"
                                                         @click="goToPage(currentPage + 1)"
-                                                        :class="{'text-primary-sidebar-gray-text cursor-not-allowed': currentPage === totalPages(), 'text-primary-blue-text cursor-pointer': currentPage < totalPages()}"
+                                                        :class="{'text-gray-sidebar-text cursor-not-allowed': currentPage === totalPages(), 'text-blue-text-accent cursor-pointer': currentPage < totalPages()}"
                                                     >
                                                         &gt;
                                                     </div>
@@ -211,7 +211,7 @@
                                         </div>
                                     </template>
                                     <template x-if="tableData.length === 0 || !tableData">
-                                        <p x-text="noDataMessage || 'No data found'" class="text-primary-header-gray-bold font-light mb-10 text-sm"></p>
+                                        <p x-text="noDataMessage || 'No data found'" class="text-gray-header-bold font-light mb-10 text-sm"></p>
                                     </template>
                                 </div>
 

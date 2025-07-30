@@ -7,70 +7,74 @@
   --font-roboto: "Roboto", Helvetica, Arial, sans-serif;
   --font-poppins: "Poppins", sans-serif;
   
-  /* Black  Colors  */
-  --color-primary-black: #201f2b;
-  --color-primary-header-black-text: #434349;
-  --color-primary-input-black-text: #495057;
-  --color-primary-black-text-muted: #333;
+  /* ====== BLACKS ====== */
+  --color-black-base: #201f2b; /* old: --color-primary-black */
+  --color-black-header-text: #434349; /* old: --color-primary-header-black-text */
+  --color-black-input-text: #495057; /* old: --color-primary-input-black-text */
+  --color-black-muted: #333; /* old: --color-primary-black-text-muted */
 
-  /* Gray Colors */
-  --color-primary-gray: #999;
-  --color-primary-login-gray-header: #2C3136;
-  --color-primary-login-gray-text: #9C9C9C;
-  --color-primary-header-gray-text: #959cb6;
-  --color-primary-header-gray-background: #eaecf2;
-  --color-primary-dashboard-background: #eeeeee;
-  --color-primary-header-gray-bold: #646c9a;
-  --color-primary-footer-gray-text: #a7abc3;
-  --color-primary-sidebar-gray-text: #d2d2d6;
-  --color-primary-sidebar-gray-background: #f2f3f8;
-  --color-primary-input-gray-text: #a7abd1;
-  --color-primary-gray-text-muted: #73818f;
-  --color-primary-table-gray-dark: #3c4858;
-  --color-primary-disabled-report-button: #808080;
-  --color-primary-filtered-options: #6c7293;
-  --color-primary-table-header: #464457;
-  --color-primary-dark-gray: #212529;
-  --color-primary-bluishGray-dark: #282a3c;
-  --color-primary-graphiteGray-dark: #434345;
-  --color-primary-grayishBlue-muted: #7C8A8F;
-  --color-primary-grayishBlue-light: #F4F5F8;
-  --color-primary-coolGray-light: #E0E0E1;
+  /* ====== GRAYS ====== */
+  --color-gray-soft: #999; /* old: --color-primary-gray */
+  --color-gray-login-header: #2C3136; /* old: --color-primary-login-gray-header */
+  --color-gray-login-text: #9C9C9C; /* old: --color-primary-login-gray-text */
+  --color-gray-header: #959cb6; /* old: --color-primary-header-gray-text */
+  --color-gray-header-bg: #eaecf2; /* old: --color-primary-header-gray-background */
+  --color-gray-dashboard-bg: #eeeeee; /* old: --color-primary-dashboard-background */
+  --color-gray-header-bold: #646c9a; /* old: --color-primary-header-gray-bold */
+  --color-gray-footer-text: #a7abc3; /* old: --color-primary-footer-gray-text */
+  --color-gray-sidebar-text: #d2d2d6; /* old: --color-primary-sidebar-gray-text */
+  --color-gray-sidebar-bg: #f2f3f8; /* old: --color-primary-sidebar-gray-background */
+  --color-gray-input-text: #a7abd1; /* old: --color-primary-input-gray-text */
+  --color-gray-muted-text: #73818f; /* old: --color-primary-gray-text-muted */
+  --color-gray-table-dark: #3c4858; /* old: --color-primary-table-gray-dark */
+  --color-gray-disabled-btn: #808080; /* old: --color-primary-disabled-report-button */
+  --color-gray-filtered: #6c7293; /* old: --color-primary-filtered-options */
+  --color-gray-table-header: #464457; /* old: --color-primary-table-header */
+  --color-gray-charcoal: #212529; /* old: --color-primary-dark-gray */
+  --color-gray-bluish-dark: #282a3c; /* old: --color-primary-bluishGray-dark */
+  --color-gray-graphite: #434345; /* old: --color-primary-graphiteGray-dark */
+  --color-gray-muted-blue: #7C8A8F; /* old: --color-primary-grayishBlue-muted */
+  --color-gray-light-blue: #F4F5F8; /* old: --color-primary-grayishBlue-light */
+  --color-gray-cool-light: #E0E0E1; /* old: --color-primary-coolGray-light */
 
-  /* Blue Colors */
-  --color-primary-blue-text: #2c77f4;
-  --color-primary-inputBorder-blue: #669cf7;
-  --color-primary-cyanBlue-sidebar-background: #05b0c5;
-  --color-primary-cyanBlue-pieChart-background: #5bc0de;
-  --color-primary-cyanBlue-button-background: #0fb7cb;
-  --color-primary-cyanBlue-background-light: #26C6DA;
-  --color-primary-cyanBlue-background-dark: #00ACC1;
-  --color-primary-slateBlue: #5867DD;
-  --color-primary-royalBlue: #2E40D4;
-  --color-secondary-linkColour: #3429A3FF;
-  --color-perinwinkleBlue-light: #B5BFE1;
-  --color-perinwinkleBlue-veryLight: #B8C7F6;
-  --color-primary-royalBlue-vivid: #3E60DC;
-  --color-primary-lavenderBlue-light: #CFD9F9;
+  /* ====== BLUES ====== */
+  --color-blue-text-accent: #2c77f4; /* old: --color-primary-blue-text */
+  --color-blue-input-border: #669cf7; /* old: --color-primary-inputBorder-blue */
+  --color-blue-slate: #5867DD; /* old: --color-primary-slateBlue */
+  --color-blue-royal: #2E40D4; /* old: --color-primary-royalBlue */
+  --color-blue-link-secondary: #3429A3FF; /* old: --color-secondary-linkColour */
+  --color-blue-periwinkle: #B5BFE1; /* old: --color-perinwinkleBlue-light */
+  --color-blue-periwinkle-light: #B8C7F6; /* old: --color-perinwinkleBlue-veryLight */
+  --color-blue-royal-vivid: #3E60DC; /* old: --color-primary-royalBlue-vivid */
+  --color-blue-lavender-light: #CFD9F9; /* old: --color-primary-lavenderBlue-light */
 
-  --color-primary-gold-background-light: #ffa726;
-  --color-primary-gold-background-dark: #fb8c00;
-  --color-primary-gold-light: #ffb822;
-  --color-primary-warning: #FF9800;
+  /* ====== CYANS ====== */
+  --color-cyan-sidebar-bg: #05b0c5; /* old: --color-primary-cyanBlue-sidebar-background */
+  --color-cyan-pie-bg: #5bc0de; /* old: --color-primary-cyanBlue-pieChart-background */
+  --color-cyan-button-bg: #0fb7cb; /* old: --color-primary-cyanBlue-button-background */
+  --color-cyan-bg-light: #26C6DA; /* old: --color-primary-cyanBlue-background-light */
+  --color-cyan-bg-dark: #00ACC1; /* old: --color-primary-cyanBlue-background-dark */
 
-  --color-primary-green: #49a749;
-  --color-primary-green-light: #1dc9b7;
-  --color-primary-green-dark: #28a745;
+  /* ====== GOLDS / ORANGES ====== */
+  --color-gold-bg-light: #ffa726; /* old: --color-primary-gold-background-light */
+  --color-gold-bg-dark: #fb8c00; /* old: --color-primary-gold-background-dark */
+  --color-gold-accent: #ffb822; /* old: --color-primary-gold-light */
+  --color-orange-warning: #FF9800; /* old: --color-primary-warning */
 
- /* --color-primary-red: #e23d34; */
-  --color-primary-properRed: #FF0000;
-  --color-primary-red: #dc3545;
-  --color-primary-danger: #fd397a;
-  --color-primary-wine-background-light: #ec407a;
-  --color-primary-wine-background-dark: #d81b60;
-  --color-primary-darkRed: #c22;
-  --color-primary-reddishOrange: #da6557;
-  --color-primary-crimson: #b00;
+  /* ====== GREENS ====== */
+  --color-green-accent: #49a749; /* old: --color-primary-green */
+  --color-green-soft: #1dc9b7; /* old: --color-primary-green-light */
+  --color-green-deep: #28a745; /* old: --color-primary-green-dark */
+
+  /* ====== REDS / PINKS ====== */
+  --color-red-soft: #dc3545; /* old: --color-primary-red */
+  --color-red-warning: #fd397a; /* old: --color-primary-danger */
+  --color-red-crimson: #b00; /* old: --color-primary-crimson */
+  --color-red-dark: #c22; /* old: --color-primary-darkRed */
+  --color-red-true: #FF0000; /* old: --color-primary-properRed */
+  --color-red-warm: #da6557; /* old: --color-primary-reddishOrange */
+  --color-pink-wine-light: #ec407a; /* old: --color-primary-wine-background-light */
+  --color-pink-wine-dark: #d81b60; /* old: --color-primary-wine-background-dark */
 
   --text-tiny: 0.69rem;
   --text-small: 0.85rem;
@@ -81,7 +85,7 @@ display: none !important;
 }
 
 .cyanBlue-custom-background-gradient {
-  background: linear-gradient(60deg, var(--color-primary-cyanBlue-background-light), var(--color-primary-cyanBlue-background-dark));
+  background: linear-gradient(60deg, var(--color-cyan-bg-light), var(--color-cyan-bg-dark));
 }
 
 .blue-custom-background-gradient {
@@ -89,7 +93,7 @@ display: none !important;
 }
 
 .wine-custom-background-gradient {
-  background: linear-gradient(60deg, var(--color-primary-wine-background-light), var(--color-primary-wine-background-dark));
+  background: linear-gradient(60deg, var(--color-pink-wine-light), var(--color-pink-wine-dark));
 }
 
 .green-custom-background-gradient {
@@ -97,7 +101,7 @@ display: none !important;
 }
 
 .gold-custom-background-gradient {
-  background: linear-gradient(60deg, var(--color-primary-gold-background-light), var(--color-primary-gold-background-dark));
+  background: linear-gradient(60deg, var(--color-gold-bg-light), var(--color-gold-bg-dark));
 }
 
 .cyanBlue-custom-box-shadow {

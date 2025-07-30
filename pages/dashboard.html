@@ -10,7 +10,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
         <link rel="manifest" href="../assets/site.webmanifest">
     </head>
-    <body class="select-none bg-primary-dashboard-background font-roboto">
+    <body class="select-none bg-gray-dashboard-bg font-roboto">
 
         <section class="relative flex h-screen" x-data="menu('Dashboard')">
 
@@ -28,7 +28,7 @@
                 <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
 
                 <!-- Main Content Section -->
-                <div class="w-full flex flex-col px-6 py-7.5 mb-12 gap-12 text-primary-black">
+                <div class="w-full flex flex-col px-6 py-7.5 mb-12 gap-12 text-black-base">
                     
                     <!-- First Row  -->
                     <div class="flex flex-col md:flex-row items-start justify-between flex-wrap gap-10 lg:gap-7.5 w-full">
@@ -85,8 +85,8 @@
                             <div class="overflow-x-auto w-full">
                                 <div class="min-w-[500px]">
                                     <table class="w-full table-auto border-collapse text-small font-light">
-                                        <thead class="text-primary-warning">
-                                            <tr class="border-b border-primary-disabled-report-button/30">
+                                        <thead class="text-orange-warning">
+                                            <tr class="border-b border-gray-disabled-btn/30">
                                                 <td class="py-3 px-1.5">Merchant</td>
                                                 <td class="py-3 px-1.5">Recipient</td>
                                                 <td class="py-3 px-1.5">Amount</td>
@@ -95,9 +95,9 @@
                                                 <td class="py-3 px-1.5"></td>
                                             </tr>
                                         </thead>
-                                        <tbody class="text-primary-dark-gray">
+                                        <tbody class="text-gray-charcoal">
                                             <template x-for="(data, index) in tableData" :key="index">
-                                                <tr class="border-b border-primary-disabled-report-button/30 hover:bg-gray-50">
+                                                <tr class="border-b border-gray-disabled-btn/30 hover:bg-gray-50">
                                                     <td x-text="data.merchant" class="py-3 px-1.5"></td>
                                                     <td x-text="data.recipient" class="py-3 px-1.5"></td>
                                                     <td x-text="data.amount" class="py-3 px-1.5"></td>
@@ -163,7 +163,7 @@
 
                             <div class="w-full flex flex-wrap items-stretch justify-center gap-x-3 gap-y-7 px-7">
                                 <template x-for="(link, index) in quickLinks" :key="index">
-                                    <a :href="link.link" class="flex flex-col w-[105px] min-h-[115px] space-y-3 items-center justify-start px-2 py-3 bg-primary-gray/10 hover:bg-primary-wine-background-light shadow-transparent hover:wine-custom-box-shadow text-gray-600 border hover:text-white border-primary-gray/50 rounded-sm">
+                                    <a :href="link.link" class="flex flex-col w-[105px] min-h-[115px] space-y-3 items-center justify-start px-2 py-3 bg-gray-soft/10 hover:bg-pink-wine-light shadow-transparent hover:wine-custom-box-shadow text-gray-600 border hover:text-white border-gray-soft/50 rounded-sm">
                                         <span class="text-inherit" x-html="link.icon"></span>
 
                                         <span class="uppercase font-medium text-center text-xs" x-text="link.name"></span>

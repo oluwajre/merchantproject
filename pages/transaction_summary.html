@@ -10,7 +10,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
         <link rel="manifest" href="../assets/site.webmanifest">
     </head>
-    <body class="select-none bg-primary-sidebar-gray-background font-roboto">
+    <body class="select-none bg-gray-sidebar-bg font-roboto">
 
         <section class="relative flex h-screen" x-data="menu('Transaction Summary')">
 
@@ -28,7 +28,7 @@
                 <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
 
                 <!-- Main Content Section -->
-                <div class="mt-10 w-full flex flex-col px-6 py-6 gap-12 text-primary-black">
+                <div class="mt-10 w-full flex flex-col px-6 py-6 gap-12 text-black-base">
 
                     <!-- First Row -->
                     <div class="flex flex-col gap-12 w-full">
@@ -86,9 +86,9 @@
                                             name="startDate" 
                                             id="startDate"
                                             step="1" 
-                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-input-gray-text"
+                                            class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-medium placeholder:text-gray-input-text outline-none px-3 py-2 text-small transition duration-300 text-gray-input-text"
                                         >
-                                        <label for="startDate" class="text-tiny text-primary-header-gray-bold">(Start Date)</label>
+                                        <label for="startDate" class="text-tiny text-gray-header-bold">(Start Date)</label>
                                     </div>
                                     <div>
                                         <input
@@ -97,9 +97,9 @@
                                             name="endDate" 
                                             id="endDate"
                                             step="1"
-                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-input-gray-text"
+                                            class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-medium placeholder:text-gray-input-text outline-none px-3 py-2 text-small transition duration-300 text-gray-input-text"
                                         >
-                                        <label for="endDate" class="text-tiny text-primary-header-gray-bold">(End Date)</label>
+                                        <label for="endDate" class="text-tiny text-gray-header-bold">(End Date)</label>
                                     </div>
                                     <div class="relative">
                                         <input
@@ -110,14 +110,14 @@
                                             placeholder="search with merchant name or phone number"
                                             name="merchantName"
                                             id="merchantName"
-                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                            class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-medium placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300 text-gray-footer-text focus:text-black-input-text"
                                         >
                                         
                                         <div x-show="showMerchantOptions && filteredMerchantOptions.length > 0"
-                                            class="absolute inset-x-0 w-full max-w-[350px] left-0 bg-white z-30 shadow-md text-small text-primary-header-gray-bold font-light"
+                                            class="absolute inset-x-0 w-full max-w-[350px] left-0 bg-white z-30 shadow-md text-small text-gray-header-bold font-light"
                                             x-transition.origin.top>                                
                                             <template x-for="option in filteredMerchantOptions" :key="option.name">
-                                                <div class="w-full px-2 py-1 border-b border-primary-sidebar-gray-text/30 hover:bg-perinwinkleBlue-light hover:text-primary-royalBlue-vivid cursor-pointer transition duration-100"
+                                                <div class="w-full px-2 py-1 border-b border-gray-sidebar-text/30 hover:bg-blue-periwinkle hover:text-blue-royal-vivid cursor-pointer transition duration-100"
                                                     @click="formData.merchantName = option.name; showMerchantOptions = false">
                                                     <p x-html="highlightMatch(option.name)"></p>
                                                 </div>
@@ -125,7 +125,7 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <select name="productType" id="productType" x-model="formData.productType" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300">
+                                        <select name="productType" id="productType" x-model="formData.productType" class="w-full text-gray-input-text focus-visible:text-black-input-text border border-gray-sidebar-text focus:border-blue-input-border font-medium placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300">
                                             <option value="">--Select A Product Type--</option>
                                             <option value="cable_tv">Cable TV</option>
                                             <option value="vtu">VTU</option>
@@ -138,22 +138,22 @@
                                         </select>
                                     </div>
                                     <div>
-                                        <select name="blank1" id="blank1" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300"> 
+                                        <select name="blank1" id="blank1" class="w-full text-gray-input-text focus-visible:text-black-input-text border border-gray-sidebar-text focus:border-blue-input-border font-medium placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300"> 
                                         </select>
                                     </div>
                                     <div>
-                                        <select name="blank2" id="blank2" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300"> 
+                                        <select name="blank2" id="blank2" class="w-full text-gray-input-text focus-visible:text-black-input-text border border-gray-sidebar-text focus:border-blue-input-border font-medium placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300"> 
                                         </select>
                                     </div>
                                     <div>
-                                        <select name="transactionstatus" id="transactionstatus" x-model="formData.transactionstatus" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300">
+                                        <select name="transactionstatus" id="transactionstatus" x-model="formData.transactionstatus" class="w-full text-gray-input-text focus-visible:text-black-input-text border border-gray-sidebar-text focus:border-blue-input-border font-medium placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300">
                                             <option value="">Transaction Status</option>
                                             <option value="successful">Successful</option>
                                             <option value="failed">Failed</option>
                                         </select>
                                     </div>
                                     <div>
-                                        <select name="customerType" id="customerType" x-model="formData.customerType" class="w-full font-medium text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue outline-none px-3 py-2 text-small transition duration-300">
+                                        <select name="customerType" id="customerType" x-model="formData.customerType" class="w-full font-medium text-gray-input-text focus-visible:text-black-input-text border border-gray-sidebar-text focus:border-blue-input-border outline-none px-3 py-2 text-small transition duration-300">
                                             <option value="">Customer Type</option>
                                             <option value="postpaid">Postpaid</option>
                                             <option value="prepaid">Prepaid</option>
@@ -162,7 +162,7 @@
                                         </select>
                                     </div>
                                     <div>
-                                        <select name="groupBy" id="groupBy" x-model="formData.groupBy" class="w-full font-medium text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue outline-none px-3 py-2 text-small transition duration-300">
+                                        <select name="groupBy" id="groupBy" x-model="formData.groupBy" class="w-full font-medium text-gray-input-text focus-visible:text-black-input-text border border-gray-sidebar-text focus:border-blue-input-border outline-none px-3 py-2 text-small transition duration-300">
                                             <option value="">--Group By--</option>
                                             <option value="date">Date</option>
                                             <option value="merchant">Merchant</option>
@@ -173,14 +173,14 @@
                                         </select>
                                     </div>
                                     <div>
-                                        <select name="channel" id="channel" x-model="formData.channel" class="w-full font-medium text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue outline-none px-3 py-2 text-small transition duration-300">
+                                        <select name="channel" id="channel" x-model="formData.channel" class="w-full font-medium text-gray-input-text focus-visible:text-black-input-text border border-gray-sidebar-text focus:border-blue-input-border outline-none px-3 py-2 text-small transition duration-300">
                                             <option value="">--Transaction Channel--</option>
                                              <option value="api">API</option>
                                             <option value="web">WEB</option>
                                         </select>
                                     </div>
                                     <div>
-                                        <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">search</button>
+                                        <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-cyan-button-bg hover:bg-cyan-bg-dark active:bg-blue-text-accent p-3 rounded-xs cursor-pointer transition duration-300">search</button>
                                     </div>
                                 </form>
                             </div>   
@@ -196,38 +196,38 @@
                             <!-- Table Summary Header  -->
                             <div class="w-full px-6 mt-12 mb-6 gap-3 sm:gap-0 flex flex-col sm:flex-row items-center justify-between">
                                 <div class="w-full sm:w-fit flex-1 text-left">
-                                    <h1 class="text-lg font-semibold text-primary-header-gray-bold">0</h1>
-                                    <p class="text-sm text-primary-footer-gray-text font-medium">Total Reports</p>
+                                    <h1 class="text-lg font-semibold text-gray-header-bold">0</h1>
+                                    <p class="text-sm text-gray-footer-text font-medium">Total Reports</p>
                                 </div>
                             </div>
 
                             <!-- OTHER STYLE FORMAT  -->
                                 <div class="mb-8 px-6 overflow-x-auto">
                                 <div class="inline-block min-w-fit">
-                                <table class="w-full table-auto border-collapse border border-primary-sidebar-gray-text/70 text-small">
+                                <table class="w-full table-auto border-collapse border border-gray-sidebar-text/70 text-small">
                                     <thead class="text-black font-medium align-bottom">
                                         <tr>
-                                            <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Day/Month</td>
-                                            <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Type</td>
-                                            <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Date</td>
-                                            <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Group By</td>
-                                            <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Status</td>
-                                            <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Download</td>
+                                            <td class="border border-gray-sidebar-text/70 px-2 py-3">Day/Month</td>
+                                            <td class="border border-gray-sidebar-text/70 px-2 py-3">Type</td>
+                                            <td class="border border-gray-sidebar-text/70 px-2 py-3">Date</td>
+                                            <td class="border border-gray-sidebar-text/70 px-2 py-3">Group By</td>
+                                            <td class="border border-gray-sidebar-text/70 px-2 py-3">Status</td>
+                                            <td class="border border-gray-sidebar-text/70 px-2 py-3">Download</td>
                                         </tr>
                                     </thead>
-                                    <tbody class="text-primary-black font-medium align-top">
+                                    <tbody class="text-black-base font-medium align-top">
                                         <tr class="hover:bg-gray-50">
-                                            <td colspan="6" class="border border-primary-sidebar-gray-text/70 px-2 py-2">There are no data.</td>
+                                            <td colspan="6" class="border border-gray-sidebar-text/70 px-2 py-2">There are no data.</td>
                                         </tr>
                                     </tbody>
                                     <tfoot class="text-black font-medium align-bottom">
                                         <tr>
-                                            <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Day/Month</td>
-                                            <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Type</td>
-                                            <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Date</td>
-                                            <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Group By</td>
-                                            <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Status</td>
-                                            <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Download</td>
+                                            <td class="border border-gray-sidebar-text/70 px-2 py-3">Day/Month</td>
+                                            <td class="border border-gray-sidebar-text/70 px-2 py-3">Type</td>
+                                            <td class="border border-gray-sidebar-text/70 px-2 py-3">Date</td>
+                                            <td class="border border-gray-sidebar-text/70 px-2 py-3">Group By</td>
+                                            <td class="border border-gray-sidebar-text/70 px-2 py-3">Status</td>
+                                            <td class="border border-gray-sidebar-text/70 px-2 py-3">Download</td>
                                         </tr>
                                     </tfoot>
                                 </table>

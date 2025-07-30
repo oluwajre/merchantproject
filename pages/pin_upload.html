@@ -11,7 +11,7 @@
         <link rel="manifest" href="../assets/site.webmanifest">
         <link rel="stylesheet" href="../styles/general.css">
     </head>
-    <body class="select-none bg-primary-sidebar-gray-background font-roboto">
+    <body class="select-none bg-gray-sidebar-bg font-roboto">
 
         <section class="relative flex h-screen" x-data="menu('Upload Pin / Activity Log')">
 
@@ -29,31 +29,31 @@
                 <div class="w-full flex flex-col sm:flex-row flex-wrap gap-2 justify-between items-start sm:items-center px-6 my-4 font-roboto">
                     <div class="flex items-center capitalize gap-3">
                         <p class="flex items-center text-small">
-                            <span class="mr-2 text-primary-header-gray-bold">
+                            <span class="mr-2 text-gray-header-bold">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                                 </svg>
                             </span>
                         </p>
                     </div>
-                    <div class="flex gap-2 text-tiny font-medium uppercase text-primary-header-gray-text">
-                        <div class="px-4 py-2 bg-primary-header-gray-background shadow-sm cursor-pointer">Total Merchants: <span class="text-primary-blue-text">103</span></div>
-                        <div class="px-4 py-2 bg-primary-header-gray-background shadow-sm hover:shadow-md cursor-pointer">Welcome, <span class="text-primary-blue-text">SEGU</span></div>
+                    <div class="flex gap-2 text-tiny font-medium uppercase text-gray-header">
+                        <div class="px-4 py-2 bg-gray-header-bg shadow-sm cursor-pointer">Total Merchants: <span class="text-blue-text-accent">103</span></div>
+                        <div class="px-4 py-2 bg-gray-header-bg shadow-sm hover:shadow-md cursor-pointer">Welcome, <span class="text-blue-text-accent">SEGU</span></div>
                     </div>
                 </div>
 
                 <!-- Main Content Section -->
-                <div class="w-full flex flex-col px-6 pt-2 pb-10 gap-12 text-primary-black">
+                <div class="w-full flex flex-col px-6 pt-2 pb-10 gap-12 text-black-base">
                     
                     <div class="flex flex-col lg:flex-row justify-between gap-20 w-full">
                         <div class="flex-1 text-small">
-                            <p class="text-primary-header-gray-bold font-light -mx-4"><span class="font-semibold">Upload Pin(s)</span> » Upload Maximum of 30,000 rows at once</p>
-                            <p class="text-primary-header-gray-bold lg:max-w-[80px]">File-Format (.csv)</p>
-                            <p class="text-primary-properRed font-light mt-2">The Image below is a sample of how the file to be uploaded should look like.</p>
-                            <img src="" alt="image-sample for file format" class="text-primary-header-gray-bold font-light bg-gray-100 border border-gray-100 inline-block shadow-md">
+                            <p class="text-gray-header-bold font-light -mx-4"><span class="font-semibold">Upload Pin(s)</span> » Upload Maximum of 30,000 rows at once</p>
+                            <p class="text-gray-header-bold lg:max-w-[80px]">File-Format (.csv)</p>
+                            <p class="text-red-true font-light mt-2">The Image below is a sample of how the file to be uploaded should look like.</p>
+                            <img src="" alt="image-sample for file format" class="text-gray-header-bold font-light bg-gray-100 border border-gray-100 inline-block shadow-md">
 
                             <form class="w-full mt-5 flex flex-col" x-data="{ fileObject: null }" @submit.prevent>
-                                    <label for="upload" class="block text-small text-primary-header-gray-bold mb-2">Upload File</label>
+                                    <label for="upload" class="block text-small text-gray-header-bold mb-2">Upload File</label>
 
                                     <div class="flex-1 bg-white mb-5 pl-4 pt-2 pb-1" x-data="{ fileName: ''}">
                                         <label for="upload" class="inline-block cursor-pointer bg-gray-100 hover:bg-gray-200 border border-black rounded-xs text-black text-xs font-normal px-2 py-1">
@@ -72,24 +72,24 @@
                                             fileObject = $event.target.files[0];"
                                         />
 
-                                        <span x-text="fileName || 'No file chosen'" class="text-small text-primary-input-black-text"></span>
+                                        <span x-text="fileName || 'No file chosen'" class="text-small text-black-input-text"></span>
                                     </div>
 
                                     <div class="flex-1">
-                                        <button type="submit" class="uppercase text-[10px] text-white bg-primary-slateBlue hover:bg-primary-royalBlue py-2.5 px-7 rounded-xs cursor-pointer transition duration-300">Upload</button>
+                                        <button type="submit" class="uppercase text-[10px] text-white bg-blue-slate hover:bg-blue-royal py-2.5 px-7 rounded-xs cursor-pointer transition duration-300">Upload</button>
                                     </div>
                             </form>
                         </div>
 
                         <div class="flex-1 flex justify-end">
                             <div class="overflow-x-auto max-w-full lg:max-w-[400px] flex-1">
-                                <p class="font-light mb-2 text-small text-primary-darkRed">Recent Upload-Activity Log</p>
-                                <table class="w-full table-auto border-collapse border border-primary-sidebar-gray-text/10 text-small text-left">
+                                <p class="font-light mb-2 text-small text-red-dark">Recent Upload-Activity Log</p>
+                                <table class="w-full table-auto border-collapse border border-gray-sidebar-text/10 text-small text-left">
                                     <thead class="text-black font-medium align-top">
                                         <tr>
-                                            <td class="border border-primary-sidebar-gray-text/10 px-2 py-3">Action</td>
-                                            <td class="border border-primary-sidebar-gray-text/10 px-2 py-3">Remark</td>
-                                            <td class="border border-primary-sidebar-gray-text/10 px-2 py-3">Date</td>
+                                            <td class="border border-gray-sidebar-text/10 px-2 py-3">Action</td>
+                                            <td class="border border-gray-sidebar-text/10 px-2 py-3">Remark</td>
+                                            <td class="border border-gray-sidebar-text/10 px-2 py-3">Date</td>
                                         </tr>
                                     </thead>
                                 </table>

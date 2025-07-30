@@ -10,7 +10,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
         <link rel="manifest" href="../assets/site.webmanifest">
     </head>
-    <body class="select-none bg-primary-sidebar-gray-background font-roboto">
+    <body class="select-none bg-gray-sidebar-bg font-roboto">
 
         <section class="relative flex h-screen" x-data="menu('RolesPermissions')">
 
@@ -28,21 +28,21 @@
                 <div class="w-full flex flex-col sm:flex-row flex-wrap gap-2 justify-between items-start sm:items-center px-8 my-5 font-roboto">
                     <div class="flex items-center capitalize gap-3">
                         <p class="flex items-center text-small">
-                            <span class="mr-2 text-primary-header-gray-bold">
+                            <span class="mr-2 text-gray-header-bold">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                                 </svg>
                             </span>
                         </p>
                     </div>
-                    <div class="flex gap-1 text-[10px] font-medium uppercase text-primary-header-gray-text">
-                        <div class="px-3 py-2 bg-primary-header-gray-background cursor-pointer">Total Merchants: <span class="text-primary-blue-text">103</span></div>
-                        <div class="px-9 py-2 bg-primary-header-gray-background shadow-md hover:shadow-lg cursor-pointer">Welcome, <span class="text-primary-blue-text">SEGU</span></div>
+                    <div class="flex gap-1 text-[10px] font-medium uppercase text-gray-header">
+                        <div class="px-3 py-2 bg-gray-header-bg cursor-pointer">Total Merchants: <span class="text-blue-text-accent">103</span></div>
+                        <div class="px-9 py-2 bg-gray-header-bg shadow-md hover:shadow-lg cursor-pointer">Welcome, <span class="text-blue-text-accent">SEGU</span></div>
                     </div>
                 </div>
 
                 <!-- Main Content Section -->
-                <div class="w-full flex flex-col p-6 sm:px-12 sm:py-10 gap-12 text-primary-black">
+                <div class="w-full flex flex-col p-6 sm:px-12 sm:py-10 gap-12 text-black-base">
                     
                     <!-- First Row -->
                     <div class="flex flex-col gap-8 w-full">
@@ -67,7 +67,7 @@
                             ]
                         }">
 
-                            <div class="w-full py-2 text-center text-primary-black flex items-center justify-center">
+                            <div class="w-full py-2 text-center text-black-base flex items-center justify-center">
                                 <span class="text-inherit">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="size-7">
                                         <path d="M144 0a80 80 0 1 1 0 160A80 80 0 1 1 144 0zM512 0a80 80 0 1 1 0 160A80 80 0 1 1 512 0zM0 298.7C0 239.8 47.8 192 106.7 192l42.7 0c15.9 0 31 3.5 44.6 9.7c-1.3 7.2-1.9 14.7-1.9 22.3c0 38.2 16.8 72.5 43.3 96c-.2 0-.4 0-.7 0L21.3 320C9.6 320 0 310.4 0 298.7zM405.3 320c-.2 0-.4 0-.7 0c26.6-23.5 43.3-57.8 43.3-96c0-7.6-.7-15-1.9-22.3c13.6-6.3 28.7-9.7 44.6-9.7l42.7 0C592.2 192 640 239.8 640 298.7c0 11.8-9.6 21.3-21.3 21.3l-213.3 0zM224 224a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zM128 485.3C128 411.7 187.7 352 261.3 352l117.3 0C452.3 352 512 411.7 512 485.3c0 14.7-11.9 26.7-26.7 26.7l-330.7 0c-14.7 0-26.7-11.9-26.7-26.7z"/>
@@ -108,7 +108,7 @@
                                     }
                             }">
                                     <table class="w-full table-auto border-collapse text-small">
-                                        <thead class="text-black font-medium align-bottom bg-primary-lavenderBlue-light hover:bg-perinwinkleBlue-veryLight">
+                                        <thead class="text-black font-medium align-bottom bg-blue-lavender-light hover:bg-blue-periwinkle-light">
                                             <tr>
                                                 <template x-for="header in tableHeader" :key="header">
                                                     <td class="px-2 py-3" x-text="header"></td>
@@ -117,7 +117,7 @@
                                         </thead>
                                         <tbody class="text-black font-medium align-middle">
                                             <template x-for="(data, index) in paginatedData" :key="index">
-                                                <tr class="even:bg-gray-100 hover:bg-gray-50 hover:text-primary-black">
+                                                <tr class="even:bg-gray-100 hover:bg-gray-50 hover:text-black-base">
                                                     <td x-text="data['Role']" class="px-2 py-3 font-light align-top"></td>
                                                     <td class="px-2 py-3 relative overflow-visible max-w-[110px]">
                                                         <div x-data="{
@@ -145,9 +145,9 @@
 
                                                             <div class="relative w-full">
                                                                 <!-- Trigger -->
-                                                                <div @click="open = !open" :class="{'bg-primary-sidebar-gray-background/60': open, 'bg-white': !open}" class="flex items-center gap-1 w-full text-primary-filtered-options font-normal px-3 py-1 text-tiny uppercase cursor-pointer">
+                                                                <div @click="open = !open" :class="{'bg-gray-sidebar-bg/60': open, 'bg-white': !open}" class="flex items-center gap-1 w-full text-gray-filtered font-normal px-3 py-1 text-tiny uppercase cursor-pointer">
                                                                     <span x-text="selected.length === 0 ? 'Nothing Selected' : selected.join(', ')" class="flex-1 whitespace-nowrap overflow-hidden text-ellipsis" aria-required="true"></span>
-                                                                    <span class="text-primary-gray">
+                                                                    <span class="text-gray-soft">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="1" stroke="none" class="size-4">
                                                                             <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                                                                         </svg>
@@ -164,9 +164,9 @@
                                                                 >
 
                                                                     <!-- Select/Deselect -->
-                                                                    <div class="flex justify-between gap-2 px-4 py-2 text-xs text-primary-login-gray-header text-center font-normal">
-                                                                        <button @click="selectAll" class="flex-1 uppercase hover:bg-primary-sidebar-gray-background/60 py-2 cursor-pointer">Select All</button>
-                                                                        <button @click="deselectAll" class="flex-1 uppercase hover:bg-primary-sidebar-gray-background/60 py-2 cursor-pointer">Deselect All</button>
+                                                                    <div class="flex justify-between gap-2 px-4 py-2 text-xs text-gray-login-header text-center font-normal">
+                                                                        <button @click="selectAll" class="flex-1 uppercase hover:bg-gray-sidebar-bg/60 py-2 cursor-pointer">Select All</button>
+                                                                        <button @click="deselectAll" class="flex-1 uppercase hover:bg-gray-sidebar-bg/60 py-2 cursor-pointer">Deselect All</button>
                                                                     </div>
 
                                                                         <!-- List of Options -->
@@ -174,11 +174,11 @@
                                                                         <template x-for="option in options" :key="option">
                                                                             <div 
                                                                                 @click="toggleOption(option)"
-                                                                                class="flex justify-between px-4 py-2 cursor-pointer text-sm text-primary-filtered-options font-normal"
+                                                                                class="flex justify-between px-4 py-2 cursor-pointer text-sm text-gray-filtered font-normal"
                                                                                 :class="selected.includes(option) ? 'bg-gray-100' : 'hover:bg-gray-100'"
                                                                             >
                                                                                 <span x-text="option" class="flex-1"></span>
-                                                                                <span x-show="selected.includes(option)" class="text-primary-black font-extralight">✔</span>
+                                                                                <span x-show="selected.includes(option)" class="text-black-base font-extralight">✔</span>
                                                                             </div>
                                                                         </template>
                                                                     </div>     
@@ -188,7 +188,7 @@
                                                             <div class="md:mr-10">
                                                                 <button
                                                                     @click="applyPermission"
-                                                                    class="uppercase text-[10px] text-white bg-primary-green-light hover:brightness-95 px-7 py-3 rounded-xs cursor-pointer"
+                                                                    class="uppercase text-[10px] text-white bg-green-soft hover:brightness-95 px-7 py-3 rounded-xs cursor-pointer"
                                                                 >
                                                                     Apply
                                                                 </button>
@@ -201,19 +201,19 @@
                                     </table>
 
                                     <template x-if="totalPages() > 1">
-                                        <div class="w-full border-b border-r border-l border-primary-sidebar-gray-text/70 px-2 pt-3 pb-6">
-                                            <div class="inline-flex border border-primary-sidebar-gray-text/70">
+                                        <div class="w-full border-b border-r border-l border-gray-sidebar-text/70 px-2 pt-3 pb-6">
+                                            <div class="inline-flex border border-gray-sidebar-text/70">
                                                 <div 
-                                                    :class="{'text-primary-sidebar-gray-text cursor-not-allowed': currentPage === 1, 'text-primary-blue-text cursor-pointer': currentPage > 1}"
-                                                    class="border-r border-primary-sidebar-gray-text/70 px-2 py-1 text-sm hover:bg-gray-50"
+                                                    :class="{'text-gray-sidebar-text cursor-not-allowed': currentPage === 1, 'text-blue-text-accent cursor-pointer': currentPage > 1}"
+                                                    class="border-r border-gray-sidebar-text/70 px-2 py-1 text-sm hover:bg-gray-50"
                                                     @click="goToPage(currentPage - 1)"
                                                 >
                                                     &lt;
                                                 </div>
                                                 <template x-for="page in pageWindow" :key="page">
                                                     <div
-                                                    class="px-3 py-1 text-sm border-r border-primary-sidebar-gray-text/70 font-medium transition-all duration-300"
-                                                    :class="{ 'bg-primary-cyanBlue-sidebar-background text-white': page === currentPage, 'text-primary-blue-text hover:bg-gray-50 cursor-pointer': page !== currentPage }"
+                                                    class="px-3 py-1 text-sm border-r border-gray-sidebar-text/70 font-medium transition-all duration-300"
+                                                    :class="{ 'bg-cyan-sidebar-bg text-white': page === currentPage, 'text-blue-text-accent hover:bg-gray-50 cursor-pointer': page !== currentPage }"
                                                     @click="goToPage(page)"
                                                     x-transition:enter="transition ease-out duration-200"
                                                     x-transition:enter-start="opacity-0 translate-x-2"
@@ -227,7 +227,7 @@
                                                 <div 
                                                     class="font-medium px-2 py-1 text-sm hover:bg-gray-50"
                                                     @click="goToPage(currentPage + 1)"
-                                                    :class="{'text-primary-sidebar-gray-text cursor-not-allowed': currentPage === totalPages(), 'text-primary-blue-text cursor-pointer': currentPage < totalPages()}"
+                                                    :class="{'text-gray-sidebar-text cursor-not-allowed': currentPage === totalPages(), 'text-blue-text-accent cursor-pointer': currentPage < totalPages()}"
                                                 >
                                                     &gt;
                                                 </div>
@@ -237,7 +237,7 @@
                                     </div>
                                 </template>
                                 <template x-if="tableData.length === 0 || !tableData">
-                                    <p x-text="noDataMessage || 'No data found'" class="text-primary-header-gray-bold font-light mb-10 text-sm"></p>
+                                    <p x-text="noDataMessage || 'No data found'" class="text-gray-header-bold font-light mb-10 text-sm"></p>
                                 </template>
                             </div>
 

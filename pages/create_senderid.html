@@ -10,7 +10,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
         <link rel="manifest" href="../assets/site.webmanifest">
     </head>
-    <body class="select-none bg-primary-sidebar-gray-background font-roboto">
+    <body class="select-none bg-gray-sidebar-bg font-roboto">
 
         <section class="relative flex h-screen" x-data="menu('Setup SMS')">
 
@@ -28,7 +28,7 @@
                 <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
 
                 <!-- Main Content Section -->
-                <div class="mt-2 w-full flex flex-col px-6 pt-6 pb-10 gap-12 text-primary-black">
+                <div class="mt-2 w-full flex flex-col px-6 pt-6 pb-10 gap-12 text-black-base">
 
                     <!-- First Row -->
                     <div class="flex flex-col gap-12 w-full" x-data="{
@@ -66,8 +66,8 @@
                                     },
                                 }">
                                     <div class="relative">
-                                        <p class="font-medium text-small text-primary-header-gray-bold">Merchant</p>
-                                        <label for="merchantName" class="block italic text-[13px] text-primary-header-gray-bold">Select Merchant</label>
+                                        <p class="font-medium text-small text-gray-header-bold">Merchant</p>
+                                        <label for="merchantName" class="block italic text-[13px] text-gray-header-bold">Select Merchant</label>
                                         <input
                                             x-model="formData.merchantName"
                                             @input="showMerchantOptions = true"
@@ -77,14 +77,14 @@
                                             name="merchantName"
                                             id="merchantName"
                                             autocomplete="off"
-                                            class="w-full bg-white border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text font-medium"
+                                            class="w-full bg-white border border-gray-sidebar-text focus:border-blue-input-border placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300 text-gray-footer-text focus:text-black-input-text font-medium"
                                         >
                                         
                                         <div x-show="showMerchantOptions && filteredMerchantOptions.length > 0"
-                                            class="absolute inset-x-0 w-full max-w-[350px] left-0 bg-white z-30 shadow-md text-small text-primary-header-gray-bold font-light"
+                                            class="absolute inset-x-0 w-full max-w-[350px] left-0 bg-white z-30 shadow-md text-small text-gray-header-bold font-light"
                                             x-transition.origin.top>                                
                                             <template x-for="option in filteredMerchantOptions" :key="option.name">
-                                                <div class="w-full px-2 py-1 border-b border-primary-sidebar-gray-text/30 hover:bg-perinwinkleBlue-light hover:text-primary-royalBlue-vivid cursor-pointer transition duration-100"
+                                                <div class="w-full px-2 py-1 border-b border-gray-sidebar-text/30 hover:bg-blue-periwinkle hover:text-blue-royal-vivid cursor-pointer transition duration-100"
                                                     @click="formData.merchantName = option.name; showMerchantOptions = false">
                                                     <p x-html="highlightMatch(option.name)"></p>
                                                 </div>
@@ -92,8 +92,8 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <p class="font-medium text-small text-primary-header-gray-bold">SenderID</p>
-                                        <label for="senderId" class="block italic text-[13px] text-primary-header-gray-bold">Maximum: 11 characters</label>
+                                        <p class="font-medium text-small text-gray-header-bold">SenderID</p>
+                                        <label for="senderId" class="block italic text-[13px] text-gray-header-bold">Maximum: 11 characters</label>
                                         <input
                                             x-model="formData.senderId"
                                             type="text"  
@@ -101,11 +101,11 @@
                                             id="senderId"
                                             placeholder="Enter Approved SenderID"
                                             required
-                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-semibold placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                            class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-semibold placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300 text-gray-footer-text focus:text-black-input-text"
                                         >
                                     </div>
                                     <div>
-                                        <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">Create SenderGrid</button>
+                                        <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-cyan-button-bg hover:bg-cyan-bg-dark active:bg-blue-text-accent p-3 rounded-xs cursor-pointer transition duration-300">Create SenderGrid</button>
                                     </div>        
                                 </form>  
                             </div>  
@@ -142,8 +142,8 @@
                         }">
 
                             <!-- Table Options  -->
-                            <div class="w-full text-[15px] flex flex-col sm:flex-row items-center justify-between gap-4 py-4 px-6 border-b border-primary-sidebar-gray-text/70">
-                                <h1 class="text-primary-table-header font-medium">Merchants/ SMS SenderID</h1>
+                            <div class="w-full text-[15px] flex flex-col sm:flex-row items-center justify-between gap-4 py-4 px-6 border-b border-gray-sidebar-text/70">
+                                <h1 class="text-gray-table-header font-medium">Merchants/ SMS SenderID</h1>
                             </div>
 
                             <!-- Table Header  -->
@@ -154,27 +154,27 @@
                                     name="search"
                                     id="search"
                                     placeholder="Search.."
-                                    class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                    class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-medium placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300 text-gray-footer-text focus:text-black-input-text"
                                 >
                             </div>
 
                             <!-- Table Component  -->
                             <div class="overflow-auto mb-12 px-4 max-w-full max-h-[410px]">
                                 <div class="min-w-fit">
-                                    <table class="w-full table-auto border-collapse border border-primary-sidebar-gray-text/70 text-small text-left">
+                                    <table class="w-full table-auto border-collapse border border-gray-sidebar-text/70 text-small text-left">
                                         <thead class="text-black font-medium align-bottom">
                                             <tr>
-                                                <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">#</td>
-                                                <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">Merchant</td>
-                                                <td class="border border-primary-sidebar-gray-text/70 px-2 py-3">SenderID</td>
+                                                <td class="border border-gray-sidebar-text/70 px-2 py-3">#</td>
+                                                <td class="border border-gray-sidebar-text/70 px-2 py-3">Merchant</td>
+                                                <td class="border border-gray-sidebar-text/70 px-2 py-3">SenderID</td>
                                             </tr>
                                         </thead>
-                                        <tbody class="text-primary-gray font-medium align-top">
+                                        <tbody class="text-gray-soft font-medium align-top">
                                             <template x-for="(data, index) in filteredTableData" :key="index">
-                                                <tr class="hover:bg-gray-50 hover:text-primary-black">
-                                                    <td x-text="index + 1" class="border border-primary-sidebar-gray-text/70 p-2"></td>
-                                                    <td x-text="data.merchant" class="border border-primary-sidebar-gray-text/70 p-2"></td>
-                                                    <td x-text="data.senderId" class="border border-primary-sidebar-gray-text/70 p-2"></td>
+                                                <tr class="hover:bg-gray-50 hover:text-black-base">
+                                                    <td x-text="index + 1" class="border border-gray-sidebar-text/70 p-2"></td>
+                                                    <td x-text="data.merchant" class="border border-gray-sidebar-text/70 p-2"></td>
+                                                    <td x-text="data.senderId" class="border border-gray-sidebar-text/70 p-2"></td>
                                                 </tr>
                                             </template>
                                         </tbody>

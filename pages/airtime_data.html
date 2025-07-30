@@ -10,7 +10,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
         <link rel="manifest" href="../assets/site.webmanifest">
     </head>
-    <body class="select-none bg-primary-sidebar-gray-background font-roboto">
+    <body class="select-none bg-gray-sidebar-bg font-roboto">
 
         <section class="relative flex h-screen" x-data="menu('Airtime & Data')">
 
@@ -28,7 +28,7 @@
                 <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
 
                 <!-- Main Content Section -->
-                <div class="mt-2 mb-5 w-full flex flex-col px-6 py-6 gap-12 text-primary-black">
+                <div class="mt-2 mb-5 w-full flex flex-col px-6 py-6 gap-12 text-black-base">
 
                     <!-- First Row -->
                     <div class="flex flex-col md:flex-row flex-wrap items-center justify-between gap-10 sm:gap-5" x-data="{
@@ -61,13 +61,13 @@
                                 </div>
                                 <div class="flex justify-center">
                                     <div class="flex-1 text-center border-r border-gray-300">
-                                        <h1 x-text="item.airtime" class="text-lg font-semibold text-primary-black-text-muted"></h1>
-                                        <p class="uppercase text-tiny text-primary-gray-text-muted">Airtime</p>
+                                        <h1 x-text="item.airtime" class="text-lg font-semibold text-black-muted"></h1>
+                                        <p class="uppercase text-tiny text-gray-muted-text">Airtime</p>
                                     </div>
 
                                     <div class="flex-1 text-center">
-                                        <h1 x-text="item.data" class="text-lg font-semibold text-primary-black-text-muted"></h1>
-                                        <p class="uppercase text-tiny text-primary-gray-text-muted">Data</p>
+                                        <h1 x-text="item.data" class="text-lg font-semibold text-black-muted"></h1>
+                                        <p class="uppercase text-tiny text-gray-muted-text">Data</p>
                                     </div>
                                 </div>    
                             </div>
@@ -118,7 +118,7 @@
                                             placeholder="RECIPIENT NO"
                                             name="recipientNo"
                                             id="recipientNo"
-                                            class="w-full text-primary-input-gray-text focus:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300"
+                                            class="w-full text-gray-input-text focus:text-black-input-text border border-gray-sidebar-text focus:border-blue-input-border font-medium placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300"
                                         >
                                     </div>
                                     <div>
@@ -128,9 +128,9 @@
                                             name="startDate"
                                             id="startDate"
                                             step="1"
-                                            class="w-full text-primary-input-gray-text font-medium border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue outline-none px-3 py-2 text-small transition duration-300"
+                                            class="w-full text-gray-input-text font-medium border border-gray-sidebar-text focus:border-blue-input-border outline-none px-3 py-2 text-small transition duration-300"
                                         >
-                                        <label for="startDate" class="text-tiny text-primary-header-gray-bold">(Start Date)</label>
+                                        <label for="startDate" class="text-tiny text-gray-header-bold">(Start Date)</label>
                                     </div>
                                     <div>
                                         <input
@@ -139,9 +139,9 @@
                                             name="endDate"
                                             id="endDate"
                                             step="1"
-                                            class="w-full text-primary-input-gray-text font-medium border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue outline-none px-3 py-2 text-small transition duration-300"
+                                            class="w-full text-gray-input-text font-medium border border-gray-sidebar-text focus:border-blue-input-border outline-none px-3 py-2 text-small transition duration-300"
                                         >
-                                        <label for="endDate" class="text-tiny text-primary-header-gray-bold">(End Date)</label>
+                                        <label for="endDate" class="text-tiny text-gray-header-bold">(End Date)</label>
                                     </div>
                                     <div>
                                         <input
@@ -150,11 +150,11 @@
                                             placeholder="AMOUNT"
                                             name="amount"
                                             id="amount"
-                                            class="w-full text-primary-input-gray-text focus:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300"
+                                            class="w-full text-gray-input-text focus:text-black-input-text border border-gray-sidebar-text focus:border-blue-input-border font-medium placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300"
                                         >
                                     </div>
                                     <div>
-                                        <select name="transactionType" id="transactionType" x-model="formData.transactionType" class="w-full font-medium text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue outline-none px-3 py-2 text-small transition duration-300">
+                                        <select name="transactionType" id="transactionType" x-model="formData.transactionType" class="w-full font-medium text-gray-input-text focus-visible:text-black-input-text border border-gray-sidebar-text focus:border-blue-input-border outline-none px-3 py-2 text-small transition duration-300">
                                             <option value="">Transaction Type</option>
                                             <option value="airtime">Airtime</option>
                                             <option value="data">Data</option>
@@ -162,7 +162,7 @@
                                         </select>
                                     </div>
                                     <div>
-                                        <select name="networkSelect" id="networkSelect" x-model="formData.networkSelect" class="w-full font-medium text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue outline-none px-3 py-2 text-small transition duration-300">
+                                        <select name="networkSelect" id="networkSelect" x-model="formData.networkSelect" class="w-full font-medium text-gray-input-text focus-visible:text-black-input-text border border-gray-sidebar-text focus:border-blue-input-border outline-none px-3 py-2 text-small transition duration-300">
                                             <option value="">Choose Network</option>
                                             <option value="mtn">MTN</option>
                                             <option value="mtn_aw">MTN (Awuf4u)</option>
@@ -182,11 +182,11 @@
                                             placeholder="Merchant Ref"
                                             name="referenceId"
                                             id="referenceId"
-                                            class="w-full text-primary-input-gray-text focus:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300"
+                                            class="w-full text-gray-input-text focus:text-black-input-text border border-gray-sidebar-text focus:border-blue-input-border font-medium placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300"
                                         >
                                     </div>
                                     <div>
-                                        <select name="transactionStatus" id="transactionStatus" x-model="formData.transactionStatus" class="w-full font-medium text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue outline-none px-3 py-2 text-small transition duration-300">
+                                        <select name="transactionStatus" id="transactionStatus" x-model="formData.transactionStatus" class="w-full font-medium text-gray-input-text focus-visible:text-black-input-text border border-gray-sidebar-text focus:border-blue-input-border outline-none px-3 py-2 text-small transition duration-300">
                                             <option value="">Transaction Status</option>
                                             <option value="successful_processing">Successful & Processing</option>
                                             <option value="successful_processing_pending">Successful, Processing & Pending</option>
@@ -212,11 +212,11 @@
                                             placeholder="'Search with merchant name or phone no"
                                             name="originNo"
                                             id="originNo"
-                                            class="w-full text-primary-input-gray-text focus:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300"
+                                            class="w-full text-gray-input-text focus:text-black-input-text border border-gray-sidebar-text focus:border-blue-input-border font-medium placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300"
                                         >
                                     </div>
                                     <div>
-                                        <select name="serverSelect" id="serverSelect" x-model="formData.serverSelect" class="w-full font-medium text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue outline-none px-3 py-2 text-small transition duration-300">
+                                        <select name="serverSelect" id="serverSelect" x-model="formData.serverSelect" class="w-full font-medium text-gray-input-text focus-visible:text-black-input-text border border-gray-sidebar-text focus:border-blue-input-border outline-none px-3 py-2 text-small transition duration-300">
                                             <option value="">Processing Server</option>
                                             <option value="linode">Linode</option>
                                             <option value="45">VPN - 45</option>
@@ -226,7 +226,7 @@
                                         </select>
                                     </div>
                                     <div>
-                                        <select name="providerSelect" id="providerSelect" x-model="formData.providerSelect" class="w-full font-medium text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue outline-none px-3 py-2 text-small transition duration-300">
+                                        <select name="providerSelect" id="providerSelect" x-model="formData.providerSelect" class="w-full font-medium text-gray-input-text focus-visible:text-black-input-text border border-gray-sidebar-text focus:border-blue-input-border outline-none px-3 py-2 text-small transition duration-300">
                                             <option value="">Provider</option>
                                             <option value="csw">CSW</option>
                                             <option value="everlasting">Everlasting</option>
@@ -249,7 +249,7 @@
                                         </select>
                                     </div>
                                     <div>
-                                        <select name="channelSelect" id="channelSelect" x-model="formData.channelSelect" class="w-full font-medium text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue outline-none px-3 py-2 text-small transition duration-300">
+                                        <select name="channelSelect" id="channelSelect" x-model="formData.channelSelect" class="w-full font-medium text-gray-input-text focus-visible:text-black-input-text border border-gray-sidebar-text focus:border-blue-input-border outline-none px-3 py-2 text-small transition duration-300">
                                             <option value="">Channel</option>
                                             <option value="api">API</option>
                                             <option value="web">Web</option>
@@ -259,7 +259,7 @@
                                         </select>
                                     </div>
                                     <div>
-                                        <button type="submit" class="w-full uppercase font-semibold text-xs text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">search</button>
+                                        <button type="submit" class="w-full uppercase font-semibold text-xs text-white bg-cyan-button-bg hover:bg-cyan-bg-dark active:bg-blue-text-accent p-3 rounded-xs cursor-pointer transition duration-300">search</button>
                                     </div>            
                                 </form>  
                             </div>  
@@ -267,7 +267,7 @@
 
                         <template x-if="showTable">
                             
-                            <div class="flex-1 relative bg-white mx-2 rounded-md shrink-0 shadow-md border-2 border-primary-sidebar-gray-text/10" x-init="fetch('../components/tableComponent.html')
+                            <div class="flex-1 relative bg-white mx-2 rounded-md shrink-0 shadow-md border-2 border-gray-sidebar-text/10" x-init="fetch('../components/tableComponent.html')
                                 .then(res => res.text())
                                 .then(html => {
                                     $refs.tableComponent.innerHTML = html;
@@ -378,9 +378,9 @@
                             }">
 
                                 <!-- Table Options  -->
-                                <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-4 py-2 px-6 border-b border-primary-sidebar-gray-text/70">
+                                <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-4 py-2 px-6 border-b border-gray-sidebar-text/70">
                                     <div>
-                                        <h1 class="text-primary-table-header font-medium">Airtime/Data Query Result</h1>
+                                        <h1 class="text-gray-table-header font-medium">Airtime/Data Query Result</h1>
                                     </div>
                                     <div class="flex w-full sm:w-fit justify-between">
                                         <button
@@ -390,8 +390,8 @@
                                             class="relative"
                                         >   
                                             <div 
-                                                :class="showPopUp ? 'bg-primary-blue-text text-white' : 'bg-primary-blue-text/10 text-primary-header-gray-bold'"
-                                                class="group inline-flex items-end cursor-pointer gap-1.5 px-7 py-3 hover:bg-primary-blue-text hover:text-white rounded-xs">
+                                                :class="showPopUp ? 'bg-blue-text-accent text-white' : 'bg-blue-text-accent/10 text-gray-header-bold'"
+                                                class="group inline-flex items-end cursor-pointer gap-1.5 px-7 py-3 hover:bg-blue-text-accent hover:text-white rounded-xs">
                                                 <span class="uppercase text-[10px] font-medium text-inherit">Generate Report</span>
                                                 <span class="text-inherit">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="5" stroke="currentColor" class="size-2.5">
@@ -406,9 +406,9 @@
                                                 x-cloak
                                                 class="absolute text-[10px] font-medium bg-white shadow-sm py-2 top-full right-0 w-[120%] transform-none text-left"
                                             >
-                                                <p class="uppercase text-primary-blue-text mb-1 px-6">Export</p>
+                                                <p class="uppercase text-blue-text-accent mb-1 px-6">Export</p>
                                                 <div 
-                                                    class="flex items-center gap-2 font-normal text-small text-primary-header-gray-bold py-2 px-6 hover:bg-gray-50 hover:text-primary-blue-text cursor-pointer"
+                                                    class="flex items-center gap-2 font-normal text-small text-gray-header-bold py-2 px-6 hover:bg-gray-50 hover:text-blue-text-accent cursor-pointer"
                                                 >
                                                     <span class="rounded-full border-1 border-inherit text-inherit">
                                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-audio-lines-icon lucide-audio-lines size-3.5"><path d="M2 10v3"/><path d="M6 6v11"/><path d="M10 3v18"/><path d="M14 8v7"/><path d="M18 5v13"/><path d="M22 10v3"/></svg>
@@ -416,7 +416,7 @@
                                                     <span class="text-inherit text-normal">CSV</span>
                                                 </div>
                                                 <div 
-                                                    class="flex items-center gap-2 font-normal text-small text-primary-header-gray-bold py-2 px-6 hover:bg-gray-50 hover:text-primary-blue-text cursor-pointer"
+                                                    class="flex items-center gap-2 font-normal text-small text-gray-header-bold py-2 px-6 hover:bg-gray-50 hover:text-blue-text-accent cursor-pointer"
                                                 >
                                                     <span class="text-inherit">
                                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor" class="size-4.5"><path d="M480-320 280-520l56-58 104 104v-326h80v326l104-104 56 58-200 200ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z"/></svg>
@@ -427,7 +427,7 @@
                                         </button>
 
                                         <button 
-                                            class="uppercase text-[10px] font-medium px-7 bg-primary-green-light hover:brightness-95 rounded-xs text-white cursor-pointer transition duration-200"
+                                            class="uppercase text-[10px] font-medium px-7 bg-green-soft hover:brightness-95 rounded-xs text-white cursor-pointer transition duration-200"
                                             @click="showTable = false;"
                                         >
                                             CLOSE (X)
@@ -449,9 +449,9 @@
                                     ],
                                 }">
                                     <template x-for="(item, index) in headerSummaryData" :key="index">
-                                        <div class="w-full sm:w-fit text-right px-2.5 py-4 rounded-sm shadow-md bg-white border border-primary-sidebar-gray-text/20">
-                                            <p class="text-sm text-primary-gray" x-text="item.label"></p>
-                                            <h1 class="text-xl font-medium text-primary-table-gray-dark" x-text="item.value"></h1>
+                                        <div class="w-full sm:w-fit text-right px-2.5 py-4 rounded-sm shadow-md bg-white border border-gray-sidebar-text/20">
+                                            <p class="text-sm text-gray-soft" x-text="item.label"></p>
+                                            <h1 class="text-xl font-medium text-gray-table-dark" x-text="item.value"></h1>
                                         </div>
                                     </template>
                                 </div>

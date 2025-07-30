@@ -10,7 +10,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
         <link rel="manifest" href="../assets/site.webmanifest">
     </head>
-    <body class="select-none bg-primary-sidebar-gray-background font-roboto">
+    <body class="select-none bg-gray-sidebar-bg font-roboto">
 
         <section class="relative flex h-screen" x-data="menu('Account Summary')">
 
@@ -28,7 +28,7 @@
                 <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
 
                 <!-- Main Content Section -->
-                <div class="mt-10 w-full flex flex-col px-6 py-6 gap-12 text-primary-black">
+                <div class="mt-10 w-full flex flex-col px-6 py-6 gap-12 text-black-base">
 
                     <!-- First Row -->
                     <div class="flex flex-col gap-15 w-full" x-data="{
@@ -84,9 +84,9 @@
                                             name="startDate" 
                                             id="startDate"
                                             step="1" 
-                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-input-gray-text"
+                                            class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-medium placeholder:text-gray-input-text outline-none px-3 py-2 text-small transition duration-300 text-gray-input-text"
                                         >
-                                        <label for="startDate" class="text-tiny text-primary-header-gray-bold">(Start Date)</label>
+                                        <label for="startDate" class="text-tiny text-gray-header-bold">(Start Date)</label>
                                     </div>
                                     <div>
                                         <input
@@ -95,9 +95,9 @@
                                             name="endDate" 
                                             id="endDate"
                                             step="1" 
-                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-input-gray-text"
+                                            class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-medium placeholder:text-gray-input-text outline-none px-3 py-2 text-small transition duration-300 text-gray-input-text"
                                         >
-                                        <label for="endDate" class="text-tiny text-primary-header-gray-bold">(End Date)</label>
+                                        <label for="endDate" class="text-tiny text-gray-header-bold">(End Date)</label>
                                     </div>
                                     <div class="relative">
                                         <input
@@ -108,14 +108,14 @@
                                             placeholder="Search with merchant name or phone number"
                                             name="merchantName"
                                             id="merchantName"
-                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                            class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-medium placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300 text-gray-footer-text focus:text-black-input-text"
                                         >
                                         
                                         <div x-show="showMerchantOptions && filteredMerchantOptions.length > 0"
-                                            class="absolute inset-x-0 w-full max-w-[350px] left-0 bg-white z-30 shadow-md text-small text-primary-header-gray-bold font-light"
+                                            class="absolute inset-x-0 w-full max-w-[350px] left-0 bg-white z-30 shadow-md text-small text-gray-header-bold font-light"
                                             x-transition.origin.top>                                
                                             <template x-for="option in filteredMerchantOptions" :key="option.name">
-                                                <div class="w-full px-2 py-1 border-b border-primary-sidebar-gray-text/30 hover:bg-perinwinkleBlue-light hover:text-primary-royalBlue-vivid cursor-pointer transition duration-100"
+                                                <div class="w-full px-2 py-1 border-b border-gray-sidebar-text/30 hover:bg-blue-periwinkle hover:text-blue-royal-vivid cursor-pointer transition duration-100"
                                                     @click="formData.merchantName = option.name; showMerchantOptions = false">
                                                     <p x-html="highlightMatch(option.name)"></p>
                                                 </div>
@@ -123,14 +123,14 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <select name="groupBy" id="groupBy" x-model="formData.groupBy" class="w-full font-medium text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue outline-none px-3 py-2 text-small transition duration-300">
+                                        <select name="groupBy" id="groupBy" x-model="formData.groupBy" class="w-full font-medium text-gray-input-text focus-visible:text-black-input-text border border-gray-sidebar-text focus:border-blue-input-border outline-none px-3 py-2 text-small transition duration-300">
                                             <option value="">--Group By--</option>
                                             <option value="date">Date</option>
                                             <option value="merchant">Merchant</option>
                                         </select>
                                     </div>
                                     <div>
-                                        <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">search</button>
+                                        <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-cyan-button-bg hover:bg-cyan-bg-dark active:bg-blue-text-accent p-3 rounded-xs cursor-pointer transition duration-300">search</button>
                                     </div>
                                 </form>
                             </div>  
@@ -138,7 +138,7 @@
 
                         <template x-if="showTable">
                             
-                            <div class="flex-1 relative bg-white ring-2 ring-primary-sidebar-gray-text/20 shrink-0 w-full shadow-xl" x-init="fetch('../components/tableComponent.html')
+                            <div class="flex-1 relative bg-white ring-2 ring-gray-sidebar-text/20 shrink-0 w-full shadow-xl" x-init="fetch('../components/tableComponent.html')
                                 .then(res => res.text())
                                 .then(html => {
                                     $refs.tableComponent.innerHTML = html;
@@ -201,9 +201,9 @@
                             }">
 
                                 <!-- Table Options  -->
-                                <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-4 py-2 px-6 border-b border-primary-sidebar-gray-text/70">
+                                <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-4 py-2 px-6 border-b border-gray-sidebar-text/70">
                                     <div>
-                                        <h1 class="text-primary-table-header font-medium">Customer Account Summary</h1>
+                                        <h1 class="text-gray-table-header font-medium">Customer Account Summary</h1>
                                     </div>
                                     <div class="flex w-full sm:w-fit justify-between">
                                         <button
@@ -229,9 +229,9 @@
                                                 x-cloak
                                                 class="absolute text-[10px] font-medium bg-white shadow-sm py-2 top-full right-0 w-[120%] transform-none text-left"
                                             >
-                                                <p class="uppercase text-primary-blue-text mb-1 px-6">Export</p>
+                                                <p class="uppercase text-blue-text-accent mb-1 px-6">Export</p>
                                                 <div 
-                                                    class="flex items-center gap-2 font-normal text-small text-primary-header-gray-bold py-2 px-6 hover:bg-gray-50 hover:text-primary-blue-text cursor-pointer"
+                                                    class="flex items-center gap-2 font-normal text-small text-gray-header-bold py-2 px-6 hover:bg-gray-50 hover:text-blue-text-accent cursor-pointer"
                                                 >
                                                     <span class="rounded-full border-1 border-inherit text-inherit">
                                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-audio-lines-icon lucide-audio-lines size-3.5"><path d="M2 10v3"/><path d="M6 6v11"/><path d="M10 3v18"/><path d="M14 8v7"/><path d="M18 5v13"/><path d="M22 10v3"/></svg>
@@ -242,7 +242,7 @@
                                         </button>
 
                                         <button 
-                                            class="uppercase text-[10px] font-medium px-7 bg-primary-green-light hover:brightness-95 rounded-xs text-white cursor-pointer transition duration-200"
+                                            class="uppercase text-[10px] font-medium px-7 bg-green-soft hover:brightness-95 rounded-xs text-white cursor-pointer transition duration-200"
                                             @click="showTable = false;"
                                         >
                                             CLOSE (X)

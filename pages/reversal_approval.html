@@ -10,7 +10,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
         <link rel="manifest" href="../assets/site.webmanifest">
     </head>
-    <body class="select-none bg-primary-sidebar-gray-background font-roboto">
+    <body class="select-none bg-gray-sidebar-bg font-roboto">
 
         <section class="relative flex h-screen" x-data="menu('Approvals')">
 
@@ -28,7 +28,7 @@
                 <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
 
                 <!-- Main Content Section -->
-                <div class="mt-2 w-full flex flex-col px-6 pt-6 pb-10 gap-24 text-primary-black">
+                <div class="mt-2 w-full flex flex-col px-6 pt-6 pb-10 gap-24 text-black-base">
 
                     <!-- First Row -->
                     <div class="flex flex-col md:flex-row flex-wrap items-center justify-between gap-9 sm:gap-6" x-data="{
@@ -57,7 +57,7 @@
                                     <span x-text="item.title" class="text-md font-medium"></span>
                                 </div>
                                 <div class="flex items-center justify-center px-4">
-                                    <h1 x-text="item.value" class="text-lg font-semibold text-primary-black-text-muted"></h1>
+                                    <h1 x-text="item.value" class="text-lg font-semibold text-black-muted"></h1>
                                 </div>    
                             </div>
                         </template>
@@ -121,14 +121,14 @@
                                             name="merchantName"
                                             id="merchantName"
                                             autocomplete="off"
-                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text font-medium"
+                                            class="w-full border border-gray-sidebar-text focus:border-blue-input-border placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300 text-gray-footer-text focus:text-black-input-text font-medium"
                                         >
                                         
                                         <div x-show="showMerchantOptions && filteredMerchantOptions.length > 0"
-                                            class="absolute inset-x-0 w-full max-w-[350px] left-0 bg-white z-30 shadow-md text-small text-primary-header-gray-bold font-light"
+                                            class="absolute inset-x-0 w-full max-w-[350px] left-0 bg-white z-30 shadow-md text-small text-gray-header-bold font-light"
                                             x-transition.origin.top>                                
                                             <template x-for="option in filteredMerchantOptions" :key="option.name">
-                                                <div class="w-full px-2 py-1 border-b border-primary-sidebar-gray-text/30 hover:bg-perinwinkleBlue-light hover:text-primary-royalBlue-vivid cursor-pointer transition duration-100"
+                                                <div class="w-full px-2 py-1 border-b border-gray-sidebar-text/30 hover:bg-blue-periwinkle hover:text-blue-royal-vivid cursor-pointer transition duration-100"
                                                     @click="formData.merchantName = option.name; showMerchantOptions = false">
                                                     <p x-html="highlightMatch(option.name)"></p>
                                                 </div>
@@ -141,9 +141,9 @@
                                             type="datetime-local" 
                                             name="startDate" 
                                             id="startDate"
-                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-input-gray-text"
+                                            class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-medium placeholder:text-gray-input-text outline-none px-3 py-2 text-small transition duration-300 text-gray-input-text"
                                         >
-                                        <label for="startDate" class="text-tiny text-primary-header-gray-bold">(Start Date)</label>
+                                        <label for="startDate" class="text-tiny text-gray-header-bold">(Start Date)</label>
                                     </div>
                                     <div>
                                         <input
@@ -151,26 +151,26 @@
                                             type="datetime-local" 
                                             name="endDate" 
                                             id="endDate"
-                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-input-gray-text"
+                                            class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-medium placeholder:text-gray-input-text outline-none px-3 py-2 text-small transition duration-300 text-gray-input-text"
                                         >
-                                        <label for="endDate" class="text-tiny text-primary-header-gray-bold">(End Date)</label>
+                                        <label for="endDate" class="text-tiny text-gray-header-bold">(End Date)</label>
                                     </div>
                                     <div>
-                                        <select name="status" id="status" x-model="formData.status" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300">
+                                        <select name="status" id="status" x-model="formData.status" class="w-full text-gray-input-text focus-visible:text-black-input-text border border-gray-sidebar-text focus:border-blue-input-border font-medium placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300">
                                             <option value="">Status</option>
                                             <option value="reversed">Reversed</option>
                                             <option value="processing">Processing</option>
                                         </select>
                                     </div>
                                     <div>
-                                        <select name="group" id="group" x-model="formData.group" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-medium placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300">
+                                        <select name="group" id="group" x-model="formData.group" class="w-full text-gray-input-text focus-visible:text-black-input-text border border-gray-sidebar-text focus:border-blue-input-border font-medium placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300">
                                             <option value="">Group By</option>
                                             <option value="reversals">All Merchants (Reversals)</option>
                                             <option value="credit">All Merchants (Credit)</option>
                                         </select>
                                     </div>
                                     <div>
-                                        <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">search</button>
+                                        <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-cyan-button-bg hover:bg-cyan-bg-dark active:bg-blue-text-accent p-3 rounded-xs cursor-pointer transition duration-300">search</button>
                                     </div>
                                 </form>  
                             </div>  
@@ -187,15 +187,15 @@
                             >
 
                                 <!-- Table Options  -->
-                                <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-4 py-4 px-6 border-b border-primary-sidebar-gray-text/70">
+                                <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-4 py-4 px-6 border-b border-gray-sidebar-text/70">
                                     <div>
-                                        <h1 class="text-primary-table-header font-medium">Pending Reversals Result</h1>
+                                        <h1 class="text-gray-table-header font-medium">Pending Reversals Result</h1>
                                     </div>
                                 </div>
 
                                 <!-- Table Summary Header  -->
                                 <div class="w-full px-6 my-6 gap-3 sm:gap-0 flex flex-col sm:flex-row items-center justify-between text-right">
-                                    <h1 class="flex-1 text-lg font-semibold text-primary-header-gray-bold">Total Counts: 0</h1>
+                                    <h1 class="flex-1 text-lg font-semibold text-gray-header-bold">Total Counts: 0</h1>
                                 </div>
 
                                 <!-- Table Component  -->

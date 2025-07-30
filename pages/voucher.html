@@ -10,7 +10,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
         <link rel="manifest" href="../assets/site.webmanifest">
     </head>
-    <body class="select-none bg-primary-sidebar-gray-background font-roboto">
+    <body class="select-none bg-gray-sidebar-bg font-roboto">
 
         <section class="relative flex h-screen" x-data="menu('Create Vouchers / PINs')">
 
@@ -28,7 +28,7 @@
                 <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
 
                 <!-- Main Content Section -->
-                <div class="w-full flex flex-col px-6 pt-6 pb-10 gap-12 text-primary-black">
+                <div class="w-full flex flex-col px-6 pt-6 pb-10 gap-12 text-black-base">
 
                     <!-- First Row -->
                      <div class="mt-9 flex-1 flex flex-col md:flex-row gap-20 md:gap-5 justify-between">
@@ -45,29 +45,29 @@
                                         },
                                     }">
                                         <div>
-                                            <p class="text-[13px] text-primary-header-gray-bold mb-2">Serial Number From</p>
+                                            <p class="text-[13px] text-gray-header-bold mb-2">Serial Number From</p>
                                             <input
                                                 x-model="formData.serialNumFrom"
                                                 type="text" 
                                                 placeholder="Any 10 digits number or more" 
                                                 name="serialNumFrom" 
                                                 id="serialNumFrom"
-                                                class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                                class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-normal placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300 text-gray-footer-text focus:text-black-input-text"
                                             >
                                         </div>
                                         <div>
-                                            <p class="text-[13px] text-primary-header-gray-bold mb-2">Serial Number To</p>
+                                            <p class="text-[13px] text-gray-header-bold mb-2">Serial Number To</p>
                                             <input
                                                 x-model="formData.serialNumTo"
                                                 type="text" 
                                                 placeholder="Any 10 digits number or more" 
                                                 name="serialNumTo" 
                                                 id="serialNumTo"
-                                                class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                                class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-normal placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300 text-gray-footer-text focus:text-black-input-text"
                                             >
                                         </div>
                                         <div>
-                                            <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">Activate Pin(s)</button>
+                                            <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-cyan-button-bg hover:bg-cyan-bg-dark active:bg-blue-text-accent p-3 rounded-xs cursor-pointer transition duration-300">Activate Pin(s)</button>
                                         </div>          
                                     </form>  
                                 </div>  
@@ -85,17 +85,17 @@
                                         },
                                     }">
                                         <div class="md:col-span-2">
-                                            <p class="text-[13px] text-primary-header-gray-bold mb-2">Filename</p>
+                                            <p class="text-[13px] text-gray-header-bold mb-2">Filename</p>
                                             <input
                                                 x-model="formData.fileName"
                                                 type="text" 
                                                 name="fileName" 
                                                 id="fileName"
-                                                class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                                class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-normal placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300 text-gray-footer-text focus:text-black-input-text"
                                             >
                                         </div>
                                         <div>
-                                            <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">Download Pin(s)</button>
+                                            <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-cyan-button-bg hover:bg-cyan-bg-dark active:bg-blue-text-accent p-3 rounded-xs cursor-pointer transition duration-300">Download Pin(s)</button>
                                         </div>         
                                     </form>  
                                 </div>  
@@ -119,8 +119,8 @@
                                     },
                                 }">
                                     <div>
-                                        <p class="text-[13px] text-primary-header-gray-bold mb-2">Generate PIN for</p>
-                                        <select name="merchantName" id="merchantName" x-model="formData.merchantName" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300">
+                                        <p class="text-[13px] text-gray-header-bold mb-2">Generate PIN for</p>
+                                        <select name="merchantName" id="merchantName" x-model="formData.merchantName" class="w-full text-gray-input-text focus-visible:text-black-input-text border border-gray-sidebar-text focus:border-blue-input-border font-normal placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300">
                                             <option value="">Select a Merchant</option>
                                             <option value="linode">CSW</option>
                                             <option value="45">Everlasting</option>
@@ -143,8 +143,8 @@
                                         </select>
                                     </div>
                                     <div>
-                                        <p class="text-[13px] text-primary-header-gray-bold mb-2">Value</p>
-                                        <select name="value" id="value" x-model="formData.value" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300">
+                                        <p class="text-[13px] text-gray-header-bold mb-2">Value</p>
+                                        <select name="value" id="value" x-model="formData.value" class="w-full text-gray-input-text focus-visible:text-black-input-text border border-gray-sidebar-text focus:border-blue-input-border font-normal placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300">
                                             <option value="100">100 naira</option>
                                             <option value="200">200 naira</option>
                                             <option value="500">500 naira</option>
@@ -154,29 +154,29 @@
                                         </select>
                                     </div>
                                     <div>
-                                        <p class="text-[13px] text-primary-header-gray-bold mb-2">Serial Number</p>
+                                        <p class="text-[13px] text-gray-header-bold mb-2">Serial Number</p>
                                         <input
                                             x-model="formData.serialNumber"
                                             type="text" 
                                             placeholder="Any 10 digits number or more" 
                                             name="serialNumber" 
                                             id="serialNumber"
-                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                            class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-normal placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300 text-gray-footer-text focus:text-black-input-text"
                                         >
                                     </div>
                                     <div>
-                                        <p class="text-[13px] text-primary-header-gray-bold mb-2">Quantity</p>
+                                        <p class="text-[13px] text-gray-header-bold mb-2">Quantity</p>
                                         <input
                                             x-model="formData.quantity"
                                             type="number" 
                                             placeholder="How many PINs do you want to generate? - Enter 1,000,000 per request" 
                                             name="quantity" 
                                             id="quantity"
-                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                            class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-normal placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300 text-gray-footer-text focus:text-black-input-text"
                                         >
                                     </div>
                                     <div>
-                                        <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">create pin(s)</button>
+                                        <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-cyan-button-bg hover:bg-cyan-bg-dark active:bg-blue-text-accent p-3 rounded-xs cursor-pointer transition duration-300">create pin(s)</button>
                                     </div> 
                                 </form>
                             </div> 

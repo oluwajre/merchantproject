@@ -11,7 +11,7 @@
         <link rel="manifest" href="../assets/site.webmanifest">
         <link rel="stylesheet" href="../styles/general.css">
     </head>
-    <body class="select-none bg-primary-sidebar-gray-background font-roboto">
+    <body class="select-none bg-gray-sidebar-bg font-roboto">
 
         <section class="relative flex h-screen" x-data="menu('Airtel Switching Reversal')">
 
@@ -29,7 +29,7 @@
                 <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
 
                 <!-- Main Content Section -->
-                <div class="w-full flex flex-col px-6 py-6 gap-12 text-primary-black">
+                <div class="w-full flex flex-col px-6 py-6 gap-12 text-black-base">
                     
                     <div class="flex flex-col gap-15 w-full">
                         
@@ -65,10 +65,10 @@
                                         alert('File is valid. Ready to upload or process.');
                                     },
                                 }">
-                                <div class="w-full font-semibold text-primary-danger">
+                                <div class="w-full font-semibold text-red-warning">
                                     <div 
                                         x-show="errorMessage" 
-                                        class="text-sm inline-flex items-center gap-1 py-3 pl-6 mb-5 bg-primary-danger text-white rounded-sm" 
+                                        class="text-sm inline-flex items-center gap-1 py-3 pl-6 mb-5 bg-red-warning text-white rounded-sm" 
                                         x-transition 
                                         x-cloak
                                     >
@@ -85,7 +85,7 @@
                                 </div>
                                 <form class="w-full gap-5 sm:gap-10 lg:gap-15 flex flex-wrap justify-between items-end" @submit.prevent="handleUpload">
                                     <div class="min-w-[270px] flex-1" x-data="{ fileName: ''}">
-                                        <label class="block text-small font-bold text-primary-header-gray-bold mb-2">Upload Excel Csv file</label>
+                                        <label class="block text-small font-bold text-gray-header-bold mb-2">Upload Excel Csv file</label>
 
                                         <label for="upload" class="inline-block cursor-pointer bg-gray-100 hover:bg-gray-200 border border-black rounded-xs text-black text-small font-normal px-2 py-1">
                                             Choose File
@@ -102,23 +102,23 @@
                                         />
 
 
-                                        <span x-text="fileName || 'No file chosen'" class="text-small text-primary-header-gray-bold"></span>
+                                        <span x-text="fileName || 'No file chosen'" class="text-small text-gray-header-bold"></span>
                                     </div>
 
                                     <div class="min-w-[270px] flex-1">
-                                        <label class="block text-small font-bold text-primary-header-gray-bold mb-2">Select Transaction Date</label>
+                                        <label class="block text-small font-bold text-gray-header-bold mb-2">Select Transaction Date</label>
                                         <input
                                             x-model="date"
                                             type="date" 
                                             name="date"
                                             id="date"
                                             required
-                                            class="w-full border border-primary-sidebar-gray-text/50 text-primary-input-black-text outline-none px-3 py-2 text-small transition duration-300"
+                                            class="w-full border border-gray-sidebar-text/50 text-black-input-text outline-none px-3 py-2 text-small transition duration-300"
                                         >
                                     </div>
 
                                     <div class="min-w-[270px] flex-1 text-right">
-                                        <button type="submit" class="uppercase font-semibold text-[11px] text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark py-3 px-7 rounded-xs cursor-pointer transition duration-300">Perform M-Reversal Update</button>
+                                        <button type="submit" class="uppercase font-semibold text-[11px] text-white bg-cyan-button-bg hover:bg-cyan-bg-dark py-3 px-7 rounded-xs cursor-pointer transition duration-300">Perform M-Reversal Update</button>
                                     </div>
                                 </form>  
                             </div>  

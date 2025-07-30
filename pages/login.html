@@ -59,24 +59,24 @@
           loading="lazy"
           class="h-14 mx-auto"
         />
-        <h1 class="text-2xl text-primary-login-gray-header font-bold">Merchant Login</h1>
+        <h1 class="text-2xl text-gray-login-header font-bold">Merchant Login</h1>
 
         <p
-          class="text-primary-red break-words"
+          class="text-red-soft break-words"
           role="alert"
           x-text="errorMessage"
           x-show="showError"
           x-transition
         ></p>
 
-        <p class="text-primary-login-gray-text/100">Use your credentials to access your account.</p>
+        <p class="text-gray-login-text/100">Use your credentials to access your account.</p>
         <form class="my-8 text-left space-y-4" @submit.prevent="validateForm()">
           <div
-            :class="idInvalid ? 'bg-red-100' : 'bg-gray-100/80 focus-within:bg-transparent focus-within:border-primary-gray'"
+            :class="idInvalid ? 'bg-red-100' : 'bg-gray-100/80 focus-within:bg-transparent focus-within:border-gray-soft'"
             class="flex items-center gap-2 py-3 px-4 border border-transparent rounded-full"
           >
             <span 
-              :class="idInvalid ? 'text-primary-red' : 'text-primary-login-gray-text'"
+              :class="idInvalid ? 'text-red-soft' : 'text-gray-login-text'"
               class="flex items-center justify-center">
               <svg version='1.1' id='Capa_1' height='24' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 29.731 29.731' style='enable-background:new 0 0 29.731 29.731;' xml:space='preserve' fill='currentColor'>
                 <g>
@@ -99,7 +99,7 @@
               id="id"
               name="id"
               placeholder="ID or Phone number"
-              :class="idInvalid ? 'placeholder:text-primary-red': 'placeholder:text-primary-login-gray-text'"
+              :class="idInvalid ? 'placeholder:text-red-soft': 'placeholder:text-gray-login-text'"
               class="w-full font-bold focus:outline-none placeholder:font-medium"
               x-model="loginDetails.id"
               x-ref="idInput"
@@ -108,11 +108,11 @@
           </div>
 
           <div
-            :class="passwordInvalid ? 'bg-red-100' : 'bg-gray-100/80 focus-within:bg-transparent focus-within:border-primary-gray'"
+            :class="passwordInvalid ? 'bg-red-100' : 'bg-gray-100/80 focus-within:bg-transparent focus-within:border-gray-soft'"
             class="flex items-center gap-2 py-3 px-4 border border-transparent rounded-full"
           >
             <span 
-              :class="passwordInvalid ? 'text-primary-red' : 'text-primary-login-gray-text'"
+              :class="passwordInvalid ? 'text-red-soft' : 'text-gray-login-text'"
               class="flex items-center justify-center">
               <svg xmlns='http://www.w3.org/2000/svg' width='16' height='24' viewBox='0 0 16 24' fill='currentColor'>
                 <g transform='translate(0)'>
@@ -129,7 +129,7 @@
               id="password"
               name="password"
               placeholder="Password"
-              :class="passwordInvalid ? 'placeholder:text-primary-red' : 'placeholder:text-primary-login-gray-text'"
+              :class="passwordInvalid ? 'placeholder:text-red-soft' : 'placeholder:text-gray-login-text'"
               class="w-full font-bold focus:outline-none placeholder:font-medium"
               x-model="loginDetails.password"
               x-ref="passwordInput"
@@ -137,7 +137,7 @@
             />
 
             <span
-              :class="passwordInvalid ? 'text-primary-red' : 'text-primary-login-gray-text'"
+              :class="passwordInvalid ? 'text-red-soft' : 'text-gray-login-text'"
               class="flex items-center justify-center cursor-pointer"
               @click="showPassword = !showPassword"
             >
@@ -179,7 +179,7 @@
 
           <div class="justify-self-end">
             <p
-              class="text-sm text-secondary-linkColour hover:underline cursor-pointer"
+              class="text-sm text-blue-link-secondary hover:underline cursor-pointer"
               @click="showForgotPassword = !showForgotPassword"
             >
               Forgot Password?
@@ -197,15 +197,15 @@
             x-transition:leave-end="opacity-0 transform -translate-y-8"
             x-cloak
           >
-            <p class="font-bold mb-2 text-primary-black">Reset Password</p>
-            <p class="text-primary-login-gray-text mb-4">
+            <p class="font-bold mb-2 text-black-base">Reset Password</p>
+            <p class="text-gray-login-text mb-4">
               How will you like to reset your password?
             </p>
             <div class="flex items-center justify-center gap-10">
-              <a class="text-sm text-secondary-linkColour hover:underline cursor-pointer"
+              <a class="text-sm text-blue-link-secondary hover:underline cursor-pointer"
                 >Email address</a
               >
-              <a class="text-sm text-secondary-linkColour hover:underline cursor-pointer"
+              <a class="text-sm text-blue-link-secondary hover:underline cursor-pointer"
                 >Phone number</a
               >
             </div>
@@ -213,15 +213,15 @@
 
           <button
             type="submit"
-            class="mt-2 w-full bg-primary-red hover:bg-red-700 text-white font-bold py-2 rounded-full cursor-pointer transition duration-200"
+            class="mt-2 w-full bg-red-soft hover:bg-red-700 text-white font-bold py-2 rounded-full cursor-pointer transition duration-200"
           >
             Login
           </button>
         </form>
 
-        <p class="text-sm justify-self-end text-primary-login-gray-text">
+        <p class="text-sm justify-self-end text-gray-login-text">
           Copyright © <span x-text="currentYear"></span>
-          <a class="text-primary-red cursor-pointer" href="https://creditswitch.com/"
+          <a class="text-red-soft cursor-pointer" href="https://creditswitch.com/"
             >Creditswitch</a
           >. All rights reserved
         </p>

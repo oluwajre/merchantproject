@@ -2,7 +2,7 @@
 
 <div 
     :class="{'block w-screen': showSideBar, 'w-[0]': !showSideBar}" 
-    class="z-20 h-screen overflow-y-hidden fixed right-0 lg:block lg:relative lg:w-fit lg:min-w-[64px] max-w-[250px] bg-primary-black backdrop-blur-xs md:backdrop-blur-none text-primary-sidebar-gray-text pb-2 transition-all duration-500 ease-in-out font-roboto"
+    class="z-20 h-screen overflow-y-hidden fixed right-0 lg:block lg:relative lg:w-fit lg:min-w-[64px] max-w-[250px] bg-black-base backdrop-blur-xs md:backdrop-blur-none text-gray-sidebar-text pb-2 transition-all duration-500 ease-in-out font-roboto"
     x-cloak
     
     @click.away="if(showSideBar) {
@@ -12,10 +12,11 @@
     <div class="z-30 sticky top-0 flex items-center justify-between mb-3 px-0 lg:px-6 h-[67px] bg-inherit">
         <img x-show="expandSideMenu" x-transition x-cloak src="../assets/images/creditswitchlogo.png" alt="Creditswitch Logo" class="hidden lg:inline-flex h-8 object-contain" />
         <button class="cursor-pointer text-inherit hover:text-white mt-3" @click="toggleSideBar()">
+            <!-- Hamburger Icon -->
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="hidden lg:inline-block size-8">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
             </svg>
-            
+            <!-- Close Icon -->
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-x-square-fill size-8 lg:hidden" viewBox="0 0 16 16">
                 <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708"/>
             </svg>
@@ -34,25 +35,25 @@
                         x-show="item.menuHeader"
                         x-text="expandSideMenu ? item.menuHeader : '...'"
                         :class="expandSideMenu ? 'text-tiny' : 'text-xl'"
-                        class="uppercase text-primary-sidebar-gray-text px-7 mt-7 mb-3 font-medium"
+                        class="uppercase text-gray-sidebar-text px-7 mt-7 mb-3 font-medium"
                         x-transition
                         x-cloak
                     ></p>
+
                     <div 
                         :class="{
-                            'bg-primary-cyanBlue-sidebar-background text-white': isActive(item),
-                            'text-primary-sidebar-gray-text hover:text-white hover:bg-primary-sidebar-gray-background/8': !isActive(item),
+                            'bg-cyan-sidebar-bg text-white': isActive(item),
+                            'text-gray-sidebar-text hover:text-white hover:bg-gray-sidebar-bg/8': !isActive(item),
                             'group': !isActive(item) && openDropdown !== index,
-                            'text-white bg-primary-sidebar-gray-background/8': openDropdown === index && !isActive(item)
+                            'text-white bg-gray-sidebar-bg/8': openDropdown === index && !isActive(item)
                         }"
                         class="relative pl-7 pr-6 py-2.5 flex items-center cursor-pointer gap-2 w-full text-sm max-h-[44px]"
                         @click="toggleDropdown(item, index)"
                     >
                         <span 
-                            class="text-inherit group-hover:text-primary-cyanBlue-background-dark"
+                            class="text-inherit group-hover:text-cyan-bg-dark"
                             x-html="item.icon"
-                        >
-                        </span>
+                        ></span>
 
                         <span 
                             x-show="expandSideMenu" 
@@ -75,13 +76,12 @@
 
                         <span
                             x-show="expandSideMenu && item.alert"
-                            class="ml-auto bg-primary-gold-light text-primary-black font-light rounded-[50%] px-2.5 py-0.5 flex justify-center items-center text-tiny"
+                            class="ml-auto bg-gold-light text-black-base font-light rounded-[50%] px-2.5 py-0.5 flex justify-center items-center text-tiny"
                             x-text="item.alert"
                             x-cloak
-                        >
-                        </span>
+                        ></span>
 
-                        <span x-show="isActive(item)" class="hidden lg:inline-flex absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0 border-t-20 border-b-20 border-r-10 border-t-transparent border-b-transparent border-r-primary-sidebar-gray-background" x-transition x-cloak></span>
+                        <span x-show="isActive(item)" class="hidden lg:inline-flex absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0 border-t-20 border-b-20 border-r-10 border-t-transparent border-b-transparent border-r-gray-sidebar-bg" x-transition x-cloak></span>
                     </div>
 
                     <!-- Dropdown Menu -->
@@ -101,31 +101,29 @@
                                 <li>
                                     <div 
                                         :class="{
-                                            'bg-primary-sidebar-gray-background/8 text-white': isActive(subItem) || subItem.openSubDropdown === index,
-                                            'text-primary-sidebar-gray-text hover:text-white hover:bg-primary-sidebar-gray-background/8': !isActive(subItem)
+                                            'bg-gray-sidebar-bg/8 text-white': isActive(subItem) || subItem.openSubDropdown === index,
+                                            'text-gray-sidebar-text hover:text-white hover:bg-gray-sidebar-bg/8': !isActive(subItem)
                                         }"
                                         class="group pl-9 pr-6 py-2 flex items-center cursor-pointer gap-1 w-full text-small"
                                         @click="toggleDropdown(subItem, index)"
                                     >
                                         <span 
                                             :class="{
-                                                'text-primary-cyanBlue-background-dark': isActive(subItem),
-                                                'text-inherit group-hover:text-primary-cyanBlue-background-dark': !isActive(subItem) && subItem.openSubDropdown !== index,
+                                                'text-cyan-bg-dark': isActive(subItem),
+                                                'text-inherit group-hover:text-cyan-bg-dark': !isActive(subItem) && subItem.openSubDropdown !== index,
                                                 'text-inherit': subItem.openSubDropdown === index
                                             }"
                                             x-html="subItem.icon"
-                                        >
-                                        </span>
+                                        ></span>
 
                                         <p x-text="subItem.name"></p>
 
                                         <span
                                             x-show="expandSideMenu && subItem.alert"
-                                            class="ml-auto bg-primary-gold-light text-primary-black font-light rounded-[50%] px-2.5 py-0.5 flex justify-center items-center text-tiny"
+                                            class="ml-auto bg-gold-light text-black-base font-light rounded-[50%] px-2.5 py-0.5 flex justify-center items-center text-tiny"
                                             x-text="subItem.alert"
                                             x-cloak
-                                        >
-                                        </span>
+                                        ></span>
 
                                         <span 
                                             x-show="expandSideMenu && subItem.dropDown?.length > 0"
@@ -156,20 +154,19 @@
                                                 <li>
                                                     <div 
                                                         :class="{
-                                                            'bg-primary-sidebar-gray-background/8 text-white': isActive(child),
-                                                            'text-primary-sidebar-gray-text hover:text-white hover:bg-primary-sidebar-gray-background/8': !isActive(child)
+                                                            'bg-gray-sidebar-bg/8 text-white': isActive(child),
+                                                            'text-gray-sidebar-text hover:text-white hover:bg-gray-sidebar-bg/8': !isActive(child)
                                                         }"
                                                         class="group pl-12 pr-8 py-2 flex items-center cursor-pointer gap-2 w-full text-small"
                                                         @click="toggleDropdown(child, index)"
                                                     >
                                                         <span 
                                                             :class="{
-                                                                'text-primary-cyanBlue-background-dark': isActive(child), 
-                                                                'text-inherit group-hover:text-primary-cyanBlue-background-dark': !isActive(child)
+                                                                'text-cyan-bg-dark': isActive(child), 
+                                                                'text-inherit group-hover:text-cyan-bg-dark': !isActive(child)
                                                             }"
                                                             x-html="child.icon"
-                                                        >
-                                                        </span>
+                                                        ></span>
 
                                                         <p x-text="child.name"></p>
                                                     </div>
@@ -185,5 +182,4 @@
             </template>
         </ul>
     </div>
-
 </div>

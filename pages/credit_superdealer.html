@@ -10,7 +10,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
         <link rel="manifest" href="../assets/site.webmanifest">
     </head>
-    <body class="select-none bg-primary-sidebar-gray-background font-roboto">
+    <body class="select-none bg-gray-sidebar-bg font-roboto">
 
         <section class="relative flex h-screen" x-data="menu(`Credit Merchant's Account`)">
 
@@ -28,7 +28,7 @@
                 <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
 
                 <!-- Main Content Section -->
-                <div class="mt-9 w-full flex flex-col px-6 pt-6 pb-11 gap-12 text-primary-black">
+                <div class="mt-9 w-full flex flex-col px-6 pt-6 pb-11 gap-12 text-black-base">
 
                     <!-- First Row -->
                     <div class="flex flex-col gap-12 w-full">
@@ -75,14 +75,14 @@
                                             name="merchantName"
                                             id="merchantName"
                                             autocomplete="off"
-                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text font-normal"
+                                            class="w-full border border-gray-sidebar-text focus:border-blue-input-border placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300 text-gray-footer-text focus:text-black-input-text font-normal"
                                         >
                                         
                                         <div x-show="showMerchantOptions && filteredMerchantOptions.length > 0"
-                                            class="absolute inset-x-0 w-full max-w-[350px] left-0 bg-white z-30 shadow-md text-small text-primary-header-gray-bold font-light"
+                                            class="absolute inset-x-0 w-full max-w-[350px] left-0 bg-white z-30 shadow-md text-small text-gray-header-bold font-light"
                                             x-transition.origin.top>                                
                                             <template x-for="option in filteredMerchantOptions" :key="option.name">
-                                                <div class="w-full px-2 py-1 border-b border-primary-sidebar-gray-text/30 hover:bg-perinwinkleBlue-light hover:text-primary-royalBlue-vivid cursor-pointer transition duration-100"
+                                                <div class="w-full px-2 py-1 border-b border-gray-sidebar-text/30 hover:bg-blue-periwinkle hover:text-blue-royal-vivid cursor-pointer transition duration-100"
                                                     @click="formData.merchantName = option.name; showMerchantOptions = false">
                                                     <p x-html="highlightMatch(option.name)"></p>
                                                 </div>
@@ -91,7 +91,7 @@
                                     </div>
 
                                     <div>
-                                        <select name="bank" id="bank" x-model="formData.bank" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300" required>
+                                        <select name="bank" id="bank" x-model="formData.bank" class="w-full text-gray-input-text focus-visible:text-black-input-text border border-gray-sidebar-text focus:border-blue-input-border font-normal placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300" required>
                                             <option value=''>-- SELECT BANK --</option>
                                             <option value="fidelity">Fidelity Bank</option>
                                             <option value="gt">GT Bank</option>
@@ -106,7 +106,7 @@
                                             id="amount"
                                             placeholder="AMOUNT TO CREDIT e.g 1000.00"
                                             required
-                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text"
+                                            class="w-full border border-gray-sidebar-text focus:border-blue-input-border font-normal placeholder:text-gray-footer-text outline-none px-3 py-2 text-small transition duration-300 text-gray-footer-text focus:text-black-input-text"
                                         >
                                     </div>
                                     <div>
@@ -115,16 +115,16 @@
                                             id="remark" 
                                             x-model="formData.remark" 
                                             placeholder="Credit Remark" 
-                                            class="text-primary-input-black-text w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-sm transition duration-300"
+                                            class="text-black-input-text w-full border border-gray-sidebar-text focus:border-blue-input-border placeholder:font-normal placeholder:text-gray-footer-text outline-none px-3 py-2 text-sm transition duration-300"
                                         >
                                         </textarea>
                                     </div>
                                     <div>
-                                        <button type="submit" class="w-full md:max-w-[250px] uppercase font-semibold text-tiny text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">Credit Client</button> 
+                                        <button type="submit" class="w-full md:max-w-[250px] uppercase font-semibold text-tiny text-white bg-cyan-button-bg hover:bg-cyan-bg-dark active:bg-blue-text-accent p-3 rounded-xs cursor-pointer transition duration-300">Credit Client</button> 
                                     </div>            
                                 </form>
                                 
-                                <div class="flex-1 text-primary-header-gray-bold sm:max-w-[350px]">
+                                <div class="flex-1 text-gray-header-bold sm:max-w-[350px]">
                                     <p class="font-semibold uppercase text-small">CURRENT BALANCE</p>
                                     <h1 class="text-xl">₦</h1>
                                 </div>

@@ -11,7 +11,7 @@
         <link rel="manifest" href="../assets/site.webmanifest">
         <link rel="stylesheet" href="../styles/general.css">
     </head>
-    <body class="select-none bg-primary-sidebar-gray-background font-roboto">
+    <body class="select-none bg-gray-sidebar-bg font-roboto">
 
         <section class="relative flex h-screen" x-data="menu('Update Back logs')">
 
@@ -29,7 +29,7 @@
                 <div id="contentHeaderContainer" x-ref="contentHeaderContainer"></div>
 
                 <!-- Main Content Section -->
-                <div class="w-full flex flex-col pt-6 pb-10 gap-12 text-primary-black">
+                <div class="w-full flex flex-col pt-6 pb-10 gap-12 text-black-base">
                     
                     <div class="flex flex-col gap-15 w-full">
                         
@@ -39,7 +39,7 @@
                             </div>
 
                             <div class="w-full pl-8.5 pr-4 mb-5 flex flex-col gap-2">
-                                <div class="w-full flex flex-col md:flex-row justify-start items-start font-normal text-primary-danger text-[10.5px] gap-1">
+                                <div class="w-full flex flex-col md:flex-row justify-start items-start font-normal text-red-warning text-[10.5px] gap-1">
                                     <p class="align-middle">Ensure your CSV Upload File contain the Colunms in the picture below.</p>
                                     <img src="" alt=" ">
                                 </div>
@@ -74,7 +74,7 @@
                                             fileName = $event.target.files[0]?.name;
                                             fileObject = $event.target.files[0];"
                                         />
-                                        <span x-text="fileName || 'No file chosen'" class="text-small text-primary-header-gray-bold"></span>
+                                        <span x-text="fileName || 'No file chosen'" class="text-small text-gray-header-bold"></span>
                                     </div>
 
                                     <div>
@@ -84,9 +84,9 @@
                                             name="startDate"
                                             id="startDate"
                                             required
-                                            class="w-full border border-primary-sidebar-gray-text text-primary-input-black-text outline-none px-3 py-2 text-small transition duration-300"
+                                            class="w-full border border-gray-sidebar-text text-black-input-text outline-none px-3 py-2 text-small transition duration-300"
                                         >
-                                        <label for="startDate" class="block text-[10px] text-primary-header-gray-bold mt-1">(Start Date)</label>
+                                        <label for="startDate" class="block text-[10px] text-gray-header-bold mt-1">(Start Date)</label>
                                     </div>
 
                                     <div>
@@ -96,13 +96,13 @@
                                             name="endDate"
                                             id="endDate"
                                             required
-                                            class="w-full border border-primary-sidebar-gray-text text-primary-input-black-text outline-none px-3 py-2 text-small transition duration-300"
+                                            class="w-full border border-gray-sidebar-text text-black-input-text outline-none px-3 py-2 text-small transition duration-300"
                                         >
-                                        <label for="endDate" class="block text-[10px] text-primary-header-gray-bold mt-1">(Start Date)</label>
+                                        <label for="endDate" class="block text-[10px] text-gray-header-bold mt-1">(Start Date)</label>
                                     </div>
 
                                     <div>
-                                        <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark p-3 rounded-xs cursor-pointer transition duration-300">Upload Report</button>
+                                        <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-cyan-button-bg hover:bg-cyan-bg-dark p-3 rounded-xs cursor-pointer transition duration-300">Upload Report</button>
                                     </div>
                                 </form>  
                             </div>  
