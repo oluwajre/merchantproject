@@ -100,34 +100,29 @@
 
                             <div class="w-full px-4 mb-7" x-data="{
                                     errorMessage: '',
-                                    formInput: [
-                                        {
-                                            type: 'text',
-                                            placeholder: 'Search with merchant name or phone no',
-                                            name: 'merchant',
-                                            value: '',
-                                            label: '',
-                                        },
-                                        {
-                                            type: 'date',
-                                            placeholder: 'start date',
-                                            name: 'startDate',
-                                            value: '',
-                                            label: '(Start Date)',
-                                        },
-                                        {
-                                            type: 'date',
-                                            placeholder: 'end date',
-                                            name: 'endDate',
-                                            value: '',
-                                            label: '(End Date)',
-                                        },
-                                        {
-                                            type: 'button',
-                                            name: 'search',
-                                            label: '',
-                                        }
+                                    formData: {
+                                        merchantName: '',
+                                        startDate: '',
+                                        endDate: '',
+                                    },
+                                    merchantOptions: [
+                                        { name: 'Wema Bank - 09137819540' },
+                                        { name: 'Sterling Bank - 09137819540' }
                                     ],
+                                    showMerchantOptions: false,
+                                    get filteredMerchantOptions() {
+                                        if (!this.formData.merchantName) return [];
+                                        return this.merchantOptions.filter(opt =>
+                                            opt.name.toLowerCase().includes(this.formData.merchantName.toLowerCase())
+                                        );
+                                    },
+                                    escapeRegExp(string) {
+                                        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                                    },
+                                    highlightMatch(text) {
+                                        const regex = new RegExp(`(${this.escapeRegExp(this.formData.merchantName)})`, 'gi');
+                                        return text.replace(regex, `<span class='font-bold'>$1</span>`);
+                                    },
                                     search() {
                                         this.errorMessage = 'Start Date and End Date cannot be empty';
                                     },
@@ -145,42 +140,54 @@
                                         </svg>
                                     </span>
                                 </div>
-                                <form class="w-full pl-4 gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between" @submit.prevent="search">
-                                    <template x-for="input in formInput" x-cloak>
-                                        <div>
-                                            <template x-if="input.type === 'select'">
-                                                <select :name="input.name" :id="input.name" x-model="input.value" class="w-full text-primary-input-gray-text focus-visible:text-primary-input-black-text border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-sm transition duration-300">
-                                                    <template x-for="option in input.options">
-                                                        <option :value="option.value" x-text="option.name"></option>
-                                                    </template>
-                                                </select>
+                                <form class="w-full pl-4 gap-5 grid grid-cols-1 md:grid-cols-3 justify-between" @submit.prevent="search()">
+                                    <div class="relative">
+                                        <input
+                                            x-model="formData.merchantName"
+                                            @input="showMerchantOptions = true"
+                                            @click.away="showMerchantOptions = false"
+                                            type="text"
+                                            placeholder="Select with merchant name or phone number"
+                                            name="merchantName"
+                                            id="merchantName"
+                                            autocomplete="off"
+                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:text-primary-footer-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-footer-gray-text focus:text-primary-input-black-text font-normal"
+                                        >
+                                        
+                                        <div x-show="showMerchantOptions && filteredMerchantOptions.length > 0"
+                                            class="absolute inset-x-0 w-full max-w-[350px] left-0 bg-white z-30 shadow-md text-small text-primary-header-gray-bold font-light"
+                                            x-transition.origin.top>                                
+                                            <template x-for="option in filteredMerchantOptions" :key="option.name">
+                                                <div class="w-full px-2 py-1 border-b border-primary-sidebar-gray-text/30 hover:bg-[#B5BFE1] hover:text-[#3E60DC] cursor-pointer transition duration-100"
+                                                    @click="formData.merchantName = option.name; showMerchantOptions = false">
+                                                    <p x-html="highlightMatch(option.name)"></p>
+                                                </div>
                                             </template>
-
-                                            <template x-if="['text', 'number', 'date'].includes(input.type)">
-                                                <input
-                                                    x-model="input.value"
-                                                    :type="input.type" 
-                                                    :placeholder="input.placeholder"
-                                                    :name="input.name"
-                                                    :id="input.name"
-                                                    :class="{
-                                                        'text-primary-input-black-text': input.type !== 'date', 
-                                                        'text-primary-input-gray-text': input.type === 'date'
-                                                    }"
-                                                    class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue placeholder:font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-sm transition duration-300"
-                                                >
-                                            </template>
-
-                                            <template x-if="input.type === 'button'">
-                                                <button type="submit" x-text="input.name" class="w-full uppercase font-semibold text-xs text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300"></button>
-                                            </template>
-
-                                            <template x-if="input.label">
-                                                <label :for="input.name" x-text="input.label" class="text-tiny text-primary-header-gray-bold font-normal"></label>
-                                            </template>
-                                            
                                         </div>
-                                    </template>             
+                                    </div>
+                                    <div>
+                                        <input
+                                            x-model="formData.startDate"
+                                            type="date"
+                                            name="startDate" 
+                                            id="startDate"
+                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-input-gray-text"
+                                        >
+                                        <label for="startDate" class="text-tiny text-primary-header-gray-bold">(Start Date)</label>
+                                    </div>
+                                    <div>
+                                        <input
+                                            x-model="formData.endDate" 
+                                            type="date"
+                                            name="endDate" 
+                                            id="endDate"
+                                            class="w-full border border-primary-sidebar-gray-text focus:border-primary-inputBorder-blue font-normal placeholder:text-primary-input-gray-text outline-none px-3 py-2 text-small transition duration-300 text-primary-input-gray-text"
+                                        >
+                                        <label for="endDate" class="text-tiny text-primary-header-gray-bold">(End Date)</label>
+                                    </div>
+                                    <div>
+                                        <button type="submit" class="w-full uppercase font-semibold text-tiny text-white bg-primary-cyanBlue-button-background hover:bg-primary-cyanBlue-background-dark active:bg-primary-blue-text p-3 rounded-xs cursor-pointer transition duration-300">search</button>
+                                    </div>
                                 </form>  
                             </div>  
                         </div>
@@ -214,7 +221,7 @@
 
                             <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-4 py-2 px-6 border-b border-primary-sidebar-gray-text/70">
                                 <div>
-                                    <h1 class="text-primary-black font-medium">Merchant Request Logs</h1>
+                                    <h1 class="text-primary-table-header font-medium">Merchant Request Logs</h1>
                                 </div>
                                 <div class="flex w-full sm:w-fit justify-between">
                                     <button class="cursor-pointer px-7 py-3 uppercase text-[10px] font-medium bg-primary-blue-text/10 text-primary-blue-text hover:bg-primary-blue-text hover:text-white rounded-xs">   
@@ -243,6 +250,8 @@
                                         </select>
                                         <label for="entries">entries</label>
                                     </div>
+
+                                    <!-- Search Button  -->
                                     <div class="w-full sm:w-fit text-center">
                                         <label for="search">Search:</label>
                                         <input
