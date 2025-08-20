@@ -1,14 +1,7 @@
 import Alpine from 'alpinejs';
 import './componentLoader';
 import { menu } from './menu';
-import {
-  barChart1,
-  barChart2,
-  barChart3,
-  lineChart1,
-  lineChart2,
-  drawTotalPinPieChart
-} from './charts';
+import { drawTotalPinPieChart } from './charts';
 
 
 window.Alpine = Alpine;
@@ -18,11 +11,6 @@ Alpine.data('menu', menu);
 
 
 //Charts
-Alpine.data('barChart1', barChart1);
-Alpine.data('barChart2', barChart2);
-Alpine.data('barChart3', barChart3);
-Alpine.data('lineChart1', lineChart1);
-Alpine.data('lineChart2', lineChart2);
 Alpine.data('totalPinPieChart', drawTotalPinPieChart);
 
 Alpine.start();
